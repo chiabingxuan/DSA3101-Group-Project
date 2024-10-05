@@ -73,6 +73,10 @@ def remove_invalid_trips(data, start, end):
     data.drop(data[data[start] == data[end]].index, inplace=True)   # starting and ending bus stops cannot be the same
 
 
+def clean_feedback(data, col_name):
+    data[col_name] = data[col_name].map(lambda feedback: feedback.lower())  # convert feedback to lowercase
+
+
 def clean_trip_data(trip_data):
     # Rename columns
     rename_columns(trip_data, ["year", "major", "on_campus", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day", "date", "has_exam", "start", "end", "bus_num", "time", "weather", "num_people_at_bus_stop", "waiting_time", "waiting_time_satisfaction", "crowdedness", "crowdedness_satisfaction", "comfort", "safety", "overall_satisfaction"])
@@ -110,11 +114,14 @@ def clean_other_feedback_data(other_feedback_data):
     # Clean major data
     clean_majors(other_feedback_data, "major", is_trip_data=False)
 
+    # Clean feedback data
+    clean_feedback(other_feedback_data, "feedback")
+
 
 if __name__ == "__main__":
     survey_data = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/survey.csv"), keep_default_na=False))
     trip_data, other_feedback_data = reshape(survey_data)
     clean_trip_data(trip_data)
     clean_other_feedback_data(other_feedback_data)
-    trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_trip_data.csv"))
-    other_feedback_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_other_feedback_data.csv"))
+    trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_trip_data.csv"), index=False)
+    other_feedback_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_other_feedback_data.csv"), index=False)
