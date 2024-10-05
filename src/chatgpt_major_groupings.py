@@ -1,4 +1,14 @@
-# Using ChatGPT to normalise list of majors, ensuring consistency
+"""
+Using ChatGPT to normalise list of majors, ensuring consistency
+
+Prompt: 
+Consider the following list of majors offered by the National University of Singapore (NUS):
+
+<insert list here>
+
+Some of these majors are actually the same. For example, "dsa" is an abbreviation of "data science and analytics", which is also the same as "data science & analytics" and “Data Science and Analytics”. With reference to information that you can find regarding the names and abbreviations of NUS majors, please carry out a one-to-one mapping of this list of majors, ensuring that the same majors are mapped to the same output (all in lowercase). Do the mapping element-wise, returning a Python list of strings. Since the mapping is one-to-one, the length of the list should not change.
+"""
+
 cleaned_majors = [
     'data science and analytics',
     'data science and analytics',

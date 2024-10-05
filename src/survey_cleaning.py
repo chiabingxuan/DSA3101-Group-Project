@@ -69,6 +69,10 @@ def clean_majors(data, col_name, is_trip_data):   # col_name: name of columns wi
         data[col_name] = np.array(chatgpt_major_groupings.cleaned_majors)
 
 
+def remove_invalid_trips(data, start, end):
+    data.drop(data[data[start] == data[end]].index, inplace=True)   # starting and ending bus stops cannot be the same
+
+
 def clean_trip_data(trip_data):
     # Rename columns
     rename_columns(trip_data, ["year", "major", "on_campus", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day", "date", "has_exam", "start", "end", "bus_num", "time", "weather", "num_people_at_bus_stop", "waiting_time", "waiting_time_satisfaction", "crowdedness", "crowdedness_satisfaction", "comfort", "safety", "overall_satisfaction"])
@@ -85,6 +89,9 @@ def clean_trip_data(trip_data):
 
     # Clean major data
     clean_majors(trip_data, "major", is_trip_data=True)
+
+    # Remove trips that don't make sense
+    remove_invalid_trips(trip_data, "start", "end")
 
 
 def clean_other_feedback_data(other_feedback_data):
