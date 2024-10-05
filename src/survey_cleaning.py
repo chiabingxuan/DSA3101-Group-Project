@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 import datetime
+import chatgpt_major_groupings
 
 
 def reshape(survey_data):
@@ -61,9 +62,12 @@ def format_and_correct_times(data, col_names):  # col_names: names of all column
         data[col_name] = data[col_name].map(correct_indiv_time) # correct any invalid times
 
 
-def clean_majors(data, col_name):   # col_name: name of columns with major
-    data[col_name] = data[col_name].map(lambda major: major.lower())    # convert majors to lowercase
-    
+def clean_majors(data, col_name, is_trip_data):   # col_name: name of columns with major
+    if is_trip_data:
+        data[col_name] = np.array(chatgpt_major_groupings.cleaned_majors * 2)   # cleaned_majors are based on the major column in other_feedback_data. For trip_data, need to double the cleaned_majors list
+    else:
+        data[col_name] = np.array(chatgpt_major_groupings.cleaned_majors)
+
 
 def clean_trip_data(trip_data):
     # Rename columns
@@ -80,7 +84,7 @@ def clean_trip_data(trip_data):
     format_and_correct_times(trip_data, ["time"])
 
     # Clean major data
-    clean_majors(trip_data, "major")
+    clean_majors(trip_data, "major", is_trip_data=True)
 
 
 def clean_other_feedback_data(other_feedback_data):
@@ -88,7 +92,7 @@ def clean_other_feedback_data(other_feedback_data):
     rename_columns(other_feedback_data, ["year", "major", "on_campus", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day", "date", "has_exam", "feedback"])
 
     # Trim whitespace
-    trim_whitespace(other_feedback_data, ["major", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day"])
+    trim_whitespace(other_feedback_data, ["major", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day", "feedback"])
 
     # Convert some columns to int data type
     convert_columns_to_int(other_feedback_data, ["trips_per_day", "duration_per_day"])
@@ -97,11 +101,13 @@ def clean_other_feedback_data(other_feedback_data):
     format_dates(other_feedback_data, ["date"])
 
     # Clean major data
-    clean_majors(other_feedback_data, "major")
+    clean_majors(other_feedback_data, "major", is_trip_data=False)
 
 
 if __name__ == "__main__":
-    survey_data = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/survey.csv")))
+    survey_data = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/survey.csv"), keep_default_na=False))
     trip_data, other_feedback_data = reshape(survey_data)
     clean_trip_data(trip_data)
     clean_other_feedback_data(other_feedback_data)
+    trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_trip_data.csv"))
+    other_feedback_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_other_feedback_data.csv"))
