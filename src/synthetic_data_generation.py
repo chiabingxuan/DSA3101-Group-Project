@@ -51,10 +51,17 @@ def plot_similarity(data, synthetic_data, metadata, col_name):
     fig.show()
 
 
-def split_columns(synthetic_data):
+def edit_synthetic_data(synthetic_data):
+    # Split "trip" column back into "start", "end" and "bus_num"
     synthetic_data[["start", "end", "bus_num"]] = synthetic_data["trip"].str.split(",", expand=True)
     synthetic_data.drop("trip", axis=1, inplace=True)
+
+    # Rearrange columns
     synthetic_data = synthetic_data[["year", "major", "on_campus", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day", "date", "has_exam", "start", "end", "bus_num", "time", "weather", "num_people_at_bus_stop", "waiting_time", "waiting_time_satisfaction", "crowdedness", "crowdedness_satisfaction", "comfort", "safety", "overall_satisfaction"]]
+
+    # Extract only the date for "date" column
+    synthetic_data["date"] = synthetic_data["date"].map(lambda date: date.date())
+
     return synthetic_data
 
 
@@ -80,8 +87,8 @@ if __name__ == "__main__":
     # Check quality of synthetic data
     quality_report = assess_synthetic_data_quality(real_data, synthetic_data, metadata)
 
-    # Split "trip" column back into "start", "end" and "bus_num"
-    synthetic_data = split_columns(synthetic_data)
+    # Change synthetic data to match original trip data
+    synthetic_data = edit_synthetic_data(synthetic_data)
 
     # Stacking original trip data and synthetic trip data on top of each other
     combined_trip_data = pd.concat([trip_data, synthetic_data], ignore_index=True)
