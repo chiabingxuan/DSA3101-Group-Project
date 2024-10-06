@@ -19,6 +19,7 @@ markdown-it-py
 matplotlib
 matplotlib-inline
 mdurl
+nbsynthetic @ git+https://github.com/NextBrain-ml/nbsynthetic.git
 nest-asyncio
 numpy
 packaging
@@ -39,6 +40,7 @@ pyzmq
 rich
 scikit-learn
 scipy==1.12
+sdv
 seaborn
 six
 stack-data

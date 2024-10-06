@@ -53,7 +53,7 @@ def correct_indiv_time(trip_time):
         trip_time += datetime.timedelta(hours=12)   # change invalid AMs to PMs
     elif time_only > last_bus_time:
         trip_time -= datetime.timedelta(hours=12)   # change invalid PMs to AMs
-    return trip_time.time() # get only the timestamp from corrected datetime
+    return trip_time
 
 
 def format_and_correct_times(data, col_names):  # col_names: names of all columns with times
@@ -123,5 +123,5 @@ if __name__ == "__main__":
     trip_data, other_feedback_data = reshape(survey_data)
     clean_trip_data(trip_data)
     clean_other_feedback_data(other_feedback_data)
-    trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_trip_data.csv"), index=False)
-    other_feedback_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_survey_other_feedback_data.csv"), index=False)
+    trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_trip_data.csv"), index=False)
+    other_feedback_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_other_feedback_data.csv"), index=False)
