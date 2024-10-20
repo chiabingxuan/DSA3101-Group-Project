@@ -69,8 +69,31 @@ def clean_majors(data, col_name, is_trip_data):   # col_name: name of columns wi
         data[col_name] = np.array(chatgpt_major_groupings.cleaned_majors)
 
 
-def remove_invalid_trips(data, start, end):
-    data.drop(data[data[start] == data[end]].index, inplace=True)   # starting and ending bus stops cannot be the same
+def check_start_end_has_bus_num(start, end, bus_num):
+    # Dictionary of bus services for each of our target bus stops
+    # Since we are grouping bus stops in pairs, there is a potential issue here. For example, Kent Ridge MRT services A1 but Opp Kent Ridge MRT does not
+    BUS_NUMS_OF_BUS_STOPS = {
+        "Kent Ridge MRT / Opp Kent Ridge MRT": ["A1", "A2", "D2"],
+        "LT27 / S17": ["A1", "A2", "D2"],
+        "UHC / Opp UHC": ["A1", "A2", "D2"],
+        "UTown": ["D1", "D2", "E"],
+        "COM3": ["D1", "D2"],
+        "BIZ2 / Opp HSSML": ["A1", "A2", "D1"],
+        "LT13 / Ventus": ["A1", "A2", "D1"],
+        "IT / CLB": ["A1", "A2", "D1", "E"],
+        "PGP": ["A1", "A2", "D2"]
+    }
+
+    return (bus_num in BUS_NUMS_OF_BUS_STOPS[start]) and (bus_num in BUS_NUMS_OF_BUS_STOPS[end])    # check if bus_num is serviced in both starting and ending bus-stops
+
+
+def remove_invalid_trips(data, start, end, bus_num):
+    # Starting and ending bus stops cannot be the same
+    data.drop(data[data[start] == data[end]].index, inplace=True)
+
+    # bus_num must be serviced in both starting and ending bus stops
+    do_trips_have_bus_num_in_start_end = data.apply(lambda row: not check_start_end_has_bus_num(row[start], row[end], row[bus_num]), axis=1)
+    data.drop(data[do_trips_have_bus_num_in_start_end].index, inplace=True)
 
 
 def clean_feedback(data, col_name):
@@ -95,7 +118,7 @@ def clean_trip_data(trip_data):
     clean_majors(trip_data, "major", is_trip_data=True)
 
     # Remove trips that don't make sense
-    remove_invalid_trips(trip_data, "start", "end")
+    remove_invalid_trips(trip_data, "start", "end", "bus_num")
 
 
 def clean_other_feedback_data(other_feedback_data):
