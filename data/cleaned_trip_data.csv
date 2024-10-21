@@ -2,12 +2,12 @@ year,major,on_campus,main_reason_for_taking_isb,trips_per_day,duration_per_day,d
 Year 1,data science and analytics,No,To go to class,2,7,2024-09-20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 07:50:00,Sunny,30,6,4,9,4,3,6,6
 Year 1,data science and analytics,No,To go to class,2,7,2024-09-26,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,1900-01-01 15:00:00,Rainy,10,5,5,5,6,7,7,7
 Year 1,data science and analytics,No,To go to class,2,5,2024-09-16,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 08:50:00,Sunny,20,6,7,9,7,7,9,8
-Year 1,data science and analytics,No,To go to class,2,15,2024-09-26,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 11:00:00,Rainy,15,7,8,10,4,7,5,9
+Year 1,data science and analtytics,No,To go to class,2,15,2024-09-26,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 11:00:00,Rainy,15,7,8,10,4,7,5,9
 Year 2,data science and analytics,Yes,To go to class,6,20,2024-09-26,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 11:00:00,Sunny,30,4,8,9,3,3,4,5
 Year 3,data science and analytics,No,To go to class,3,30,2024-09-16,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 09:30:00,Sunny,10,5,7,8,4,4,8,6
 Year 2,life sciences,Yes,To go to class,4,40,2024-09-20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A2,1900-01-01 11:40:00,Sunny,20,5,10,7,7,5,6,5
 Year 3,data science and analytics,No,To go to MRT,2,25,2024-09-19,No,COM3,LT27 / S17,D2,1900-01-01 14:00:00,Sunny,15,5,6,6,6,7,8,7
-Year 3,life sciences,No,To go to class,2,20,2024-09-26,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 14:00:00,Rainy,30,10,3,7,3,3,5,3
+Year 3,life science,No,To go to class,2,20,2024-09-26,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 14:00:00,Rainy,30,10,3,7,3,3,5,3
 Year 3,nursing,No,To go to class,2,40,2024-09-26,No,LT27 / S17,IT / CLB,A1,1900-01-01 12:30:00,Rainy,40,6,4,8,2,2,6,4
 Year 2,data science and analytics,No,To go to class,2,10,2024-09-26,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 11:00:00,Rainy,20,7,6,8,5,6,6,6
 Year 4,data science and analytics,No,To go to class,2,5,2024-09-19,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 18:53:00,Sunny,13,3,8,8,6,7,10,8
@@ -64,7 +64,7 @@ Year 3,data science and analytics,No,To go to class,3,40,2024-10-01,Yes,LT13 / V
 Year 1,political science,No,To go to CCA sessions,1,5,2024-10-01,No,IT / CLB,UHC / Opp UHC,A2,1900-01-01 18:00:00,Sunny,30,5,7,9,5,2,7,6
 Year 1,malay studies,No,To go to class,1,10,2024-10-01,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A2,1900-01-01 11:40:00,Sunny,40,1,8,9,4,4,7,7
 Year 1,anthropology,No,To go to CCA sessions,1,5,2024-10-01,No,IT / CLB,LT27 / S17,A2,1900-01-01 15:40:00,Sunny,30,4,10,8,6,4,10,9
-Year 1,life sciences,No,To go to class,2,10,2024-10-01,No,IT / CLB,LT27 / S17,A2,1900-01-01 09:50:00,Sunny,0,8,3,1,10,10,10,6
+Year 1,life sci,No,To go to class,2,10,2024-10-01,No,IT / CLB,LT27 / S17,A2,1900-01-01 09:50:00,Sunny,0,8,3,1,10,10,10,6
 Year 3,geography,No,To go to class,2,15,2024-10-01,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 08:22:00,Sunny,18,4,7,4,5,7,8,7
 Year 1,pharmaceutical science,Yes,To go to class,3,60,2024-10-01,No,LT13 / Ventus,LT27 / S17,A1,1900-01-01 09:40:00,Sunny,10,4,7,4,6,7,8,8
 Year 4,economics,No,To go to class,2,10,2024-10-01,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 14:00:00,Sunny,25,5,8,6,8,8,9,8
@@ -72,18 +72,18 @@ Year 1,nursing,No,To go to class,1,10,2024-10-02,No,Kent Ridge MRT / Opp Kent Ri
 Year 4,history,No,To go to class,2,22,2024-10-02,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 07:50:00,Sunny,25,4,8,8,7,7,7,7
 Year 4,engineering,No,To go to class,3,15,2024-10-02,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 10:00:00,Sunny,10,2,8,5,7,7,8,8
 Year 4,biomedical engineering,No,To go to class,4,20,2024-10-02,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 10:30:00,Sunny,30,12,2,7,3,3,6,3
-Year 2,quantitative finance,No,To go to class,3,30,2024-10-02,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,1900-01-01 08:50:00,Sunny,30,1,10,8,7,6,10,7
+Year 2,quantitave finance,No,To go to class,3,30,2024-10-02,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,1900-01-01 08:50:00,Sunny,30,1,10,8,7,6,10,7
 Year 4,data science and analytics,No,To go to MRT,2,10,2024-10-01,No,UHC / Opp UHC,LT27 / S17,D2,1900-01-01 15:45:00,Sunny,30,5,6,9,2,6,6,6
-Year 3,environmental studies,No,To go to class,2,7,2024-10-02,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 11:45:00,Sunny,30,8,1,8,4,4,5,5
-Year 3,life sciences,No,To go to class,2,10,2024-10-01,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,1900-01-01 11:48:00,Rainy,10,3,8,5,8,8,8,9
+Year 3,environmental engineering,No,To go to class,2,7,2024-10-02,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 11:45:00,Sunny,30,8,1,8,4,4,5,5
+Year 3,life science,No,To go to class,2,10,2024-10-01,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,1900-01-01 11:48:00,Rainy,10,3,8,5,8,8,8,9
 Year 4,psychology,No,To go to class,3,15,2024-10-02,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,1900-01-01 09:00:00,Sunny,30,13,2,10,2,2,3,2
 Year 3,data science and analytics,No,To go to class,3,30,2024-10-02,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 13:10:00,Sunny,15,6,5,7,5,6,8,7
 Year 3,statistics,No,To go to class,1,5,2024-10-02,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A2,1900-01-01 18:00:00,Sunny,10,5,5,6,6,5,5,5
-Year 4,engineering - material science and engineering,No,To go to class,2,15,2024-10-02,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,1900-01-01 08:10:00,Sunny,15,1,10,2,9,10,10,10
+Year 4,material science and engineering,No,To go to class,2,15,2024-10-02,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,1900-01-01 08:10:00,Sunny,15,1,10,2,9,10,10,10
 Year 4,materials science and engineering,No,To go to class,2,12,2024-10-02,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,1900-01-01 07:53:00,Sunny,15,5,7,5,8,9,9,8
 Year 3,data science and analytics,No,To go to class,2,40,2024-10-03,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 10:30:00,Sunny,60,3,8,10,3,5,9,7
 Year 3,data science and analytics,No,To go to class,4,40,2024-10-03,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,1900-01-01 12:30:00,Rainy,15,6,5,6,7,7,8,8
-Year 3,life sciences,No,To go for meals,0,15,2024-10-03,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,1900-01-01 09:30:00,Sunny,50,10,4,10,2,3,7,5
+Year 3,life science,No,To go for meals,0,15,2024-10-03,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,1900-01-01 09:30:00,Sunny,50,10,4,10,2,3,7,5
 Year 4,data science n psychology,No,To go to MRT,2,5,2024-10-03,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,1900-01-01 18:24:00,Sunny,10,0,9,5,9,10,10,10
 Year 3,data science and analytics,No,To go to class,2,30,2024-10-03,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,1900-01-01 10:40:00,Sunny,40,8,6,6,4,5,7,7
 Year 3,data science and analytics,No,To go to class,4,25,2024-10-03,Yes,LT27 / S17,UHC / Opp UHC,D2,1900-01-01 18:00:00,Sunny,25,2,8,7,4,6,8,6
@@ -98,12 +98,12 @@ Year 3,anthropology,No,To go to class,2,35,2024-10-03,Yes,Kent Ridge MRT / Opp K
 Year 1,data science and analytics,No,To go to class,2,7,2024-09-20,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,1900-01-01 18:00:00,Sunny,0,3,9,3,9,8,8,9
 Year 1,data science and analytics,No,To go to class,2,7,2024-09-26,No,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 18:00:00,Rainy,0,6,7,5,6,6,7,7
 Year 1,data science and analytics,No,To go to class,2,5,2024-09-16,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 12:00:00,Sunny,0,3,8,3,8,9,9,9
-Year 1,data science and analytics,No,To go to class,2,15,2024-09-26,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 13:40:00,Sunny,0,5,9,8,7,9,10,10
+Year 1,data science and analtytics,No,To go to class,2,15,2024-09-26,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 13:40:00,Sunny,0,5,9,8,7,9,10,10
 Year 2,data science and analytics,Yes,To go to class,6,20,2024-09-26,No,LT27 / S17,UTown,D2,1900-01-01 13:00:00,Sunny,0,5,9,7,3,3,4,5
 Year 3,data science and analytics,No,To go to class,3,30,2024-09-16,No,COM3,LT27 / S17,D2,1900-01-01 14:30:00,Sunny,0,8,5,6,7,7,7,8
 Year 2,life sciences,Yes,To go to class,4,40,2024-09-20,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 18:00:00,Sunny,0,20,4,10,4,4,4,4
 Year 3,data science and analytics,No,To go to MRT,2,25,2024-09-19,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 11:30:00,Sunny,0,5,7,8,4,7,8,6
-Year 3,life sciences,No,To go to class,2,20,2024-09-26,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 17:00:00,Rainy,0,15,3,8,3,3,5,3
+Year 3,life science,No,To go to class,2,20,2024-09-26,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 17:00:00,Rainy,0,15,3,8,3,3,5,3
 Year 3,nursing,No,To go to class,2,40,2024-09-26,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 16:00:00,Sunny,0,10,8,2,9,9,9,9
 Year 4,data science and analytics,No,To go to class,2,5,2024-09-19,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 10:06:00,Sunny,0,7,8,4,9,9,10,9
 Year 2,data science and analytics,No,To go for meals,4,20,2024-10-02,No,UTown,LT27 / S17,D2,1900-01-01 14:00:00,Sunny,0,10,6,6,6,6,6,6
@@ -162,7 +162,7 @@ Year 1,malay studies,No,To go to class,1,10,2024-10-01,No,IT / CLB,UTown,D1,1900
 Year 1,global studies,No,To go to CCA sessions,1,5,2024-10-01,No,IT / CLB,PGP,A1,1900-01-01 15:00:00,Sunny,0,8,4,1,10,10,10,10
 Year 1,anthropology,No,To go to CCA sessions,1,5,2024-10-01,No,LT27 / S17,LT13 / Ventus,A1,1900-01-01 17:21:00,Sunny,0,5,6,7,6,7,10,8
 Year 2,accountancy,No,To go to class,3,5,2024-10-01,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A1,1900-01-01 17:45:00,Rainy,0,5,9,4,9,8,8,9
-Year 1,life sciences,No,To go to class,2,10,2024-10-01,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 11:59:00,Sunny,0,5,7,7,8,7,10,8
+Year 1,life sci,No,To go to class,2,10,2024-10-01,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 11:59:00,Sunny,0,5,7,7,8,7,10,8
 Year 3,geography,No,To go to class,2,15,2024-10-01,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A1,1900-01-01 13:35:00,Rainy,0,7,3,8,4,2,5,4
 Year 1,pharmaceutical science,Yes,To go to class,3,60,2024-10-01,No,LT27 / S17,UTown,D2,1900-01-01 13:30:00,Sunny,0,4,4,8,4,5,5,6
 Year 4,economics,No,To go to class,2,10,2024-10-01,Yes,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 16:00:00,Sunny,0,5,8,9,8,8,8,8
@@ -171,17 +171,17 @@ Year 4,history,No,To go to class,2,22,2024-10-02,No,IT / CLB,Kent Ridge MRT / Op
 Year 3,life sciences,No,To go to class,2,6,2024-10-02,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 14:00:00,Rainy,0,6,4,6,5,7,7,7
 Year 4,engineering,No,To go to class,3,15,2024-10-02,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 16:30:00,Rainy,0,6,8,3,8,8,8,8
 Year 4,biomedical engineering,No,To go to class,4,20,2024-10-02,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 18:00:00,Sunny,0,15,1,10,1,1,3,2
-Year 2,quantitative finance,No,To go to class,3,30,2024-10-02,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 10:50:00,Sunny,0,6,6,3,10,10,10,9
+Year 2,quantitave finance,No,To go to class,3,30,2024-10-02,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 10:50:00,Sunny,0,6,6,3,10,10,10,9
 Year 4,data science and analytics,No,To go to MRT,2,10,2024-10-01,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A1,1900-01-01 20:15:00,Sunny,0,5,5,10,2,2,3,4
-Year 3,environmental studies,No,To go to class,2,7,2024-10-02,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 17:50:00,Sunny,0,4,8,10,1,1,3,1
-Year 3,life sciences,No,To go to class,2,10,2024-10-01,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 13:41:00,Sunny,0,6,7,8,5,6,7,7
+Year 3,environmental engineering,No,To go to class,2,7,2024-10-02,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 17:50:00,Sunny,0,4,8,10,1,1,3,1
+Year 3,life science,No,To go to class,2,10,2024-10-01,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 13:41:00,Sunny,0,6,7,8,5,6,7,7
 Year 4,psychology,No,To go to class,3,15,2024-10-02,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 17:00:00,Sunny,0,5,8,5,6,6,9,8
 Year 3,data science and analytics,No,To go to class,3,30,2024-10-02,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,1900-01-01 15:15:00,Sunny,0,5,7,6,5,7,8,6
 Year 3,statistics,No,To go to class,1,5,2024-10-02,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 19:40:00,Sunny,0,2,5,5,5,5,10,5
 Year 4,materials science and engineering,No,To go to class,2,12,2024-10-02,No,LT27 / S17,IT / CLB,A1,1900-01-01 09:45:00,Sunny,0,4,9,7,8,9,9,10
 Year 3,data science and analytics,No,To go to class,2,40,2024-10-03,No,COM3,LT27 / S17,D2,1900-01-01 11:40:00,Sunny,0,6,5,7,9,8,9,9
 Year 3,data science and analytics,No,To go to class,4,40,2024-10-03,Yes,COM3,LT27 / S17,D2,1900-01-01 13:50:00,Sunny,0,10,3,7,5,7,8,6
-Year 3,life sciences,No,To go for meals,0,15,2024-10-03,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 14:44:00,Sunny,0,5,8,3,9,8,8,7
+Year 3,life science,No,To go for meals,0,15,2024-10-03,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 14:44:00,Sunny,0,5,8,3,9,8,8,7
 Year 4,data science n psychology,No,To go to MRT,2,5,2024-10-03,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 15:20:00,Sunny,0,2,9,9,9,9,9,9
 Year 3,data science and analytics,No,To go to class,2,30,2024-10-03,Yes,LT27 / S17,UHC / Opp UHC,A1,1900-01-01 18:00:00,Rainy,0,5,6,5,5,5,8,8
 Year 3,data science and analytics,No,To go to class,4,25,2024-10-03,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 20:50:00,Sunny,0,15,4,9,3,4,7,4
