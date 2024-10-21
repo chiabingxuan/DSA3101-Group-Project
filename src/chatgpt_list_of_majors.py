@@ -29,6 +29,7 @@ major_mapping = {
     "business administration": "business",
     
     "chemistry": "chemistry",
+    "chem": "chemistry",
     
     "computer science": "computer science",
     "cs": "computer science",
@@ -37,23 +38,26 @@ major_mapping = {
     "data science & analytics": "data science and analytics",
     "data science and analytics": "data science and analytics",
     "dsa": "data science and analytics",
+    "data science and analytics!": "data science and analytics",
+    'adsa': 'data science and analytics',
     
     "dentistry": "dentistry",
     "faculty of dentistry": "dentistry",
     
     "economics": "economics",
+    'econs' : 'economics',
     
     "engineering - material science and engineering": "materials science and engineering",
     "materials science and engineering": "materials science and engineering",
     "material science & engineering": "materials science and engineering",
     
-    "environmental science": "environmental studies",  # Collated with environmental studies
+    "environmental science": "environmental studies",  
     "environmental studies": "environmental studies",
     
-    "eve": "environmental engineering",  # Collated with environmental engineering
+    "eve": "environmental engineering",  
     
     "food science and technology": "food science and technology",
-    "fst": "food science and technology",  # Added fst
+    "fst": "food science and technology",  
     
     "geography": "geography",
     
@@ -88,6 +92,7 @@ major_mapping = {
     
     "psych": "psychology",
     "psychology": "psychology",
+    'data science n psych': 'psychology',
     
     "quantitative finance": "quantitative finance",
     

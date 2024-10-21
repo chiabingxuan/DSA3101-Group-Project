@@ -3,7 +3,7 @@ import numpy as np
 import os
 import datetime
 import re
-
+import chatgpt_list_of_majors as mappings
 
 def reshape(survey_data):
     df_first_trip = survey_data.iloc[:, 1:22].copy()  # contains rows corresponding to first trip
@@ -62,45 +62,14 @@ def format_and_correct_times(data, col_names):  # col_names: names of all column
         data[col_name] = data[col_name].map(correct_indiv_time) # correct any invalid times
 
 def correct_individual_major(major):
-    """
-    Using ChatGPT to normalise list of majors, ensuring consistency
-
-    Prompt: 
-    Consider the following list of majors offered by the National University of Singapore (NUS):
-
-    <insert list here>
-
-    Some of these majors are actually the same. For example, "dsa" is an abbreviation of "data science and analytics", which is also the same as "data science & analytics" and “Data Science and Analytics”. With reference to information that you can find regarding the names and abbreviations of NUS majors, please carry out a one-to-one mapping of this list of majors, ensuring that the same majors are mapped to the same output (all in lowercase). Do the mapping element-wise, returning a Python list of strings. Since the mapping is one-to-one, the length of the list should not change.
-    """
-
     # Step 1: Dictionary to get the mappings
-    MAPPINGS = {
-        'data science & analytics': 'data science and analytics',
-        'dsa': 'data science and analytics',
-        'cs': 'computer science',
-        'sci': 'science',
-        'data science': "data science and analytics",
-        'faculty of dentistry': 'dentistry',
-        'eve': 'environmental engineering',
-        'psych': 'psychology',
-        'engineering - material science and engineering': 'material science and engineering',
-        'data science n psych': 'psychology',
-        'bza': 'business analytics',
-        'chem': 'chemistry',
-        'fst': 'food science and technology',
-        'ise': 'industrial systems engineering',
-        'analytics!': 'analytics',
-        'adsa': 'data science and analytics',
-        'material science & engineering' : 'material science and engineering',
-        'ppe-xdp': 'politics, philosophy, economics',
-        'econs' : 'economics' 
-    }
+    MAPPINGS = mappings.major_mapping
 
     # Step 2: Convert major to lowercase
-    major = major.lower()
+    lower_major = major.lower()
 
     # Step 3: Replace using the mapping dictionary, if applicable
-    cleaned_major = MAPPINGS.get(major, major)  # Use the original field if not found in mapping
+    cleaned_major = MAPPINGS.get(major, lower_major)  # Use the original field if not found in mapping
     
     """
     Step 4: Apply known corrections
