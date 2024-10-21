@@ -109,31 +109,12 @@ cleaned_majors = [clean_major(major) for major in unclean_majors]
 print(cleaned_majors)
 """
 
-testcase_clean = [clean_major(major) for major in test_case.fields_of_study]
-print(testcase_clean)
-
-# Initial list of fields
-fields_of_study = [
-    "DSA", "DSA", "DSA", "DSA", "Data Science", "DSA", "data science", "Environmental Studies",
-    "Computer Science", "DSA", "life sciences", "Business", "Dentistry", "Dentistry", "DSA",
-    "Data Science and Analytics", "DSA", "Life science", "nursing", "DSA", "Business Administration",
-    # ... (other entries)
-    "cs", "DSA", "Psychology", "Law"
-]
-
-# Mapping dictionary
-mapping = {
-    "cs": "Computer Science",
-    "DSA": "Data Science and Analytics",
-    "data science": "Data Science and Analytics",
-    "Data Science": "Data Science and Analytics",
-    "data science n psychology": "Data Science and Psychology",
-    # Add other mappings as needed
-}
+#testcase_clean = [clean_major(major) for major in test_case.fields_of_study]
+#print(testcase_clean)
 
 # Clean the data
 cleaned_fields = []
-for field in fields_of_study:
+for field in test_case:
     # Replace using the mapping dictionary, if applicable
     cleaned_field = mapping.get(field, field)  # Use the original field if not found in mapping
     cleaned_fields.append(cleaned_field)
