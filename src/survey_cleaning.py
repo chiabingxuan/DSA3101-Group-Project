@@ -3,6 +3,8 @@ import numpy as np
 import os
 import datetime
 import chatgpt_major_groupings
+import re
+import test_case as test
 
 
 def reshape(survey_data):
@@ -67,6 +69,63 @@ def clean_majors(data, col_name, is_trip_data):   # col_name: name of columns wi
         data[col_name] = np.array(chatgpt_major_groupings.cleaned_majors * 2)   # cleaned_majors are based on the major column in other_feedback_data. For trip_data, need to double the cleaned_majors list
     else:
         data[col_name] = np.array(chatgpt_major_groupings.cleaned_majors)
+
+    # Step 1: Dictionary to get the mappings
+    mappings = {
+    'data science & analytics': 'data science and analytics',
+    'dsa': 'data science and analytics',
+    'cs': 'computer science',
+    'sci': 'science',
+    'data science': "data science and analytics",
+    'faculty of dentistry': 'dentistry',
+    'eve': 'environmental engineering',
+    'psych': 'psychology',
+    'engineering - material science and engineering': 'material science and engineering',
+    'data science n psych': 'psychology',
+    'bza': 'business analytics',
+    'chem': 'chemistry',
+    'fst': 'food science and technology',
+    'ise': 'industrial systems engineering',
+    'analytics!': 'analytics',
+    'adsa': 'data science and analytics',
+    'material science & engineering' : 'material science and engineering',
+    'ppe-xdp': 'politics, philosophy, economics',
+    'econs' : 'economics' 
+    }
+
+    # Step 2: Initiate a empty list to append cleaned majors 
+    cleaned_majors = []
+
+    # Step 3: Iterate through the responses to clean
+    for major in majors:
+        major = major.lower()
+    
+        # Step 4: Replace using the mapping dictionary, if applicable
+        cleaned_major = mappings.get(major, major)  # Use the original field if not found in mapping
+        
+        # Step 5: Capitalise each word
+        cleaned_major = cleaned_major.title()
+
+        # Step 6: Append into the empty list
+        cleaned_majors.append(cleaned_major)
+
+    
+    """
+    Step 3: Apply known corrections
+    for wrong, right in mappings.items():
+        major = re.sub(wrong, right, major)
+
+    major = re.sub(r'([a-z])([A-Z])', r'\1 \2', major)
+    
+    # Step 4: Remove special characters
+    major = re.sub(r'[^a-z\s]', '', major)
+    
+    # Step 5: Replace multiple spaces with a single space
+    major = re.sub(r'\s+', ' ', major).strip()
+    """
+
+    print(cleaned_majors)
+    return cleaned_majors
 
 
 def check_start_end_has_bus_num(start, end, bus_num):
@@ -148,3 +207,66 @@ if __name__ == "__main__":
     clean_other_feedback_data(other_feedback_data)
     trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_trip_data.csv"), index=False)
     other_feedback_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_other_feedback_data.csv"), index=False)
+
+
+# function to clean the majors
+def clean_major(majors):
+
+    # Step 1: Dictionary to get the mappings
+    mappings = {
+    'data science & analytics': 'data science and analytics',
+    'dsa': 'data science and analytics',
+    'cs': 'computer science',
+    'sci': 'science',
+    'data science': "data science and analytics",
+    'faculty of dentistry': 'dentistry',
+    'eve': 'environmental engineering',
+    'psych': 'psychology',
+    'engineering - material science and engineering': 'material science and engineering',
+    'data science n psych': 'psychology',
+    'bza': 'business analytics',
+    'chem': 'chemistry',
+    'fst': 'food science and technology',
+    'ise': 'industrial systems engineering',
+    'analytics!': 'analytics',
+    'adsa': 'data science and analytics',
+    'material science & engineering' : 'material science and engineering',
+    'ppe-xdp': 'politics, philosophy, economics',
+    'econs' : 'economics' 
+    }
+
+    # Step 2: Initiate a empty list to append cleaned majors 
+    cleaned_majors = []
+
+    # Step 3: Iterate through the responses to clean
+    for major in majors:
+        major = major.lower()
+    
+        # Step 4: Replace using the mapping dictionary, if applicable
+        cleaned_major = mappings.get(major, major)  # Use the original field if not found in mapping
+        
+        # Step 5: Capitalise each word
+        cleaned_major = cleaned_major.title()
+
+        # Step 6: Append into the empty list
+        cleaned_majors.append(cleaned_major)
+
+    """
+    # Step 3: Apply known corrections
+    for wrong, right in mappings.items():
+        major = re.sub(wrong, right, major)
+
+    major = re.sub(r'([a-z])([A-Z])', r'\1 \2', major)
+    
+    # Step 4: Remove special characters
+    major = re.sub(r'[^a-z\s]', '', major)
+    
+    # Step 5: Replace multiple spaces with a single space
+    major = re.sub(r'\s+', ' ', major).strip()
+    
+    # 
+    """
+
+    print(cleaned_majors)
+    return cleaned_majors
+
