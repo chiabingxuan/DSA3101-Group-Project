@@ -9,6 +9,7 @@ code from chatgpt
 """
 
 import re
+import test_case
 
 def clean_major(major):
 
@@ -16,19 +17,21 @@ def clean_major(major):
     major = major.lower()
     
     # Step 2: Replace common misspellings and variants
+    """
     corrections = {
-        'datsci': 'data science',
-        'datscience': 'data science',
-        'data scienceanaly': 'data science and analytics',
-        'analytics': 'analytics',
-        'mat.erial': 'material',
-        'engin!': 'engineering',
-        'psychology': 'psychology',
-        'soc iology': 'sociology',
-        'enviromental': 'environmental',
-        'life sciences': 'life sciences',
-        'computer science': 'computer science',
-        'politi cal': 'political',
+        #'datsci': 'data science',
+        #'datscience': 'data science',
+        #'data scienceanaly': 'data science and analytics',
+        #'analytizs': 'analytics',
+        #'mat.erial': 'material',
+        #'engin!': 'engineering',
+        #'psychology': 'psychology',
+        #'soc iology': 'sociology',
+        #'enviromental': 'environmental',
+        #'life sciences': 'life sciences',
+        #'computer science': 'computer science',
+        #'politi cal': 'political',
+        
         'data science & analytics': 'data science and analytics',
         'dsa': 'data science and analytics',
         'cs': 'computer science',
@@ -47,7 +50,9 @@ def clean_major(major):
         'adsa': 'data science and analytics',
         'material science & engineering' : 'material science and engineering',
         'PPE-XDP': 'politics, philosophy, economics' 
-    }
+        
+    } """
+
 
     # Step 3: Apply known corrections
     for wrong, right in corrections.items():
@@ -68,6 +73,7 @@ def clean_major(major):
     
     
 # Clean the unclean data
+"""
 unclean_majors = [
     'DataScienceandAnalytics ', 'dataScIENCEANDanalytics', ' data science and analyzics',
     'data!science an@alytics', 'data  science and ANALYTICS', 'data_science_and_analytics',
@@ -95,8 +101,14 @@ unclean_majors = [
     'Data_Sci_en_analytics', 'SOcIOlogy', 'datscienceanalytics', 'AnthroPOlogy'
 ]
 
+
 # Apply the cleaning function to each major
 cleaned_majors = [clean_major(major) for major in unclean_majors]
 
 # Display cleaned majors
 print(cleaned_majors)
+"""
+
+testcase_clean = [clean_major(major) for major in test_case.fields_of_study]
+print(testcase_clean)
+
