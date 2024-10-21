@@ -1,4 +1,6 @@
 #Test case for cleaned data
+# Test case for clean
+# cleaned_majors = clean_major(test.fields_of_study)
 
 fields_of_study = [
     "DSA", "DSA", "DSA", "DSA", "Data Science", "DSA", "data science", "Environmental Studies",
