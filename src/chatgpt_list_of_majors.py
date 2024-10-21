@@ -49,7 +49,7 @@ major_mapping = {
     "economics": "economics",
     'econs' : 'economics',
 
-    "engineering": "mechanical engineering",
+    "engineering": "mechanical engineering", # edge case
     
     "engineering - material science and engineering": "materials science and engineering",
     "materials science and engineering": "materials science and engineering",
