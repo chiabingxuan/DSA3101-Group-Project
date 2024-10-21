@@ -30,7 +30,23 @@ def clean_major(major):
         'computer science': 'computer science',
         'politi cal': 'political',
         'data science & analytics': 'data science and analytics',
-        'dsa': 'data science and analytics'
+        'dsa': 'data science and analytics',
+        'cs': 'computer science',
+        'sci': 'science',
+        'data science': "data science and analytics",
+        'faculty of dentistry': 'dentistry',
+        'eve': 'environmental engineering',
+        'psych': 'psychology',
+        'engineering - material science and engineering': 'material science and engineering',
+        'data science n psych': 'psychology',
+        'bza': 'business analytics',
+        'chem': 'chemistry',
+        'fst': 'food science and technology',
+        'ise': 'industrial systems engineering',
+        'analytics!': 'analytics',
+        'adsa': 'data science and analytics',
+        'material science & engineering' : 'material science and engineering',
+        'PPE-XDP': 'politics, philosophy, economics' 
     }
 
     # Step 3: Apply known corrections
