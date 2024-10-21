@@ -16,6 +16,8 @@
 
 
 major_mapping = {
+    "accountancy": "accountancy",
+
     "architecture": "architecture",
     
     "anthropology": "anthropology",
@@ -46,6 +48,8 @@ major_mapping = {
     
     "economics": "economics",
     'econs' : 'economics',
+
+    "engineering": "mechanical engineering",
     
     "engineering - material science and engineering": "materials science and engineering",
     "materials science and engineering": "materials science and engineering",
@@ -92,9 +96,10 @@ major_mapping = {
     
     "psych": "psychology",
     "psychology": "psychology",
-    'data science n psych': 'psychology',
+    'data science n psych': 'psychology', # Edge case, a mixture of 2 majors
     
     "quantitative finance": "quantitative finance",
+    "quantitate finance": "quantitative finance",  
     
     "social work": "social work",
     
