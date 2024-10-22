@@ -8,6 +8,7 @@ decorator
 exceptiongroup
 executing
 fonttools
+imblearn
 ipykernel
 ipython
 jedi

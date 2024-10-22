@@ -3,7 +3,7 @@ import numpy as np
 import os
 import datetime
 import re
-import chatgpt_list_of_majors as mappings
+import major_mappings
 
 def reshape(survey_data):
     df_first_trip = survey_data.iloc[:, 1:22].copy()  # contains rows corresponding to first trip
@@ -63,13 +63,13 @@ def format_and_correct_times(data, col_names):  # col_names: names of all column
 
 def correct_individual_major(major):
     # Step 1: Dictionary to get the mappings
-    MAPPINGS = mappings.major_mapping
+    MAPPINGS = major_mappings.MAJOR_MAPPING
 
     # Step 2: Convert major to lowercase
     lower_major = major.lower()
 
     # Step 3: Replace using the mapping dictionary, if applicable
-    cleaned_major = MAPPINGS.get(major, lower_major)  # Use the original field if not found in mapping
+    cleaned_major = MAPPINGS.get(lower_major, lower_major)  # Use the original field if not found in mapping
     
     """
     Step 4: Apply known corrections
