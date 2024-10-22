@@ -54,7 +54,7 @@ From our survey, we are able to obtain tabular data in the form of a CSV file, `
 | Trip 2: Bus number | object |
 | Trip 2: Time of day | object |
 | Trip 2: Weather | object |
-| Trip 2: Number of people at starting bus stop | int64 |
+| Trip 2: Number of people at starting bus stop | object |
 | Trip 2: Waiting time (in minutes) | object |
 | Trip 2: Satisfaction level for waiting time | int64 |
 | Trip 2: Crowdedness level | int64 |
