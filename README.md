@@ -7,8 +7,8 @@
     - [3.1 Data Acquisition](#31-data-acquisition)
     - [3.2 Data Dictionary of Original Survey Data](#32-data-dictionary-of-original-survey-data)
     - [3.3 Data Quality Assessment](#33-data-quality-assessment)
-    - [3.4 Preliminary Data Exploration](#34-preliminary-data-exploration)
   - [4. Data Preparation](#4-data-preparation)
+    - [4.1 Initial Data Cleaning](#41-initial-data-cleaning)
   - [5. Modelling](#5-modelling)
   - [6. Evaluation](#6-evaluation)
   - [7. Deployment](#7-deployment)
@@ -111,7 +111,7 @@ The data dictionaries for `trip_data` and `other_feedback_data` are as follows:
 | major | object | Major |
 | on_campus | object | Is the respondent staying on campus? |
 | main_reason_for_taking_isb | object | Main reason for taking the school bus |
-| trips_per_day  | object | Number of times the respondent takes the school bus per day |
+| trips_per_day | object | Number of times the respondent takes the school bus per day |
 | duration_per_day | object | Duration spent riding the school bus per day (in minutes) |
 | date | object | Date |
 | has_exam | object | Does the respondent have an exam that day? |
@@ -136,15 +136,30 @@ By calling `clean_other_feedback_data()` on `other_feedback_data`, we discovered
 
 Note also that since all fields of the survey are required, there are no missing values in both `trip_data` and `other_feedback_data`. In addition, the data is taken directly from our survey results, so there are no duplicate rows in both data frames.
 
-### 3.4 Preliminary Data Exploration
-
-
-
-
-
-
-
 ## 4. Data Preparation
+### 4.1 Initial Data Cleaning
+With this in mind, we proceed to clean both `trip_data` and `other_feedback_data` in `survey_cleaning.py`.
+
+By calling `clean_trip_data()` on `trip_data`, we do the following:
+* Rename all columns (as mentioned in 3.3: Data Quality Assessment)
+* Trim whitespace for the 6 columns that require this (`major`, `main_reason_for_taking_isb`, `trips_per_day`, `duration_per_day`, `num_people_at_bus_stop` and `waiting_time`)
+* Convert `trips_per_day`, `duration_per_day`, `num_people_at_bus_stop` and `waiting_time` columns to `int64` data type
+  * For the 40 entries that do not correspond exactly to an integer, we only keep the first integer that appears (eg. if the entry is "15-20 minutes", we only keep "15"). Then, we convert this modified entry to `int64`
+* Correct invalid times in the `time` column, converting them from "AM" to "PM" (or vice versa) where necessary
+  * Modiifed 16 entries
+* Use a `MAPPINGS` dictionary to standardise the formatting of the `major` column
+  * Modified 492 entries
+* Remove rows corresponding to invalid bus trips
+  * Removed 1 row where `start` and `end` are the same
+  * Removed 42 rows where `bus_num` is not serviced in either `start` or `end`
+
+By calling `clean_other_feedback_data()` on `other_feedback_data`, we do the following:
+* Rename all columns (as mentioned in 3.3: Data Quality Assessment)
+* Trim whitespace for the 6 columns that require this (`major`, `main_reason_for_taking_isb`, `trips_per_day`, `duration_per_day` and `feedback`)
+* Convert `trips_per_day` and `duration_per_day` columns to `int64` data type
+  * For the 15 entries that do not correspond exactly to an integer, we only keep the first integer that appears (eg. if the entry is "15-20 minutes", we only keep "15"). Then, we convert this modified entry to `int64`
+* Use a `MAPPINGS` dictionary to standardise the formatting of the `major` column
+  * Modified 246 entries
 
 ## 5. Modelling
 

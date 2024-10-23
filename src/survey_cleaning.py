@@ -117,7 +117,7 @@ def remove_invalid_trips(data, start, end, bus_num):
     do_trips_not_have_bus_num_in_start_end = data.apply(lambda row: not check_start_end_has_bus_num(row[start], row[end], row[bus_num]), axis=1)
     num_trips_not_have_bus_num_in_start_end = do_trips_not_have_bus_num_in_start_end.sum()      # count number of trips where bus_num is not serviced in both start and end
     data.drop(data[do_trips_not_have_bus_num_in_start_end].index, inplace=True)
-    print(f"Removed invalid bus trips: Number of rows where bus number is not serviced in both starting and ending bus stops is {num_trips_not_have_bus_num_in_start_end}")
+    print(f"Removed invalid bus trips: Number of rows where bus number is not serviced in either starting or ending bus stops is {num_trips_not_have_bus_num_in_start_end}")
 
 
 def clean_feedback(data, col_name):
