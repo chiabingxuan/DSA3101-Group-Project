@@ -157,7 +157,7 @@ By calling `clean_other_feedback_data()` on `other_feedback_data`, we do the fol
 * Rename all columns (as mentioned in 3.3: Data Quality Assessment)
 * Trim whitespace for the 6 columns that require this (`major`, `main_reason_for_taking_isb`, `trips_per_day`, `duration_per_day` and `feedback`)
 * Convert `trips_per_day` and `duration_per_day` columns to `int64` data type
-  * For the 15 entries that do not correspond exactly to an integer, we only keep the first integer that appears (eg. if the entry is "15-20 minutes", we only keep "15"). Then, we convert this modified entry to `int64`
+  * For the 15 entries that do not correspond exactly to an integer, we only keep the first integer that appears. Then, we convert this modified entry to `int64`
 * Use a `MAPPINGS` dictionary to standardise the formatting of the `major` column
   * Modified 246 entries
 
