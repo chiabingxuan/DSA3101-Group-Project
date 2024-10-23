@@ -117,7 +117,7 @@ The data dictionaries for `trip_data` and `other_feedback_data` are as follows:
 | has_exam | object | Does the respondent have an exam that day? |
 | feedback | object | Other factors influencing satisfaction level |
 
-From the above, there are some numerical attributes which are being assigned the `object` data type instead, such as `num_people_at_bus_stop` for `trip_data`. This means that there are some problematic survey inputs for these attributes, which `pandas` cannot convert to the `int64` data type. Hence, some cleaning has to be done.
+From the above, there are some numerical attributes which are being assigned the `object` data type instead, such as `num_people_at_bus_stop` for `trip_data`. This means that there are some problematic survey inputs for these attributes, which `pandas` cannot convert to the `int64` data type. Hence, some data type conversion has to be done.
 
 By calling `clean_trip_data()` on `trip_data`, we also discovered the following issues, with regards to data quality:
 
@@ -133,6 +133,8 @@ By calling `clean_other_feedback_data()` on `other_feedback_data`, we discovered
 * `trips_per_day`: 2 entries that do not correspond exactly to an integer
 * `duration_per_day`: 13 entries that do not correspond exactly to an integer
 * `major`: Inconsistent formatting
+
+Note also that since all fields of the survey are required, there are no missing values in both `trip_data` and `other_feedback_data`. In addition, the data is taken directly from our survey results, so there are no duplicate rows in both data frames.
 
 ### 3.4 Preliminary Data Exploration
 

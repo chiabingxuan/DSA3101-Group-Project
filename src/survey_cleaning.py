@@ -173,8 +173,8 @@ def clean_other_feedback_data(other_feedback_data):
     print("Other feedback data cleaned!\n")
 
 
-def visualise_data(data, categorical_vars, continuous_vars):
-    for var_index in categorical_vars:
+def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars):
+    for var_index in bar_chart_vars:
         var_name = data.columns[var_index]
         plt.figure(figsize=(12,6))
         data.iloc[:, var_index].value_counts().plot(kind="barh")
@@ -183,7 +183,18 @@ def visualise_data(data, categorical_vars, continuous_vars):
         plt.ylabel(var_name)
         plt.tight_layout()
         plt.show()
-    for var_index in continuous_vars:
+
+    for var_index in boxplot_vars:
+        var_name = data.columns[var_index]
+        plt.figure(figsize=(12,6))
+        data.iloc[:, var_index].plot(kind="box")
+        plt.title(f"Box plot for {var_name}")
+        plt.xlabel("Count")
+        plt.ylabel(var_name)
+        plt.tight_layout()
+        plt.show()
+
+    for var_index in histogram_vars:
         var_name = data.columns[var_index]
         data.iloc[:, var_index].plot(kind="hist")
         plt.title(f"Histogram for {data.columns[var_index]}")
@@ -193,7 +204,7 @@ def visualise_data(data, categorical_vars, continuous_vars):
         plt.show()
 
 
-def remove_outliers(data, year_of_study, num_people_at_bus_stop=None):
+def remove_outliers(data, year_of_study, trips_per_day, num_people_at_bus_stop=None):
     if num_people_at_bus_stop is not None:  # means that data provided is trip_data
         print("Removing outliers for trip data...")
     else:
@@ -205,8 +216,14 @@ def remove_outliers(data, year_of_study, num_people_at_bus_stop=None):
     data.drop(data[is_year_5_and_above].index, inplace=True)
     print(f"Removed outliers for {year_of_study}: Number of rows that are either 'Year 5' or 'Masters / PhD' is {num_is_year_5_and_above}")
 
-    # Remove rows that have unrealistically large num_people_at_bus_stop
+    # Remove rows that have unrealistically large trips_per_day
+    has_large_trips_per_day = data[trips_per_day] >= 20   # set upper limit at 20
+    num_has_large_trips_per_day = has_large_trips_per_day.sum()   # count number of rows with unrealistically large trips_per_day
+    data.drop(data[has_large_trips_per_day].index, inplace=True)
+    print(f"Removed outliers for {trips_per_day}: Number of rows that have unrealistically large {trips_per_day} is {num_has_large_trips_per_day}")
+    
     if num_people_at_bus_stop is not None:  # means that data provided is trip_data
+        # Remove rows that have unrealistically large num_people_at_bus_stop
         has_large_num_people_at_bus_stop = data[num_people_at_bus_stop] >= 80   # set upper limit at 80
         num_has_large_num_people_at_bus_stop = has_large_num_people_at_bus_stop.sum()   # count number of rows with unrealistically large num_people_at_bus_stop
         data.drop(data[has_large_num_people_at_bus_stop].index, inplace=True)
@@ -225,12 +242,12 @@ if __name__ == "__main__":
     clean_other_feedback_data(other_feedback_data)
 
     # Conduct preliminary data exploration
-    # visualise_data(trip_data, categorical_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], continuous_vars=[4, 5, 13, 14, 15, 16, 17, 18, 19, 20])    # omit date and time column
-    # visualise_data(other_feedback_data, categorical_vars=[0, 1, 2, 3, 7], continuous_vars=[4, 5])    # omit date column
+    # visualise_data(trip_data, bar_chart_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], boxplot_vars=[4, 5, 13, 14], histogram_vars=[15, 16, 17, 18, 19, 20])    # omit date and time column
+    # visualise_data(other_feedback_data, bar_chart_vars=[0, 1, 2, 3, 7], boxplot_vars=[4, 5], histogram_vars=[])    # omit date column
 
     # Remove outliers
-    remove_outliers(trip_data, "year", num_people_at_bus_stop="num_people_at_bus_stop")
-    remove_outliers(other_feedback_data, "year")
+    remove_outliers(trip_data, year_of_study="year", trips_per_day="trips_per_day", num_people_at_bus_stop="num_people_at_bus_stop")
+    remove_outliers(other_feedback_data, year_of_study="year", trips_per_day="trips_per_day")
 
     # Save cleaned data frames
     trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_trip_data.csv"), index=False)
