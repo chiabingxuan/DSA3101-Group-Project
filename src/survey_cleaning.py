@@ -200,7 +200,7 @@ def remove_outliers(data, year_of_study, num_people_at_bus_stop=None):
         print("Removing outliers for other feedback data...")
 
     # Remove rows that correspond to Year 5 or Masters / PhD
-    is_year_5_and_above = data[year_of_study].map(lambda year: year in ["Year 5", "Masters / PhD"])
+    is_year_5_and_above = data[year_of_study].map(lambda year: year in ["Year 5", "Masters/PhD"])
     num_is_year_5_and_above = is_year_5_and_above.sum()    # count number of rows with year being Year 5 and above
     data.drop(data[is_year_5_and_above].index, inplace=True)
     print(f"Removed outliers for {year_of_study}: Number of rows that are either 'Year 5' or 'Masters / PhD' is {num_is_year_5_and_above}")

@@ -132,7 +132,6 @@ Year 1,anthropology,No,To go for meals,4,15,2024-10-09,No,UHC / Opp UHC,LT27 / S
 Year 3,life sciences,Yes,To go to MRT,1,8,2024-10-09,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 21:15:00,Sunny,10,5,8,7,7,6,5,6
 Year 3,food science and technology,No,To go to CCA sessions,2,10,2024-10-09,No,LT27 / S17,UHC / Opp UHC,D2,1900-01-01 15:50:00,Sunny,7,1,10,1,10,10,10,10
 Year 3,mathematics,No,To go to CCA sessions,3,15,2024-10-09,No,BIZ2 / Opp HSSML,LT13 / Ventus,A2,1900-01-01 13:23:00,Sunny,7,3,10,5,5,5,5,5
-Masters/PhD,mathematics,No,To go to class,2,10,2024-10-09,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,1900-01-01 18:30:00,Rainy,10,3,6,4,7,7,7,7
 Year 3,law,No,To go to MRT,4,30,2024-10-09,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,1900-01-01 13:00:00,Sunny,35,15,2,10,1,3,7,3
 Year 3,political science,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,20,2024-10-09,No,PGP,LT13 / Ventus,A2,1900-01-01 09:30:00,Sunny,20,10,4,8,5,7,8,7
 Year 1,dentistry,No,To go to class,3,20,2024-10-09,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 11:30:00,Sunny,20,5,9,8,3,6,9,8
@@ -417,7 +416,6 @@ Year 1,anthropology,No,To go for meals,4,15,2024-10-09,No,LT27 / S17,UHC / Opp U
 Year 3,life sciences,Yes,To go to MRT,1,8,2024-10-09,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,1900-01-01 10:00:00,Sunny,30,15,1,10,2,2,1,2
 Year 3,food science and technology,No,To go to CCA sessions,2,10,2024-10-09,No,BIZ2 / Opp HSSML,PGP,A1,1900-01-01 19:00:00,Sunny,12,8,4,6,5,5,4,5
 Year 3,mathematics,No,To go to CCA sessions,3,15,2024-10-09,No,LT13 / Ventus,UTown,D1,1900-01-01 17:00:00,Sunny,12,7,5,6,4,4,4,4
-Masters/PhD,mathematics,No,To go to class,2,10,2024-10-09,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 21:30:00,Sunny,15,10,2,7,4,4,4,4
 Year 3,law,No,To go to MRT,4,30,2024-10-09,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 18:00:00,Sunny,50,15,2,8,1,5,4,1
 Year 3,political science,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,20,2024-10-09,No,LT13 / Ventus,PGP,A1,1900-01-01 15:30:00,Sunny,10,5,8,2,9,9,9,9
 Year 1,dentistry,No,To go to class,3,20,2024-10-09,No,IT / CLB,LT27 / S17,A2,1900-01-01 16:45:00,Sunny,30,15,4,10,1,1,3,1
