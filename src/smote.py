@@ -73,5 +73,5 @@ X_test = X_test[original_cols]
 
 
 # Upload to repository
-X_test.to_csv(os.path.join(os.path.dirname(__file__), '../data/test_trip_data.csv'), index=False)
+X_test.to_csv(os.path.join(os.path.dirname(__file__), '../data/sampled_test_trip_data.csv'), index=False)
 resampled_data.to_csv(os.path.join(os.path.dirname(__file__), '../data/resampled_trip_data.csv'), index=False)
