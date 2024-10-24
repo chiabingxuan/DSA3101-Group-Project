@@ -68,6 +68,7 @@ def format_and_correct_times(data, col_names):  # col_names: names of all column
         data[col_name] = modified_col
         print(f"Formatted and corrected invalid times: Number of entries modified for {col_name} is {num_entries_changed}")
 
+
 def correct_individual_major(major):
     # Step 1: Dictionary to get the mappings
     MAPPINGS = major_mappings.MAJOR_MAPPING
@@ -242,7 +243,7 @@ if __name__ == "__main__":
     clean_other_feedback_data(other_feedback_data)
 
     # Conduct preliminary data exploration
-    # visualise_data(trip_data, bar_chart_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], boxplot_vars=[4, 5, 13, 14], histogram_vars=[15, 16, 17, 18, 19, 20])    # omit date and time column
+    visualise_data(trip_data, bar_chart_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], boxplot_vars=[4, 5, 13, 14], histogram_vars=[15, 16, 17, 18, 19, 20])    # omit date and time column
     # visualise_data(other_feedback_data, bar_chart_vars=[0, 1, 2, 3, 7], boxplot_vars=[4, 5], histogram_vars=[])    # omit date column
 
     # Remove outliers

@@ -9,6 +9,7 @@
     - [3.3 Data Quality Assessment](#33-data-quality-assessment)
   - [4. Data Preparation](#4-data-preparation)
     - [4.1 Initial Data Cleaning](#41-initial-data-cleaning)
+    - [4.2 Initial Data Exploration](#42-initial-data-exploration)
   - [5. Modelling](#5-modelling)
   - [6. Evaluation](#6-evaluation)
   - [7. Deployment](#7-deployment)
@@ -146,7 +147,7 @@ By calling `clean_trip_data()` on `trip_data`, we do the following:
 * Convert `trips_per_day`, `duration_per_day`, `num_people_at_bus_stop` and `waiting_time` columns to `int64` data type
   * For the 40 entries that do not correspond exactly to an integer, we only keep the first integer that appears (eg. if the entry is "15-20 minutes", we only keep "15"). Then, we convert this modified entry to `int64`
 * Correct invalid times in the `time` column, converting them from "AM" to "PM" (or vice versa) where necessary
-  * Modiifed 16 entries
+  * Modified 16 entries
 * Use a `MAPPINGS` dictionary to standardise the formatting of the `major` column
   * Modified 492 entries
 * Remove rows corresponding to invalid bus trips
@@ -154,12 +155,44 @@ By calling `clean_trip_data()` on `trip_data`, we do the following:
   * Removed 42 rows where `bus_num` is not serviced in either `start` or `end`
 
 By calling `clean_other_feedback_data()` on `other_feedback_data`, we do the following:
-* Rename all columns (as mentioned in 3.3: Data Quality Assessment)
-* Trim whitespace for the 6 columns that require this (`major`, `main_reason_for_taking_isb`, `trips_per_day`, `duration_per_day` and `feedback`)
+* Rename all columns
+* Trim whitespace for the 5 columns that require this (`major`, `main_reason_for_taking_isb`, `trips_per_day`, `duration_per_day` and `feedback`)
 * Convert `trips_per_day` and `duration_per_day` columns to `int64` data type
   * For the 15 entries that do not correspond exactly to an integer, we only keep the first integer that appears. Then, we convert this modified entry to `int64`
 * Use a `MAPPINGS` dictionary to standardise the formatting of the `major` column
   * Modified 246 entries
+
+### 4.2 Initial Data Exploration
+After this first round of data cleaning, we now create visualisations to better understand the distributions of values for each attribute. Consider the common attributes for `trip_data` and `other_feedback_data`. Note that the distribution of each of these attributes is similar for both `pandas.DataFrames`. Hence, it suffices to investigate the distributions of attributes for `trip_data`.
+
+In `survey_cleaning.py`, by calling `visualise_data()` on `trip_data`, we obtain the following insights:
+* `year`: The counts of both "Year 5" and "Masters/PhD" are very low (both less than 15), compared to the other years of study (all greater than 100)
+  * We choose to remove these rows as outliers, by calling `remove_outliers()`
+* `major`: An overwhelming number of rows corresponds to "data science and analytics"
+  * Hence, our data is skewed with respect to `major` - synthetic data generation is needed to conduct oversampling on the minority majors
+* `main_reason_for_taking_isb`: An overwhelming number of rows corresponds to "To go to class" (greater than 400)
+* `trips_per_day`: There are some rows with unusually large values for this attribute (ie. more than 20)
+  * We choose to remove these rows as outliers, by calling `remove_outliers()`
+* `bus_num`: There are no rows corresponding to bus E
+  * Hence, we choose to exclude bus E from our analysis
+* `num_people_at_bus_stop`: There are some rows with unusually large values for this attribute (ie. more than 80)
+  * We choose to remove these rows as outliers, by calling `remove_outliers()`
+  * While there are some other values that the box plot classifies as outliers (eg. 60), we choose not to remove these rows. This is because it is genuinely possible for there to be that many people at a single bus stop (eg. on the day of an exam)
+* `waiting_time`: While there some values that the box plot classifies as outliers (eg. 25 min), we choose not to remove these rows. This is because it is genuinely possible for the waiting time to be that long (eg. when one misses a few buses in a row, due to the crowd size)
+
+With this information, we call `remove_outliers()` on both `trip_data` and `other_feedback_data` to remove the aforementioned outliers.
+
+For `trip_data`:
+* 10 outliers removed for `year`
+* 2 outliers removed for `trips_per_day`
+* 4 outliers removed for `num_people_at_bus_stop`
+
+For `other_feedback_data`:
+* 5 outliers removed for `year`
+* 1 outlier removed for `trips_per_day`
+
+
+
 
 ## 5. Modelling
 
