@@ -18,7 +18,7 @@ X_train['trip'] = X_train['start'] + ',' + X_train['end'] + ',' + X_train['bus_n
 X_train.drop(['start', 'end', 'bus_num'], axis=1, inplace=True)
 
 # Drop the date in 'time' column
-X_train['time'] = pd.to_datetime(data['time'], format='%Y-%m-%d %H:%M:%S') 
+X_train['time'] = pd.to_datetime(X_train['time'], format='%Y-%m-%d %H:%M:%S') 
 X_train['hour'] = X_train['time'].dt.hour
 X_train['minute'] = X_train['time'].dt.minute
 X_train.drop(columns=['time'], inplace=True)
@@ -26,7 +26,7 @@ X_train.drop(columns=['time'], inplace=True)
 X_train['year'] = X_train['year'].str.replace('Year ', '').astype(int) # Remove 'Year' from 'year' column, can do in data cleaning?
 
 # Convert 'date' column to datetime format
-X_train['date'] = pd.to_datetime(data['date'], format='%Y-%m-%d')
+X_train['date'] = pd.to_datetime(X_train['date'], format='%Y-%m-%d')
 
 # Encode date
 X_train['yeardate'] = X_train['date'].dt.year
