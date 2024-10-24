@@ -54,6 +54,7 @@ resampled_data = pd.DataFrame(X_resampled, columns=X_train.columns)  # Create da
 resampled_data['major'] = y_resampled  # add back major column to the resampled data
 
 # Transform columns back to original sequence and format
+resampled_data['year'] = 'Year ' + resampled_data['year'].astype(str)
 resampled_data[['start', 'end', 'bus_num']] = resampled_data['trip'].str.split(',', expand=True)
 resampled_data['yeardate'] = '2024'
 resampled_data['date'] = pd.to_datetime(resampled_data[['yeardate', 'month', 'day_of_month']].astype(str).agg('-'.join, axis=1))

@@ -2,6 +2,7 @@ import pandas as pd
 import os
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.preprocessing import OneHotEncoder
 
 
 # Train dataset
@@ -15,15 +16,15 @@ X_train['trip'] = X_train['start'] + ',' + X_train['end'] + ',' + X_train['bus_n
 X_train.drop(['start', 'end', 'bus_num'], axis=1, inplace=True)
 
 # Drop the date in 'time' column
-X_train['time'] = pd.to_datetime(data['time'], format='%Y-%m-%d %H:%M:%S') 
+X_train['time'] = pd.to_datetime(X_train['time'], format='%Y-%m-%d %H:%M:%S') 
 X_train['hour'] = X_train['time'].dt.hour
 X_train['minute'] = X_train['time'].dt.minute
 X_train.drop(columns=['time'], inplace=True)
 
-X_train['year'] = X_train['year'].str.replace('Year ', '').astype(int) # Remove 'Year' from 'year' column, can do in data cleaning?
+X_train['year'] = X_train['year'].str.replace('Year ', '') # Remove 'Year' from 'year' column, can do in data cleaning?
 
 # Convert 'date' column to datetime format
-X_train['date'] = pd.to_datetime(data['date'], format='%Y-%m-%d')
+X_train['date'] = pd.to_datetime(X_train['date'], format='%Y-%m-%d')
 
 # Encode date
 X_train['yeardate'] = X_train['date'].dt.year
@@ -35,7 +36,12 @@ X_train = X_train.drop(columns=['yeardate', 'date']) # Dropped 'year' column as 
 # Categorical cols: 'year', 'on_campus', 'main_reason_for_taking_isb', 'has_exam', 'weather', 'trip'
 categorical_features = ['year', 'on_campus', 'main_reason_for_taking_isb', 'has_exam', 'weather', 'trip']
 
-# Encode the categorical columns to do randomforestclassifier
+# One-Hot Encode the categorical features
+encoder = OneHotEncoder(drop='first', sparse=False)
+encoded_features = encoder.fit_transform(X_train[categorical_features])
+encoded_df = pd.DataFrame(encoded_features, columns=encoder.get_feature_names_out(categorical_features))
+
+X_train = pd.concat([X_train.drop(columns=categorical_features), encoded_df], axis=1)
 
 # Train model
 model = RandomForestClassifier(random_state=42)
