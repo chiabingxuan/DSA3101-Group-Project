@@ -9,6 +9,9 @@ train_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_
 X_train = train_data.drop(columns=['major'])  # Features
 y_train = train_data['major']  # Target variable
 
+X_train[]
+
+
 # Train model
 model = RandomForestClassifier(random_state=42)
 model.fit(X_train, y_train)
