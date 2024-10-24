@@ -50,7 +50,7 @@ From our survey, we are able to obtain tabular data in the form of a CSV file, `
 | Trip 1: Bus number | object |
 | Trip 1: Time of day | object |
 | Trip 1: Weather | object |
-| Trip 1: Number of people at starting bus stop | object |
+| Trip 1: Number of people at starting bus stop | int64 |
 | Trip 1: Waiting time (in minutes) | object |
 | Trip 1: Satisfaction level for waiting time | int64 |
 | Trip 1: Crowdedness level | int64 |
@@ -122,17 +122,17 @@ From the above, there are some numerical attributes which are being assigned the
 
 By calling `clean_trip_data()` on `trip_data`, we also discovered the following issues, with regards to data quality:
 
-* `trips_per_day`: 4 entries that do not correspond exactly to an integer (eg. "2-3 times")
-* `duration_per_day`: 26 entries that do not correspond exactly to an integer (eg. "15mins")
-* `num_people_at_bus_stop`: 4 entries that do not correspond exactly to an integer (eg. "40-50")
-* `waiting_time`: 6 entries that do not correspond exactly to an integer (eg. "5min")
+* `trips_per_day`: 2 entries that do not correspond exactly to an integer (eg. "2-3 times")
+* `duration_per_day`: 24 entries that do not correspond exactly to an integer (eg. "15mins")
+* `num_people_at_bus_stop`: 2 entries that do not correspond exactly to an integer (eg. "40-50")
+* `waiting_time`: 4 entries that do not correspond exactly to an integer (eg. "5min")
 * `time`: 16 entries which fall outside of NUS bus operating hours (eg. 1:00:00 am, might have mistakenly entered "am" instead of "pm")
 * `major`: Inconsistent formatting (eg. "Data Science and Analytics" can be entered as "dsa", "DSA", "Dsa", etc.)
 
 By calling `clean_other_feedback_data()` on `other_feedback_data`, we discovered the following issues, with regards to data quality:
 
-* `trips_per_day`: 2 entries that do not correspond exactly to an integer
-* `duration_per_day`: 13 entries that do not correspond exactly to an integer
+* `trips_per_day`: 1 entries that do not correspond exactly to an integer
+* `duration_per_day`: 12 entries that do not correspond exactly to an integer
 * `major`: Inconsistent formatting
 
 Note also that since all fields of the survey are required, there are no missing values in both `trip_data` and `other_feedback_data`. In addition, the data is taken directly from our survey results, so there are no duplicate rows in both data frames.
@@ -145,22 +145,22 @@ By calling `clean_trip_data()` on `trip_data`, we do the following:
 * Rename all columns (as mentioned in 3.3: Data Quality Assessment)
 * Trim whitespace for the 6 columns that require this (`major`, `main_reason_for_taking_isb`, `trips_per_day`, `duration_per_day`, `num_people_at_bus_stop` and `waiting_time`)
 * Convert `trips_per_day`, `duration_per_day`, `num_people_at_bus_stop` and `waiting_time` columns to `int64` data type
-  * For the 40 entries that do not correspond exactly to an integer, we only keep the first integer that appears (eg. if the entry is "15-20 minutes", we only keep "15"). Then, we convert this modified entry to `int64`
+  * For the 32 entries that do not correspond exactly to an integer, we only keep the first integer that appears (eg. if the entry is "15-20 minutes", we only keep "15"). Then, we convert this modified entry to `int64`
 * Correct invalid times in the `time` column, converting them from "AM" to "PM" (or vice versa) where necessary
   * Modified 16 entries
 * Use a `MAPPINGS` dictionary to standardise the formatting of the `major` column
-  * Modified 492 entries
+  * Modified 498 entries
 * Remove rows corresponding to invalid bus trips
   * Removed 1 row where `start` and `end` are the same
-  * Removed 42 rows where `bus_num` is not serviced in either `start` or `end`
+  * Removed 43 rows where `bus_num` is not serviced in either `start` or `end`
 
 By calling `clean_other_feedback_data()` on `other_feedback_data`, we do the following:
 * Rename all columns
 * Trim whitespace for the 5 columns that require this (`major`, `main_reason_for_taking_isb`, `trips_per_day`, `duration_per_day` and `feedback`)
 * Convert `trips_per_day` and `duration_per_day` columns to `int64` data type
-  * For the 15 entries that do not correspond exactly to an integer, we only keep the first integer that appears. Then, we convert this modified entry to `int64`
+  * For the 13 entries that do not correspond exactly to an integer, we only keep the first integer that appears. Then, we convert this modified entry to `int64`
 * Use a `MAPPINGS` dictionary to standardise the formatting of the `major` column
-  * Modified 246 entries
+  * Modified 249 entries
 
 ### 4.2 Initial Data Exploration
 After this first round of data cleaning, we now create visualisations to better understand the distributions of values for each attribute. Consider the common attributes for `trip_data` and `other_feedback_data`. Note that the distribution of each of these attributes is similar for both `pandas.DataFrames`. Hence, it suffices to investigate the distributions of attributes for `trip_data`.
@@ -183,12 +183,12 @@ In `survey_cleaning.py`, by calling `visualise_data()` on `trip_data`, we obtain
 With this information, we call `remove_outliers()` on both `trip_data` and `other_feedback_data` to remove the aforementioned outliers.
 
 For `trip_data`:
-* 10 outliers removed for `year`
+* 12 outliers removed for `year`
 * 2 outliers removed for `trips_per_day`
 * 4 outliers removed for `num_people_at_bus_stop`
 
 For `other_feedback_data`:
-* 5 outliers removed for `year`
+* 6 outliers removed for `year`
 * 1 outlier removed for `trips_per_day`
 
 

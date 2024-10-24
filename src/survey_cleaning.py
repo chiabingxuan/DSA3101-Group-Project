@@ -21,6 +21,7 @@ def rename_columns(data, new_col_names):
 
 def trim_whitespace(data, col_names):
     for col_name in col_names:
+        data[col_name] = data[col_name].astype(str)   # convert column to str
         data[col_name] = data[col_name].str.strip()
     print(f"Completed trimming of whitespace for {col_names}")
 
@@ -133,7 +134,7 @@ def clean_trip_data(trip_data):
 
     # Trim whitespace
     trim_whitespace(trip_data, ["major", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day", "num_people_at_bus_stop", "waiting_time"])
-
+    
     # Convert some columns to int data type
     convert_columns_to_int(trip_data, ["trips_per_day", "duration_per_day", "num_people_at_bus_stop", "waiting_time"])
 
