@@ -37,6 +37,7 @@ MAJOR_MAPPING = {
     "data science and analytics": "data science and analytics",
     "dsa": "data science and analytics",
     "data science and analytics!": "data science and analytics",
+    "data science and analtytics": "data science and analytics",
     "adsa": "data science and analytics", 
     "dentistry": "dentistry",
     "faculty of dentistry": "dentistry",
@@ -72,8 +73,10 @@ MAJOR_MAPPING = {
     "psych": "psychology",
     "psychology": "psychology",
     "data science n psych": "psychology", # Edge case, a mixture of 2 majors
+    "data science n psychology": "psychology",
     "quantitative finance": "quantitative finance",
     "quantitate finance": "quantitative finance",
+    "quantitave finance": "quantitative finance",
     "social work": "social work",
     "sociology": "sociology",
     "statistics": "statistics"
