@@ -14,7 +14,7 @@ Year 3,business,No,To go to MRT,2,30,2024-09-20,No,"comfort and safety also depe
 Year 3,dentistry,No,To go for meals,1,20,2024-09-24,No,nil
 Year 3,dentistry,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,20,2024-09-25,Yes,no
 Year 1,data science and analytics,No,To go to class,2,7,2024-09-26,No,sometimes the buses come too close together or too far apart
-Year 1,data science and analtytics,No,To go to class,2,15,2024-09-26,No,seat availability
+Year 1,data science and analytics,No,To go to class,2,15,2024-09-26,No,seat availability
 Year 2,data science and analytics,Yes,To go to class,6,20,2024-09-26,No,nil
 Year 3,life sciences,No,To go to class,2,20,2024-09-26,No,the bus frequencies and how the driver drives
 Year 3,nursing,No,To go to class,2,40,2024-09-26,No,having a good air ventilation / strong aircon in the bus when its very crowded
@@ -72,7 +72,7 @@ Year 1,malay studies,No,To go to class,1,10,2024-10-01,No,nil!
 Year 1,global studies,No,To go to CCA sessions,1,5,2024-10-01,No,nil
 Year 1,anthropology,No,To go to CCA sessions,1,5,2024-10-01,No,no
 Year 2,accountancy,No,To go to class,3,5,2024-10-01,No,mainly crowdedness and waiting time!
-Year 1,life sciences,No,To go to class,2,10,2024-10-01,No,how roughly the driver drives eg if they speed over a speed bump or turn extra hard and the passengers are tossed around
+Year 1,life sciences,No,To go to class,2,15,2024-10-01,No,how roughly the driver drives eg if they speed over a speed bump or turn extra hard and the passengers are tossed around
 Year 3,geography,No,To go to class,2,15,2024-10-01,No,na
 Year 1,pharmaceutical science,Yes,To go to class,3,60,2024-10-01,No,no
 Year 4,economics,No,To go to class,2,10,2024-10-01,Yes,nil
@@ -84,7 +84,7 @@ Year 4,history,No,To go to class,2,22,2024-10-02,No,nil
 Year 3,life sciences,No,To go to class,2,6,2024-10-02,Yes,the bus driver’s attitude
 Year 4,mechanical engineering,No,To go to class,3,15,2024-10-02,No,the driver's mood on that day
 Year 4,biomedical engineering,No,To go to class,4,20,2024-10-02,No,friendliness of the driver matters
-Year 2,quantitave finance,No,To go to class,3,30,2024-10-02,Yes,"the shakiness of the bus, when it’s very crowded there’s limited poles to hold onto. it cause me to stumble sometimes"
+Year 2,quantitative finance,No,To go to class,3,30,2024-10-02,Yes,"the shakiness of the bus, when it’s very crowded there’s limited poles to hold onto. it cause me to stumble sometimes"
 Year 3,environmental engineering,No,To go to class,2,7,2024-10-02,No,"old/new bus - old buses tend to have narrow walkways and less seating (long waiting time before boarding as many are slowly alighting, very difficult to alight when the bus is full), the suspension is also much worse - less safe"
 Year 4,psychology,No,To go to class,3,15,2024-10-02,Yes,nil
 Year 3,data science and analytics,No,To go to class,3,30,2024-10-02,No,nil
@@ -95,7 +95,7 @@ Year 1,environmental studies,No,To go to class,4,40,2024-10-02,Yes,whether bus d
 Year 3,data science and analytics,No,To go to class,2,40,2024-10-03,No,how rough the bus driver drives
 Year 3,data science and analytics,No,To go to class,4,40,2024-10-03,Yes,nil
 Year 3,life sciences,No,To go for meals,0,15,2024-10-03,Yes,when i reach the bus stop and the bus just arrives.
-Year 4,data science n psychology,No,To go to MRT,2,5,2024-10-03,Yes,sometimes bus damn shaky or the uncle drive very fast
+Year 4,psychology,No,To go to MRT,2,5,2024-10-03,Yes,sometimes bus damn shaky or the uncle drive very fast
 Year 3,data science and analytics,No,To go to class,2,30,2024-10-03,Yes,driving of the bus driver
 Year 3,data science and analytics,No,To go to class,4,25,2024-10-03,Yes,nil
 Year 1,sociology,Yes,To go to class,2,5,2024-10-03,Yes,nil
@@ -165,7 +165,7 @@ Year 4,political science,No,To go to class,4,45,2024-10-10,No,no
 Year 4,political science,No,To go to class,3,30,2024-10-10,No,no
 Year 2,dentistry,No,To go to class,3,15,2024-10-10,No,no
 Year 2,computer science,Yes,To go to class,2,10,2024-10-11,No,smell
-Year 2,data science and analytics,Yes,To go to class,1,10,2024-10-11,No,"whether or not the crowd update on nextbus is accurate. for example, when the app indicates the crowd level is green but when the bus arrives, it’s actually crowded."
+Year 2,data science and analytics,Yes,To go to class,2,10,2024-10-11,No,"whether or not the crowd update on nextbus is accurate. for example, when the app indicates the crowd level is green but when the bus arrives, it’s actually crowded."
 Year 2,psychology,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",1,10,2024-10-11,No,nope
 Year 2,food science and technology,Yes,To go to class,2,10,2024-10-11,No,"the lack of extended shelters at some bus stops like opp uhc and information technology so on rainy days you have to get drenched to get on the bus
 how hard the bus driver accelerates and breaks"
@@ -308,3 +308,27 @@ Year 3,quantitative finance,No,To go to class,4,20,2024-10-08,Yes,nil
 Year 3,quantitative finance,No,To go to class,4,20,2024-10-09,No,nil
 Year 4,quantitative finance,No,To go to MRT,2,10,2024-10-10,No,nil
 Year 4,quantitative finance,No,To go to MRT,2,8,2024-10-11,No,nil
+Year 3,accountancy,No,To go to class,2,30,2024-09-30,No,no
+Year 2,accountancy,No,To go to class,3,40,2024-10-01,No,no
+Year 2,accountancy,No,To go to MRT,3,30,2024-10-03,No,no
+Year 1,industrial systems engineering,No,To go to class,3,15,2024-10-21,No,nil
+Year 1,accountancy,Yes,To go to class,2,20,2024-10-04,No,no
+Year 2,industrial systems engineering,Yes,To go to class,3,20,2024-10-22,No,na
+Year 1,pharmaceutical science,Yes,To go to class,2,10,2024-09-30,No,nil
+Year 3,industrial systems engineering,No,To go to CCA sessions,2,10,2024-10-23,No,nil
+Year 1,pharmaceutical science,Yes,To go to class,2,10,2024-10-01,No,nil
+Year 4,industrial systems engineering,No,To go for meals,4,20,2024-10-24,No,na
+Year 1,accountancy,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",4,45,2024-10-02,No,no
+Year 1,business,No,To go to class,3,35,2024-10-24,No,nil
+Year 2,pharmaceutical science,No,To go to class,4,20,2024-10-02,Yes,nil
+Year 3,business,No,To go to CCA sessions,3,25,2024-10-22,No,nil
+Year 4,accountancy,No,To go to class,3,30,2024-10-02,No,no
+Year 3,pharmaceutical science,No,To go to class,2,5,2024-10-03,No,nil
+Year 4,pharmaceutical science,No,To go to class,2,5,2024-10-04,No,nil
+Year 4,business,No,To go to class,3,40,2003-10-21,No,nil
+Year 2,business,No,To go to MRT,2,30,2024-10-22,No,nil
+Year 1,environmental engineering,No,To go to class,2,20,2024-10-07,No,nil
+Year 2,environmental engineering,Yes,To go to class,3,30,2024-10-08,No,nil
+Year 4,environmental engineering,No,To go to class,2,20,2024-10-09,No,nil
+Year 4,environmental engineering,No,To go to class,3,30,2024-10-10,No,nil
+Year 3,environmental engineering,No,To go for meals,2,20,2024-10-11,No,nil
