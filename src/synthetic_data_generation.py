@@ -1,8 +1,10 @@
 import pandas as pd
 import os
+import numpy as np
 from sdv.metadata import SingleTableMetadata
 from sdv.single_table import GaussianCopulaSynthesizer
 from sdv.evaluation.single_table import run_diagnostic, evaluate_quality, get_column_plot
+
 
 
 def combine_columns(data):
@@ -30,8 +32,8 @@ def generate_synthetic_data(data, metadata):
     synthesiser = GaussianCopulaSynthesizer(metadata)
     synthesiser.fit(data)
 
-    # Generate 1000 rows of synthetic data
-    synthetic_data = synthesiser.sample(num_rows=1000) 
+    # Generate 2000 rows of synthetic data
+    synthetic_data = synthesiser.sample(num_rows=2000) 
     return synthetic_data
 
 
@@ -66,7 +68,8 @@ def edit_synthetic_data(synthetic_data):
 
 
 if __name__ == "__main__":
-    trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_trip_data.csv"), keep_default_na=False)
+    np.random.seed(42)
+    trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/resampled_trip_data.csv"), keep_default_na=False)
 
     # Combine "start", "end", "bus_num" into "trip"
     real_data = combine_columns(trip_data)
@@ -94,4 +97,4 @@ if __name__ == "__main__":
     combined_trip_data = pd.concat([trip_data, synthetic_data], ignore_index=True)
 
     # Save combined trip data
-    combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/trip_data_with_synthesis.csv"), index=False)
+    combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data.csv"), index=False)
