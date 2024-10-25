@@ -204,17 +204,17 @@ What changes to routes and schedules would optimize the public transport network
 * 5.2.1. Relevance
   * 1st Approach:  
     Shortest Path algorithm is effective at finding the shortest path, but it primarily focuses on minimizing travel distances between stops, not passenger preferences or demand. It does not factor in bus stop popularity or times when specific stops are likely to see higher demand.
-  * 2nd Approach:
+  * 2nd Approach:  
     By prioritizing stops based on demand and user preferences, this approach is explicitly designed to optimize according to passenger needs. The priority scoring accounts for fluctuating demand across days, times, and events, allowing routes to adapt based on who needs the service and when. This makes it more responsive to actual user preferences and system demand.
-  * Conclusion: 
+  * Conclusion:  
     The 2nd approach aligns better with the goal of responding to passenger needs which directly addresses the issue at hand.
 
 * 5.2.2 Adaptability
-  * 1st Approach:
+  * 1st Approach:  
     Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
-  * 2nd Approach:
+  * 2nd Approach:  
     This approach allows the system to adjust routes dynamically based on predefined priority scores under varying conditions. Since each bus stop’s priority can shift according to time-based demand and satisfaction data, the model naturally adapts without requiring computationally intensive recalculations.
-  * Conclusion:
+  * Conclusion:  
     The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
   
 * 5.2.3 Value-add
