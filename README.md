@@ -191,7 +191,7 @@ For `other_feedback_data`:
 * 6 outliers removed for `year`
 * 1 outlier removed for `trips_per_day`
 
-## 5. Modelling
+## 5. Modeling
 Subgroup B: System Optimization and Forecasting
 What changes to routes and schedules would optimize the public transport network?
 * Create an algorithm to optimize route planning based on predicted demand and user preferences.
@@ -202,7 +202,7 @@ What changes to routes and schedules would optimize the public transport network
 
 5.2 Algorithm Selection Critieria:
 * 5.2.1. Relevance
-  * 1st Approach:
+  * 1st Approach:  
     Shortest Path algorithm is effective at finding the shortest path, but it primarily focuses on minimizing travel distances between stops, not passenger preferences or demand. It does not factor in bus stop popularity or times when specific stops are likely to see higher demand.
   * 2nd Approach:
     By prioritizing stops based on demand and user preferences, this approach is explicitly designed to optimize according to passenger needs. The priority scoring accounts for fluctuating demand across days, times, and events, allowing routes to adapt based on who needs the service and when. This makes it more responsive to actual user preferences and system demand.
