@@ -5,6 +5,9 @@ import math
 from kmodes.kprototypes import KPrototypes
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.metrics import silhouette_score
+from kmodes.kmodes import KModes
+from kmodes import kprototypes
 
 #Importing the testing data set (AFTER SMOTE-NC and SDV) as a Pandas dataframe
 dataframe = pd.read_csv('C:/Users/65905/Downloads/DSA3101-Group-Project/data/train_trip_data.csv', encoding='utf-8')
@@ -72,8 +75,6 @@ dataframe[continuous_variable_columns] = dataframe[continuous_variable_columns].
 #Conver the categorical variable columns into "str" type
 dataframe[categorical_variable_columns] = dataframe[categorical_variable_columns].astype(str)
 
-print(dataframe['duration_per_trip'])
-
 #Dimensionality reduction should always be done before clustering.
 #This is because clustering generally depends on some sort of distance measure. 
 #Points near each other are in the same cluster; points far apart are in different clusters. 
@@ -98,12 +99,76 @@ for num_clusters in list(range(1,20)):
     kproto.fit_predict(dataframe, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
     cost.append(kproto.cost_)
 
-#Plot the data
-plt.plot(cost)
+plt.xlabel('Values of K') 
+plt.ylabel('Total Cluster Variance') 
+plt.title('Elbow Method For Optimal k')
+plt.plot(cost) #Plot the data
+plt.show() #Show the plot
 
-#Show the plot
-plt.show()
+#From the given plot, it seems that the optimal K = 7, BUT it is not too clear as the "elbow point" is not so clear and sharp.
+#In such an ambiguous case, the Silhouette Method is used to COMPLEMENT the Elbow Method.
+#The silhouette value measures how similar a point is to its own cluster (cohesion) compared to other clusters (separation).
+#The range of the Silhouette value is between +1 and -1. \
+#A high value is desirable and indicates that the point is placed in the correct cluster. 
+#If many points have a negative Silhouette value, it may indicate that we have created too many or too few clusters.
+def mixed_distance(a,b,categorical=None, alpha=0.01):
+    if categorical is None:
+        num_score=kprototypes.euclidean_dissim(a,b)
+        return num_score
+    else:
+        cat_index=categorical
+        a_cat=[]
+        b_cat=[]
+        for index in cat_index:
+            a_cat.append(a[index])
+            b_cat.append(b[index])
+        a_num=[]
+        b_num=[]
+        l=len(a)
+        for index in range(l):
+            if index not in cat_index:
+                a_num.append(a[index])
+                b_num.append(b[index])
+                
+        a_cat=np.array(a_cat).reshape(1,-1)
+        a_num=np.array(a_num).reshape(1,-1)
+        b_cat=np.array(b_cat).reshape(1,-1)
+        b_num=np.array(b_num).reshape(1,-1)
+        cat_score=kprototypes.matching_dissim(a_cat,b_cat)
+        num_score=kprototypes.euclidean_dissim(a_num,b_num)
+        return cat_score+num_score*alpha
 
+def dm_prototypes(dataset,categorical=None,alpha=0.1):
+    #if the input dataset is a dataframe, we take out the values as a numpy. 
+    #If the input dataset is a numpy array, we use it as is.
+    if type(dataset).__name__=='DataFrame':
+        dataset=dataset.values    
+    lenDataset=len(dataset)
+    distance_matrix=np.zeros(lenDataset*lenDataset).reshape(lenDataset,lenDataset)
+    for i in range(lenDataset):
+        for j in range(lenDataset):
+            x1= dataset[i]
+            x2= dataset[j]
+            distance=mixed_distance(x1, x2,categorical=categorical,alpha=alpha)
+            distance_matrix[i][j]=distance
+            distance_matrix[j][i]=distance
+    return distance_matrix
+
+silhouette_scores = []
+distance_matrix=dm_prototypes(dataframe,categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14],alpha=0.1)
+
+for k in list(range(2,20)): #dissimilarity is undefined for a single cluster, thus, minimum number of clusters should be 2
+    untrained_model = kprototypes.KPrototypes(n_clusters=k,max_iter=20)
+    trained_model = untrained_model.fit(dataframe, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
+    cluster_labels = trained_model.labels_
+    score=silhouette_score(distance_matrix, cluster_labels,metric="precomputed")
+    silhouette_scores.append(score)
+
+plt.xlabel('Values of K') 
+plt.ylabel('Silhouette Scores') 
+plt.title('Silhouette Method For Optimal k')
+plt.plot(silhouette_scores) #Plot the data
+plt.show() #Show the plot
 
 
 
