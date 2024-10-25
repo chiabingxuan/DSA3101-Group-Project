@@ -234,7 +234,7 @@ def remove_outliers(data, year_of_study, trips_per_day, num_people_at_bus_stop=N
     print("Outliers removed!\n")
 
 
-if __name__ == "__main__":
+def main():
     # Read in data
     survey_data = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/survey.csv"), keep_default_na=False))
 
@@ -254,3 +254,7 @@ if __name__ == "__main__":
     # Save cleaned data frames
     trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_trip_data.csv"), index=False)
     other_feedback_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_other_feedback_data.csv"), index=False)
+
+
+if __name__ == "__main__":
+    main()

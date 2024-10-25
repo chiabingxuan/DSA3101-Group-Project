@@ -65,7 +65,7 @@ def edit_synthetic_data(synthetic_data):
     return synthetic_data
 
 
-if __name__ == "__main__":
+def main():
     np.random.seed(42)
     trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/resampled_trip_data.csv"), keep_default_na=False)
 
@@ -96,3 +96,7 @@ if __name__ == "__main__":
 
     # Save combined trip data
     combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data.csv"), index=False)
+
+
+if __name__ == "__main__":
+    main()
