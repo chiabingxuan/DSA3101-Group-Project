@@ -332,7 +332,7 @@ What changes to routes and schedules would optimize the public transport network
     The priority order of bus stops based on the calculated priority score.  
     The final optimized order of bus stops, which first includes priority stops followed by remaining stops.
 
-  * Summary:
+  * Summary:  
     The above algorithm uses the output of 5.3.1 Bus Stop Prioritization and Sorting Algorithm and enables personalized bus route prioritization by allowing users to select criteria such as bus number, day, time, weather, and exam status. It validates each input, retrieves priority stops based on user demand and satisfaction, and outputs an optimized order of bus stops, ensuring efficient and tailored service.
 
 ## 6. Evaluation
