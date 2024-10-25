@@ -5,15 +5,6 @@ from sdv.metadata import SingleTableMetadata
 from sdv.single_table import GaussianCopulaSynthesizer
 from sdv.evaluation.single_table import run_diagnostic, evaluate_quality, get_column_plot
 
-def combine_columns(data):
-    # If "start", "end" and "bus_num" are in separate columns, synthesised data may have nonsensical data (eg. "start" and "end" being the same). So we need to combine these 3 columns into one single column, "trip"
-    data = data.copy()
-    data["trip"] = data[["start", "end", "bus_num"]].agg(",".join, axis=1)
-
-    # Remove "start", "end" and "bus_num" columns
-    data.drop(columns=["start", "end", "bus_num"], inplace=True)
-    return data
-
 
 def create_metadata(data):
     # Initialise and populate metadata
@@ -23,16 +14,6 @@ def create_metadata(data):
     # Update metadata - because some columns have incorrect types
     metadata.update_column(column_name="time", sdtype="datetime", datetime_format="%Y-%m-%d %H:%M:%S")
     return metadata
-
-
-def generate_synthetic_data(data, metadata):
-    synthesiser = GaussianCopulaSynthesizer(metadata)
-    synthesiser.fit(data)
-
-    # Generate 2000 rows of synthetic data
-    synthetic_data = synthesiser.sample(num_rows=2000) 
-    return synthetic_data
-
 
 def diagnose_synthetic_data(data, synthetic_data, metadata):
     diagnostic = run_diagnostic(data, synthetic_data, metadata)
@@ -44,52 +25,27 @@ def assess_synthetic_data_quality(data, synthetic_data, metadata):
     return quality_report
 
 
-def plot_similarity(data, synthetic_data, metadata, col_name):
-    # Plot graphs to compare real data and synthetic data
-    fig = get_column_plot(data, synthetic_data, metadata, col_name)
-    fig.show()
+# Train dataset
+train_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data.csv"), keep_default_na=False)
 
+# Test dataset
+test_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data.csv"), keep_default_na=False)
 
-def edit_synthetic_data(synthetic_data):
-    # Split "trip" column back into "start", "end" and "bus_num"
-    synthetic_data[["start", "end", "bus_num"]] = synthetic_data["trip"].str.split(",", expand=True)
-    synthetic_data.drop("trip", axis=1, inplace=True)
+# Create and save metadata that is to be used for synthesis
+# metadata = create_metadata(test_data)
+# metadata.save_to_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
 
-    # Rearrange columns
-    synthetic_data = synthetic_data[["year", "major", "on_campus", "main_reason_for_taking_isb", "trips_per_day", "duration_per_day", "date", "has_exam", "start", "end", "bus_num", "time", "weather", "num_people_at_bus_stop", "waiting_time", "waiting_time_satisfaction", "crowdedness", "crowdedness_satisfaction", "comfort", "safety", "overall_satisfaction"]]
+# Load existing metadata that is to be used for synthesis
+metadata = SingleTableMetadata.load_from_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
 
-    # Extract only the date for "date" column
-    synthetic_data["date"] = synthetic_data["date"].map(lambda date: date.date())
+# Check validity of train data
+diagnostic = diagnose_synthetic_data(test_data, train_data, metadata)
 
-    return synthetic_data
+# Check quality of train data
+quality_report = assess_synthetic_data_quality(test_data, train_data, metadata)
 
+# Stacking train and test data on top of each other
+combined_trip_data = pd.concat([train_data, test_data], ignore_index=True)
 
-if __name__ == "__main__":
-    # Train dataset
-    train_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data.csv"), keep_default_na=False)
-
-    # Test dataset
-    test_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data.csv"), keep_default_na=False)
-
-    # Combine "start", "end", "bus_num" into "trip"
-    # test_data = combine_columns(test_data)
-    # train_data = combine_columns(train_data)
-
-    # Create and save metadata that is to be used for synthesis
-    # metadata = create_metadata(test_data)
-    # metadata.save_to_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
-
-    # Load existing metadata that is to be used for synthesis
-    metadata = SingleTableMetadata.load_from_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
-
-    # Check validity of synthetic data
-    diagnostic = diagnose_synthetic_data(test_data, train_data, metadata)
-
-    # Check quality of synthetic data
-    quality_report = assess_synthetic_data_quality(test_data, train_data, metadata)
-
-    # Stacking original trip data and synthetic trip data on top of each other
-    combined_trip_data = pd.concat([train_data, test_data], ignore_index=True)
-
-    # Save combined trip data
-    combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/combined_trip_data.csv"), index=False)
+# Save combined trip data
+combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/combined_trip_data.csv"), index=False)
