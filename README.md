@@ -10,7 +10,11 @@
   - [4. Data Preparation](#4-data-preparation)
     - [4.1 Initial Data Cleaning](#41-initial-data-cleaning)
     - [4.2 Initial Data Exploration](#42-initial-data-exploration)
-  - [5. Modelling](#5-modelling)
+  - [5. Modeling](#5-modeling)
+    - [5.1 Algorithms Considered](#51-algorithms-considered)
+    - [5.2 Algorithm Selection Criteria](#52-algorithm-selection-criteria)
+      - [5.2.1. Relevance](#521-relevance)
+    - [5.3 Detailed Description of Chosen Algorithm](#53-detailed-description-of-chosen-algorithm)
   - [6. Evaluation](#6-evaluation)
   - [7. Deployment](#7-deployment)
   - [8. Technical Implementation](#8-technical-implementation)
@@ -196,12 +200,12 @@ Subgroup B: System Optimization and Forecasting
 What changes to routes and schedules would optimize the public transport network?
 * Create an algorithm to optimize route planning based on predicted demand and user preferences.
 
-5.1 Algorithms Considered:
+### 5.1 Algorithms Considered
 * The 1st approach we considered was to model the roads and bus stops as edges and vertices. We will then assign weights to the edges and proceed to use Single Source Shortest Path Algorithms, such as Dijkstra's Algorithm to find the shortest path between the bus stops. The shortest paths will then be the optimized routes.
 * The 2nd approach we considered was to use the current routes, but optimize the order of bus stops each bus visits. The idea is to organize bus stops according to their importance at different times and conditions. This entails assigning priority scores to certain bus stops under different scenarios and sorting the bus stops to produce the optimized order of visit.
 
-5.2 Algorithm Selection Critieria:
-* 5.2.1. Relevance
+### 5.2 Algorithm Selection Criteria
+#### 5.2.1. Relevance
   * 1st Approach:  
     Shortest Path algorithm is effective at finding the shortest path, but it primarily focuses on minimizing travel distances between stops, not passenger preferences or demand. It does not factor in bus stop popularity or times when specific stops are likely to see higher demand.
   * 2nd Approach:  
@@ -225,7 +229,7 @@ What changes to routes and schedules would optimize the public transport network
   * Conclusion:  
     The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
 
-5.3 Detailed Description of Chosen Algorithm:
+### 5.3 Detailed Description of Chosen Algorithm
 * 5.3.1. Bus Stop Prioritization and Sorting Algorithm  
   * Initialize the MinMaxScaler:  
     `scaler = MinMaxScaler()`  

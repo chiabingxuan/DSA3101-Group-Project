@@ -48,7 +48,6 @@ smote_nc = SMOTENC(categorical_features = categorical_features,
 # Apply SMOTE-NC on the training data
 X_resampled, y_resampled = smote_nc.fit_resample(X_train, y_train)
 
-
 # Save resampled data
 resampled_data = pd.DataFrame(X_resampled, columns=X_train.columns)  # Create dataframe for resampled features
 resampled_data['major'] = y_resampled  # add back major column to the resampled data
@@ -71,7 +70,6 @@ resampled_data = resampled_data[original_cols]
 # Testing dataset
 X_test['major'] = y_test
 X_test = X_test[original_cols]
-
 
 # Upload to repository
 X_test.to_csv(os.path.join(os.path.dirname(__file__), '../data/sampled_test_trip_data.csv'), index=False)

@@ -63,32 +63,33 @@ def edit_synthetic_data(synthetic_data):
 
     return synthetic_data
 
-# Train dataset
-train_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data.csv"), keep_default_na=False)
 
-# Test dataset
-test_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data.csv"), keep_default_na=False)
+if __name__ == "__main__":
+    # Train dataset
+    train_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data.csv"), keep_default_na=False)
 
-# Combine "start", "end", "bus_num" into "trip"
-# test_data = combine_columns(test_data)
-# train_data = combine_columns(train_data)
+    # Test dataset
+    test_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data.csv"), keep_default_na=False)
 
-# Create and save metadata that is to be used for synthesis
-# metadata = create_metadata(test_data)
-# metadata.save_to_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
+    # Combine "start", "end", "bus_num" into "trip"
+    # test_data = combine_columns(test_data)
+    # train_data = combine_columns(train_data)
 
-# Load existing metadata that is to be used for synthesis
-metadata = SingleTableMetadata.load_from_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
+    # Create and save metadata that is to be used for synthesis
+    # metadata = create_metadata(test_data)
+    # metadata.save_to_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
 
-# Check validity of synthetic data
-diagnostic = diagnose_synthetic_data(test_data, train_data, metadata)
+    # Load existing metadata that is to be used for synthesis
+    metadata = SingleTableMetadata.load_from_json(os.path.join(os.path.dirname(__file__), "../data/syn_metadata.json"))
 
-# Check quality of synthetic data
-quality_report = assess_synthetic_data_quality(test_data, train_data, metadata)
+    # Check validity of synthetic data
+    diagnostic = diagnose_synthetic_data(test_data, train_data, metadata)
 
+    # Check quality of synthetic data
+    quality_report = assess_synthetic_data_quality(test_data, train_data, metadata)
 
-# Stacking original trip data and synthetic trip data on top of each other
-combined_trip_data = pd.concat([train_data, test_data], ignore_index=True)
+    # Stacking original trip data and synthetic trip data on top of each other
+    combined_trip_data = pd.concat([train_data, test_data], ignore_index=True)
 
-# Save combined trip data
-combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/combined_trip_data.csv"), index=False)
+    # Save combined trip data
+    combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/combined_trip_data.csv"), index=False)
