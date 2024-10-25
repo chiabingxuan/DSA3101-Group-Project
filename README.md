@@ -209,21 +209,21 @@ What changes to routes and schedules would optimize the public transport network
   * Conclusion:  
     The 2nd approach aligns better with the goal of responding to passenger needs which directly addresses the issue at hand.
 
-5.2.2 Adaptability
-* 1st Approach:  
-  Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
-* 2nd Approach:  
-  This approach allows the system to adjust routes dynamically based on predefined priority scores under varying conditions. Since each bus stop’s priority can shift according to time-based demand and satisfaction data, the model naturally adapts without requiring computationally intensive recalculations.
-* Conclusion:  
-  The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
+* 5.2.2 Adaptability
+  * 1st Approach:  
+    Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
+  * 2nd Approach:  
+    This approach allows the system to adjust routes dynamically based on predefined priority scores under varying conditions. Since each bus stop’s priority can shift according to time-based demand and satisfaction data, the model naturally adapts without requiring computationally intensive recalculations.
+  * Conclusion:  
+    The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
   
-5.2.3 Value-add
-* 1st Approach:  
-  The current bus routes are already optimized by transportation professionals to follow the shortest or most efficient paths possible, rendering a new shortest-path calculation unnecessary. Implementing Dijkstra’s or similar algorithms would likely replicate existing routes without providing added benefit, making this approach redundant for the current setup.
-* 2nd Approach:  
-  Since this approach is not aimed at finding new paths but rather optimizes the order of stops based on historical demand and user preferences, it adds value by focusing on enhancing passenger satisfaction and operational efficiency. By reorganizing stops rather than recalculating routes, this approach complements the pre-established routes without duplicating existing efforts.
-* Conclusion:  
-  The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
+* 5.2.3 Value-add
+  * 1st Approach:  
+    The current bus routes are already optimized by transportation professionals to follow the shortest or most efficient paths possible, rendering a new shortest-path calculation unnecessary. Implementing Dijkstra’s or similar algorithms would likely replicate existing routes without providing added benefit, making this approach redundant for the current setup.
+  * 2nd Approach:  
+    Since this approach is not aimed at finding new paths but rather optimizes the order of stops based on historical demand and user preferences, it adds value by focusing on enhancing passenger satisfaction and operational efficiency. By reorganizing stops rather than recalculating routes, this approach complements the pre-established routes without duplicating existing efforts.
+  * Conclusion:  
+    The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
 
 5.3 Detailed Description of Chosen Algorithm:
 * 5.3.1. Bus Stop Prioritization and Sorting Algorithm  
@@ -338,32 +338,32 @@ What changes to routes and schedules would optimize the public transport network
 ## 6. Evaluation
 6.1 Limitations of current approaches  
   * 6.1.1 Limitations of Bus Stop Prioritzation and Sorting Algorithm  
-    * Over-simplification  
+    * Over-simplification:  
       The calculation of `priority_score` using only two factors (number of people and user satisfaction) might not capture other important variables, such as bus stop accessibility, operational constraints, etc.  
-    * Scalability  
+    * Scalability:  
       The nested loops iterating over buses, days, hours, weather conditions, and exam statuses can lead to a combinatorial explosion, making the algorithm inefficient with large datasets or when many unique combinations exist.  
-    * Lack of Real-time Updates  
+    * Lack of Real-time Updates:  
       The algorithm might not be very apt at incorporating real-time changes, such as sudden shifts in demand or changes in weather, which can affect bus stop prioritization. Outdated data can lead to suboptimal prioritization
 
   * 6.1.2 Limitations of User Customization Algorithm  
-    * User Input Validity  
+    * User Input Validity:  
       The algorithm depends on users making correct selections. If users misunderstand the options or input invalid choices (even if they are checked), it can lead to frustration and a poor user experience.  
-    * Limited Customizations  
+    * Limited Customizations:  
       Although the algorithm allows for some user customization, it may not cover all potential user preferences and scenarios, limiting its practicaly and user experience.
 
 * 6.2 Suggestions for model improvements  
   * 6.2.1 Improvements for Bus Stop Prioritzation and Sorting Algorithm  
-    * Addressing Over-simplication  
+    * Addressing Over-simplication:  
       Incorporate additional factors into the `priority_score`, such as bus stop accessibility ratings, operational constraints, etc. This could provide a more comprehensive view of each bus stop's importance.  
-    * Addressing Scalability  
+    * Addressing Scalability:  
       Implement optimization techniques such as memoization or heuristics to reduce the number of calculations needed by avoiding redundant computations.  
-    * Addressing Lack of Real-time Updates  
+    * Addressing Lack of Real-time Updates:  
       Develop a mechanism to dynamically adjust priorities based on real-time information, such as changes in demand or environmental conditions.
 
   * 6.2.2 Improvements for User Customization Algorithm  
-    * Addressing User Input Validity     
+    * Addressing User Input Validity:     
     Design a more intuitive user interface with clear instructions and tooltips to guide users in making their selections correctly.  
-    * Addressing Limited Customizations  
+    * Addressing Limited Customizations:  
       Allow users to specify additional criteria for customization and even scenarios that are not covered by our current survey data.
 
 ## 7. Deployment
