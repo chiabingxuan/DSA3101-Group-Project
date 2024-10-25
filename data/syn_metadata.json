@@ -1,0 +1,70 @@
+{
+    "columns": {
+        "year": {
+            "sdtype": "categorical"
+        },
+        "major": {
+            "sdtype": "categorical"
+        },
+        "on_campus": {
+            "sdtype": "categorical"
+        },
+        "main_reason_for_taking_isb": {
+            "sdtype": "categorical"
+        },
+        "trips_per_day": {
+            "sdtype": "categorical"
+        },
+        "duration_per_day": {
+            "sdtype": "numerical"
+        },
+        "date": {
+            "sdtype": "datetime",
+            "datetime_format": "%Y-%m-%d"
+        },
+        "has_exam": {
+            "sdtype": "categorical"
+        },
+        "start": {
+            "sdtype": "categorical"
+        },
+        "end": {
+            "sdtype": "categorical"
+        },
+        "bus_num": {
+            "sdtype": "categorical"
+        },
+        "time": {
+            "sdtype": "datetime",
+            "datetime_format": "%Y-%m-%d %H:%M:%S"
+        },
+        "weather": {
+            "sdtype": "categorical"
+        },
+        "num_people_at_bus_stop": {
+            "sdtype": "numerical"
+        },
+        "waiting_time": {
+            "sdtype": "numerical"
+        },
+        "waiting_time_satisfaction": {
+            "sdtype": "categorical"
+        },
+        "crowdedness": {
+            "sdtype": "categorical"
+        },
+        "crowdedness_satisfaction": {
+            "sdtype": "categorical"
+        },
+        "comfort": {
+            "sdtype": "categorical"
+        },
+        "safety": {
+            "sdtype": "categorical"
+        },
+        "overall_satisfaction": {
+            "sdtype": "categorical"
+        }
+    },
+    "METADATA_SPEC_VERSION": "SINGLE_TABLE_V1"
+}
