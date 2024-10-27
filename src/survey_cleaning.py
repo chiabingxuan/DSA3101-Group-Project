@@ -4,6 +4,7 @@ import os
 import matplotlib.pyplot as plt
 import datetime
 import major_mappings
+import bus_stop_numbers
 
 def reshape(survey_data):
     df_first_trip = survey_data.iloc[:, 1:22].copy()  # contains rows corresponding to first trip
@@ -93,18 +94,7 @@ def clean_majors(data, col_name):   # col_name: name of columns with major
 def check_start_end_has_bus_num(start, end, bus_num):
     # Dictionary of bus services for each of our target bus stops
     # Since we are grouping bus stops in pairs, there is a potential issue here. For example, Kent Ridge MRT services A1 but Opp Kent Ridge MRT does not
-    BUS_NUMS_OF_BUS_STOPS = {
-        "Kent Ridge MRT / Opp Kent Ridge MRT": ["A1", "A2", "D2"],
-        "LT27 / S17": ["A1", "A2", "D2"],
-        "UHC / Opp UHC": ["A1", "A2", "D2"],
-        "UTown": ["D1", "D2", "E"],
-        "COM3": ["D1", "D2"],
-        "BIZ2 / Opp HSSML": ["A1", "A2", "D1"],
-        "LT13 / Ventus": ["A1", "A2", "D1"],
-        "IT / CLB": ["A1", "A2", "D1", "E"],
-        "PGP": ["A1", "A2", "D2"]
-    }
-
+    BUS_NUMS_OF_BUS_STOPS = bus_stop_numbers.BUS_NUMS_OF_BUS_STOPSs
     return (bus_num in BUS_NUMS_OF_BUS_STOPS[start]) and (bus_num in BUS_NUMS_OF_BUS_STOPS[end])    # check if bus_num is serviced in both starting and ending bus-stops
 
 

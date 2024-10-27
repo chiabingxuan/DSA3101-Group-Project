@@ -4,7 +4,7 @@ import synthetic_data_generation_train
 import synthetic_data_generation_test
 
 if __name__ == "__main__":
-    # 1. Data Cleaning
+    # 1. Clean the data
     survey_cleaning.main()
 
     # 2. Conduct train-test split, before using SMOTE to conduct oversampling on training data

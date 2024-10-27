@@ -7,7 +7,9 @@ debugpy
 decorator
 exceptiongroup
 executing
+folium
 fonttools
+geopandas
 imblearn
 ipykernel
 ipython
@@ -23,6 +25,7 @@ matplotlib-inline
 mdurl
 nest-asyncio
 numpy
+osmnx
 packaging
 pandas
 parso

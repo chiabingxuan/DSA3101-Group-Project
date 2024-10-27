@@ -85,6 +85,9 @@ def main():
     # Check validity of synthetic data
     diagnostic = diagnose_synthetic_data(real_data, synthetic_data, metadata)
 
+    # Plot graphs to compare synthetic data and original trip data
+    # plot_similarity(real_data, synthetic_data, metadata, "major")
+
     # Check quality of synthetic data
     quality_report = assess_synthetic_data_quality(real_data, synthetic_data, metadata)
 
