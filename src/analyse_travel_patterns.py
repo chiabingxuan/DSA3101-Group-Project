@@ -5,10 +5,10 @@ import geopandas as gpd
 import os
 import pandas as pd
 import numpy as np
-import coordinates
+import config
 
 def add_coordinates_to_data(data, start, end):      # start and end both in the form (lat, long)
-    BUS_STOP_COORDINATES = coordinates.BUS_STOP_COORDINATES
+    BUS_STOP_COORDINATES = config.BUS_STOP_COORDINATES
     data["start_lat"] = data[start].map(lambda start: BUS_STOP_COORDINATES[start][0])
     data["start_long"] = data[start].map(lambda start: BUS_STOP_COORDINATES[start][1])
     data["end_lat"] = data[end].map(lambda end: BUS_STOP_COORDINATES[end][0])
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     heat_data = get_heat_data(trip_data, num_points_sampled_per_line=50)
 
     # Generate NUS map and apply the heat map to it
-    map = folium.Map(location=coordinates.NUS_COORDINATES, zoom_start=16)
+    map = folium.Map(location=config.NUS_COORDINATES, zoom_start=16)
     plugins.HeatMap(heat_data, radius=15).add_to(map)
 
     # Save map

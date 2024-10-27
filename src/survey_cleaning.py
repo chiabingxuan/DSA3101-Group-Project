@@ -3,8 +3,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import datetime
-import major_mappings
-import bus_stop_numbers
+import config
 
 def reshape(survey_data):
     df_first_trip = survey_data.iloc[:, 1:22].copy()  # contains rows corresponding to first trip
@@ -73,7 +72,7 @@ def format_and_correct_times(data, col_names):  # col_names: names of all column
 
 def correct_individual_major(major):
     # Step 1: Dictionary to get the mappings
-    MAPPINGS = major_mappings.MAJOR_MAPPING
+    MAPPINGS = config.MAJOR_MAPPING
 
     # Step 2: Convert major to lowercase
     lower_major = major.lower()
@@ -94,7 +93,7 @@ def clean_majors(data, col_name):   # col_name: name of columns with major
 def check_start_end_has_bus_num(start, end, bus_num):
     # Dictionary of bus services for each of our target bus stops
     # Since we are grouping bus stops in pairs, there is a potential issue here. For example, Kent Ridge MRT services A1 but Opp Kent Ridge MRT does not
-    BUS_NUMS_OF_BUS_STOPS = bus_stop_numbers.BUS_NUMS_OF_BUS_STOPSs
+    BUS_NUMS_OF_BUS_STOPS = config.BUS_NUMS_OF_BUS_STOPS
     return (bus_num in BUS_NUMS_OF_BUS_STOPS[start]) and (bus_num in BUS_NUMS_OF_BUS_STOPS[end])    # check if bus_num is serviced in both starting and ending bus-stops
 
 
