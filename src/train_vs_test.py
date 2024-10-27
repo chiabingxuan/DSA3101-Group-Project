@@ -15,6 +15,7 @@ def create_metadata(data):
     metadata.update_column(column_name="time", sdtype="datetime", datetime_format="%Y-%m-%d %H:%M:%S")
     return metadata
 
+
 def diagnose_synthetic_data(data, synthetic_data, metadata):
     diagnostic = run_diagnostic(data, synthetic_data, metadata)
     return diagnostic

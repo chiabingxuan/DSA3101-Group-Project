@@ -1,5 +1,4 @@
 # 1. survey_cleaning.py
-
 """
 Possible reasons on unclean / unstandardised data:
 - Removing special characters.
@@ -103,7 +102,6 @@ NUM_NEW_ROWS_SYNTHESISED_TRAIN = 2000
 NUM_NEW_ROWS_SYNTHESISED_TEST = 1160
 
 # 4. analyse_travel_patterns.py
-
 NUS_COORDINATES = (1.2975, 103.7764)
 
 BUS_STOP_COORDINATES = {

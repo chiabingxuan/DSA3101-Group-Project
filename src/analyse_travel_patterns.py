@@ -56,4 +56,4 @@ if __name__ == "__main__":
     plugins.HeatMap(heat_data, radius=15).add_to(map)
 
     # Save map
-    map.save(os.path.join(os.path.dirname(__file__), "../visualisations/nus_map.html"))
+    map.save(os.path.join(os.path.dirname(__file__), "../visualisations/nus_heat_map.html"))
