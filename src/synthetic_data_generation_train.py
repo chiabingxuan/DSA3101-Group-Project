@@ -67,7 +67,7 @@ def edit_synthetic_data(synthetic_data):
 
 def main():
     np.random.seed(42)
-    trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/resampled_trip_data.csv"), keep_default_na=False)
+    trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_smote.csv"), keep_default_na=False)
 
     # Combine "start", "end", "bus_num" into "trip"
     real_data = combine_columns(trip_data)
@@ -95,7 +95,7 @@ def main():
     combined_trip_data = pd.concat([trip_data, synthetic_data], ignore_index=True)
 
     # Save combined trip data
-    combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data.csv"), index=False)
+    combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), index=False)
 
 
 if __name__ == "__main__":

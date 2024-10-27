@@ -1,10 +1,17 @@
 import survey_cleaning
 import smote
-import synthetic_data_generation
+import synthetic_data_generation_train
 import synthetic_data_generation_test
 
 if __name__ == "__main__":
+    # 1. Data Cleaning
     survey_cleaning.main()
+
+    # 2. Conduct train-test split, before using SMOTE to conduct oversampling on training data
     smote.main()
-    synthetic_data_generation.main()
+
+    # 3. Use SDV to synthesise more training data
+    synthetic_data_generation_train.main()
+
+    # 4. Use SDV to synthesise more testing data
     synthetic_data_generation_test.main()

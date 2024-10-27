@@ -16,6 +16,7 @@ joblib
 jupyter_client
 jupyter_core
 kiwisolver
+kmodes
 markdown-it-py
 matplotlib
 matplotlib-inline
