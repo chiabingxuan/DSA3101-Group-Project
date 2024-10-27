@@ -25,7 +25,6 @@ matplotlib-inline
 mdurl
 nest-asyncio
 numpy
-osmnx
 packaging
 pandas
 parso
