@@ -1,6 +1,6 @@
-# DSA3101 Project: Optimising Public Transport in NUS
+# DSA3101 Project: Optimising the NUS Bus System
 
-- [DSA3101 Project: Optimising Public Transport in NUS](#dsa3101-project-optimising-public-transport-in-nus)
+- [DSA3101 Project: Optimising the NUS Bus System](#dsa3101-project-optimising-the-nus-bus-system)
   - [1. Introduction](#1-introduction)
   - [2. Business Understanding](#2-business-understanding)
   - [3. Data Understanding](#3-data-understanding)
