@@ -10,20 +10,7 @@ import os
 import numpy as np
 import config 
 
-
-"""
-1. prepare the data 
-- categorical: one hot encoding
-- numerical: normalise the numbers
-
-2. target variable
-- number of people at the bus stop
-
-3. random forest
-
-4. evaluate the model
-"""
-# data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/cleaned_trip_data.csv"), keep_default_na=False)
+# import train and test datasets
 train = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False))
 test = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False))
 
@@ -32,13 +19,15 @@ categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 
 numerical_cols = ['trips_per_day', 'duration_per_day', 'waiting_time', 'waiting_time_satisfaction', 
                   'crowdedness', 'crowdedness_satisfaction', 'comfort', 'safety', 'overall_satisfaction']
 
+
+# feature selection
 """
 # Time-based features
 data['date'] = pd.to_datetime(data['date'])
 data['day_of_week'] = data['date'].dt.dayofweek  # Monday=0, Sunday=6
 data['month'] = data['date'].dt.month
 data['hour'] = pd.to_datetime(data['time']).dt.hour  # Assumes 'time' is in HH:MM format
-"""
+
 
 # Lagged features (previous day's demand)
 train['demand_lag_1'] = train['num_people_at_bus_stop'].shift(1)
@@ -51,7 +40,7 @@ test['rolling_demand_7'] = test['num_people_at_bus_stop'].rolling(window=7).mean
 # Interaction features (does not change the rmse a lot)
 # data['weather_crowdedness'] = data['weather'].astype(str) + '_' + data['crowdedness'].astype(str)
 
-"""
+
 # Derived features
 data['average_trip_duration'] = data['duration_per_day'] / data['trips_per_day']
 data['waiting_time_satisfaction_adjusted'] = data['waiting_time'] * data['waiting_time_satisfaction']
@@ -64,6 +53,7 @@ data = pd.get_dummies(data, columns=categorical_cols)
 train = train.dropna()
 test = test.dropna()
 
+# Dropping the y variable / target variable
 X_train = train.drop(columns=['num_people_at_bus_stop'])  # Features
 y_train = train['num_people_at_bus_stop']  # Target variable (demand)
 
@@ -87,7 +77,7 @@ model = Pipeline(steps=[
     ('regressor', RandomForestRegressor(n_estimators=100, random_state=0))
 ])
 
-# train the model
+# Train the model
 model.fit(X_train, y_train)
 
 # Make predictions / output of floored predictions
@@ -97,13 +87,10 @@ y_pred = np.floor(model.predict(X_test)).astype(int)
 mae = mean_absolute_error(y_test, y_pred)
 mse = mean_squared_error(y_test, y_pred)
 rmse = mse ** 0.5
-
 print(f'MAE: {mae}')
 print(f'RMSE: {rmse}')
 
-bus_stop_names = config.BUS_STOP_NAMES
-
-# Convert predictions and true values to a DataFrame
+# Convert predictions and true values to a DataFrame for visualisations
 output_df = pd.DataFrame({
     'bus_stop_name': X_test['start'],  # Corrected column name
     'time': X_test['time'],                    # Include the time column from the test set
@@ -111,9 +98,12 @@ output_df = pd.DataFrame({
     'predicted_demand': y_pred
 })
 
+# Aggregating the output, grouped by the hourly intervals and the bus_stop_name
 # Convert 'time' to datetime.time format to exclude the year component
-output_df['time'] = pd.to_datetime(output_df['time'], format='%H:%M:%S').dt.time
-output_df['hour_interval'] = pd.to_datetime(output_df['time'].astype(str)).dt.floor('H').dt.time
+output_df['time'] = pd.to_datetime(output_df['time'], format='%H:%M:%S', errors='coerce').dt.time
+
+# Use lowercase 'h' for the floor method
+output_df['hour_interval'] = pd.to_datetime(output_df['time'].astype(str), format='%H:%M:%S').dt.floor('h').dt.time
 
 # Group by bus_stop_name and hour_interval to get the average demand
 aggregated_output = output_df.groupby(['hour_interval', 'bus_stop_name']).agg(
@@ -121,86 +111,53 @@ aggregated_output = output_df.groupby(['hour_interval', 'bus_stop_name']).agg(
     predicted_demand=('predicted_demand', 'mean')
 ).round().astype(int).reset_index()
 
+# Preparing an array of bus stop names, and each bus_stop_name is an array with the predicted demand for hourly intervals
+# Step 1: Get unique bus stop names
+bus_stops = aggregated_output['bus_stop_name'].unique()
 
-# Display the aggregated output
-print("Aggregated Output:")
-pd.set_option('display.max_rows', None)  # Display all rows
-print(aggregated_output)
+# Step 2: Initialize a nested list for the output
+nested_array = []
 
+# Step 3: Iterate through each bus stop and gather its predicted demands
+for bus_stop in bus_stops:
+    # Filter the DataFrame for the current bus stop
+    demands = aggregated_output.loc[aggregated_output['bus_stop_name'] == bus_stop, 'predicted_demand'].tolist()
+    # Append the list of demands to the nested array
+    nested_array.append(demands)
+print(nested_array)
 
-"""
-# Ensure 'time' is in datetime format
-output_df['time'] = pd.to_datetime(output_df['time'], format='%H:%M:%S')
-
-# Create an hourly interval by setting the time to the beginning of each hour
-output_df['hour_interval'] = output_df['time'].dt.floor('H')
-
-# Group by bus stop and the hourly interval, then aggregate actual and predicted demands
-aggregated_output = output_df.groupby(['bus_stop_names', 'hour_interval']).agg(
-    actual_demand=('actual_demand', 'mean'),     # Average actual demand within the hour
-    predicted_demand=('predicted_demand', 'mean') # Average predicted demand within the hour
-).reset_index()
-
-# Optional: Pivot to see each hour interval across bus stops
-pivot_output = aggregated_output.pivot(index='hour_interval', columns='bus_stop_names', values='predicted_demand')
-
-# Display the aggregated hourly output or pivoted table
-print(aggregated_output)
-print(pivot_output)
-"""
-
-"""
-# Display the full output without truncation
-pd.set_option('display.max_rows', None)  # Display all rows
-print(output_df)
-"""
 
 
 """
-to do:
-- define a function where it can give a singular output that is under a specific bus stop location, and not just any number
-- aka use the bus stops as a feature variable?? (dk if i got the correct term lol...)
-"""
+Output:
 
-# Adding bus_stop_name and time to the categorical columns
-categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'weather', 'bus_num', 'bus_stop_name', 'time']
-"""
-# Define the function
-def predict_demand_for_bus_stop(data, model, bus_stop, time):
-    """"""
-    Predicts the demand for a specific bus stop at a given time.
-    
-    Parameters:
-    - data (DataFrame): The complete dataset with features.
-    - model (Pipeline): Trained model pipeline for predictions.
-    - bus_stop (str): Name of the bus stop for which to predict demand.
-    - time (str): Time of day (e.g., '08:00') for which to predict demand.
+MAE: 19.119905956112852
+RMSE: 20.640052216161987
 
-    Returns:
-    - dict: Dictionary containing bus stop, time, and predicted demand.
-    """"""
-    
-    # Filter data for the specific bus stop and time
-    data_filtered = data[(data['bus_stop_name'] == bus_stop) & (data['time'] == time)]
-    
-    if data_filtered.empty:
-        return {"error": f"No data available for bus stop {bus_stop} at {time}."}
-    
-    # Drop target variable and apply preprocessing
-    X_filtered = data_filtered.drop(columns=['num_people_at_bus_stop'])
-    
-    # Make prediction
-    predicted_demand = model.predict(X_filtered)
-    predicted_demand = np.floor(predicted_demand).astype(int)  # Flooring the prediction
-    
-    # Return as structured output
-    return {
-        "bus_stop_name": bus_stop,
-        "time": time,
-        "predicted_demand": predicted_demand[0]  # single prediction for this bus stop and time
-    }
+nested_array:
+[
+[23, 29, 33, 23, 24, 18, 17, 26, 21, 12, 21, 26, 20, 23], 
+[18, 32, 26, 20, 23, 29, 30, 19, 18, 9], 
+[24, 21, 16, 21, 24, 19, 21, 21, 20, 24, 21, 26, 23, 26, 16],
+[22, 22, 24, 21, 22, 24, 24, 23, 20, 23, 21, 22, 22, 21], 
+[20, 26, 23, 25, 24, 20, 22, 19, 19, 23, 18, 23, 20, 26, 14], 
+[25, 23, 22, 19, 24, 23, 18, 19, 23, 19, 22, 22, 22], 
+[24, 20, 28, 28, 22, 24, 19, 24, 13, 32, 19, 22, 34], 
+[21, 22, 21, 24, 20, 23, 22, 24, 22, 22, 25, 20, 22, 21, 18], 
+[19, 23, 24, 23, 22, 23, 21, 23, 25, 25, 22, 21, 30, 24, 18]
+]
 
-# Example usage
-output = predict_demand_for_bus_stop(data, model, bus_stop='Stop A', time='08:00')
-print(output)
+# Display the resulting nested array
+for i, demands in enumerate(nested_array):
+    print(f"{bus_stops[i]}: {demands}")
+
+BIZ2 / Opp HSSML: [23, 29, 33, 23, 24, 18, 17, 26, 21, 12, 21, 26, 20, 23]
+COM3: [18, 32, 26, 20, 23, 29, 30, 19, 18, 9]
+IT / CLB: [24, 21, 16, 21, 24, 19, 21, 21, 20, 24, 21, 26, 23, 26, 16]
+Kent Ridge MRT / Opp Kent Ridge MRT: [22, 22, 24, 21, 22, 24, 24, 23, 20, 23, 21, 22, 22, 21]
+LT13 / Ventus: [20, 26, 23, 25, 24, 20, 22, 19, 19, 23, 18, 23, 20, 26, 14]
+LT27 / S17: [25, 23, 22, 19, 24, 23, 18, 19, 23, 19, 22, 22, 22]
+PGP: [24, 20, 28, 28, 22, 24, 19, 24, 13, 32, 19, 22, 34]
+UHC / Opp UHC: [21, 22, 21, 24, 20, 23, 22, 24, 22, 22, 25, 20, 22, 21, 18]
+UTown: [19, 23, 24, 23, 22, 23, 21, 23, 25, 25, 22, 21, 30, 24, 18]
 """
