@@ -7,6 +7,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 import os
+import numpy as np
 
 """
 1. prepare the data 
@@ -79,8 +80,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # train the model
 model.fit(X_train, y_train)
 
-# Make predictions
-y_pred = model.predict(X_test)
+# Make predictions / output of floored predictions
+y_pred = np.floor(model.predict(X_test))
+print(y_pred)
 
 # Evaluate
 mae = mean_absolute_error(y_test, y_pred)
@@ -89,3 +91,51 @@ rmse = mse ** 0.5
 
 print(f'MAE: {mae}')
 print(f'RMSE: {rmse}')
+
+"""
+to do:
+- define a function where it can give a singular output that is under a specific bus stop location, and not just any number
+- aka use the bus stops as a feature variable?? (dk if i got the correct term lol...)
+"""
+
+# Adding bus_stop_name and time to the categorical columns
+categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'weather', 'bus_num', 'bus_stop_name', 'time']
+
+# Define the function
+def predict_demand_for_bus_stop(data, model, bus_stop, time):
+    """
+    Predicts the demand for a specific bus stop at a given time.
+    
+    Parameters:
+    - data (DataFrame): The complete dataset with features.
+    - model (Pipeline): Trained model pipeline for predictions.
+    - bus_stop (str): Name of the bus stop for which to predict demand.
+    - time (str): Time of day (e.g., '08:00') for which to predict demand.
+
+    Returns:
+    - dict: Dictionary containing bus stop, time, and predicted demand.
+    """
+    
+    # Filter data for the specific bus stop and time
+    data_filtered = data[(data['bus_stop_name'] == bus_stop) & (data['time'] == time)]
+    
+    if data_filtered.empty:
+        return {"error": f"No data available for bus stop {bus_stop} at {time}."}
+    
+    # Drop target variable and apply preprocessing
+    X_filtered = data_filtered.drop(columns=['num_people_at_bus_stop'])
+    
+    # Make prediction
+    predicted_demand = model.predict(X_filtered)
+    predicted_demand = np.floor(predicted_demand).astype(int)  # Flooring the prediction
+    
+    # Return as structured output
+    return {
+        "bus_stop_name": bus_stop,
+        "time": time,
+        "predicted_demand": predicted_demand[0]  # single prediction for this bus stop and time
+    }
+
+# Example usage
+output = predict_demand_for_bus_stop(data, model, bus_stop='Stop A', time='08:00')
+print(output)
