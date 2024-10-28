@@ -116,7 +116,7 @@ output_df['time'] = pd.to_datetime(output_df['time'], format='%H:%M:%S').dt.time
 output_df['hour_interval'] = pd.to_datetime(output_df['time'].astype(str)).dt.floor('H').dt.time
 
 # Group by bus_stop_name and hour_interval to get the average demand
-aggregated_output = output_df.groupby(['bus_stop_name']).agg(
+aggregated_output = output_df.groupby(['hour_interval', 'bus_stop_name']).agg(
     actual_demand=('actual_demand', 'mean'),
     predicted_demand=('predicted_demand', 'mean')
 ).round().astype(int).reset_index()
@@ -124,6 +124,7 @@ aggregated_output = output_df.groupby(['bus_stop_name']).agg(
 
 # Display the aggregated output
 print("Aggregated Output:")
+pd.set_option('display.max_rows', None)  # Display all rows
 print(aggregated_output)
 
 
