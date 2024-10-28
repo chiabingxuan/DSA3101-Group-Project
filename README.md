@@ -23,7 +23,7 @@
   - [11. Future Work](#11-future-work)
   - [12. Lessons Learned](#12-lessons-learned)
   - [13. References](#13-references)
-  - [14. Appendix](#14-appendix)
+  - [14. Appendices](#14-appendices)
 
 ## 1. Introduction
 
@@ -384,4 +384,4 @@ What changes to routes and schedules would optimize the public transport network
 
 ## 13. References
 
-## 14. Appendix
+## 14. Appendices
