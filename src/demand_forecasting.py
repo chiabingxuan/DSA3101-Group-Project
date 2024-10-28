@@ -87,8 +87,6 @@ y_pred = np.floor(model.predict(X_test)).astype(int)
 mae = mean_absolute_error(y_test, y_pred)
 mse = mean_squared_error(y_test, y_pred)
 rmse = mse ** 0.5
-print(f'MAE: {mae}')
-print(f'RMSE: {rmse}')
 
 # Convert predictions and true values to a DataFrame for visualisations
 output_df = pd.DataFrame({
@@ -114,50 +112,51 @@ aggregated_output = output_df.groupby(['hour_interval', 'bus_stop_name']).agg(
 # Preparing an array of bus stop names, and each bus_stop_name is an array with the predicted demand for hourly intervals
 # Step 1: Get unique bus stop names
 bus_stops = aggregated_output['bus_stop_name'].unique()
+hour_intervals = sorted(output_df['hour_interval'].unique())
 
-# Step 2: Initialize a nested list for the output
-nested_array = []
+# Step 2: Initialize a dictionary to hold the arrays, so that the length of each inner array is the same
+demand_arrays = {bus_stop: [0] * len(hour_intervals) for bus_stop in bus_stops}
 
-# Step 3: Iterate through each bus stop and gather its predicted demands
-for bus_stop in bus_stops:
-    # Filter the DataFrame for the current bus stop
-    demands = aggregated_output.loc[aggregated_output['bus_stop_name'] == bus_stop, 'predicted_demand'].tolist()
-    # Append the list of demands to the nested array
-    nested_array.append(demands)
-print(nested_array)
+# Populate the demand arrays with the predicted demand
+for _, row in output_df.iterrows():
+    bus_stop = row['bus_stop_name']
+    hour = row['hour_interval']
+    hour_index = hour_intervals.index(hour)
+    demand_arrays[bus_stop][hour_index] = row['predicted_demand']
 
-
+# Convert to a list of lists
+final_demand_array = list(demand_arrays.values())
 
 """
 Output:
 
-MAE: 19.119905956112852
-RMSE: 20.640052216161987
+MAE: 19.067862714508582
+RMSE: 20.59987655779927
 
-nested_array:
+print(final_demand_array)
 [
-[23, 29, 33, 23, 24, 18, 17, 26, 21, 12, 21, 26, 20, 23], 
-[18, 32, 26, 20, 23, 29, 30, 19, 18, 9], 
-[24, 21, 16, 21, 24, 19, 21, 21, 20, 24, 21, 26, 23, 26, 16],
-[22, 22, 24, 21, 22, 24, 24, 23, 20, 23, 21, 22, 22, 21], 
-[20, 26, 23, 25, 24, 20, 22, 19, 19, 23, 18, 23, 20, 26, 14], 
-[25, 23, 22, 19, 24, 23, 18, 19, 23, 19, 22, 22, 22], 
-[24, 20, 28, 28, 22, 24, 19, 24, 13, 32, 19, 22, 34], 
-[21, 22, 21, 24, 20, 23, 22, 24, 22, 22, 25, 20, 22, 21, 18], 
-[19, 23, 24, 23, 22, 23, 21, 23, 25, 25, 22, 21, 30, 24, 18]
+[22, 25, 32, 21, 31, 15, 8, 37, 8, 19, 12, 22, 18, 32, 0], 
+[22, 34, 29, 20, 24, 27, 33, 0, 0, 18, 12, 9, 0, 0, 0], 
+[29, 24, 21, 18, 27, 15, 16, 34, 30, 15, 19, 30, 28, 26, 16], 
+[23, 29, 10, 19, 12, 20, 33, 9, 21, 19, 23, 16, 11, 17, 0], 
+[29, 16, 34, 19, 27, 24, 22, 34, 27, 13, 23, 23, 24, 22, 15], 
+[20, 19, 22, 14, 18, 18, 27, 23, 22, 18, 14, 19, 21, 0, 0], 
+[25, 26, 26, 30, 24, 20, 21, 21, 14, 26, 11, 20, 33, 0, 0], 
+[27, 16, 29, 22, 19, 15, 27, 14, 15, 15, 35, 35, 29, 23, 17], 
+[28, 31, 18, 18, 33, 24, 16, 34, 21, 28, 24, 17, 35, 35, 19]
 ]
 
-# Display the resulting nested array
-for i, demands in enumerate(nested_array):
-    print(f"{bus_stops[i]}: {demands}")
+# Display the result
+for bus_stop, demands in demand_arrays.items():
+    print(f"Bus Stop {bus_stop}: {demands}")
 
-BIZ2 / Opp HSSML: [23, 29, 33, 23, 24, 18, 17, 26, 21, 12, 21, 26, 20, 23]
-COM3: [18, 32, 26, 20, 23, 29, 30, 19, 18, 9]
-IT / CLB: [24, 21, 16, 21, 24, 19, 21, 21, 20, 24, 21, 26, 23, 26, 16]
-Kent Ridge MRT / Opp Kent Ridge MRT: [22, 22, 24, 21, 22, 24, 24, 23, 20, 23, 21, 22, 22, 21]
-LT13 / Ventus: [20, 26, 23, 25, 24, 20, 22, 19, 19, 23, 18, 23, 20, 26, 14]
-LT27 / S17: [25, 23, 22, 19, 24, 23, 18, 19, 23, 19, 22, 22, 22]
-PGP: [24, 20, 28, 28, 22, 24, 19, 24, 13, 32, 19, 22, 34]
-UHC / Opp UHC: [21, 22, 21, 24, 20, 23, 22, 24, 22, 22, 25, 20, 22, 21, 18]
-UTown: [19, 23, 24, 23, 22, 23, 21, 23, 25, 25, 22, 21, 30, 24, 18]
+Bus Stop BIZ2 / Opp HSSML: [22, 25, 32, 21, 31, 15, 8, 37, 8, 19, 12, 22, 18, 32, 0]
+Bus Stop COM3: [22, 34, 29, 20, 24, 27, 33, 0, 0, 18, 12, 9, 0, 0, 0]
+Bus Stop IT / CLB: [29, 24, 21, 18, 27, 15, 16, 34, 30, 15, 19, 30, 28, 26, 16]
+Bus Stop Kent Ridge MRT / Opp Kent Ridge MRT: [23, 29, 10, 19, 12, 20, 33, 9, 21, 19, 23, 16, 11, 17, 0]
+Bus Stop LT13 / Ventus: [29, 16, 34, 19, 27, 24, 22, 34, 27, 13, 23, 23, 24, 22, 15]
+Bus Stop LT27 / S17: [20, 19, 22, 14, 18, 18, 27, 23, 22, 18, 14, 19, 21, 0, 0]
+Bus Stop PGP: [25, 26, 26, 30, 24, 20, 21, 21, 14, 26, 11, 20, 33, 0, 0]
+Bus Stop UHC / Opp UHC: [27, 16, 29, 22, 19, 15, 27, 14, 15, 15, 35, 35, 29, 23, 17]
+Bus Stop UTown: [28, 31, 18, 18, 33, 24, 16, 34, 21, 28, 24, 17, 35, 35, 19]
 """
