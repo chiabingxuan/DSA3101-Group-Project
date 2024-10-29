@@ -49,20 +49,3 @@ if result.success:
     print(allocated_buses)
 else:
     print("Optimization failed:", result.message)
-
-
-
-
-### DFM assumption (sample) ###
-# Data shape (num_routes, num_time_slots)
-demand_forecast = np.array([
-    [30, 50, 80, 100],  # Route 1 demand across time slots
-    [40, 70, 90, 120],  # Route 2 demand across time slots
-    [20, 60, 85, 110],  # Route 3 demand across time slots
-])
-
-# Output:
-Optimized Capacity Allocation (Buses per Route per Time Slot):
-[[ 1.  1.  2.  2.] # Route 1, Time Slot 1: 1 bus is allocated
- [ 1.  1.  2.  2.]
- [ 0.  1.  2.  2.]] # Route 3, Time Slot 4: 2 bus is allocated
