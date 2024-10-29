@@ -21,6 +21,7 @@
   - [9. Analytical Findings](#9-analytical-findings)
   - [10. Recommendations](#10-recommendations)
   - [11. Future Work](#11-future-work)
+    - [11.1 Additional research areas in the future](#111-additional-reasearch-areas-in-the-future)
   - [12. Lessons Learned](#12-lessons-learned)
   - [13. References](#13-references)
   - [14. Appendices](#14-appendices)
