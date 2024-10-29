@@ -9,10 +9,10 @@ from scipy.optimize import linprog
 #################################################################################
 
 # Maximum bus capacity per trip
-bus_capacity = ???
+bus_capacity = 50
 
 # Maximum number of buses we have to allocate
-max_buses = ???
+max_buses = 50
 
 # Flatten the demand_forecast matrix to work with linear programming
 (num_routes, num_time_slots) = demand_forecast.shape
