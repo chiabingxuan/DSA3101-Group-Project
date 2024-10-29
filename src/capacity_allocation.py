@@ -21,10 +21,9 @@ flattened_demand = demand_forecast.flatten()
 # Unmet Demand = Forecasted Demand - Bus Capacity
 objective_coeffs = -flattened_demand  # Using negative demand to maximize service in linprog
 
-# Setting up constraints
-constraints = []
+### Setting up constraints ###
 
-# Equality constraint (equires condition to hold exactly):
+# Equality constraint (requires condition to hold exactly):
 # Total number of buses
 A_eq = np.ones((1, num_routes * num_time_slots))
 b_eq = [max_buses]
