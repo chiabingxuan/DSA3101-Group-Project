@@ -379,7 +379,19 @@ What changes to routes and schedules would optimize the public transport network
 ## 10. Recommendations
 
 ## 11. Future Work
-
+11.1 Additional research areas in the future  
+  * 11.1.1 Simulation and Modeling for Optimal Routing 
+    * Use computer simulations to test and optimise various route and scheduling configurations under different conditions.   
+      * Discrete Event Simulation (DES):                                                                                                                                                     
+        Using DES like SimPy, helps to focus on key events, like shuttles arriving at or departing from stops, to understand the impact on waiting times and bus crowdedness. This is useful for simulating peak periods and assessing the crowdedness at stops.
+        
+  * 11.1.2 Passenger Flow and Mobility Patterns
+    * Study passenger movement patterns on campus. Research methods like mobility clustering analysis to identify frequently travelled paths or "hotspots" on campus, which can help in refining routes to maximise coverage.
+      *  Using clustering techniques, like K-means clustering, can help in determining high-demand locations, popular routes, and peak times, which can then inform adjustments to the shuttle routes or schedules.
+        * K-means clustering:                                                                                                                                                                  
+          * Use methods like the Elbow Method to determine an optimal number of clusters. K-means will assign each trip or stop location to a cluster by minimising the distance to the cluster’s centroid.
+          * Each cluster’s centroid (average location and time) represents a high-demand area and its typical usage time.
+          * For example, one cluster might reveal that many students travel between dorms and lecture halls in the morning, while another shows high movement to recreation areas in the evening.
 ## 12. Lessons Learned
 
 ## 13. References
