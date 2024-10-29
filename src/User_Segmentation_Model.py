@@ -50,7 +50,7 @@ dataframe['duration_per_trip'] = dataframe['duration_per_day'] / dataframe['trip
 # This returns False at first, so no NaN values introduced in 'duration_per_trip'
 print(dataframe['duration_per_trip'].isnull().any())
 
-# This returns True at first, so there ARE inf values introduced in 'duration_per_trip'
+# This returns True at first, so there ARE inf values introduced in 'duration_per_trip' by dividing duration/trip
 print(np.isinf(dataframe['duration_per_trip']).any())
 
 dataframe = dataframe.replace([np.inf, -np.inf], np.nan) 
@@ -65,7 +65,8 @@ print(np.isinf(dataframe['duration_per_trip']).any())
 # But in high dimensional spaces, distance measures do not work very well. 
 # You reduce the number of dimensions first so that your distance metric in clustering will make sense.
 
-# REMOVE THE FOLLOWING COLUMNS FOR VARIOUS REASONS, AS PART OF MANUAL DIMENSIONALITY REDUCTION
+# REMOVE THE FOLLOWING COLUMNS FOR VARIOUS REASONS, AS PART OF MANUAL DIMENSIONALITY REDUCTION USING DOMAIN KNOWLEDGE
+# NUMBER OF FEATURES (COLUMNS) ARE REDUCED FROM 21 TO 16
 # 'date','time','datetime' columns since they are replaced by 'day_of_week' and 'hour' columns
 # start','end','bus_num' columns since they are replaced by 'trip' column
 # duration_per_day', 'trips_per_day' columns since they are replaced by 'duration_per_trip' column
@@ -83,12 +84,23 @@ dataframe[continuous_variable_columns] = dataframe[continuous_variable_columns].
 # Convert the categorical variable columns into "str" type
 dataframe[categorical_variable_columns] = dataframe[categorical_variable_columns].astype(str)
 
+# ALGORITHMIC DIMENSIONALITY REDUCTION METHODS WERE CONSIDERED, BUT REJECTED FOR THE FOLLOWING REASONS
+# PCA: inappropriate because it also applies to datasets comprising solely continuous(numerical) data, whereas our dataset comprises categorical data as well
+# One-hot encoding the categorical variables, and then applying the PCA algorithm over the resulting data, DOES NOT WORK AS WELL.
+# This is because the weight given to a categorical variable would inherently depend on the number of modalities available to the 
+# variable, and on the probabilities of these modalities. As a result, it would be impossible to give a similar weight to all the initial variables over the calculated components.\
+# Factor Analysis of Mixed Data (FAMD): appropriate for our mixed (categorical + continuous) dataset
+# This is because FAMD wants to give the exact same weight to all the variables, continuous or categorical, when searching for the principal components. 
+# HOWEVER, Python libraries, such as "light_famd" and "prince" implementing FAMD were tried and tested, but did not work out due to compatibility issues with our data frame
+# MOREOVER, FAMD ultimately still increases our data's number of features beyond 16 with one-hot encoding, worsening the Curse of Dimensionality
+
 # NORMALISATION OF ALL CONTINUOUS VARIABLE COLUMNS OF "float" TYPE
 # Min-Max Scaling is chosen as the normalisation technique here
 # The scale of continuous data is rescaled/changed to fall between 0 and 1, while preserving the original shape/distribution of continuous data with no distortion.
 # This is because ML algorithms tend to perform better, or converge faster, when the different features are on a smaller scale. 
 # Standardisation is NOT chosen as the scaling method here because we DO NOT KNOW FOR SURE that our continuous data follows a normal distribution.
-scaler = MinMaxScaler(feature_range=(0, 1))
+scaler = MinMaxScaler()
+#MinMaxScaler(feature_range=(0, 1))
 dataframe[continuous_variable_columns] = scaler.fit_transform(dataframe[continuous_variable_columns])
 
 # CHOSEN MODEL FOR SEGMENTING USERS BASED ON TRAVEL BEHAVIOR AND PREFERENCES: K-PROTOTYPES CLUSTERING.
@@ -115,9 +127,9 @@ df_array[:, 15] = df_array[:, 15].astype(float)
 total_cluster_variance = dict() 
  
 # For each value of K,
-for k in tqdm(range(2,11), total = 9):
+for k in tqdm(range(1,11), total = 10):
     # create an untrained K-Prototypes model using the KPrototypes() function and that specific value of K,
-    untrained_model = kprototypes.KPrototypes(n_clusters=k,max_iter=20)
+    untrained_model = kprototypes.KPrototypes(n_clusters=k, max_iter=20, random_state=42)
     # then train the K-Prototypes model using the input dataset (as a numpy array) and fit() function
     trained_model = untrained_model.fit(df_array, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
     # after training the model, find the total cluster variance for the given K using the .cost_ attribute of trained model
@@ -133,14 +145,18 @@ plt.scatter(total_cluster_variance.keys(), total_cluster_variance.values())
 # Show the plot 
 plt.show()
 
-# From the given plot, it seems that the optimal K = 7, BUT it is not too clear as the "elbow point" is not so clear and sharp.
+# The "elbow point" is supposed to be the point on the plot where the total cluster variance starts to decrease at a much slower rate.
+# From the given plot, it seems that the optimal K = 3, BUT the "elbow point" is not so clear and sharp.
 # This is because the Elbow Method often fails to give a specific value for the optimal K if the input dataset has abnormal distribution.
 
 # In such an ambiguous case, the SILHOUETTE METHOD IS USED TO COMPLEMENT THE ELBOW METHOD
 # The silhouette value measures how similar a point is to its own cluster (cohesion) compared to other clusters (separation).
-# The range of the Silhouette value is between +1 and -1. \
-# A high value is desirable and indicates that the point is placed in the correct cluster. 
-# If many points have a negative Silhouette value, it may indicate that we have created too many or too few clusters.
+# The Average Silhouette Score for a dataset lies between -1 and 1.
+# A high Average Silhouette Score (closer to 1) indicates that the data points are well-matched to their own clusters and poorly matched to neighboring clusters.
+# So, a high Average Silhouette Score == appropriate clustering configuration.
+# A low Average Silhouette Score (closer to -1) == inappropriate clustering configuration with too many or too few clusters.
+# A clustering with an Average Silhouette Score of over 0.7 == "strong"; of over 0.5 == "reasonable"; of over 0.25 == "weak"
+# However, with increasing dimensionality of the data, it becomes difficult to achieve such high values because of the curse of dimensionality, as the distances become more similar.
 # Use a custom-defined mixed_distance() function to calculate distance between 2 data points having mixed categorical and continuous features
 # "a" and "b" are the 2 data points; "categorical" takes a list of indices of categorical features within input data
 def mixed_distance(a,b,categorical=None): 
@@ -149,7 +165,7 @@ def mixed_distance(a,b,categorical=None):
         # just use euclidean_dissim() to calculate distance between 2 data points' continuous features
         num_score=kprototypes.euclidean_dissim(a,b) 
         return num_score
-     # Else if there are BOTH categorical and continuous features within input data,
+    # Else if there are BOTH categorical and continuous features within input data,
     else:
         cat_index=categorical
         a_cat=[]
@@ -169,14 +185,14 @@ def mixed_distance(a,b,categorical=None):
         a_num=np.array(a_num).reshape(1,-1)
         b_cat=np.array(b_cat).reshape(1,-1)
         b_num=np.array(b_num).reshape(1,-1)
-        # use matching_dissim() to calcualte distance between 2 data points' categorical features
+        # use matching_dissim() to calculate distance between 2 data points' categorical features
         cat_score=kprototypes.matching_dissim(a_cat,b_cat) 
         # use euclidean_dissim() to calculate distance between 2 data points' continuous features
         num_score=kprototypes.euclidean_dissim(a_num,b_num) 
         # then return the sum of 2 distances calculated separately
         return cat_score+num_score 
     
-# # Use a custom-defined dm_prototypes() function to calculate distance matrix for k-prototypes clustering
+# Use a custom-defined dm_prototypes() function to calculate distance matrix for k-prototypes clustering
 def dm_prototypes(dataset,categorical=None):
     # If the input dataset is a dataframe,
     if type(dataset).__name__=='DataFrame': 
@@ -205,7 +221,7 @@ silhouette_scores = dict()
 # For each value of K,
 for k in tqdm(range(2,11), total = 9):
     # create an untrained K-Prototypes model using the KPrototypes() function and that specific value of K,
-    untrained_model = kprototypes.KPrototypes(n_clusters=k,max_iter=20)
+    untrained_model = kprototypes.KPrototypes(n_clusters=k, max_iter=20, random_state=42)
     # then train the K-Prototypes model using the input dataset (as a numpy array) and fit() function
     trained_model = untrained_model.fit(df_array, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
     # after training the model, for the given k, find the cluster labels for the data points using the .labels_ attribute of trained model
@@ -213,7 +229,7 @@ for k in tqdm(range(2,11), total = 9):
     # silhouette_score() function takes the distance matrix as the 1st argument and cluster labels for the data points as the 2nd argument,
     # with the metric parameter set to "precomputed" to specify that we are passing the distance matrix as input, and NOT the entire dataframe,
     # to then calculate the average silhouette score for each K,
-    score=silhouette_score(distance_matrix, cluster_labels,metric="precomputed")
+    score=silhouette_score(distance_matrix, cluster_labels, metric="precomputed", random_state=42)
     silhouette_scores[k]=score
     # and assign average silhouette score as a value to the current key of K in the dictionary
 
@@ -228,13 +244,42 @@ plt.scatter(silhouette_scores.keys(), silhouette_scores.values())
 # Show the plot 
 plt.show()
 
-# From the given plot, the average silhouette score is maximised at K = 2, so the optimal K should be K = 2.
+# From the given plot, the Average Silhouette Score is maximised at K = 2, so the optimal K should be 2 based on the Silhouette Method
+# However, from the Elbow Method, the "elbow point" is located at K = 3
+# On top of that, the difference in Average Silhouette Score between K = 2 (0.03958666420217967) and K = 3 (0.03291258008340998) is relatively small,
+# and K = 3 yields the 2nd-highest Average Silhouette Score
+# So, it seems REASONABLE/ACCEPTABLE that the COMPROMISE BETWEEN the ELBOW AND SILHOUETTE METHODS would be to TAKE OPTIMAL K = 3.
 
-# IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 2
-# Create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 2,
-segmentation_model = kprototypes.KPrototypes(n_clusters = 2, max_iter = 20, random_state = 42)
+# IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 3
+# Create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 3,
+segmentation_model = kprototypes.KPrototypes(n_clusters = 3, max_iter = 20, random_state = 42)
 # Train the K-Prototypes model using the input dataset (as a numpy array) and fit_predict() function
 segmentation_model.fit_predict(df_array, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
 # Add a new column for cluster labels associated with each row (data point)
 dataframe['cluster_labels_of_data_point'] = segmentation_model.labels_
-# To visualise the clustered multidimensional data WITHOUT PCA/t-SNE (TO BE CONTINUED) (NEED TO FIGURE OUT HOW)
+
+# VISUALISE CLUSTERS GIVEN BY K-PROTOTYPES WITHOUT PCA/t-SNE USING CUSTOM-DEFINED FUNCTION cluster_profile()
+# FIRSTLY, cluster_profile() groups the dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier
+# SECONDLY, for each cluster, cluster_profile() proceeds to compute the mean of each continuous/numerical column
+# THIRDLY, for each cluster, cluster_profile() proceeds to identify the mode (most frequently-occurring category) of each categorical column
+def cluster_profile(df):
+    dfc = df.groupby("cluster_labels_of_data_point").agg({
+        "year" : lambda x: x.value_counts().index[0],
+        "major" : lambda x: x.value_counts().index[0],
+        "on_campus" : lambda x: x.value_counts().index[0],
+        "main_reason_for_taking_isb" : lambda x: x.value_counts().index[0],
+        "has_exam" : lambda x: x.value_counts().index[0],
+        "weather" : lambda x: x.value_counts().index[0],
+        "day_of_week" : lambda x: x.value_counts().index[0],
+        "hour" : lambda x: x.value_counts().index[0],
+        "trip" : lambda x: x.value_counts().index[0],
+        "num_people_at_bus_stop" : "mean",
+        "waiting_time" : "mean",
+        "crowdedness" : "mean",
+        "comfort" : "mean",
+        "safety" : "mean",
+        "overall_satisfaction" : "mean"
+    })
+    return dfc
+
+print(cluster_profile(dataframe))
