@@ -416,10 +416,18 @@ What changes to routes and schedules would optimize the public transport network
 ```
 
 ### 8.2 Setup Instructions
-
+To set up the project on a local machine, follow the steps:
+* If you do not have Git installed, visit [Git website](https://git-scm.com/downloads) for instructions on installation. Once installed, you can check by running 
+  * ```git --version ```
+* Clone the repository via SSH or HTTPS
+  * `git clone git@github.com:chiabingxuan/DSA3101-Group-Project.git` or
+  * `git clone https://github.com/chiabingxuan/DSA3101-Group-Project.git`
 ### 8.3 Dependency Management
+Dependencies are managed in requirements.txt. follow the step below:
+* Install libraries required
+  * `pip install -r requirements.txt`
 ### 8.4 Code Style Guide Adherence
-
+Code style PEP 8 have been adapted for this project
 ## 9. Analytical Findings
 
 ## 10. Recommendations
