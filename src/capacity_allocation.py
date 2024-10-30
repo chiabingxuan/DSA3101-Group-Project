@@ -15,8 +15,9 @@ bus_capacity = 50
 max_buses = 3
 
 # Flatten the demand_forecast matrix to work with linear programming
-(num_routes, num_time_slots) = df.final_demand_array.shape
-flattened_demand = df.final_demand_array.flatten()
+demand_forecast = df.final_demand_array
+(num_routes, num_time_slots) = demand_forecast.shape
+flattened_demand = demand_forecast.flatten()
 
 # Unmet Demand = Forecasted Demand - Bus Capacity
 objective_coeffs = -flattened_demand  # Using negative demand to maximize service in linprog
