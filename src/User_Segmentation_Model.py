@@ -129,11 +129,11 @@ total_cluster_variance = dict()
 # For each value of K,
 for k in tqdm(range(1,11), total = 10):
     # create an untrained K-Prototypes model using the KPrototypes() function and that specific value of K,
-    untrained_model = kprototypes.KPrototypes(n_clusters=k, max_iter=20, random_state=42)
+    untrained_model = kprototypes.KPrototypes(n_clusters = k, max_iter = 20, random_state = 42)
     # then train the K-Prototypes model using the input dataset (as a numpy array) and fit() function.
-    trained_model = untrained_model.fit(df_array, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
+    trained_model = untrained_model.fit(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
     # After training the model, find the total cluster variance for the given K using the .cost_ attribute of trained model,
-    total_cluster_variance[k]=trained_model.cost_
+    total_cluster_variance[k] = trained_model.cost_
     # and assign total cluster variance as a value to the current key of K in the dictionary.
  
 plt.xlabel('Values of K') 
@@ -159,62 +159,62 @@ plt.show()
 
 # Use a custom-defined mixed_distance() function to calculate distance between 2 data points having mixed categorical and continuous features.
 # "a" and "b" are the 2 data points; "categorical" takes a list of indices of categorical features within input data.
-def mixed_distance(a,b,categorical=None): 
+def mixed_distance(a, b, categorical=None): 
     # If there are no categorical features within input data,
     if categorical is None: 
         # just use euclidean_dissim() to calculate distance between 2 data points' continuous features.
-        num_score=kprototypes.euclidean_dissim(a,b) 
+        num_score = kprototypes.euclidean_dissim(a, b) 
         return num_score
     # Else if there are BOTH categorical and continuous features within input data,
     else:
-        cat_index=categorical
-        a_cat=[]
-        b_cat=[]
+        cat_index = categorical
+        a_cat = []
+        b_cat = []
         for index in cat_index:
             a_cat.append(a[index])
             b_cat.append(b[index])
-        a_num=[]
-        b_num=[]
-        l=len(a)
+        a_num = []
+        b_num = []
+        l = len(a)
         for index in range(l):
             if index not in cat_index:
                 a_num.append(a[index])
                 b_num.append(b[index])
                 
-        a_cat=np.array(a_cat).reshape(1,-1)
-        a_num=np.array(a_num).reshape(1,-1)
-        b_cat=np.array(b_cat).reshape(1,-1)
-        b_num=np.array(b_num).reshape(1,-1)
+        a_cat = np.array(a_cat).reshape(1,-1)
+        a_num = np.array(a_num).reshape(1,-1)
+        b_cat = np.array(b_cat).reshape(1,-1)
+        b_num = np.array(b_num).reshape(1,-1)
         # use matching_dissim() to calculate distance between 2 data points' categorical features,
-        cat_score=kprototypes.matching_dissim(a_cat,b_cat) 
+        cat_score = kprototypes.matching_dissim(a_cat, b_cat) 
         # use euclidean_dissim() to calculate distance between 2 data points' continuous features,
-        num_score=kprototypes.euclidean_dissim(a_num,b_num) 
+        num_score = kprototypes.euclidean_dissim(a_num, b_num) 
         # then return the sum of 2 distances calculated separately.
-        return cat_score+num_score 
+        return cat_score + num_score 
     
 # Use a custom-defined dm_prototypes() function to calculate distance matrix for k-prototypes clustering.
-def dm_prototypes(dataset,categorical=None):
+def dm_prototypes(dataset, categorical = None):
     # If the input dataset is a dataframe,
     if type(dataset).__name__=='DataFrame': 
         # then we take out the values as a numpy array; so if the input dataset is a numpy array, just use it as is.
-        dataset=dataset.values 
-    lenDataset=len(dataset)
+        dataset = dataset.values 
+    lenDataset = len(dataset)
     # Create an empty 2D numpy array, to be used as the distance matrix.
-    distance_matrix=np.zeros(lenDataset*lenDataset).reshape(lenDataset,lenDataset) 
+    distance_matrix = np.zeros(lenDataset*lenDataset).reshape(lenDataset, lenDataset) 
     for i in range(lenDataset):
         for j in range(lenDataset):
-            x1= dataset[i]
-            x2= dataset[j]
+            x1 = dataset[i]
+            x2 = dataset[j]
             # Use mixed_distance() defined earlier to calculate distance between each pair of data points' continuous and categorical features,
-            distance=mixed_distance(x1, x2,categorical=categorical) 
+            distance = mixed_distance(x1, x2, categorical = categorical) 
             # and then use calculated distance to populate the distance matrix,
-            distance_matrix[i][j]=distance 
-            distance_matrix[j][i]=distance 
+            distance_matrix[i][j] = distance 
+            distance_matrix[j][i] = distance 
     # and finally return the populated distance matrix.
     return distance_matrix 
 
 # Create the distance matrix using dm_prototypes() defined earlier, using the numpy array version of our training dataset.
-distance_matrix=dm_prototypes(df_array,categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
+distance_matrix = dm_prototypes(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
 
 # Create a dictionary called silhouette_scores to store values of K as keys, and corresponding average silhouette scores as values.
 silhouette_scores = dict()
@@ -222,19 +222,20 @@ silhouette_scores = dict()
 # For each value of K,
 for k in tqdm(range(2,11), total = 9):
     # create an untrained K-Prototypes model using the KPrototypes() function and that specific value of K,
-    untrained_model = kprototypes.KPrototypes(n_clusters=k, max_iter=20, random_state=42)
+    untrained_model = kprototypes.KPrototypes(n_clusters = k, max_iter = 20, random_state = 42)
     # then train the K-Prototypes model using the input dataset (as a numpy array) and fit() function.
-    trained_model = untrained_model.fit(df_array, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
+    trained_model = untrained_model.fit(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
     # After training the model, for the given k, find the cluster labels for the data points using the .labels_ attribute of trained model.
     cluster_labels = trained_model.labels_
     # silhouette_score() function takes the distance matrix as the 1st argument and cluster labels for the data points as the 2nd argument,
     # with the metric parameter set to "precomputed" to specify that we are passing the distance matrix as input, and NOT the entire dataframe,
     # to then calculate the average silhouette score for each K,
-    score=silhouette_score(distance_matrix, cluster_labels, metric="precomputed", random_state=42)
+    score = silhouette_score(distance_matrix, cluster_labels, metric = "precomputed", random_state = 42)
     # and assign average silhouette score as a value to the current key of K in the dictionary.
-    silhouette_scores[k]=score
+    silhouette_scores[k] = score
     
-print(silhouette_scores)
+# To print the specific average silhouette score associated with each value of K
+print(silhouette_scores) 
 
 plt.xlabel('Values of K') 
 plt.ylabel('Average Silhouette Score') 
@@ -255,7 +256,7 @@ plt.show()
 # Create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 3.
 segmentation_model = kprototypes.KPrototypes(n_clusters = 3, max_iter = 20, random_state = 42)
 # Train the K-Prototypes model using the input TRAINING dataset (as a numpy array) and fit_predict() function.
-segmentation_model.fit_predict(df_array, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
+segmentation_model.fit_predict(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
 # Add a new column for cluster labels associated with each row (data point).
 dataframe['cluster_labels_of_data_point'] = segmentation_model.labels_
 
