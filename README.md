@@ -212,6 +212,103 @@ For `other_feedback_data`:
 
 ## 5. Modeling  
 
+**Subgroup A: User Behavior and Satisfaction**
+**How can we segment our users based on their travel behavior and preferences?**
+* Develop a user segmentation model using the collected data
+* Identify unique needs and pain points for each user segment
+
+### 5.1 Modelling Technqiues Considered
+* K-Means, K-Modes, and K-Prototypes were the 3 main modelling techniques considered at first.
+
+### 5.2 Model Selection Criteria
+* The main criterion considered was whether or not the model is applicable to our dataset.
+* K-Means was NOT chosen because it is a clustering model applicable to datasets containing only continuous (numerical) features.
+* K-Modes was NOT chosen because it is a clustering model applicable to datasets containing only categorical features.
+* Since our dataset contains a mix of continuous and categorical features, K-Prototypes is the chosen model. This is because
+K-Prototypes is a hybrid of K-Means and K-Modes that is designed for clustering data with both continuous and categorical features. 
+* For continuous (numerical) features, K-Means uses the squared Euclidean distance as a measure of how similar 2 data points are, with smaller distances indicating higher similarity.
+* For categorical featues, K-Modes uses a simple matching dissimilarity measure which counts the number of categories that do not match between 2 data points. 
+* K-Prototypes combines both of the above into a dissimilarity measure that gives a comprehensive indication of similarity across both continuous (numerical) and categorical features.
+
+### 5.3 Detailed Description of the Chosen Model
+#### Dimensionality Reduction
+* Dimensionality reduction should always be done before clustering. This is because clustering generally depends on some sort of distance measure. 
+* Points near each other are in the same cluster; points far apart are in different clusters. 
+* But in high dimensional spaces, distance measures do not work very well. 
+* We reduce the number of dimensions first so that our distance metric in clustering will make sense.
+
+#### Algorithmic Dimensionality Reduction
+* ALGORITHMIC DIMENSIONALITY REDUCTION METHODS WERE CONSIDERED, BUT REJECTED FOR THE FOLLOWING REASON.
+* PCA: inappropriate because it also applies to datasets comprising solely continuous(numerical) data, whereas our dataset comprises categorical data as well. 
+* One-hot encoding the categorical variables, and then applying the PCA algorithm over the resulting data, DOES NOT WORK AS WELL. This is because the weight given to a categorical variable would inherently depend on the number of modalities available to the variable, and on the probabilities of these modalities. As a result, it would be impossible to give a similar weight to all the initial variables over the calculated components.
+* Factor Analysis of Mixed Data (FAMD): appropriate for our mixed (categorical + continuous) dataset. This is because FAMD wants to give the exact same weight to all the variables, continuous or categorical, when searching for the principal components. So, Python libraries, such as "light_famd" and "prince" implementing FAMD were tried and tested, BUT did not work out due to compatibility issues with our data frame.
+* MOREOVER, FAMD ultimately still increases our data's number of features beyond 16 with one-hot encoding, worsening the Curse of Dimensionality.
+
+#### Manual Dimensionality Reduction Using Domain Knowledge
+* As standard practice, we replace all inf values with NaN, and remove all NaN values.
+* Firstly, we remove the '1900-01-01' from all rows of the 'time' column since it is redundant.
+* Secondly, we combine the 'date' and 'time' columns into a new 'datetime' columnm, convert this 'datetime' column into datetime type,
+extract the hour of the day (0-24) from the 'datetime' column and put this into a new 'hour' column.
+* Thirdly, we extract the day of the week (Monday-Sunday) from the 'date' column and put this into a new 'day_of_week' column.
+* Fourthly, we combine the 'start', 'end', and 'bus_num' columns into a new 'trip' column.
+* Fifth, we combine the 'duration_per_day' and 'trips_per_day' columns into a new 'duration_per_trip' column by dividing the 2 columns, indicating the extent of usage of the ISB. However, this introduces inf values into the dataset, so once again, we replace all inf values with NaN, and remove all NaN values, to deal with this issue.
+* Lastly, we remove the following columns for various reasons:
+  * 'date','time','datetime' columns since they are replaced by 'day_of_week' and 'hour' columns
+  * start','end','bus_num' columns since they are replaced by 'trip' column
+  * duration_per_day', 'trips_per_day' columns since they are replaced by 'duration_per_trip' column
+  * 'waiting_time_satisfaction', 'crowdedness_satsifaction' columns since the relationship is rather obvious: higher waiting time and higher crowdedness level = lower corresponding satisfaction
+* After the above process, the number of featurs is effectively reduced from 21 to 16.
+
+#### Modelling Process
+* We convert the continuous variable columns into "float" type, and categorical variable columns into "str" type.
+* We also employ the normalisation technique of Min-Max Scaling so that the scale of continuous data is rescaled/changed to fall between 0 and 1, while preserving the original shape/distribution of continuous data with no distortion. This is because ML algorithms tend to perform better, or converge faster, when the different features are on a smaller scale. Standardisation is NOT chosen as the scaling method here because we DO NOT KNOW FOR SURE that our continuous data follows a normal distribution.
+* Firstly, we create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 3.
+* Secondly, we train the K-Prototypes model using the input TRAINING dataset (as a numpy array) and fit_predict() function.
+* Thirdly, with respect to the input dataset, we add a new column for cluster labels associated with each row (data point), as procured by fit_predict(), and accessed using the .labels_ attribute of the trained K-Prototypes model.
+* Fourthly, we proceed to use a custom-defined cluster_profile() function to visualise the 3 clusters.
+* cluster_profile() groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier.Subsequently, for each cluster, cluster_profile() proceeds to compute the mean of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
+* Lastly, we simply call print(cluster_profile(name_of_our_dataset)) to visualise the 3 clusters.
+* (TO BE CONTINUED)
+
+### 5.4 Model Performance Metrics and Interpretation
+#### Elbow Method to Find the Optimal K (Number of Clusters)
+* It involves running the K-Prototypes clustering model for different values of K, calculating the total cluster variance for each K using the cost_ attribute.
+* "Total Cluster Variance" is essentially equivalent to the intra(within)-cluster variance, which we seek to minimize, and at the same time,
+maximize the inter(between)-cluster variance since total variance is constant. Ideally, this will ensure a clear distinction between
+the clusters, indicating good performance of the clustering model.
+* The key is to identify the "elbow" point on the plot, where the rate of decrease in total cluster variance sharply changes, and total cluster variance becomes almost constant.
+* This elbow point signifies a balance between capturing variance in the data and avoiding unnecessary complexity, and is the most appropriate K for the given dataset.
+* Firstly, we extract the values of the dataframe and store them in a numpy array.
+* Then, we create a dictionary to store values of K as keys, and corresponding total cluster variances as values.
+* Subsequently, for each value of K, we create an untrained K-Prototypes model using the KPrototypes() function and that specific value of K, then train the K-Prototypes model using the input dataset (as a numpy array) and fit() function. After training the model, we find the total cluster variance for the given K using the .cost_ attribute of trained model, and assign total cluster variance as a value to the current key of K in the dictionary.
+* Finally, we use the dictionary's keys (K values), and values (total cluster variances) to construct the Elbow plot.
+* The "elbow point" is supposed to be the point on the plot where the total cluster variance starts to decrease at a much slower rate.
+* From the given plot, it seems that the optimal K = 3, BUT the "elbow point" is not so clear and sharp.
+* This is because the Elbow Method often fails to give a specific value for the optimal K if the input dataset has abnormal distribution.
+
+#### Silhouette Method to Find the Optimal K (Number of Clusters)
+* The SILHOUETTE METHOD IS USED TO COMPLEMENT THE ELBOW METHOD
+* The silhouette value measures how similar a point is to its own cluster (cohesion) compared to other clusters (separation).
+* The "Average Silhouette Score" for a dataset lies between -1 and 1.
+* A high Average Silhouette Score (closer to 1) indicates that the data points are well-matched to their own clusters and poorly matched to neighboring clusters.
+* So, a high Average Silhouette Score == appropriate clustering configuration.
+* A low Average Silhouette Score (closer to -1) == inappropriate clustering configuration with too many or too few clusters.
+* A clustering with an Average Silhouette Score of over 0.7 == "strong"; of over 0.5 == "reasonable"; of over 0.25 == "weak"
+* However, with increasing dimensionality of the data, it becomes difficult to achieve such high values because of the Curse of Dimensionality, as the distances become more similar.
+* Firstly, we use a custom-defined mixed_distance() function to calculate the distance between 2 data points having mixed categorical and continuous features. It does so by using the matching_dissim() function to calculate the distance between 2 data points' categorical features, and using the euclidean_dissim() function to calculate the distance between 2 data points' continuous features, and finally returning the sum of the 2 distances calculated.
+* Secondly, we use a custom-defined dm_prototypes() function to calculate the distance matrix to be used for K-Prototypes clustering later on, which in turn makes use of the mixed_distance() function we defined earlier.
+* Then, we create a dictionary to store values of K as keys, and corresponding average silhouette scores as values.
+* Subsequently, for each value of K, we create an untrained K-Prototypes model using the KPrototypes() function and that specific value of K, then train the K-Prototypes model using the input dataset (as a numpy array) and fit() function. After training the model, we find the cluster labels for the data points using the .labels_ attribute of trained model.
+* The silhouette_score() function proceeds to take the distance matrix computed earlier using dm_prototypes() as the 1st argument, and cluster labels for the data points as the 2nd argument, with the metric parameter set to "precomputed" to specify that we are passing the distance matrix as input, and NOT the entire dataframe, to eventually calculate the average silhouette score for each K, and assign average silhouette score as a value to the current key of K in the dictionary
+* Finally, we use the dictionary's keys (K values), and values (average silhouette scores) to construct the Silhoeutte plot.
+* From the given plot, the Average Silhouette Score is maximised at K = 2, so the optimal K should be 2 based on the Silhouette Method
+* However, from the Elbow Method, the "elbow point" is located at K = 3
+* On top of that, the difference in Average Silhouette Score between K = 2 (0.03958666420217967) and K = 3 (0.03291258008340998) is relatively small, and K = 3 yields the 2nd-highest Average Silhouette Score
+* So, it seems REASONABLE/ACCEPTABLE that the COMPROMISE BETWEEN the ELBOW AND SILHOUETTE METHODS would be to TAKE OPTIMAL K = 3.
+
+#### K-Prototypes Model Interpretation
+* (TO BE CONTINUED)
+
 **Subgroup B: System Optimization and Forecasting**  
 **What changes to routes and schedules would optimize the public transport network?**
 * Create an algorithm to optimize route planning based on predicted demand and user preferences.
