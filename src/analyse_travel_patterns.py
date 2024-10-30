@@ -61,7 +61,8 @@ def get_heat_data_for_overall_heat_map(data):
     # Get heat data
     heat_data = list()
     for _, row in data.iterrows():
-        start_long, start_lat, end_long, end_lat = row["start_long"], row["start_lat"], row["end_long"], row["end_lat"]
+        noises = np.random.normal(0, 0.00005, 4)
+        start_long, start_lat, end_long, end_lat = row["start_long"] + noises[0], row["start_lat"] + noises[1], row["end_long"] + noises[2], row["end_lat"] + noises[3]
 
         # Add the start and end coordinates to the heat data
         heat_data.extend([(start_lat, start_long), (end_lat, end_long)])  # (lat, long) format for folium
@@ -75,7 +76,8 @@ def get_heat_data_and_time_indices_for_timelapse(data):
 
     # Get heat data and time indices
     for _, row in data.iterrows():
-        time, start_long, start_lat, end_long, end_lat = row["time"], row["start_long"], row["start_lat"], row["end_long"], row["end_lat"]
+        noises = np.random.normal(0, 0.00005, 4)
+        time, start_long, start_lat, end_long, end_lat = row["time"], row["start_long"] + noises[0], row["start_lat"] + noises[1], row["end_long"] + noises[2], row["end_lat"] + noises[3]
         
         # Add the start and end coordinates to the heat data
         heat_data_dict[time].extend([[start_lat, start_long], [end_lat, end_long]]) # (lat, long) format for folium
@@ -101,10 +103,10 @@ if __name__ == "__main__":
 
     # Generate NUS map and apply the overall heat map to it
     map = folium.Map(location=config.NUS_COORDINATES, zoom_start=15)
-    plugins.HeatMap(heat_data_for_overall_heat_map, radius=30).add_to(map)
+    plugins.HeatMap(heat_data_for_overall_heat_map, radius=8).add_to(map)
     map.save(os.path.join(os.path.dirname(__file__), "../visualisations/nus_heat_map.html"))
 
     # Generate NUS map and apply the heat map timelapse to it
     map = folium.Map(location=config.NUS_COORDINATES, zoom_start=15)
-    plugins.HeatMapWithTime(heat_data_for_timelapse, index=[str(time_index) for time_index in time_indices], radius=30, auto_play=True, display_index=True).add_to(map)
+    plugins.HeatMapWithTime(heat_data_for_timelapse, index=time_indices, radius=8, auto_play=True).add_to(map)
     map.save(os.path.join(os.path.dirname(__file__), "../visualisations/nus_heat_map_timelapse.html"))
