@@ -15,7 +15,7 @@ from tqdm import tqdm
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-# Importing the training data set (AFTER SMOTE-NC and SDV) as a Pandas dataframe
+# Importing the TRAINING data set (AFTER SMOTE-NC and SDV) as a Pandas dataframe
 dataframe = pd.read_csv('C:/Users/65905/Downloads/DSA3101-Group-Project/data/train_trip_data_after_sdv.csv', encoding='utf-8')
 
 #Replace all inf values with NaN
@@ -100,7 +100,6 @@ dataframe[categorical_variable_columns] = dataframe[categorical_variable_columns
 # This is because ML algorithms tend to perform better, or converge faster, when the different features are on a smaller scale. 
 # Standardisation is NOT chosen as the scaling method here because we DO NOT KNOW FOR SURE that our continuous data follows a normal distribution.
 scaler = MinMaxScaler()
-#MinMaxScaler(feature_range=(0, 1))
 dataframe[continuous_variable_columns] = scaler.fit_transform(dataframe[continuous_variable_columns])
 
 # CHOSEN MODEL FOR SEGMENTING USERS BASED ON TRAVEL BEHAVIOR AND PREFERENCES: K-PROTOTYPES CLUSTERING.
@@ -230,8 +229,9 @@ for k in tqdm(range(2,11), total = 9):
     # with the metric parameter set to "precomputed" to specify that we are passing the distance matrix as input, and NOT the entire dataframe,
     # to then calculate the average silhouette score for each K,
     score=silhouette_score(distance_matrix, cluster_labels, metric="precomputed", random_state=42)
-    silhouette_scores[k]=score
     # and assign average silhouette score as a value to the current key of K in the dictionary
+    silhouette_scores[k]=score
+    
 
 print(silhouette_scores)
 
@@ -253,13 +253,13 @@ plt.show()
 # IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 3
 # Create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 3,
 segmentation_model = kprototypes.KPrototypes(n_clusters = 3, max_iter = 20, random_state = 42)
-# Train the K-Prototypes model using the input dataset (as a numpy array) and fit_predict() function
+# Train the K-Prototypes model using the input TRAINING dataset (as a numpy array) and fit_predict() function
 segmentation_model.fit_predict(df_array, categorical=[0, 1, 2, 3, 4, 5, 12, 13, 14])
 # Add a new column for cluster labels associated with each row (data point)
 dataframe['cluster_labels_of_data_point'] = segmentation_model.labels_
 
 # VISUALISE CLUSTERS GIVEN BY K-PROTOTYPES WITHOUT PCA/t-SNE USING CUSTOM-DEFINED FUNCTION cluster_profile()
-# FIRSTLY, cluster_profile() groups the dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier
+# FIRSTLY, cluster_profile() groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier
 # SECONDLY, for each cluster, cluster_profile() proceeds to compute the mean of each continuous/numerical column
 # THIRDLY, for each cluster, cluster_profile() proceeds to identify the mode (most frequently-occurring category) of each categorical column
 def cluster_profile(df):
@@ -282,4 +282,11 @@ def cluster_profile(df):
     })
     return dfc
 
+# UNSUPERVISED LEARNING MODELS use unlabelled data to discover patterns and relationships.
+# They are used for exploratory data analysis and clustering tasks, such as anomaly detection, customer segmentation, and building recommendation systems.
+# TRAIN-TEST SPLIT is a SUPERVISED LEARNING MODEL validation process that allows you to simulate how your model would perform with new/unseen data, 
+# Since K-Prototypes = Unsupervised Learning Algorithm, train-test split is not necessary.
+
+# Print out the 3 main clusters
 print(cluster_profile(dataframe))
+
