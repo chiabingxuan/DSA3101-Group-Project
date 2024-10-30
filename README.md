@@ -18,10 +18,14 @@
   - [6. Evaluation](#6-evaluation)
   - [7. Deployment](#7-deployment)
   - [8. Technical Implementation](#8-technical-implementation)
+    - [8.1 Repository Structure](#81-repository-structure)
+    - [Repository Structure](#repository-structure)
+    - [8.2 Setup Instructions](#82-setup-instructions)
+    - [8.3 Dependency Management](#83-dependency-management)
+    - [8.4 Code Style Guide Adherence](#84-code-style-guide-adherence)
   - [9. Analytical Findings](#9-analytical-findings)
   - [10. Recommendations](#10-recommendations)
   - [11. Future Work](#11-future-work)
-    - [11.1 Additional research areas in the future](#111-additional-reasearch-areas-in-the-future)
   - [12. Lessons Learned](#12-lessons-learned)
   - [13. References](#13-references)
   - [14. Appendices](#14-appendices)
@@ -374,6 +378,47 @@ What changes to routes and schedules would optimize the public transport network
 ## 7. Deployment
 
 ## 8. Technical Implementation
+### 8.1 Repository Structure
+### Repository Structure
+
+```plaintext
+├── data/                                     # Dataset files and resources for analysis
+│   └── cleaned_other_feedback_data.csv       # Extension logo or other visuals
+│   └── cleaned_trip_data.csv                 # Extension logo or other visuals
+│   └── combined_trip_data.csv                # Extension logo or other visuals
+│   └── filtered_nus_weekday.csv              # Extension logo or other visuals
+│   └── sdv_metadata.json                     # Extension logo or other visuals
+│   └── singapore_aug24_data.csv              # Extension logo or other visuals
+│   └── survey.csv                            # Original survey data for analysis
+│   └── syn_metadata.json                     # Extension logo or other visuals
+│   └── test_trip_data_after_sdv.csv          # Extension logo or other visuals
+│   └── test_trip_data_before_sdv.csv         # Extension logo or other visuals
+│   └── train_trip_data_after_sdv.csv         # Extension logo or other visuals
+│   └── train_trip_data_after_smote.csv       # Extension logo or other visuals
+├── src/                                      # Source code for the extension
+│   ├── analyse_travel_patterns.py            # Command implementations (e.g., shortcuts)
+│   ├── capacity_allocation.py                # Command implementations (e.g., shortcuts)
+│   ├── config.py                             # Command implementations (e.g., shortcuts)
+│   ├── demand_forecasting.py                 # Command implementations (e.g., shortcuts)
+│   ├── main.py                               # Command implementations (e.g., shortcuts)
+│   ├── Route_Optimization.py                 # Command implementations (e.g., shortcuts)
+│   ├── smote.py                              # Command implementations (e.g., shortcuts)
+│   ├── survey_cleaning.py                    # Command implementations (e.g., shortcuts)
+│   ├── synthetic_data_generation_test.py     # Command implementations (e.g., shortcuts)
+│   ├── synthetic_data_generation_train.py    # Command implementations (e.g., shortcuts)
+│   ├── train_vs_test.py                      # Command implementations (e.g., shortcuts)
+│   ├── User_Segmentation_Model.py            # Command implementations (e.g., shortcuts)
+├── visualisations/                           # 
+│   └──                                       #
+├── .gitignore                                # Git ignore file
+├── README.md                                 # Documentation and instructions for the extension
+└── requirements.txt                          # Webpack config if bundling the extension
+```
+
+### 8.2 Setup Instructions
+
+### 8.3 Dependency Management
+### 8.4 Code Style Guide Adherence
 
 ## 9. Analytical Findings
 
