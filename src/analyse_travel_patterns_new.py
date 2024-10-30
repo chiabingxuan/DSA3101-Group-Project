@@ -58,7 +58,8 @@ def get_geojson_for_timelapse(data):
     features = list()
     for _, row in data.iterrows():
         noises = np.random.normal(0, 0.0002, 4)
-        iso_time_str, time_display_str, start_long, start_lat, end_long, end_lat = row["iso_time"], row["time_display_str"], row["start_long"] + noises[0], row["start_lat"] + noises[1], row["end_long"] + noises[2], row["end_lat"] + noises[3]
+        iso_time_str, time_display_str = row["iso_time"], row["time_display_str"]
+        start_long, start_lat, end_long, end_lat = row["start_long"] + noises[0], row["start_lat"] + noises[1], row["end_long"] + noises[2], row["end_lat"] + noises[3]
         feature_start = {
             "type": "Feature",
             "geometry": {
@@ -66,7 +67,9 @@ def get_geojson_for_timelapse(data):
                 "coordinates": [start_long, start_lat]
             },
             "properties": {
-                "times": [iso_time_str]
+                "times": [iso_time_str],
+                "icon": "circle",
+                "iconstyle": {"color": "green"}
             }
         }
 
@@ -77,7 +80,9 @@ def get_geojson_for_timelapse(data):
                 "coordinates": [end_long, end_lat]
             },
             "properties": {
-                "times": [iso_time_str]
+                "times": [iso_time_str],
+                "icon": "circle",
+                "iconstyle": {"color": "red"}
             }
         }
 
