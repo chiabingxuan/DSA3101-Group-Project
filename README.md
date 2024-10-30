@@ -14,14 +14,28 @@
     - [5.1 Algorithms Considered](#51-algorithms-considered)
     - [5.2 Algorithm Selection Criteria](#52-algorithm-selection-criteria)
       - [5.2.1. Relevance](#521-relevance)
+      - [5.2.2 Adaptability](#522-adaptability)
+      - [5.2.3 Value-add](#523-value-add)
     - [5.3 Detailed Description of Chosen Algorithm](#53-detailed-description-of-chosen-algorithm)
+      - [5.3.1. Bus Stop Prioritization and Sorting Algorithm](#531-bus-stop-prioritization-and-sorting-algorithm)
+      - [5.3.2 User Customization Algorithm](#532-user-customization-algorithm)
   - [6. Evaluation](#6-evaluation)
+    - [6.1 Limitations of current approaches](#61-limitations-of-current-approaches)
+      - [6.1.1 Limitations of Bus Stop Prioritzation and Sorting Algorithm](#611-limitations-of-bus-stop-prioritzation-and-sorting-algorithm)
+      - [6.1.2 Limitations of User Customization Algorithm](#612-limitations-of-user-customization-algorithm)
+    - [6.2 Suggestions for model improvements](#62-suggestions-for-model-improvements)
+      - [6.2.1 Improvements for Bus Stop Prioritzation and Sorting Algorithm](#621-improvements-for-bus-stop-prioritzation-and-sorting-algorithm)
+      - [6.2.2 Improvements for User Customization Algorithm](#622-improvements-for-user-customization-algorithm)
   - [7. Deployment](#7-deployment)
   - [8. Technical Implementation](#8-technical-implementation)
+    - [8.1 Repository Structure](#81-repository-structure)
+    - [Repository Structure](#repository-structure)
+    - [8.2 Setup Instructions](#82-setup-instructions)
+    - [8.3 Dependency Management](#83-dependency-management)
+    - [8.4 Code Style Guide Adherence](#84-code-style-guide-adherence)
   - [9. Analytical Findings](#9-analytical-findings)
   - [10. Recommendations](#10-recommendations)
   - [11. Future Work](#11-future-work)
-    - [11.1 Additional research areas in the future](#111-additional-reasearch-areas-in-the-future)
   - [12. Lessons Learned](#12-lessons-learned)
   - [13. References](#13-references)
   - [14. Appendices](#14-appendices)
@@ -196,9 +210,10 @@ For `other_feedback_data`:
 * 6 outliers removed for `year`
 * 1 outlier removed for `trips_per_day`
 
-## 5. Modeling
-Subgroup B: System Optimization and Forecasting
-What changes to routes and schedules would optimize the public transport network?
+## 5. Modeling  
+
+**Subgroup B: System Optimization and Forecasting**  
+**What changes to routes and schedules would optimize the public transport network?**
 * Create an algorithm to optimize route planning based on predicted demand and user preferences.
 
 ### 5.1 Algorithms Considered
@@ -214,7 +229,7 @@ What changes to routes and schedules would optimize the public transport network
   * Conclusion:  
     The 2nd approach aligns better with the goal of responding to passenger needs which directly addresses the issue at hand.
 
-* 5.2.2 Adaptability
+#### 5.2.2 Adaptability
   * 1st Approach:  
     Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
   * 2nd Approach:  
@@ -222,7 +237,7 @@ What changes to routes and schedules would optimize the public transport network
   * Conclusion:  
     The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
   
-* 5.2.3 Value-add
+#### 5.2.3 Value-add
   * 1st Approach:  
     The current bus routes are already optimized by transportation professionals to follow the shortest or most efficient paths possible, rendering a new shortest-path calculation unnecessary. Implementing Dijkstra’s or similar algorithms would likely replicate existing routes without providing added benefit, making this approach redundant for the current setup.
   * 2nd Approach:  
@@ -231,7 +246,7 @@ What changes to routes and schedules would optimize the public transport network
     The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
 
 ### 5.3 Detailed Description of Chosen Algorithm
-* 5.3.1. Bus Stop Prioritization and Sorting Algorithm  
+#### 5.3.1. Bus Stop Prioritization and Sorting Algorithm  
   * Initialize the MinMaxScaler:  
     `scaler = MinMaxScaler()`  
     Sets up a MinMaxScaler, which is used to normalize numerical columns by scaling values to a range, typically [0, 1].
@@ -292,7 +307,7 @@ What changes to routes and schedules would optimize the public transport network
   * Summary:  
     The above algorithm is designed to optimize bus stop prioritization based on survey data, taking into account factors like demand (number of people at the bus stop), user satisfaction, time of day, day of the week, weather conditions, and whether there’s an exam. By creating priority scores for each bus stop, it identifies the most important stops under specific conditions.
 
-* 5.3.2 User Customization Algorithm   
+#### 5.3.2 User Customization Algorithm   
   * Dictionary Initialization:  
     `days_of_week`, `time_ranges`, `weather_conditions`, and `exam_statuses` are dictionaries used to map numerical or binary values to their descriptive labels (e.g., "Monday" for day 1, "Sunny" for weather 0, etc.).
 
@@ -340,9 +355,11 @@ What changes to routes and schedules would optimize the public transport network
   * Summary:  
     The above algorithm uses the output of 5.3.1 Bus Stop Prioritization and Sorting Algorithm and enables personalized bus route prioritization by allowing users to select criteria such as bus number, day, time, weather, and exam status. It validates each input, retrieves priority stops based on user demand and satisfaction, and outputs an optimized order of bus stops, ensuring efficient and tailored service.
 
+**How can we better allocate capacity across different routes and times to meet varying demand?**
+
 ## 6. Evaluation
-6.1 Limitations of current approaches  
-  * 6.1.1 Limitations of Bus Stop Prioritzation and Sorting Algorithm  
+### 6.1 Limitations of current approaches  
+#### 6.1.1 Limitations of Bus Stop Prioritzation and Sorting Algorithm  
     * Over-simplification:  
       The calculation of `priority_score` using only two factors (number of people and user satisfaction) might not capture other important variables, such as bus stop accessibility, operational constraints, etc.  
     * Scalability:  
@@ -350,14 +367,14 @@ What changes to routes and schedules would optimize the public transport network
     * Lack of Real-time Updates:  
       The algorithm might not be very apt at incorporating real-time changes, such as sudden shifts in demand or changes in weather, which can affect bus stop prioritization. Outdated data can lead to suboptimal prioritization
 
-  * 6.1.2 Limitations of User Customization Algorithm  
+#### 6.1.2 Limitations of User Customization Algorithm  
     * User Input Validity:  
       The algorithm depends on users making correct selections. If users misunderstand the options or input invalid choices (even if they are checked), it can lead to frustration and a poor user experience.  
     * Limited Customizations:  
       Although the algorithm allows for some user customization, it may not cover all potential user preferences and scenarios, limiting its practicaly and user experience.
 
-* 6.2 Suggestions for model improvements  
-  * 6.2.1 Improvements for Bus Stop Prioritzation and Sorting Algorithm  
+### 6.2 Suggestions for model improvements  
+#### 6.2.1 Improvements for Bus Stop Prioritzation and Sorting Algorithm  
     * Addressing Over-simplication:  
       Incorporate additional factors into the `priority_score`, such as bus stop accessibility ratings, operational constraints, etc. This could provide a more comprehensive view of each bus stop's importance.  
     * Addressing Scalability:  
@@ -365,7 +382,7 @@ What changes to routes and schedules would optimize the public transport network
     * Addressing Lack of Real-time Updates:  
       Develop a mechanism to dynamically adjust priorities based on real-time information, such as changes in demand or environmental conditions.
 
-  * 6.2.2 Improvements for User Customization Algorithm  
+#### 6.2.2 Improvements for User Customization Algorithm  
     * Addressing User Input Validity:     
     Design a more intuitive user interface with clear instructions and tooltips to guide users in making their selections correctly.  
     * Addressing Limited Customizations:  
@@ -374,7 +391,57 @@ What changes to routes and schedules would optimize the public transport network
 ## 7. Deployment
 
 ## 8. Technical Implementation
+### 8.1 Repository Structure
+### Repository Structure
 
+```plaintext
+├── data/                                     # Dataset files and resources for analysis
+│   └── cleaned_other_feedback_data.csv       # Preprocessed feedback data for analysis
+│   └── cleaned_trip_data.csv                 # Preprocessed trip data for synthesis and analysis
+│   └── combined_trip_data.csv                # Combined train and test synthetic trip data for modeling
+│   └── filtered_nus_weekday.csv              # NOT IN USE
+│   └── sdv_metadata.json                     # Metadata configuration for SDV
+│   └── singapore_aug24_data.csv              # NOT IN USE
+│   └── survey.csv                            # Original survey data 
+│   └── syn_metadata.json                     # Metadata conifguration for comparing test and train set
+│   └── test_trip_data_after_sdv.csv          # Test data after SDV
+│   └── test_trip_data_before_sdv.csv         # Test data before SDV
+│   └── train_trip_data_after_sdv.csv         # Train data after SDV and SMOTE-NC
+│   └── train_trip_data_after_smote.csv       # Train data affter SMOTE-NC
+├── src/                                      # Source code for data analysis, cleaning and modeling
+│   ├── analyse_travel_patterns.py            # Analysis of travel patterns from trip data
+│   ├── capacity_allocation.py                # Allocates transport capacity based on demand
+│   ├── config.py                             # Configuration settings
+│   ├── demand_forecasting.py                 # Forecasts demand using trip data
+│   ├── main.py                               # Main script to execute all files
+│   ├── Route_Optimization.py                 # Optimizes travel routes based on trip data
+│   ├── smote.py                              # Applies SMOTE-NC to balance 'major' class
+│   ├── survey_cleaning.py                    # Cleans and preprocesses survey data
+│   ├── synthetic_data_generation_test.py     # Generates synthetic data using SDV for test dataset
+│   ├── synthetic_data_generation_train.py    # Generates synthetic data using SDV for train dataset after SMOTE-NC
+│   ├── train_vs_test.py                      # Compares training and test datasets
+│   ├── User_Segmentation_Model.py            # Segments users based on trip data
+├── visualisations/                           # Visual output files generated by scripts
+│   └── nus_heat_map_timelapse.html           # Heat map of crowd levels at respective bus stops across time
+│   └── nus_heat_map.html                     # Heat map of crowd levels
+├── .gitignore                                # Specifies files and directories to ignore in git
+├── README.md                                 # Overview, setup, and usage instructions for the project
+└── requirements.txt                          # List of all libraries required to run the scripts
+```
+
+### 8.2 Setup Instructions
+To set up the project on a local machine, follow the steps:
+* If you do not have Git installed, visit [Git website](https://git-scm.com/downloads) for instructions on installation. Once installed, you can check by running 
+  * ```git --version ```
+* Clone the repository via SSH or HTTPS
+  * `git clone git@github.com:chiabingxuan/DSA3101-Group-Project.git` or
+  * `git clone https://github.com/chiabingxuan/DSA3101-Group-Project.git`
+### 8.3 Dependency Management
+Dependencies are managed in requirements.txt. follow the step below:
+* Install libraries required
+  * `pip install -r requirements.txt`
+### 8.4 Code Style Guide Adherence
+Code style PEP 8 have been adapted for this project
 ## 9. Analytical Findings
 
 ## 10. Recommendations

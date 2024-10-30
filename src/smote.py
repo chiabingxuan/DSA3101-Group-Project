@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import os
 from imblearn.over_sampling import SMOTENC
 from sklearn.model_selection import train_test_split
@@ -14,7 +13,8 @@ def main():
     # Split the data into training and testing sets 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42, stratify = y)
 
-    # If "start", "end" and "bus_num" are in separate columns, synthesised data may have nonsensical data (eg. "start" and "end" being the same). So we need to combine these 3 columns into one single column, "trip"
+    # If "start", "end" and "bus_num" are in separate columns, synthesised data may have nonsensical data (eg. "start" and "end" being the same). 
+    # So we need to combine these 3 columns into one single column, "trip"
     X_train['trip'] = X_train['start'] + ',' + X_train['end'] + ',' + X_train['bus_num']
     X_train.drop(['start', 'end', 'bus_num'], axis=1, inplace=True)
 
