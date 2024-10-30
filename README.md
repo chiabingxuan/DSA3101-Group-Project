@@ -14,8 +14,18 @@
     - [5.1 Algorithms Considered](#51-algorithms-considered)
     - [5.2 Algorithm Selection Criteria](#52-algorithm-selection-criteria)
       - [5.2.1. Relevance](#521-relevance)
+      - [5.2.2 Adaptability](#522-adaptability)
+      - [5.2.3 Value-add](#523-value-add)
     - [5.3 Detailed Description of Chosen Algorithm](#53-detailed-description-of-chosen-algorithm)
+      - [5.3.1. Bus Stop Prioritization and Sorting Algorithm](#531-bus-stop-prioritization-and-sorting-algorithm)
+      - [5.3.2 User Customization Algorithm](#532-user-customization-algorithm)
   - [6. Evaluation](#6-evaluation)
+    - [6.1 Limitations of current approaches](#61-limitations-of-current-approaches)
+      - [6.1.1 Limitations of Bus Stop Prioritzation and Sorting Algorithm](#611-limitations-of-bus-stop-prioritzation-and-sorting-algorithm)
+      - [6.1.2 Limitations of User Customization Algorithm](#612-limitations-of-user-customization-algorithm)
+    - [6.2 Suggestions for model improvements](#62-suggestions-for-model-improvements)
+      - [6.2.1 Improvements for Bus Stop Prioritzation and Sorting Algorithm](#621-improvements-for-bus-stop-prioritzation-and-sorting-algorithm)
+      - [6.2.2 Improvements for User Customization Algorithm](#622-improvements-for-user-customization-algorithm)
   - [7. Deployment](#7-deployment)
   - [8. Technical Implementation](#8-technical-implementation)
     - [8.1 Repository Structure](#81-repository-structure)
@@ -200,9 +210,10 @@ For `other_feedback_data`:
 * 6 outliers removed for `year`
 * 1 outlier removed for `trips_per_day`
 
-## 5. Modeling
-Subgroup B: System Optimization and Forecasting
-What changes to routes and schedules would optimize the public transport network?
+## 5. Modeling  
+
+**Subgroup B: System Optimization and Forecasting**  
+**What changes to routes and schedules would optimize the public transport network?**
 * Create an algorithm to optimize route planning based on predicted demand and user preferences.
 
 ### 5.1 Algorithms Considered
@@ -218,7 +229,7 @@ What changes to routes and schedules would optimize the public transport network
   * Conclusion:  
     The 2nd approach aligns better with the goal of responding to passenger needs which directly addresses the issue at hand.
 
-* 5.2.2 Adaptability
+#### 5.2.2 Adaptability
   * 1st Approach:  
     Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
   * 2nd Approach:  
@@ -226,7 +237,7 @@ What changes to routes and schedules would optimize the public transport network
   * Conclusion:  
     The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
   
-* 5.2.3 Value-add
+#### 5.2.3 Value-add
   * 1st Approach:  
     The current bus routes are already optimized by transportation professionals to follow the shortest or most efficient paths possible, rendering a new shortest-path calculation unnecessary. Implementing Dijkstra’s or similar algorithms would likely replicate existing routes without providing added benefit, making this approach redundant for the current setup.
   * 2nd Approach:  
@@ -235,7 +246,7 @@ What changes to routes and schedules would optimize the public transport network
     The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
 
 ### 5.3 Detailed Description of Chosen Algorithm
-* 5.3.1. Bus Stop Prioritization and Sorting Algorithm  
+#### 5.3.1. Bus Stop Prioritization and Sorting Algorithm  
   * Initialize the MinMaxScaler:  
     `scaler = MinMaxScaler()`  
     Sets up a MinMaxScaler, which is used to normalize numerical columns by scaling values to a range, typically [0, 1].
@@ -296,7 +307,7 @@ What changes to routes and schedules would optimize the public transport network
   * Summary:  
     The above algorithm is designed to optimize bus stop prioritization based on survey data, taking into account factors like demand (number of people at the bus stop), user satisfaction, time of day, day of the week, weather conditions, and whether there’s an exam. By creating priority scores for each bus stop, it identifies the most important stops under specific conditions.
 
-* 5.3.2 User Customization Algorithm   
+#### 5.3.2 User Customization Algorithm   
   * Dictionary Initialization:  
     `days_of_week`, `time_ranges`, `weather_conditions`, and `exam_statuses` are dictionaries used to map numerical or binary values to their descriptive labels (e.g., "Monday" for day 1, "Sunny" for weather 0, etc.).
 
@@ -344,9 +355,11 @@ What changes to routes and schedules would optimize the public transport network
   * Summary:  
     The above algorithm uses the output of 5.3.1 Bus Stop Prioritization and Sorting Algorithm and enables personalized bus route prioritization by allowing users to select criteria such as bus number, day, time, weather, and exam status. It validates each input, retrieves priority stops based on user demand and satisfaction, and outputs an optimized order of bus stops, ensuring efficient and tailored service.
 
+**How can we better allocate capacity across different routes and times to meet varying demand?**
+
 ## 6. Evaluation
-6.1 Limitations of current approaches  
-  * 6.1.1 Limitations of Bus Stop Prioritzation and Sorting Algorithm  
+### 6.1 Limitations of current approaches  
+#### 6.1.1 Limitations of Bus Stop Prioritzation and Sorting Algorithm  
     * Over-simplification:  
       The calculation of `priority_score` using only two factors (number of people and user satisfaction) might not capture other important variables, such as bus stop accessibility, operational constraints, etc.  
     * Scalability:  
@@ -354,14 +367,14 @@ What changes to routes and schedules would optimize the public transport network
     * Lack of Real-time Updates:  
       The algorithm might not be very apt at incorporating real-time changes, such as sudden shifts in demand or changes in weather, which can affect bus stop prioritization. Outdated data can lead to suboptimal prioritization
 
-  * 6.1.2 Limitations of User Customization Algorithm  
+#### 6.1.2 Limitations of User Customization Algorithm  
     * User Input Validity:  
       The algorithm depends on users making correct selections. If users misunderstand the options or input invalid choices (even if they are checked), it can lead to frustration and a poor user experience.  
     * Limited Customizations:  
       Although the algorithm allows for some user customization, it may not cover all potential user preferences and scenarios, limiting its practicaly and user experience.
 
-* 6.2 Suggestions for model improvements  
-  * 6.2.1 Improvements for Bus Stop Prioritzation and Sorting Algorithm  
+### 6.2 Suggestions for model improvements  
+#### 6.2.1 Improvements for Bus Stop Prioritzation and Sorting Algorithm  
     * Addressing Over-simplication:  
       Incorporate additional factors into the `priority_score`, such as bus stop accessibility ratings, operational constraints, etc. This could provide a more comprehensive view of each bus stop's importance.  
     * Addressing Scalability:  
@@ -369,7 +382,7 @@ What changes to routes and schedules would optimize the public transport network
     * Addressing Lack of Real-time Updates:  
       Develop a mechanism to dynamically adjust priorities based on real-time information, such as changes in demand or environmental conditions.
 
-  * 6.2.2 Improvements for User Customization Algorithm  
+#### 6.2.2 Improvements for User Customization Algorithm  
     * Addressing User Input Validity:     
     Design a more intuitive user interface with clear instructions and tooltips to guide users in making their selections correctly.  
     * Addressing Limited Customizations:  
