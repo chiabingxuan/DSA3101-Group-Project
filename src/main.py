@@ -28,6 +28,6 @@ if __name__ == "__main__":
     # 8. Demand forecasting
 
     # 9. Route optimisation
+    Route_Optimization.main()
 
     # 10. Capacity allocation
-    Route_Optimization.main()
