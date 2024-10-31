@@ -44,7 +44,7 @@ def get_geojson_for_timelapse(data):
             "properties": {
                 "times": [iso_time_str],
                 "icon": "circle",
-                "iconstyle": {"color": "green"}
+                "iconstyle": {"color": "green", "fillColor": "green", "fillOpacity": 0.6}
             }
         }
 
@@ -57,11 +57,27 @@ def get_geojson_for_timelapse(data):
             "properties": {
                 "times": [iso_time_str],
                 "icon": "circle",
-                "iconstyle": {"color": "red"}
+                "iconstyle": {"color": "red", "fillColor": "red", "fillOpacity": 0.6}
             }
         }
 
-        features.extend([feature_start, feature_end])
+        feature_line = {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [[start_long, start_lat], [end_long, end_lat]]
+            },
+            "properties": {
+                "times": [iso_time_str, iso_time_str],
+                "style": {
+                    "color": "blue",
+                    "weight": 1,
+                    "opacity": 0.8
+                }
+            }
+        }
+
+        features.extend([feature_start, feature_end, feature_line])
     
     geojson_data = {
         "type": "FeatureCollection",
@@ -69,11 +85,19 @@ def get_geojson_for_timelapse(data):
     }
     
     return geojson_data
-    
 
-def main():
+
+def make_and_save_visualisation(trip_data_path, save_path, want_overall_data, want_exam_day=None):
     # Read trip_data
-    trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
+    trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), trip_data_path), keep_default_na=False)
+
+    # Filter according to selected scenario
+    if not want_overall_data:
+        # Filter using want_exam_day
+        if want_exam_day:
+            trip_data = trip_data[trip_data["has_exam"] == "Yes"]
+        else:
+            trip_data = trip_data[trip_data["has_exam"] == "No"]
 
     # Extract hour only from "time" column of trip_data
     extract_hour(trip_data, "time")
@@ -85,9 +109,13 @@ def main():
 
     # Generate NUS map and apply the TimestampedGeoJson timelapse to it
     map = folium.Map(location=config.NUS_COORDINATES, zoom_start=15)
-    plugins.TimestampedGeoJson(geojson_data, transition_time=200, period="PT10M", duration="PT10M", loop=True, auto_play=True, add_last_point=True).add_to(map)
-    map.save(os.path.join(os.path.dirname(__file__), "../visualisations/nus_trip_markers_timelapse.html"))
+    plugins.TimestampedGeoJson(geojson_data, transition_time=200, period="PT10M", duration="PT10M", date_options="HH:mm:ss", loop=True, auto_play=True, add_last_point=False).add_to(map)
+    map.save(os.path.join(os.path.dirname(__file__), save_path))
+    
+
+def main(want_overall_data=False, want_exam_day=False):
+    make_and_save_visualisation(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/nus_no_exam_trip_markers_timelapse.html", want_overall_data=want_overall_data, want_exam_day=want_exam_day)
 
 
 if __name__ == "__main__":
-    main()
+    main(want_overall_data=False, want_exam_day=False)

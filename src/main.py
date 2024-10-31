@@ -2,7 +2,6 @@ import survey_cleaning
 import smote
 import synthetic_data_generation_train
 import synthetic_data_generation_test
-import User_Segmentation_Model
 import analyse_travel_patterns
 
 if __name__ == "__main__":
@@ -23,4 +22,4 @@ if __name__ == "__main__":
     # 6. User segmentation
 
     # 7. Analyse travel patterns
-    analyse_travel_patterns.main()
+    analyse_travel_patterns.main(want_overall_data=False, want_exam_day=False)
