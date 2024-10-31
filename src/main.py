@@ -3,6 +3,7 @@ import smote
 import synthetic_data_generation_train
 import synthetic_data_generation_test
 import analyse_travel_patterns
+import Route_Optimization
 
 if __name__ == "__main__":
     # 1. Clean the data
@@ -22,4 +23,11 @@ if __name__ == "__main__":
     # 6. User segmentation
 
     # 7. Analyse travel patterns
-    analyse_travel_patterns.main(want_overall_data=False, want_exam_day=False)
+    analyse_travel_patterns.main(save_path="../visualisations/nus_trip_markers_timelapse.html", want_overall_data=True)
+
+    # 8. Demand forecasting
+
+    # 9. Route optimisation
+
+    # 10. Capacity allocation
+    Route_Optimization.main()

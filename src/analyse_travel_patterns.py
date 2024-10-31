@@ -113,9 +113,9 @@ def make_and_save_visualisation(trip_data_path, save_path, want_overall_data, wa
     map.save(os.path.join(os.path.dirname(__file__), save_path))
     
 
-def main(want_overall_data=False, want_exam_day=False):
-    make_and_save_visualisation(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/nus_no_exam_trip_markers_timelapse.html", want_overall_data=want_overall_data, want_exam_day=want_exam_day)
+def main(save_path, want_overall_data, want_exam_day=None):
+    make_and_save_visualisation(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path=save_path, want_overall_data=want_overall_data, want_exam_day=want_exam_day)
 
 
 if __name__ == "__main__":
-    main(want_overall_data=False, want_exam_day=False)
+    main(save_path="../visualisations/nus_trip_markers_timelapse.html", want_overall_data=True)
