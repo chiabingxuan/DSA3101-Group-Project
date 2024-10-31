@@ -71,7 +71,7 @@ def get_geojson_for_timelapse(data):
     return geojson_data
     
 
-if __name__ == "__main__":
+def main():
     # Read trip_data
     trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
 
@@ -87,3 +87,7 @@ if __name__ == "__main__":
     map = folium.Map(location=config.NUS_COORDINATES, zoom_start=15)
     plugins.TimestampedGeoJson(geojson_data, transition_time=200, period="PT10M", duration="PT10M", loop=True, auto_play=True, add_last_point=True).add_to(map)
     map.save(os.path.join(os.path.dirname(__file__), "../visualisations/nus_trip_markers_timelapse.html"))
+
+
+if __name__ == "__main__":
+    main()

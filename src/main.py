@@ -2,6 +2,8 @@ import survey_cleaning
 import smote
 import synthetic_data_generation_train
 import synthetic_data_generation_test
+import User_Segmentation_Model
+import analyse_travel_patterns
 
 if __name__ == "__main__":
     # 1. Clean the data
@@ -15,3 +17,10 @@ if __name__ == "__main__":
 
     # 4. Use SDV to synthesise more testing data
     synthetic_data_generation_test.main()
+
+    # 5. Analysing user satisfaction
+
+    # 6. User segmentation
+
+    # 7. Analyse travel patterns
+    analyse_travel_patterns.main()
