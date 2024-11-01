@@ -121,6 +121,22 @@ def make_and_save_timelapse(trip_data_path, save_path, scenario):
     # Generate NUS map and apply the TimestampedGeoJson timelapse to it
     map = folium.Map(location=config.NUS_COORDINATES, tiles="Cartodb dark_matter", zoom_start=15)
     plugins.TimestampedGeoJson(geojson_data, transition_time=200, period="PT10M", duration="PT10M", date_options="HH:mm:ss", loop=True, auto_play=True, add_last_point=False).add_to(map)
+    
+    # # Add labels for each bus stops (hover)
+    # for stop_name, (lat, long) in config.BUS_STOP_COORDINATES.items():
+    #     folium.Marker(
+    #         location = [lat, long],
+    #         tooltip = stop_name,
+    #         icon = folium.Icon(color="blue", icon="info-sign")
+    #     ).add_to(map)  
+
+    # Add labels for each bus stops (permanent)
+    for stop_name, (lat, long) in config.BUS_STOP_COORDINATES.items():
+        folium.map.Marker(
+            [lat, long],
+            icon=folium.DivIcon(html=f"""<div style="font-size: 10px; color: white;">{stop_name}</div>""")
+        ).add_to(map)  
+    
     map.save(os.path.join(os.path.dirname(__file__), save_path))
     
 
