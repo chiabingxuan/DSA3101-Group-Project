@@ -23,7 +23,7 @@ if __name__ == "__main__":
     # 6. User segmentation
 
     # 7. Analyse travel patterns
-    analyse_travel_patterns.main(save_path="../visualisations/nus_trip_markers_timelapse.html", want_overall_data=True)
+    analyse_travel_patterns.main()
 
     # 8. Demand forecasting
 
