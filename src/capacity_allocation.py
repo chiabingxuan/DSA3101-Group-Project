@@ -8,12 +8,6 @@ import demand_forecasting as df
 ### Decision variable: Number of buses allocated for each route and time slot ###
 #################################################################################
 
-# Maximum bus capacity per trip
-bus_capacity = 50
-
-# Maximum number of buses we have to allocate
-max_buses = 3
-
 # Flatten the demand_forecast matrix to work with linear programming
 demand_forecast = df.final_demand_array
 (num_routes, num_time_slots) = demand_forecast.shape
@@ -23,6 +17,12 @@ flattened_demand = demand_forecast.flatten()
 objective_coeffs = -flattened_demand  # Using negative demand to maximize service in linprog
 
 ### Setting up constraints ###
+
+# Maximum bus capacity per trip
+bus_capacity = 50
+
+# Maximum number of buses we have to allocate
+max_buses = 6
 
 # Equality constraint (requires condition to hold exactly):
 # Total number of buses
