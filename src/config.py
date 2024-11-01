@@ -116,4 +116,11 @@ BUS_STOP_COORDINATES = {
     "PGP": (1.2914385089186413, 103.78047445708181)
 }
 
+BUS_NUM_COLOURS = {
+    "A1": "red",
+    "A2": "yellow",
+    "D1": "pink",
+    "D2": "purple"
+}
+
 BUS_STOP_NAMES = list(BUS_STOP_COORDINATES.keys())
