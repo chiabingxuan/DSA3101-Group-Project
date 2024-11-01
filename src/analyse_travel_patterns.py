@@ -1,13 +1,43 @@
 import folium
 from folium import plugins
-from shapely.geometry import LineString
 import os
 import pandas as pd
 import numpy as np
 import datetime
 import config
 
-def extract_hour(data, time):
+def approx_indiv_time_within_half_hour_range(dt): # dt: datetime object from "time" column
+    if dt.minute < 30:  # first half of the hour - interpolate to 15 minutes
+        approx_time = datetime.time(dt.hour, 15, 0)
+    else:   # second half of the hour - interpolate to 45 minutes
+        approx_time = datetime.time(dt.hour, 45, 0)
+    return approx_time
+
+
+def approx_times_within_half_hour_range(data, time):
+    # Convert to datetime
+    data[time] = pd.to_datetime(data[time], format="%Y-%m-%d %H:%M:%S")
+
+    # For each datetime, approximate the time (within a half-hour range)
+    data[time] = data[time].map(approx_indiv_time_within_half_hour_range)
+
+
+def make_and_save_line_graph(trip_data_path, save_path):
+    # Read trip_data
+    trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), trip_data_path), keep_default_na=False)
+
+    # Convert each time to an approximate time, within a half-hour range
+    approx_times_within_half_hour_range(trip_data, "time")
+
+    # Count each of these approximate times
+    half_hour_time_interval_counts = trip_data.groupby("time").size().to_frame("num_of_trips").reset_index()
+
+    # Plot line graph of number of trips throughout the day
+    fig = half_hour_time_interval_counts.plot.line("time", "num_of_trips", figsize=(12,6), title="Line graph of number of trips against time", xlabel="Time", ylabel="Number of trips", xticks=[datetime.time(hour, 0, 0) for hour in range(7, 24)]).get_figure()
+    fig.savefig(os.path.join(os.path.dirname(__file__), save_path))
+
+
+def format_time_and_add_iso_time(data, time):
     # Convert "time" column to datetime 
     data[time] = pd.to_datetime(data[time])
 
@@ -89,11 +119,11 @@ def get_geojson_for_timelapse(data):
     return geojson_data
 
 
-def make_and_save_visualisation(trip_data_path, save_path, scenario):
+def make_and_save_timelapse(trip_data_path, save_path, scenario):
     # Read trip_data
     trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), trip_data_path), keep_default_na=False)
 
-    # Raise exceptions if KeyError
+    # Raise exception if KeyError
     if "want_overall" not in scenario:
         raise Exception("Please specify 'want_overall' parameter")
     
@@ -111,8 +141,8 @@ def make_and_save_visualisation(trip_data_path, save_path, scenario):
             bus_num = scenario["bus_num"]
             trip_data = trip_data[trip_data["bus_num"] == bus_num]
 
-    # Extract hour only from "time" column of trip_data
-    extract_hour(trip_data, "time")
+    # Get iso format from "time" column of trip_data
+    format_time_and_add_iso_time(trip_data, "time")
 
     # To the trip_data, we add coordinates of starting and ending bus stops
     add_coordinates_to_data(trip_data, "start", "end")
@@ -126,8 +156,9 @@ def make_and_save_visualisation(trip_data_path, save_path, scenario):
     
 
 def main(save_path, scenario):
-    make_and_save_visualisation(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path=save_path, scenario=scenario)
+    make_and_save_line_graph(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path=save_path)
+    # make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path=save_path, scenario=scenario)
 
 
 if __name__ == "__main__":
-    main(save_path="../visualisations/nus_d2_trip_markers_timelapse.html", scenario={"want_overall": False, "bus_num": "D2"})
+    main(save_path="../visualisations/num_of_trips_throughout_day.png", scenario={"want_overall": False, "bus_num": "D2"})
