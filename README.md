@@ -636,26 +636,17 @@ For `other_feedback_data`:
 #### 5.3.3 Detailed Description of Chosen Model
 
 ##### Defining model components
-
-- We begin by defining the components of the model. The model’s objective is to minimise the unmet
-  demand of passengers using the NUS Internal Shuttle Bus (ISB) Services. This implies (indirectly)
-  reducing passenger waiting times caused by missed buses due to overcrowding. A constraint
-  identified in this problem and model is that the total number of buses must not exceed the maximum
-  fleet capacity. Lastly, the model’s decision variable- the choice that is being controlled in order to
-  achieve the objective- is the number of buses allocated to each bus stop for each hour.
+- We begin by defining the components of the model. The model’s objective is to minimise the unmet demand of passengers using the NUS Internal Shuttle Bus (ISB) Services. This implies (indirectly) reducing passenger waiting times caused by missed buses due to overcrowding. A constraint identified in this problem and model is that the total number of buses must not exceed the maximum fleet capacity. Lastly, the model’s decision variable - the choice that is being controlled in order to achieve the objective - is the number of buses allocated to each bus stop for each hour.
 
 ##### Variable initialisation
 
-- We initialised the (average) capacity of each bus `bus_capacity` and the maximum number of buses
-  available for deployment `max_buses` since these values are fixed and not variable.
+- We initialised the (average) capacity of each bus `bus_capacity` and the maximum number of buses available for deployment `max_buses` since these values are fixed and not variable.
 - We have estimated `bus_capacity` to be 50 and `max_buses` to be 3.
 - `max_buses` is estimated based on the assumption that ISB is able and willing to expand its current fleet size as part of achieving the business objectives.
 
 ##### Input: Forecasted Demand
 
-- From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an
-  array which has a number of rows equal to the number of bus stops `num_routes` and a number of
-  columns equal to the number of hourly intervals `num_time_slots` in the analysis.
+- From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an array which has a number of rows equal to the number of bus stops `num_routes` and a number of columns equal to the number of hourly intervals `num_time_slots` in the analysis. 
 - We initialised `(num_routes, num_time_slots)` as the shape of `demand_forecast`.
 - Sample `demand_forecast`
   - ` [  
@@ -678,33 +669,21 @@ For `other_feedback_data`:
 
 - There are 2 types of constraints in linear programming: equality constraints and inequality constraints.
 - An equality constraint refers to a condition that requires a variable to hold exactly at a specified value.
-  - We defined the left-hand side of the equality `A_eq` to be a matrix of ones, with 1 row and
-    (`num_routes` \* `num_time_slots`) columns. The right-hand side `b_eq` is an array containing
-    `max_buses`.
+  - We defined the left-hand side of the equality `A_eq` to be a matrix of ones, with 1 row and (`num_routes` \* `num_time_slots`) columns. The right-hand side `b_eq` is an array containing `max_buses`.
 - An inequality constraint, on the other hand, allows for a range of possible values. In defining inequality constraints, we consider the upper bounds.
-  - Wedefined the left-hand side of the inequality `A_ub` to be an identity matrix- a matrix in
-    which all of its diagonal elements are ones and the rest are zeros- having (num_routes \*
-    num_time_slots) rows and columns. The right hand side `b_ub` (upper bound) is
-    `flattened_demand`.
+  - We defined the left-hand side of the inequality `A_ub` to be an identity matrix- a matrix in which all of its diagonal elements are ones and the rest are zeros- having (`num_routes` \* `num_time_slots`) rows and columns. The right hand side `b_ub` (upper bound) is `flattened_demand`.
 
 ##### Setting up bounds
 
-- We set up the bounds for the decision variables of the problem. The lower bound is set to 0, while the
-  upper bound is set to `bus_capacity`.
-- This also ensures that the total number of people boarding the bus, as accounted for in the model's
-  optimisation, does not exceed its capacity for safety and practical purposes.
-- The bounds are stored as a tuple `(0, bus_capacity)` in an array with 1 row and (`num_routes` \*
-  `num_time_slots`) columns.
+- We set up the bounds for the decision variables of the problem. The lower bound is set to 0, while the upper bound is set to `bus_capacity`.
+- This also ensures that the total number of people boarding the bus, as accounted for in the model's optimisation, does not exceed its capacity for safety and practical purposes.
+- The bounds are stored as a tuple `(0, bus_capacity)` in an array with 1 row and (`num_routes` \* `num_time_slots`) columns.
 
 ##### Model output
 
-- The objective coefficients, constraints and bounds are input into the function `linprog` with `method =
-“highs”`. The output is assigned to `result`.
-- If the optimization is a success, the model reshapes `result` to the initial `demand_forecast` shape,
-  and assigns it to `allocated_buses`. The model then prints out the message “Optimised Capacity
-  Allocation (Buses per Route per Time Slot): `allocated_buses`”
-- If the optimization fails, the model prints out the message "Optimization failed: `result.message`”,
-  where `result.message` is the error message.
+- The objective coefficients, constraints and bounds are input into the function `linprog` with `method = “highs”`. The output is assigned to `result`.
+- If the optimization is a success, the model reshapes `result` to the initial `demand_forecast` shape, and assigns it to `allocated_buses`. The model then prints out the message “Optimised Capacity Allocation (Buses per Route per Time Slot): `allocated_buses`”.
+- If the optimization fails, the model prints out the message "Optimization failed: `result.message`”, where `result.message` is the error message.
 
 #### 5.3.4 Performance Metrics and Interpretation
 
@@ -782,40 +761,26 @@ For `other_feedback_data`:
 
 #### 6.3.1 Evaluation of model performance against business objectives
 
-- The model minimises the number of passengers unable to board the bus each hour (and maximises
-  bus utilisation) without exceeding capacity. This effectively reduces wait times for passengers and
-  increases their satisfaction levels, given the negative correlation between wait time and user
-  satisfaction.
-- Keeping optimization upper bound at the (average) capacity of the bus also ensures that the safety of
-  the ISB service is accounted for and remains a top priority.
+- The model minimises the number of passengers unable to board the bus each hour (and maximises bus utilisation) without exceeding capacity. This effectively reduces wait times for passengers and increases their satisfaction levels, given the negative correlation between wait time and user satisfaction.
+- Keeping optimization upper bound at the (average) capacity of the bus also ensures that the safety of the ISB service is accounted for and remains a top priority.
 
 #### 6.3.2 Limitations of current approaches
 
 ##### Simplified assumptions
 
-- The model does not account for potential disruptions, such as traffic delays and mechanical
-  failures. The output might be too optimistic. As a result, in these instances, the model could
-  overestimate the number of passengers that can be served, and in turn, fall short of
-  objectives.
-- The assumption made for the value of `max_buses` did not take into account other
-  constraints such as budget and number of drivers.
+- The model does not account for potential disruptions, such as traffic delays and mechanical failures. The output might be too optimistic. As a result, in these instances, the model could overestimate the number of passengers that can be served, and in turn, fall short of objectives.
+- The assumption made for the value of `max_buses` did not take into account other constraints such as budget and number of drivers.
 
 #### 6.3.3 Suggestions for model improvements
 
 ##### Feedback Loops
 
-- Mechanisms can be implemented to regularly update the model based on actual data and
-  user feedback. This allows for the identification and refinement of gaps to improve the
-  model’s accuracy and effectiveness.
-- However, this project is constrained by limited access to the actual ISB service for testing, as
-  well as by the time needed to collect additional data and feedback over time.
+- Mechanisms can be implemented to regularly update the model based on actual data and user feedback. This allows for the identification and refinement of gaps to improve the model’s accuracy and effectiveness.
+- However, this project is constrained by limited access to the actual ISB service for testing, as well as by the time needed to collect additional data and feedback over time.
 
 ##### Sensitivity Analysis
 
-- Sensitivity analyses can be conducted to understand how variations in `max_buses` affect the
-  results. This would allow for determining the number of additional shuttle buses ISB should
-  acquire in order to optimise capacity allocation, for a given budget and other relevant
-  constraints, assuming the bus type remains the same and the bus capacity does not change.
+- Sensitivity analyses can be conducted to understand how variations in `max_buses` affect the results. This would allow for determining the number of additional shuttle buses ISB should acquire in order to optimise capacity allocation, for a given budget and other relevant constraints, assuming the bus type remains the same and the bus capacity does not change.
 - However, in this project, we are constrained by limited information on ISB and its resources.
 
 ## 7. Deployment
