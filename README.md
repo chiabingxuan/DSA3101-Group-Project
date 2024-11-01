@@ -638,12 +638,6 @@ For `other_feedback_data`:
 ##### Defining model components
 - We begin by defining the components of the model. The model’s objective is to minimise the unmet demand of passengers using the NUS Internal Shuttle Bus (ISB) Services. This implies (indirectly) reducing passenger waiting times caused by missed buses due to overcrowding. A constraint identified in this problem and model is that the total number of buses must not exceed the maximum fleet capacity. Lastly, the model’s decision variable - the choice that is being controlled in order to achieve the objective - is the number of buses allocated to each bus stop for each hour.
 
-##### Variable initialisation
-
-- We initialised the (average) capacity of each bus `bus_capacity` and the maximum number of buses available for deployment `max_buses` since these values are fixed and not variable.
-- We have estimated `bus_capacity` to be 50 and `max_buses` to be 3.
-- `max_buses` is estimated based on the assumption that ISB is able and willing to expand its current fleet size as part of achieving the business objectives.
-
 ##### Input: Forecasted Demand
 
 - From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an array which has a number of rows equal to the number of bus stops `num_routes` and a number of columns equal to the number of hourly intervals `num_time_slots` in the analysis. 
@@ -666,6 +660,10 @@ For `other_feedback_data`:
 - This is assigned to `objective_coefficients`.
 
 ##### Setting up constraints
+
+- We initialised the (average) capacity of each bus `bus_capacity` and the maximum number of buses available for deployment `max_buses` since these values are fixed and not variable.
+- We have estimated `bus_capacity` to be 50 and let `max_buses` to be 6.
+- `max_buses` is estimated based on the assumption that ISB is able and willing to expand its fleet size to twice the current size as part of achieving the business objectives.
 
 - There are 2 types of constraints in linear programming: equality constraints and inequality constraints.
 - An equality constraint refers to a condition that requires a variable to hold exactly at a specified value.
