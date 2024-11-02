@@ -126,8 +126,14 @@
   - [14. Appendices](#14-appendices)
 
 ## 1. Introduction
-Data Scavengers - Optimising the Bus System in NUS
-Data Scavengers is a collaborative project aimed at collecting real time data to optimise the bus system in NUS, to minimise the waiting times at the respective bus stops, as well as maximise the comfort and safety of users when commuting.
+
+**Overview of Data Scavengers**
+Data Scavengers is a collaborative project aimed at collecting real time data to optimise the bus system in NUS by utilising various models, such as Route Optimisation, Demand Forecasting and Capacity Allocation models. Visualisations have also been made to assist us in understanding the current problems faced.
+
+**Project Objectives**
+- Predict the demand of bus users at a specific bus stop at specific hour intervals
+- Optimise the bus routes to reduce waiting times
+- Allocate the capacity of buses to meet the demand
 
 **Team Members**
 - Bing Xuan -
@@ -139,16 +145,24 @@ Data Scavengers is a collaborative project aimed at collecting real time data to
 - Iffah: Capacity Allocation 
 - Rean:
 
-**Project Objectives**
-- Predict the demand of bus users at a specific bus stop at specific hour intervals
-- Optimise the bus routes to reduce waiting times
-- Allocate the capacity of buses to meet the demand
-
-**Getting started**
-To run the project locally, clone the repository and follow the setup instructions below 
-- 
+**Quick Links**
+???
 
 ## 2. Business Understanding
+
+**Business Problem Statement**
+How can NUS develop an efficient, reliable and safe internal bus system that optimally allocates resources to meet fluctuating demand, enhance student mobility and safety, and reduce operational costs?
+
+**Business Problem**
+The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The exisitng resource allocation, which ncludes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waitign times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
+
+**Key Stakeholders and their needs**
+<u>Students</u>
+- *Primary Users*: Students are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
+- *Specific Needs*: Reliable transport during peak times like class start/end times, during exams.
+
+
+**Success Criteria for the project**
 - *Enhance Student Mobility*: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
 - *Improve Safety Standards*: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
 - *Optimise Resource Allocation*: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
@@ -719,6 +733,9 @@ For `other_feedback_data`:
 #### Time Complexity: Explain
 
 #### Space Complexity: Explain
+
+### 5.4 **Subgroup B: System Optimization and Forecasting**
+
 
 ## 6. Evaluation
 
