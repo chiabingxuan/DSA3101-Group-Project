@@ -123,4 +123,11 @@ BUS_NUM_COLOURS = {
     "D2": "purple"
 }
 
+BUS_NUM_ROUTES = {
+    "A1": ["LT13 / Ventus", "BIZ2 / Opp HSSML", "PGP", "Kent Ridge MRT / Opp Kent Ridge MRT", "LT27 / S17", "UHC / Opp UHC", "IT / CLB", "LT13 / Ventus"],
+    "A2": ["IT / CLB", "UHC / Opp UHC", "LT27 / S17", "Kent Ridge MRT / Opp Kent Ridge MRT", "PGP", "BIZ2 / Opp HSSML", "LT13 / Ventus"],
+    "D1": ["COM3", "BIZ2 / Opp HSSML", "LT13 / Ventus", "IT / CLB", "UTown"],
+    "D2": ["COM3", "PGP", "Kent Ridge MRT / Opp Kent Ridge MRT", "LT27 / S17", "UHC / Opp UHC", "UTown"]
+}
+
 BUS_STOP_NAMES = list(BUS_STOP_COORDINATES.keys())
