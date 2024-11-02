@@ -21,7 +21,6 @@ kiwisolver
 kmodes
 kprototypes
 Kprototypes
-linprog
 markdown-it-py
 math
 matplotlib
@@ -51,7 +50,6 @@ scikit-learn
 sklearn.metrics
 sklearn.preprocessing
 scipy
-scipy.optimize
 sdv
 seaborn
 six
