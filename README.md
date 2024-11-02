@@ -515,6 +515,29 @@ also because we do not know for sure that our continuous data is symmetrical or 
 | Safety | 0.666667 |
 | Overall Satisfaction | 0.555556 |
 
+- Across the 3 clusters labelled 0, 1 and 2, we observe that they share certain similarities in the following aspects:
+  - Do not stay on campus
+  - Main reason for taking the ISB is to go to class
+  - On the day of the bus trip chosen to input in the survey, there was no exam, it was a Thursday, and the weather was sunny.
+  - So, perhaps the features of `on_campus`, `main_reason_for_taking_ISB`, `has_exam`, `day_of_week`, and `weather`, are not as useful
+  for identifying each cluster's pain points and needs in this context.
+
+- Between clusters 1 and 2, we observe that they have the exact same overall satisfaction = 0.555556, 
+safety = 0.66667, and comfort = 0.55556
+  - However, cluster 2 has a higher crowdedness = 0.77778 compared to cluster 1 with a lower crowdedness = 0.444444.
+  - At the same time, cluster 2 has a longer waiting time = 0.200000 compared to cluster 1 with a shorter waiting time = 0.166667.
+  - By intuition, cluster 2 should thus have a lower overall satisfaction than cluster 1, but yet this is clearly not the case.
+  - The 1st possible reason is that for cluster 2, there exists another factor influencing overall satisfaction, that is even more
+  important than crowdedness and waiting time- which could be the smell of the bus (whether or not the buss smells pleasant or not),
+  or the attitude of the bus driver, as some of the responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?"
+
+- Between clusters 0 and 1, we observe that:
+  - Cluster 0 has a longer waiting time = 0.300000 compared to cluster 1 with a shorter waiting time = 0.166667.
+  - Cluster 0 has a higher crowdedness = 0.666667 compared to cluster 1 with a lower crowdedness = 0.444444.
+  - Cluster 0 has a lower comfort = 0.333333 compared to cluster 1 with a higher comfort = 0.555556.
+  - Cluster 0 has a lower safety = 0.333333 compared to cluster 1 with a higher safety = 0.666667.
+  - This reaffirms our initial beliefs on the relationship between the 4 factors and overall satisfaction, which is that a longer waiting time, higher level of crowdedness, lower level of comfort, and lower level of safety, all translate to a lower level of overall satisfaction. This is backed by cluster 0 having a lower overall satisfaction = 0.333333, compared to cluster 1 with a higher overall satisfaction = 0.555556.
+
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
 
 - What changes to routes and schedules would optimize the public transport network?
