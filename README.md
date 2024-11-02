@@ -157,16 +157,15 @@ How can NUS develop an efficient, reliable and safe internal bus system that opt
 The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The exisitng resource allocation, which ncludes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waitign times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
 
 **Key Stakeholders and their needs**
-<u>Students</u>
-- *Primary Users*: Students are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
-- *Specific Needs*: Reliable transport during peak times like class start/end times, during exams.
+- ***Primary Users***: **Students** are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
+- ***Specific Needs***: Reliable transport during peak times like class start/end times, during exams.
 
 
 **Success Criteria for the project**
-- *Enhance Student Mobility*: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
-- *Improve Safety Standards*: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
-- *Optimise Resource Allocation*: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
-- *Provide Flexibility during Seasonal Events*: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
+- ***Enhance Student Mobility***: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
+- ***Improve Safety Standards***: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
+- ***Optimise Resource Allocation***: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
+- ***Provide Flexibility during Seasonal Events***: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
 
 ## 3. Data Understanding
 
@@ -735,6 +734,21 @@ For `other_feedback_data`:
 #### Space Complexity: Explain
 
 ### 5.4 **Subgroup B: System Optimization and Forecasting**
+
+
+
+#### 5.4.1 Modeling Techniques considered
+- Some techniques considered include *Traditional Statistical Models* such as *Regression Analysis* and *Seasonal Decomposition of Time Series (STL)*, or *Machine Learning Models* such as *Linear Regression* and *Random Forest*
+- These models are structured to capture the nuances of demand patterns, improving the accuracy of forecasts. Models like *Random Forest* are also able to capture categorical variables to incorporate into the predictions.
+
+#### 5.4.2 Model Selection Criteria
+
+**Our Team has decided to go ahead with utilising the Random Forest as our Demand Forecasting Model**
+
+
+#### 5.4.3 Detailed Description 
+
+#### 5.4.4 Model performance metrics and intepretation
 
 
 ## 6. Evaluation
