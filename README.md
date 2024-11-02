@@ -376,7 +376,7 @@ For `other_feedback_data`:
   - However, Python libraries, such as `light_famd` and `prince` implementing FAMD were tried and tested, but did not work out due to compatibility issues with our data frame, and lack of updates.
   - Moreover, FAMD ultimately still increases our data's number of features beyond 16 with encoding, worsening the Curse of Dimensionality, which defeats the original purpose of dimensionality reduction.
 
-#### 5.1.3 Detailed Description of the chosen models
+#### 5.1.3 Detailed Description of the Chosen Model 
 
 ##### Dimensionality Reduction
 
