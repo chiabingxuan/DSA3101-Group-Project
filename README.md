@@ -355,10 +355,10 @@ For `other_feedback_data`:
 - Fourthly, we combine the `start`, `end`, and `bus_num` columns into a new `trip` column.
 - Fifth, we combine the `duration_per_day` and `trips_per_day` columns into a new `duration_per_trip` column by dividing the 2 columns, indicating the extent of usage of the ISB. However, this introduces inf values into the dataset, so once again, we replace all inf values with NaN, and remove all NaN values, to deal with this issue.
 - Lastly, we remove the following columns for various reasons:
-  `date`,`time`,`datetime` columns since they are replaced by `day_of_week` and `hour` columns
-  `start`,`end`,`bus_num` columns since they are replaced by `trip` column
-  `duration_per_day`, `trips_per_day` columns since they are replaced by `duration_per_trip` column
-  `waiting_time_satisfaction`, `crowdedness_satsifaction` columns since the relationship is rather obvious: higher waiting time and higher crowdedness level = lower corresponding satisfaction
+  - `date`,`time`,`datetime` columns since they are replaced by `day_of_week` and `hour` columns
+  - `start`,`end`,`bus_num` columns since they are replaced by `trip` column
+  - `duration_per_day`, `trips_per_day` columns since they are replaced by `duration_per_trip` column
+  - `waiting_time_satisfaction`, `crowdedness_satsifaction` columns since the relationship is rather obvious: higher waiting time and higher crowdedness level = lower corresponding satisfaction
 - After the above process, the number of featurs is effectively reduced from 21 to 16.
 
 ##### Modelling Process
