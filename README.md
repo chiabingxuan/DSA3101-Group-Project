@@ -369,7 +369,7 @@ For `other_feedback_data`:
 - Secondly, we train the K-Prototypes model using the input training dataset (as a numpy array) and `fit_predict()` function.
 - Thirdly, with respect to the input dataset, we add a new column for cluster labels associated with each row (data point), as procured by `fit_predict()`, and accessed using the `.labels_` attribute of the trained K-Prototypes model.
 - Fourthly, we proceed to use a custom-defined `cluster_profile()` function to visualise the 3 clusters.
-- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier.Subsequently, for each cluster, `cluster_profile()` proceeds to compute the mean of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
+- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier. Subsequently, for each cluster, `cluster_profile()` proceeds to compute the mean of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
 - Lastly, we simply call `print(cluster_profile(name_of_our_dataset))` to visualise the 3 clusters.
 
 #### 5.1.4 Model Performance Metrics and Interpretation
