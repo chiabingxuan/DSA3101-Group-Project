@@ -522,28 +522,27 @@ also because we do not know for sure that our continuous data is symmetrical or 
   - So, perhaps the features of `on_campus`, `main_reason_for_taking_ISB`, `has_exam`, `day_of_week`, and `weather`, are not as useful
   for identifying each cluster's pain points and needs in this context.
 
-- Between clusters 1 and 2, we observe that they have the exact same overall satisfaction = 0.555556, 
-safety = 0.66667, and comfort = 0.55556
-  - However, cluster 2 has a higher crowdedness = 0.77778 compared to cluster 1 with a lower crowdedness = 0.444444.
+- Between clusters 1 and 2, we observe that they have the exact same overall satisfaction level = 0.555556, 
+safety level = 0.66667, and comfort level = 0.55556.
+  - However, cluster 2 has a higher crowdedness level = 0.77778 compared to cluster 1 with a lower crowdedness level = 0.444444.
   - At the same time, cluster 2 has a longer waiting time = 0.200000 compared to cluster 1 with a shorter waiting time = 0.166667.
-  - By intuition, cluster 2 should thus have a lower overall satisfaction than cluster 1, but yet this is clearly not the case.
+  - By intuition, cluster 2 should thus have a lower overall satisfaction level than cluster 1, but yet this is clearly not the case.
   - One possible reason is that for cluster 2, there exists other factors influencing overall satisfaction, that are even more
-  important than crowdedness and waiting time- which could be the smell of the bus (whether or not the bus smells pleasant),
-  or the attitude of the bus driver, as some of the responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?" Perhaps, for cluster 2, most of them felt that the bus smelt pleasant during their bus trips, and/or most of them also were very pleased with the positive attitudes of the bus drivers, which in turn outweighed the more negative factors of higher crowdedness levels and longer waiting times (relative to cluster 1).
+  important than crowdedness and waiting time- which could be the smell of the bus (whether or not the bus smells pleasant), and/or the attitude of the bus driver, amongst the many responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?" Perhaps, for cluster 2, most of them felt that the bus smelt pleasant during their bus trips, and/or most of them also were very pleased with the positive attitudes of the bus drivers, which in turn outweighed the more negative factors of higher crowdedness levels and longer waiting times (relative to cluster 1).
 
 - Between clusters 0 and 1, we observe that:
   - Cluster 0 has a longer waiting time = 0.300000 compared to cluster 1 with a shorter waiting time = 0.166667.
-  - Cluster 0 has a higher crowdedness = 0.666667 compared to cluster 1 with a lower crowdedness = 0.444444.
-  - Cluster 0 has a lower comfort = 0.333333 compared to cluster 1 with a higher comfort = 0.555556.
-  - Cluster 0 has a lower safety = 0.333333 compared to cluster 1 with a higher safety = 0.666667.
-  - This reaffirms our initial beliefs on the relationship between the 4 factors and overall satisfaction, which is that a longer waiting time, higher level of crowdedness, lower level of comfort, and lower level of safety, all translate to a lower level of overall satisfaction. This is backed by cluster 0 having a lower overall satisfaction = 0.333333, compared to cluster 1 with a higher overall satisfaction = 0.555556.
+  - Cluster 0 has a higher crowdedness level = 0.666667 compared to cluster 1 with a lower crowdedness level = 0.444444.
+  - Cluster 0 has a lower comfort level = 0.333333 compared to cluster 1 with a higher comfort level = 0.555556.
+  - Cluster 0 has a lower safety level = 0.333333 compared to cluster 1 with a higher safety level = 0.666667.
+  - This reaffirms our initial beliefs on the relationship between the 4 factors and overall satisfaction, which is that a longer waiting time, higher crowdedness level, lower comfort level, and lower safety level, all translate to a lower overall satisfaction level. This is backed by cluster 0 having a lower overall satisfaction level = 0.333333, compared to cluster 1 with a higher overall satisfaction level = 0.555556.
 
 - From the comparisons we drew between cluster 0 (year 1 students) and cluster 1 (year 3 students), there are 3 more possible insights that we can draw:
   - Firstly, since students in earlier years (cluster 0) exhibit lower overall satisfaction levels, this may reflect a steeper learning curve in navigating the campus and transportation systems, indicating that year 1 students might be struggling to adapt to both academic demands and logistical challenges simultaneously. In other words, this suggests an adjustment phase for year 1 students where they are not only acclimating to university life but also learning to navigate a potentially complex transportation network. This might indicate that the National University of Singapore (NUS) should consider mentorship programs or orientation sessions focusing on transportation logistics to help ease this transition.
   - Secondly, since cluster 1 (year 3 students) shows improved overall satisfaction levels compared to cluster 0 (year 1 students), this may suggest that as students progress from their first year to their third year, they likely become more familiar with the transportation system and class schedules, resulting in less anxiety and frustration during commutes.
   - Thirdly, cluster 1’s travel time at 1 PM coincides with post-lunch schedules, which may contribute to higher student energy levels and correspondingly, better ability to manage travel expectations while using the ISB, contributing to higher overall satisfaction levels. Conversely, earlier travel times at 11 AM in cluster 0 may lead to fatigue or a rush, influencing their overall experience negatively.
 
-- Moreover, we note that despite cluster 2 (year 2 students) the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions, which might buffer the negative impact of crowdedness on overall satisfaction levels.
+- Moreover, we note that despite cluster 2 (year 2 students) having the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions as they accept high crowd levels as the "norm". In turn, such a mentality is  part of students internalising that usage of ISB services is a necessity (since most of them use the ISB to go to class, as indicated by how clusters 0, 1, and 2 all have the exact same `main_reason_for_taking_ISB` = to go to class). This desensitisation to crowded conditions might buffer the negative impact of crowdedness on overall satisfaction levels.
 
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
 
