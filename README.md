@@ -538,6 +538,13 @@ safety = 0.66667, and comfort = 0.55556
   - Cluster 0 has a lower safety = 0.333333 compared to cluster 1 with a higher safety = 0.666667.
   - This reaffirms our initial beliefs on the relationship between the 4 factors and overall satisfaction, which is that a longer waiting time, higher level of crowdedness, lower level of comfort, and lower level of safety, all translate to a lower level of overall satisfaction. This is backed by cluster 0 having a lower overall satisfaction = 0.333333, compared to cluster 1 with a higher overall satisfaction = 0.555556.
 
+- From the comparisons we drew between cluster 0 (year 1 students) and cluster 1 (year 3 students), there are 3 more possible insights that we can draw:
+  - Firstly, since students in earlier years (cluster 0) exhibit lower overall satisfaction levels, this may reflect a steeper learning curve in navigating the campus and transportation systems, indicating that year 1 students might be struggling to adapt to both academic demands and logistical challenges simultaneously. In other words, this suggests an adjustment phase for year 1 students where they are not only acclimating to university life but also learning to navigate a potentially complex transportation network. This might indicate that the National University of Singapore (NUS) should consider mentorship programs or orientation sessions focusing on transportation logistics to help ease this transition.
+  - Secondly, since cluster 1 (year 3 students) shows improved overall satisfaction levels compared to cluster 0 (year 1 students), this may suggest that as students progress from their first year to their third year, they likely become more familiar with the transportation system and class schedules, resulting in less anxiety and frustration during commutes.
+  - Thirdly, cluster 1’s travel time at 1 PM coincides with post-lunch schedules, which may contribute to higher student energy levels and correspondingly, better ability to manage travel expectations while using the ISB, contributing to higher overall satisfaction levels. Conversely, earlier travel times at 11 AM in cluster 0 may lead to fatigue or a rush, influencing their overall experience negatively.
+
+- Moreover, we note that despite cluster 2 (year 2 students) the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions, which might buffer the negative impact of crowdedness on overall satisfaction levels.
+
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
 
 - What changes to routes and schedules would optimize the public transport network?
