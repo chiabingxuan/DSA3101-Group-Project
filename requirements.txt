@@ -45,6 +45,8 @@ scipy
 sdv
 seaborn
 six
+sklearn
+statsmodels
 tornado
 tqdm
 traitlets
