@@ -139,11 +139,11 @@ Data Scavengers is a collaborative project aimed at collecting real time data to
 - Bing Xuan -
 - Chong Gui - Route Optimisations
 - Yeongkyu -
-- Wei Ting -
+- Wei Ting - User Segmentation
 - Haidah -
 - Beckham - SMOTE analysis
-- Iffah: Capacity Allocation 
-- Rean:
+- Iffah - Capacity Allocation 
+- Rean -
 
 **Quick Links**
 ???
@@ -157,15 +157,16 @@ How can NUS develop an efficient, reliable and safe internal bus system that opt
 The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The exisitng resource allocation, which ncludes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waitign times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
 
 **Key Stakeholders and their needs**
-- ***Primary Users***: **Students** are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
-- ***Specific Needs***: Reliable transport during peak times like class start/end times, during exams.
+<u>Students</u>
+- *Primary Users*: Students are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
+- *Specific Needs*: Reliable transport during peak times like class start/end times, during exams.
 
 
 **Success Criteria for the project**
-- ***Enhance Student Mobility***: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
-- ***Improve Safety Standards***: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
-- ***Optimise Resource Allocation***: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
-- ***Provide Flexibility during Seasonal Events***: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
+- *Enhance Student Mobility*: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
+- *Improve Safety Standards*: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
+- *Optimise Resource Allocation*: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
+- *Provide Flexibility during Seasonal Events*: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
 
 ## 3. Data Understanding
 
@@ -407,7 +408,10 @@ For `other_feedback_data`:
 - Secondly, we train the K-Prototypes model using the input training dataset (as a numpy array) and `fit_predict()` function.
 - Thirdly, with respect to the input dataset, we add a new column for cluster labels associated with each row (data point), as procured by `fit_predict()`, and accessed using the `.labels_` attribute of the trained K-Prototypes model.
 - Fourthly, we proceed to use a custom-defined `cluster_profile()` function to visualise the 3 clusters.
-- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier. Subsequently, for each cluster, `cluster_profile()` proceeds to compute the mean of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
+- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier. 
+Subsequently, for each cluster, `cluster_profile()` proceeds to compute the median of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
+- Here, the median is the preferred measure of central tendency because it is less affected by outliers than the mean, and
+also because we do not know for sure that our continuous data is symmetrical or normally distributed- so the mean is not as appropriate here.
 - Lastly, we simply call `print(cluster_profile(name_of_our_dataset))` to visualise the 3 clusters.
 
 #### 5.1.4 Model Performance Metrics and Interpretation
@@ -449,7 +453,67 @@ For `other_feedback_data`:
 
 ##### K-Prototypes Model Interpretation
 
-- TBC
+- Our K-Prototypes model procured 3 clusters.
+
+- Cluster 0 has the following attributes.
+
+| Column | Value |
+| :---:  | :---: |
+|  Year  |   1   |
+|  Major | Biomedical Engineering |
+| On_Campus | No |
+| Main Reason for Taking ISB | To go to Class |
+| Has Exam | No |
+| Weather | Sunny |
+| Day of Week | Thursday |
+| Hour | 11 |
+| Trip | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
+| Number of People at Bus Stop | 0.314286 |
+| Waiting Time | 0.300000 |
+| Crowdedness | 0.666667 |
+| Comfort | 0.333333 |
+| Safety | 0.333333 |
+| Overall Satisfaction | 0.333333 |
+
+- Cluster 1 has the following attributes.
+
+| Column | Value |
+| :---:  | :---: |
+|  Year  |   3   |
+|  Major | Business |
+| On_Campus | No |
+| Main Reason for Taking ISB | To go to Class |
+| Has Exam | No |
+| Weather | Sunny |
+| Day of Week | Thursday |
+| Hour | 13 |
+| Trip | Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1 |
+| Number of People at Bus Stop | 0.200000 |
+| Waiting Time | 0.166667 |
+| Crowdedness | 0.444444 |
+| Comfort | 0.555556 |
+| Safety | 0.666667 |
+| Overall Satisfaction | 0.555556 |
+
+- Cluster 2 has the following attributes.
+
+| Column | Value |
+| :---:  | :---: |
+|  Year  |   2   |
+|  Major | Chemistry |
+| On_Campus | No |
+| Main Reason for Taking ISB | To go to Class |
+| Has Exam | No |
+| Weather | Sunny |
+| Day of Week | Thursday |
+| Hour | 12 |
+| Trip | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2|
+| Number of People at Bus Stop | 0.357143 |
+| Waiting Time | 0.200000 |
+| Crowdedness | 0.777778 |
+| Comfort | 0.555556 |
+| Safety | 0.666667 |
+| Overall Satisfaction | 0.555556 |
 
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
 
@@ -730,37 +794,10 @@ For `other_feedback_data`:
 #### 5.3.4 Performance Metrics and Interpretation
 
 #### Time Complexity: Explain
-- For a typical case, the expected time complexity is O(N^3), where N = (`num_routes` x `num_time_slots`). This is based on the average-case complexity.
-  - This accounts for the main computational effort of the linear programming optimization.
 
 #### Space Complexity: Explain
-- Space complexity is O(N^2), where N = (`num_routes` x `num_time_slots`).
-  - This is due to the storage requirements for the constraint matrices.
-
-#### Overall
-- The time and space complexity are generally reasonable. However, it is worth noting that it can be challenging if N (i.e. the number of decision variables) grows too large.
-  - For time complexity O(N^3), if N becomes very large (e.g. number of routes and time slots increase significantly), the time required to run the model grows rapidly, potentially making it too slow for real-time applications.
-  - For space complexity O(N^2), large N would similarly strain memory resources.
-
-- For small to moderate N, the model is good and would provide precise results. For large N, it can potentially be problematic.
-  - Since the number of decision variables in this problem can be controlled by adjusting the granularity of allocation parameters — such as carefully selecting the number of routes and time slots considered at a time — the model remains reasonable and computationally efficient.
 
 ### 5.4 **Subgroup B: System Optimization and Forecasting**
-
-
-
-#### 5.4.1 Modeling Techniques considered
-- Some techniques considered include *Traditional Statistical Models* such as *Regression Analysis* and *Seasonal Decomposition of Time Series (STL)*, or *Machine Learning Models* such as *Linear Regression* and *Random Forest*
-- These models are structured to capture the nuances of demand patterns, improving the accuracy of forecasts. Models like *Random Forest* are also able to capture categorical variables to incorporate into the predictions.
-
-#### 5.4.2 Model Selection Criteria
-
-**Our Team has decided to go ahead with utilising the Random Forest as our Demand Forecasting Model**
-
-
-#### 5.4.3 Detailed Description 
-
-#### 5.4.4 Model performance metrics and intepretation
 
 
 ## 6. Evaluation
