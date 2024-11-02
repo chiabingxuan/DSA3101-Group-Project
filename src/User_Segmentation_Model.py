@@ -262,7 +262,9 @@ dataframe['cluster_labels_of_data_point'] = segmentation_model.labels_
 
 # VISUALISE CLUSTERS GIVEN BY K-PROTOTYPES USING CUSTOM-DEFINED FUNCTION cluster_profile().
 # FIRSTLY, cluster_profile() groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier.
-# SECONDLY, for each cluster, cluster_profile() proceeds to compute the mean of each continuous/numerical column.
+# SECONDLY, for each cluster, cluster_profile() proceeds to compute the median of each continuous/numerical column
+# Here, the median is the preferred measure of central tendency because it is less affected by outliers than the mean, and
+# also because we do not know for sure that our continuous data is symmetrical or normally distributed- so the mean is not as appropriate here.
 # THIRDLY, for each cluster, cluster_profile() proceeds to identify the mode (most frequently-occurring category) of each categorical column.
 def cluster_profile(df):
     dfc = df.groupby("cluster_labels_of_data_point").agg({
@@ -275,12 +277,12 @@ def cluster_profile(df):
         "day_of_week" : lambda x: x.value_counts().index[0],
         "hour" : lambda x: x.value_counts().index[0],
         "trip" : lambda x: x.value_counts().index[0],
-        "num_people_at_bus_stop" : "mean",
-        "waiting_time" : "mean",
-        "crowdedness" : "mean",
-        "comfort" : "mean",
-        "safety" : "mean",
-        "overall_satisfaction" : "mean"
+        "num_people_at_bus_stop" : "median",
+        "waiting_time" : "median",
+        "crowdedness" : "median",
+        "comfort" : "median",
+        "safety" : "median",
+        "overall_satisfaction" : "median"
     })
     return dfc
 
@@ -289,6 +291,8 @@ def cluster_profile(df):
 # TRAIN-TEST SPLIT is a SUPERVISED LEARNING MODEL validation process that allows you to simulate how your model would perform with new/unseen data.
 # Since K-Prototypes = Unsupervised Learning Model, train-test split is not necessary.
 
+# To be able to view all the columns of the 3 main clusters
+pd.set_option("display.max_columns", None) 
+
 # Print out the 3 main clusters.
 print(cluster_profile(dataframe))
-
