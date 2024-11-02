@@ -10,14 +10,15 @@
   - [4. Data Preparation](#4-data-preparation)
     - [4.1 Initial Data Cleaning](#41-initial-data-cleaning)
     - [4.2 Initial Data Exploration](#42-initial-data-exploration)
+    - [4.3 Synthetic Data Generation](#43-synthetic-data-generation)
   - [5. Modeling](#5-modeling)
     - [5.1 Subgroup A: User Behavior and Satisfaction](#51-subgroup-a-user-behavior-and-satisfaction)
       - [5.1.1 Models Considered](#511-models-considered)
       - [5.1.2 Model Selection Critieria](#512-model-selection-critieria)
         - [Relevance](#relevance)
-      - [5.1.3 Detailed Description of the Chosen Model](#513-detailed-description-of-the-chosen-models)
+      - [5.1.3 Detailed Description of the Chosen Model](#513-detailed-description-of-the-chosen-model)
         - [Dimensionality Reduction](#dimensionality-reduction)
-        - [Manual Dimensionality Reduction using Domain Knowledge](#manual-dimensionality-reduction-using-domain-knowledge)
+        - [Manual Dimensionality Reduction Using Domain Knowledge](#manual-dimensionality-reduction-using-domain-knowledge)
         - [Modelling Process](#modelling-process)
       - [5.1.4 Model Performance Metrics and Interpretation](#514-model-performance-metrics-and-interpretation)
         - [Elbow Method to Find Optimal K (Number of Clusters)](#elbow-method-to-find-optimal-k-number-of-clusters)
@@ -73,7 +74,6 @@
         - [Feasibility](#feasibility)
       - [5.3.3 Detailed Description of Chosen Model](#533-detailed-description-of-chosen-model)
         - [Defining model components](#defining-model-components)
-        - [Variable initialisation](#variable-initialisation)
         - [Input: Forecasted Demand](#input-forecasted-demand)
         - [Setting up objective coefficients](#setting-up-objective-coefficients)
         - [Setting up constraints](#setting-up-constraints)
@@ -82,6 +82,7 @@
       - [5.3.4 Performance Metrics and Interpretation](#534-performance-metrics-and-interpretation)
       - [Time Complexity: Explain](#time-complexity-explain-1)
       - [Space Complexity: Explain](#space-complexity-explain-1)
+    - [5.4 **Subgroup B: System Optimization and Forecasting**](#54-subgroup-b-system-optimization-and-forecasting)
   - [6. Evaluation](#6-evaluation)
     - [6.2 **Subgroup B: System Optimization and Forecasting**](#62-subgroup-b-system-optimization-and-forecasting)
       - [6.2.1 Evaluation of model performance against business objectives](#621-evaluation-of-model-performance-against-business-objectives)
@@ -131,18 +132,20 @@
 Data Scavengers is a collaborative project aimed at collecting real time data to optimise the bus system in NUS by utilising various models, such as Route Optimisation, Demand Forecasting and Capacity Allocation models. Visualisations have also been made to assist us in understanding the current problems faced.
 
 **Project Objectives**
+
 - Predict the demand of bus users at a specific bus stop at specific hour intervals
 - Optimise the bus routes to reduce waiting times
 - Allocate the capacity of buses to meet the demand
 
 **Team Members**
+
 - Bing Xuan -
 - Chong Gui - Route Optimisations
 - Yeongkyu -
 - Wei Ting - User Segmentation
 - Haidah -
 - Beckham - SMOTE analysis
-- Iffah - Capacity Allocation 
+- Iffah - Capacity Allocation
 - Rean -
 
 **Quick Links**
@@ -158,15 +161,16 @@ The school's current internal transportation system faces challenges in meeting 
 
 **Key Stakeholders and their needs**
 <u>Students</u>
-- *Primary Users*: Students are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
-- *Specific Needs*: Reliable transport during peak times like class start/end times, during exams.
 
+- _Primary Users_: Students are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
+- _Specific Needs_: Reliable transport during peak times like class start/end times, during exams.
 
 **Success Criteria for the project**
-- *Enhance Student Mobility*: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
-- *Improve Safety Standards*: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
-- *Optimise Resource Allocation*: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
-- *Provide Flexibility during Seasonal Events*: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
+
+- _Enhance Student Mobility_: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
+- _Improve Safety Standards_: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
+- _Optimise Resource Allocation_: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
+- _Provide Flexibility during Seasonal Events_: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
 
 ## 3. Data Understanding
 
@@ -343,6 +347,34 @@ For `other_feedback_data`:
 - 6 outliers removed for `year`
 - 1 outlier removed for `trips_per_day`
 
+### 4.3 Synthetic Data Generation
+
+In preparation for Modeling, a substantial amount of data is required for training machine learning models effectively, thus we will conduct the following synthetic data generation methods to augment our dataset.
+
+1. We will perform a 80-20 train-test split to generate synthetic data for both the training and test sets separately to prevent data leakage.
+
+2. Synthetic Minority Over-sampling Technique for Nominal and Continuous (SMOTE-NC)
+
+   - We chose to use SMOTE-NC as it accomodates datasets containing both nominal and continuous variables, thus ideal for our dataset which contains both types of variables. In contrast, SMOTE can only handle continuous features.
+   - Our dataset `cleaned_trip_data.csv` is imbalanced for the `major` variable, where the highest count in the training set is 95 for "data science and analytics" while lowest is 8 for "architecture" and "industrial systems engineering". Therefore we need to conduct over-sampling as mentioned in 4.2.
+   - We will apply SMOTE-NC `smote.py` on the train set to balance the `major` variable, resulting in a balanced sample of 95 counts for each major in `major`.
+   - The balanced sample dataset is saved as `train_trip_data_after_smote.csv`
+   - Some important points to take note:
+     - We combined `start`, `end`, `bus_num` into a single `trip` column. This approach prevents SMOTE-NC from individually generating synthetic data for each column, which may result in the case where the `start` and `end` being the same which is not logical for a person taking the bus.
+     - We decomposed `date` and `time` into its numerical components: day, month, year, hour, and minute, so that it can be processed by SMOTE-NC as it cannot directly process datetime type values.
+
+3. Synthetic Data Vault (SDV)
+
+   - After `major` classes are balanced, we can proceed with using SDV to increase the size of our dataset.
+   - We adopted the Gaussian Copula model to help us create realistic synthetic samples that are characteristically close to the original dataset.
+   - We will apply SDV onto the train set after SMOTE-NC has been done `train_trip_data_after_smote.csv` and onto the test set `test_trip_data_before_sdv.csv`
+   - Overall train dataset: `train_trip_data_after_sdv.csv`
+   - Overall test dataset: `test_trip_data_after_sdv.csv`
+
+4. Further notes
+   - We did not implement SMOTE-NC onto the test dataset as after the 80-20 train-test split, it resulted in some majors in `major` column having less than 5 counts. This prevents us from oversampling the test dataset to balance the majors as the model parameter was set to `k_neighbors = 5` for the train set. Decreasing the `k_neighbors` is not feasible as it may lead to overfitting.
+   - Thus we only used SDV to generate synthetic data for test dataset, while both SMOTE-NC and SDV were used for train dataset.
+
 ## 5. Modeling
 
 ### 5.1 Subgroup A: User Behavior and Satisfaction
@@ -372,11 +404,11 @@ For `other_feedback_data`:
   - Principal Component Analysis (PCA): inappropriate because it applies to datasets comprising solely continuous(numerical) data, whereas our dataset comprises categorical data as well.
   - Encoding the categorical variables, and then applying the PCA algorithm over the resulting data, does not work as well.
   - This is because the weight given to a categorical variable would inherently depend on the number of modalities available to the variable, and on the probabilities of these modalities. As a result, it would be impossible to give a similar weight to all the initial variables over the calculated principal components.
-  - Factor Analysis of Mixed Data (FAMD): appropriate for our mixed (categorical + continuous) dataset. This is because FAMD wants to give the exact same weight to all the variables, continuous or categorical, when searching for the principal components. 
+  - Factor Analysis of Mixed Data (FAMD): appropriate for our mixed (categorical + continuous) dataset. This is because FAMD wants to give the exact same weight to all the variables, continuous or categorical, when searching for the principal components.
   - However, Python libraries, such as `light_famd` and `prince` implementing FAMD were tried and tested, but did not work out due to compatibility issues with our data frame, and lack of updates.
   - Moreover, FAMD ultimately still increases our data's number of features beyond 16 with encoding, worsening the Curse of Dimensionality, which defeats the original purpose of dimensionality reduction.
 
-#### 5.1.3 Detailed Description of the Chosen Model 
+#### 5.1.3 Detailed Description of the Chosen Model
 
 ##### Dimensionality Reduction
 
@@ -408,10 +440,10 @@ For `other_feedback_data`:
 - Secondly, we train the K-Prototypes model using the input training dataset (as a numpy array) and `fit_predict()` function.
 - Thirdly, with respect to the input dataset, we add a new column for cluster labels associated with each row (data point), as procured by `fit_predict()`, and accessed using the `.labels_` attribute of the trained K-Prototypes model.
 - Fourthly, we proceed to use a custom-defined `cluster_profile()` function to visualise the 3 clusters.
-- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier. 
-Subsequently, for each cluster, `cluster_profile()` proceeds to compute the median of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
+- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier.
+  Subsequently, for each cluster, `cluster_profile()` proceeds to compute the median of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
 - Here, the median is the preferred measure of central tendency because it is less affected by outliers than the mean, and
-also because we do not know for sure that our continuous data is symmetrical or normally distributed- so the mean is not as appropriate here.
+  also because we do not know for sure that our continuous data is symmetrical or normally distributed- so the mean is not as appropriate here.
 - Lastly, we simply call `print(cluster_profile(name_of_our_dataset))` to visualise the 3 clusters.
 
 #### 5.1.4 Model Performance Metrics and Interpretation
@@ -457,80 +489,83 @@ also because we do not know for sure that our continuous data is symmetrical or 
 
 - Cluster 0 has the following attributes.
 
-| Column | Value |
-| :---:  | :---: |
-|  Year  |   1   |
-|  Major | Biomedical Engineering |
-| On_Campus | No |
-| Main Reason for Taking ISB | To go to Class |
-| Has Exam | No |
-| Weather | Sunny |
-| Day of Week | Thursday |
-| Hour | 11 |
-| Trip | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
-| Number of People at Bus Stop | 0.314286 |
-| Waiting Time | 0.300000 |
-| Crowdedness | 0.666667 |
-| Comfort | 0.333333 |
-| Safety | 0.333333 |
-| Overall Satisfaction | 0.333333 |
+|            Column            |                     Value                      |
+| :--------------------------: | :--------------------------------------------: |
+|             Year             |                       1                        |
+|            Major             |             Biomedical Engineering             |
+|          On_Campus           |                       No                       |
+|  Main Reason for Taking ISB  |                 To go to Class                 |
+|           Has Exam           |                       No                       |
+|           Weather            |                     Sunny                      |
+|         Day of Week          |                    Thursday                    |
+|             Hour             |                       11                       |
+|             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
+| Number of People at Bus Stop |                    0.314286                    |
+|         Waiting Time         |                    0.300000                    |
+|         Crowdedness          |                    0.666667                    |
+|           Comfort            |                    0.333333                    |
+|            Safety            |                    0.333333                    |
+|     Overall Satisfaction     |                    0.333333                    |
 
 - Cluster 1 has the following attributes.
 
-| Column | Value |
-| :---:  | :---: |
-|  Year  |   3   |
-|  Major | Business |
-| On_Campus | No |
-| Main Reason for Taking ISB | To go to Class |
-| Has Exam | No |
-| Weather | Sunny |
-| Day of Week | Thursday |
-| Hour | 13 |
-| Trip | Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1 |
-| Number of People at Bus Stop | 0.200000 |
-| Waiting Time | 0.166667 |
-| Crowdedness | 0.444444 |
-| Comfort | 0.555556 |
-| Safety | 0.666667 |
-| Overall Satisfaction | 0.555556 |
+|            Column            |                     Value                      |
+| :--------------------------: | :--------------------------------------------: |
+|             Year             |                       3                        |
+|            Major             |                    Business                    |
+|          On_Campus           |                       No                       |
+|  Main Reason for Taking ISB  |                 To go to Class                 |
+|           Has Exam           |                       No                       |
+|           Weather            |                     Sunny                      |
+|         Day of Week          |                    Thursday                    |
+|             Hour             |                       13                       |
+|             Trip             | Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1 |
+| Number of People at Bus Stop |                    0.200000                    |
+|         Waiting Time         |                    0.166667                    |
+|         Crowdedness          |                    0.444444                    |
+|           Comfort            |                    0.555556                    |
+|            Safety            |                    0.666667                    |
+|     Overall Satisfaction     |                    0.555556                    |
 
 - Cluster 2 has the following attributes.
 
-| Column | Value |
-| :---:  | :---: |
-|  Year  |   2   |
-|  Major | Chemistry |
-| On_Campus | No |
-| Main Reason for Taking ISB | To go to Class |
-| Has Exam | No |
-| Weather | Sunny |
-| Day of Week | Thursday |
-| Hour | 12 |
-| Trip | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2|
-| Number of People at Bus Stop | 0.357143 |
-| Waiting Time | 0.200000 |
-| Crowdedness | 0.777778 |
-| Comfort | 0.555556 |
-| Safety | 0.666667 |
-| Overall Satisfaction | 0.555556 |
+|            Column            |                     Value                      |
+| :--------------------------: | :--------------------------------------------: |
+|             Year             |                       2                        |
+|            Major             |                   Chemistry                    |
+|          On_Campus           |                       No                       |
+|  Main Reason for Taking ISB  |                 To go to Class                 |
+|           Has Exam           |                       No                       |
+|           Weather            |                     Sunny                      |
+|         Day of Week          |                    Thursday                    |
+|             Hour             |                       12                       |
+|             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
+| Number of People at Bus Stop |                    0.357143                    |
+|         Waiting Time         |                    0.200000                    |
+|         Crowdedness          |                    0.777778                    |
+|           Comfort            |                    0.555556                    |
+|            Safety            |                    0.666667                    |
+|     Overall Satisfaction     |                    0.555556                    |
 
 - Across the 3 clusters labelled 0, 1 and 2, we observe that they share certain similarities in the following aspects:
+
   - Do not stay on campus
   - Main reason for taking the ISB is to go to class
   - On the day of the bus trip chosen to input in the survey, there was no exam, it was a Thursday, and the weather was sunny.
   - So, perhaps the features of `on_campus`, `main_reason_for_taking_ISB`, `has_exam`, `day_of_week`, and `weather`, are not as useful
-  for identifying each cluster's pain points and needs in this context.
+    for identifying each cluster's pain points and needs in this context.
 
-- Between clusters 1 and 2, we observe that they have the exact same overall satisfaction level = 0.555556, 
-safety level = 0.66667, and comfort level = 0.55556.
+- Between clusters 1 and 2, we observe that they have the exact same overall satisfaction level = 0.555556,
+  safety level = 0.66667, and comfort level = 0.55556.
+
   - However, cluster 2 has a higher crowdedness level = 0.77778 compared to cluster 1 with a lower crowdedness level = 0.444444.
   - At the same time, cluster 2 has a longer waiting time = 0.200000 compared to cluster 1 with a shorter waiting time = 0.166667.
   - By intuition, cluster 2 should thus have a lower overall satisfaction level than cluster 1, but yet this is clearly not the case.
   - One possible reason is that for cluster 2, there exists other factors influencing overall satisfaction, that are even more
-  important than crowdedness and waiting time- which could be the smell of the bus (whether or not the bus smells pleasant), and/or the attitude of the bus driver, amongst the many responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?" Perhaps, for cluster 2, most of them felt that the bus smelt pleasant during their bus trips, and/or most of them also were very pleased with the positive attitudes of the bus drivers, which in turn outweighed the more negative factors of higher crowdedness levels and longer waiting times (relative to cluster 1).
+    important than crowdedness and waiting time- which could be the smell of the bus (whether or not the bus smells pleasant), and/or the attitude of the bus driver, amongst the many responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?" Perhaps, for cluster 2, most of them felt that the bus smelt pleasant during their bus trips, and/or most of them also were very pleased with the positive attitudes of the bus drivers, which in turn outweighed the more negative factors of higher crowdedness levels and longer waiting times (relative to cluster 1).
 
 - Between clusters 0 and 1, we observe that:
+
   - Cluster 0 has a longer waiting time = 0.300000 compared to cluster 1 with a shorter waiting time = 0.166667.
   - Cluster 0 has a higher crowdedness level = 0.666667 compared to cluster 1 with a lower crowdedness level = 0.444444.
   - Cluster 0 has a lower comfort level = 0.333333 compared to cluster 1 with a higher comfort level = 0.555556.
@@ -538,11 +573,12 @@ safety level = 0.66667, and comfort level = 0.55556.
   - This reaffirms our initial beliefs on the relationship between the 4 factors and overall satisfaction, which is that a longer waiting time, higher crowdedness level, lower comfort level, and lower safety level, all translate to a lower overall satisfaction level. This is backed by cluster 0 having a lower overall satisfaction level = 0.333333, compared to cluster 1 with a higher overall satisfaction level = 0.555556.
 
 - From the comparisons we drew between cluster 0 (year 1 students) and cluster 1 (year 3 students), there are 3 more possible insights that we can draw:
+
   - Firstly, since students in earlier years (cluster 0) exhibit lower overall satisfaction levels, this may reflect a steeper learning curve in navigating the campus and transportation systems, indicating that year 1 students might be struggling to adapt to both academic demands and logistical challenges simultaneously. In other words, this suggests an adjustment phase for year 1 students where they are not only acclimating to university life but also learning to navigate a potentially complex transportation network. This might indicate that the National University of Singapore (NUS) should consider mentorship programs or orientation sessions focusing on transportation logistics to help ease this transition.
   - Secondly, since cluster 1 (year 3 students) shows improved overall satisfaction levels compared to cluster 0 (year 1 students), this may suggest that as students progress from their first year to their third year, they likely become more familiar with the transportation system and class schedules, resulting in less anxiety and frustration during commutes.
   - Thirdly, cluster 1’s travel time at 1 PM coincides with post-lunch schedules, which may contribute to higher student energy levels and correspondingly, better ability to manage travel expectations while using the ISB, contributing to higher overall satisfaction levels. Conversely, earlier travel times at 11 AM in cluster 0 may lead to fatigue or a rush, influencing their overall experience negatively.
 
-- Moreover, we note that despite cluster 2 (year 2 students) having the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions as they accept high crowd levels as the "norm". In turn, such a change in mindset is  part of students internalising that usage of ISB services is a necessity (since most of them use the ISB to go to class, as indicated by how clusters 0, 1, and 2 all have the exact same `main_reason_for_taking_ISB` = to go to class). This desensitisation to crowded conditions might buffer the negative impact of crowdedness on overall satisfaction levels.
+- Moreover, we note that despite cluster 2 (year 2 students) having the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions as they accept high crowd levels as the "norm". In turn, such a change in mindset is part of students internalising that usage of ISB services is a necessity (since most of them use the ISB to go to class, as indicated by how clusters 0, 1, and 2 all have the exact same `main_reason_for_taking_ISB` = to go to class). This desensitisation to crowded conditions might buffer the negative impact of crowdedness on overall satisfaction levels.
 
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
 
@@ -773,11 +809,12 @@ safety level = 0.66667, and comfort level = 0.55556.
 #### 5.3.3 Detailed Description of Chosen Model
 
 ##### Defining model components
+
 - We begin by defining the components of the model. The model’s objective is to minimise the unmet demand of passengers using the NUS Internal Shuttle Bus (ISB) Services. This implies (indirectly) reducing passenger waiting times caused by missed buses due to overcrowding. A constraint identified in this problem and model is that the total number of buses must not exceed the maximum fleet capacity. Lastly, the model’s decision variable - the choice that is being controlled in order to achieve the objective - is the number of buses allocated to each bus stop for each hour.
 
 ##### Input: Forecasted Demand
 
-- From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an array which has a number of rows equal to the number of bus stops `num_routes` and a number of columns equal to the number of hourly intervals `num_time_slots` in the analysis. 
+- From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an array which has a number of rows equal to the number of bus stops `num_routes` and a number of columns equal to the number of hourly intervals `num_time_slots` in the analysis.
 - We initialised `(num_routes, num_time_slots)` as the shape of `demand_forecast`.
 - Sample `demand_forecast`
   - ` [  
@@ -827,7 +864,6 @@ safety level = 0.66667, and comfort level = 0.55556.
 #### Space Complexity: Explain
 
 ### 5.4 **Subgroup B: System Optimization and Forecasting**
-
 
 ## 6. Evaluation
 
