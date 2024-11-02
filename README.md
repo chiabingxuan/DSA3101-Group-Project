@@ -740,9 +740,11 @@ For `other_feedback_data`:
 
 #### Overall
 - The time and space complexity are generally reasonable. However, it is worth noting that it can be challenging if N (i.e. the number of decision variables) grows too large.
-  - For time complexity O(N^3), if N becomes very large (e.g. number of routes and time slots increase significantly), the time required grows rapidly, potentially making it too slow for real-time applications.
-  - For space complexity, large N would similarly strain memory resources.
+  - For time complexity O(N^3), if N becomes very large (e.g. number of routes and time slots increase significantly), the time required to run the model grows rapidly, potentially making it too slow for real-time applications.
+  - For space complexity O(N^2), large N would similarly strain memory resources.
+
 - For small to moderate N, the model is good and would provide precise results. For large N, it can potentially be problematic.
+  - Since the number of decision variables in this problem can be controlled by adjusting the granularity of allocation parameters — such as carefully selecting the number of routes and time slots considered at a time — the model remains reasonable and computationally efficient.
 
 ### 5.4 **Subgroup B: System Optimization and Forecasting**
 
