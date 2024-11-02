@@ -527,9 +527,9 @@ safety = 0.66667, and comfort = 0.55556
   - However, cluster 2 has a higher crowdedness = 0.77778 compared to cluster 1 with a lower crowdedness = 0.444444.
   - At the same time, cluster 2 has a longer waiting time = 0.200000 compared to cluster 1 with a shorter waiting time = 0.166667.
   - By intuition, cluster 2 should thus have a lower overall satisfaction than cluster 1, but yet this is clearly not the case.
-  - One possible reason is that for cluster 2, there exists another factor influencing overall satisfaction, that is even more
-  important than crowdedness and waiting time- which could be the smell of the bus (whether or not the buss smells pleasant or not),
-  or the attitude of the bus driver, as some of the responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?"
+  - One possible reason is that for cluster 2, there exists other factors influencing overall satisfaction, that are even more
+  important than crowdedness and waiting time- which could be the smell of the bus (whether or not the bus smells pleasant),
+  or the attitude of the bus driver, as some of the responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?" Perhaps, for cluster 2, most of them felt that the bus smelt pleasant during their bus trips, and/or most of them also were very pleased with the positive attitudes of the bus drivers, which in turn outweighed the more negative factors of higher crowdedness levels and longer waiting times (relative to cluster 1).
 
 - Between clusters 0 and 1, we observe that:
   - Cluster 0 has a longer waiting time = 0.300000 compared to cluster 1 with a shorter waiting time = 0.166667.
