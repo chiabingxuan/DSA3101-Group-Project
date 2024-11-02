@@ -731,8 +731,18 @@ For `other_feedback_data`:
 #### 5.3.4 Performance Metrics and Interpretation
 
 #### Time Complexity: Explain
+- For a typical case, the expected time complexity is O(N^3), where N = (`num_routes` x `num_time_slots`). This is based on the average-case complexity.
+  - This accounts for the main computational effort of the linear programming optimization.
 
 #### Space Complexity: Explain
+- Space complexity is O(N^2), where N = (`num_routes` x `num_time_slots`).
+  - This is due to the storage requirements for the constraint matrices.
+
+#### Overall
+- The time and space complexity are generally reasonable. However, it is worth noting that it can be challenging if N (i.e. the number of decision variables) grows too large.
+  - For time complexity O(N^3), if N becomes very large (e.g. number of routes and time slots increase significantly), the time required grows rapidly, potentially making it too slow for real-time applications.
+  - For space complexity, large N would similarly strain memory resources.
+- For small to moderate N, the model is good and would provide precise results. For large N, it can potentially be problematic.
 
 ### 5.4 **Subgroup B: System Optimization and Forecasting**
 
