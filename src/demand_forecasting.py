@@ -9,6 +9,12 @@ from sklearn.pipeline import Pipeline
 import os
 import numpy as np
 import config 
+import matplotlib.pyplot as plt
+
+####################################################################################################
+### Objective of model: Predict the demand at specific bus stops at different time interval      ###
+### Decision variable: Number of people at a specific bus stop and the  time slot                ###
+####################################################################################################
 
 # import train and test datasets
 train = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False))
@@ -64,20 +70,49 @@ y_test = test['num_people_at_bus_stop']  # Target variable (demand)
 X_train['time'] = pd.to_datetime(X_train['time']).dt.time
 X_test['time'] = pd.to_datetime(X_test['time']).dt.time
 
+# One-hot encode the 'has_exam' column
+encoder = OneHotEncoder(drop='first', sparse_output=False)
+has_exam_encoded = encoder.fit_transform(X_train[['has_exam']])
+
+# Convert encoded array to DataFrame
+encoded_cols = encoder.get_feature_names_out(['has_exam'])
+has_exam_df = pd.DataFrame(has_exam_encoded, columns=encoded_cols, index=X_train.index)
+
+# Add the encoded columns to X_train
+X_train = pd.concat([X_train, has_exam_df], axis=1)
+
+# Repeat the process for X_test
+has_exam_encoded_test = encoder.transform(X_test[['has_exam']])
+has_exam_df_test = pd.DataFrame(has_exam_encoded_test, columns=encoded_cols, index=X_test.index)
+X_test = pd.concat([X_test, has_exam_df_test], axis=1)
+
+# Create the interaction feature
+for col in encoded_cols:
+    X_train[f'{col}_duration_interaction'] = X_train[col] * X_train['duration_per_day']
+    X_test[f'{col}_duration_interaction'] = X_test[col] * X_test['duration_per_day']
+
+# Add interaction columns to numerical_cols
+numerical_cols.extend([f'{col}_duration_interaction' for col in encoded_cols])
+
+# Update categorical and numerical columns lists
+# categorical_cols.extend(['weather_crowdedness'])  # Add the new interaction feature to categorical columns
+# numerical_cols.extend(['exam_day_duration'])      # Add the interaction feature to numerical columns
+
 # Preprocess data with a pipeline
+# One hot encoding to transform the categorical columns
 preprocessor = ColumnTransformer(
     transformers=[
         ('num', StandardScaler(), numerical_cols),
         ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_cols)
     ])
 
-# Define model pipeline
+# Define model pipeline - preprocessing the random forest model
 model = Pipeline(steps=[
     ('preprocessor', preprocessor),
     ('regressor', RandomForestRegressor(n_estimators=100, random_state=0))
 ])
 
-# Train the model
+# Train the model with the data
 model.fit(X_train, y_train)
 
 # Make predictions / output of floored predictions
@@ -126,6 +161,7 @@ for _, row in output_df.iterrows():
 
 # Convert to a list of lists
 final_demand_array = list(demand_arrays.values())
+print(final_demand_array)
 
 """
 Output:
@@ -135,28 +171,47 @@ RMSE: 20.59987655779927
 
 print(final_demand_array)
 [
-[22, 25, 32, 21, 31, 15, 8, 37, 8, 19, 12, 22, 18, 32, 0], 
-[22, 34, 29, 20, 24, 27, 33, 0, 0, 18, 12, 9, 0, 0, 0], 
-[29, 24, 21, 18, 27, 15, 16, 34, 30, 15, 19, 30, 28, 26, 16], 
-[23, 29, 10, 19, 12, 20, 33, 9, 21, 19, 23, 16, 11, 17, 0], 
-[29, 16, 34, 19, 27, 24, 22, 34, 27, 13, 23, 23, 24, 22, 15], 
-[20, 19, 22, 14, 18, 18, 27, 23, 22, 18, 14, 19, 21, 0, 0], 
-[25, 26, 26, 30, 24, 20, 21, 21, 14, 26, 11, 20, 33, 0, 0], 
-[27, 16, 29, 22, 19, 15, 27, 14, 15, 15, 35, 35, 29, 23, 17], 
-[28, 31, 18, 18, 33, 24, 16, 34, 21, 28, 24, 17, 35, 35, 19]
-]
+[21, 16, 47, 29, 15, 22, 29, 10, 21, 30, 26, 20, 26, 11, 20], 
+[28, 16, 22, 43, 24, 13, 19, 24, 27, 20, 21, 25, 13, 25, 18], 
+[14, 21, 25, 22, 24, 19, 25, 22, 25, 25, 30, 22, 23, 19, 19], 
+[32, 27, 25, 30, 28, 36, 17, 30, 25, 28, 25, 17, 18, 31, 0], 
+[23, 21, 35, 19, 16, 36, 28, 28, 8, 21, 0, 29, 11, 0, 0], 
+[19, 21, 36, 17, 27, 30, 23, 13, 11, 11, 25, 25, 19, 18, 0], 
+[32, 24, 27, 15, 20, 16, 14, 18, 16, 25, 41, 26, 13, 15, 22],
+[0, 31, 19, 31, 23, 22, 33, 29, 21, 20, 10, 20, 0, 0, 17], 
+[0, 30, 0, 25, 27, 31, 27, 15, 21, 18, 33, 23, 18, 0, 0]
+ ]
 
 # Display the result
 for bus_stop, demands in demand_arrays.items():
     print(f"Bus Stop {bus_stop}: {demands}")
 
-Bus Stop BIZ2 / Opp HSSML: [22, 25, 32, 21, 31, 15, 8, 37, 8, 19, 12, 22, 18, 32, 0]
-Bus Stop COM3: [22, 34, 29, 20, 24, 27, 33, 0, 0, 18, 12, 9, 0, 0, 0]
-Bus Stop IT / CLB: [29, 24, 21, 18, 27, 15, 16, 34, 30, 15, 19, 30, 28, 26, 16]
-Bus Stop Kent Ridge MRT / Opp Kent Ridge MRT: [23, 29, 10, 19, 12, 20, 33, 9, 21, 19, 23, 16, 11, 17, 0]
-Bus Stop LT13 / Ventus: [29, 16, 34, 19, 27, 24, 22, 34, 27, 13, 23, 23, 24, 22, 15]
-Bus Stop LT27 / S17: [20, 19, 22, 14, 18, 18, 27, 23, 22, 18, 14, 19, 21, 0, 0]
-Bus Stop PGP: [25, 26, 26, 30, 24, 20, 21, 21, 14, 26, 11, 20, 33, 0, 0]
-Bus Stop UHC / Opp UHC: [27, 16, 29, 22, 19, 15, 27, 14, 15, 15, 35, 35, 29, 23, 17]
-Bus Stop UTown: [28, 31, 18, 18, 33, 24, 16, 34, 21, 28, 24, 17, 35, 35, 19]
+Bus Stop BIZ2 / Opp HSSML: [21, 16, 47, 29, 15, 22, 29, 10, 21, 30, 26, 20, 26, 11, 20]
+Bus Stop COM3: [28, 16, 22, 43, 24, 13, 19, 24, 27, 20, 21, 25, 13, 25, 18]
+Bus Stop IT / CLB: [14, 21, 25, 22, 24, 19, 25, 22, 25, 25, 30, 22, 23, 19, 19]
+Bus Stop Kent Ridge MRT / Opp Kent Ridge MRT: [32, 27, 25, 30, 28, 36, 17, 30, 25, 28, 25, 17, 18, 31, 0]
+Bus Stop LT13 / Ventus: [23, 21, 35, 19, 16, 36, 28, 28, 8, 21, 0, 29, 11, 0, 0]
+Bus Stop LT27 / S17: [19, 21, 36, 17, 27, 30, 23, 13, 11, 11, 25, 25, 19, 18, 0]
+Bus Stop PGP: [32, 24, 27, 15, 20, 16, 14, 18, 16, 25, 41, 26, 13, 15, 22]
+Bus Stop UHC / Opp UHC: [0, 31, 19, 31, 23, 22, 33, 29, 21, 20, 10, 20, 0, 0, 17]
+Bus Stop UTown: [0, 30, 0, 25, 27, 31, 27, 15, 21, 18, 33, 23, 18, 0, 0]
+"""
+
+
+#######################################################################################
+### Objective: To create visualisations                                             ###
+### Visualisation 1) Actual vs Predicted demand                                     ###
+#######################################################################################
+
+"""
+for bus_stop in bus_stops:
+    plt.plot(hour_intervals, demand_arrays[bus_stop], label=bus_stop)
+
+plt.title('Predicted Demand Throughout the Day')
+plt.xlabel('Time Intervals')
+plt.ylabel('Number of People')
+plt.legend(loc='upper left')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
 """
