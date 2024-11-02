@@ -4,6 +4,7 @@ import synthetic_data_generation_train
 import synthetic_data_generation_test
 import analyse_travel_patterns
 import Route_Optimization
+import User_Segmentation_Model
 
 if __name__ == "__main__":
     # 1. Clean the data
@@ -21,6 +22,7 @@ if __name__ == "__main__":
     # 5. Analysing user satisfaction
 
     # 6. User segmentation
+    User_Segmentation_Model.main()
 
     # 7. Analyse travel patterns
     analyse_travel_patterns.main()
