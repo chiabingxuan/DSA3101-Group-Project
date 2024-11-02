@@ -96,10 +96,20 @@ def main():
     synthetic_data = edit_synthetic_data(synthetic_data)
 
     # Stacking original trip data and synthetic trip data on top of each other
-    combined_trip_data = pd.concat([trip_data, synthetic_data], ignore_index=True)
+    combined_test_trip_data = pd.concat([trip_data, synthetic_data], ignore_index=True)
 
     # Save combined trip data
-    combined_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), index=False)
+    # Test dataset after SDV
+    combined_test_trip_data.to_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), index=False)
+
+    # Train dataset after SDV
+    train_data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
+
+    # Stacking train and test data on top of each other
+    concat_test_train = pd.concat([train_data, combined_test_trip_data], ignore_index=True)
+
+    # Save combined trip data
+    concat_test_train.to_csv(os.path.join(os.path.dirname(__file__), "../data/combined_trip_data.csv"), index=False)
 
 
 if __name__ == "__main__":
