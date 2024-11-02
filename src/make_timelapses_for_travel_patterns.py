@@ -79,7 +79,7 @@ def get_geojson_for_timelapse(data):
         }
 
         features.extend([feature_start, feature_end, feature_line])
-    
+        
     geojson_data = {
         "type": "FeatureCollection",
         "features": features
@@ -136,6 +136,14 @@ def make_and_save_timelapse(trip_data_path, save_path, scenario):
                 ">{stop_name}</div>
             """)
         ).add_to(map)
+
+    # Add route lines if we are making timelapse for a single bus_num
+    if not scenario["want_overall"] and "bus_num" in scenario:   # only one bus_num, given by scenario["bus_num"]
+        bus_stops_in_route = config.BUS_NUM_ROUTES[scenario["bus_num"]]
+        for index, bus_stop in enumerate(bus_stops_in_route[:-1]):
+            this_bus_stop_coords = config.BUS_STOP_COORDINATES[bus_stop]
+            next_bus_stop_coords = config.BUS_STOP_COORDINATES[bus_stops_in_route[index + 1]]
+            folium.PolyLine(locations=[this_bus_stop_coords, next_bus_stop_coords], color="cyan", weight=5, opacity=0.8).add_to(map)
     
     map.save(os.path.join(os.path.dirname(__file__), save_path))
     
