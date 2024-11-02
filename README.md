@@ -359,7 +359,7 @@ For `other_feedback_data`:
   - `start`,`end`,`bus_num` columns since they are replaced by `trip` column
   - `duration_per_day`, `trips_per_day` columns since they are replaced by `duration_per_trip` column
   - `waiting_time_satisfaction`, `crowdedness_satsifaction` columns since the relationship is rather obvious: higher waiting time and higher crowdedness level = lower corresponding satisfaction
-- After the above process, the number of featurs is effectively reduced from 21 to 16.
+- After the above process, the number of features is effectively reduced from 21 to 16.
 
 ##### Modelling Process
 
