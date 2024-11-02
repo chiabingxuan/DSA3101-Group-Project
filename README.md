@@ -126,8 +126,33 @@
   - [14. Appendices](#14-appendices)
 
 ## 1. Introduction
+Data Scavengers - Optimising the Bus System in NUS
+Data Scavengers is a collaborative project aimed at collecting real time data to optimise the bus system in NUS, to minimise the waiting times at the respective bus stops, as well as maximise the comfort and safety of users when commuting.
+
+**Team Members**
+- Bing Xuan -
+- Chong Gui - Route Optimisations
+- Yeongkyu -
+- Wei Ting -
+- Haidah -
+- Beckham - SMOTE analysis
+- Iffah: Capacity Allocation 
+- Rean:
+
+**Project Objectives**
+- Predict the demand of bus users at a specific bus stop at specific hour intervals
+- Optimise the bus routes to reduce waiting times
+- Allocate the capacity of buses to meet the demand
+
+**Getting started**
+To run the project locally, clone the repository and follow the setup instructions below 
+- 
 
 ## 2. Business Understanding
+- *Enhance Student Mobility*: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
+- *Improve Safety Standards*: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
+- *Optimise Resource Allocation*: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
+- *Provide Flexibility during Seasonal Events*: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
 
 ## 3. Data Understanding
 
