@@ -30,7 +30,26 @@ def add_coordinates_to_data(data, start, end):      # start and end both in the 
 
 
 def get_geojson_for_timelapse(data):
-    features = list()
+    FIRST_BUS_DATETIME, LAST_BUS_DATETIME = datetime.datetime.combine(datetime.date(2024, 1, 1), config.FIRST_BUS_TIME) - datetime.timedelta(hours=8), datetime.datetime.combine(datetime.date(2024, 1, 1), config.LAST_BUS_TIME) - datetime.timedelta(hours=8)    # subtract 8 hours from each datetime (SGT: GMT+8)
+    features = [{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [0, 0]  # Coordinate off the map to keep it hidden
+            },
+            "properties": {
+                "times": [FIRST_BUS_DATETIME.strftime("%Y-%m-%dT%H:%M:%SZ")]  # Starting time of animation
+            }
+        }, {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [0, 0]  # Coordinate off the map to keep it hidden
+            },
+            "properties": {
+                "times": [LAST_BUS_DATETIME.strftime("%Y-%m-%dT%H:%M:%SZ")]  # Starting time of animation
+            }
+        }]
     for _, row in data.iterrows():
         noises = np.random.normal(0, 0.0001, 4) # add some normal noise to prevent all points (of the same bus stop) from falling on the same coordinate
         shift = 0.0003  # use shift to separate start and end markers

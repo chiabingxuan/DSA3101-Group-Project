@@ -25,8 +25,8 @@
         - [Silhouette Method to Find the Optimal K (Number of Clusters)](#silhouette-method-to-find-the-optimal-k-number-of-clusters)
         - [K-Prototypes Model Interpretation](#k-prototypes-model-interpretation)
       - [5.1.5 Analysing Travel Patterns](#515-analysing-travel-patterns)
-      - [Creating Static Visualisations](#creating-static-visualisations)
-      - [Creating Timelapses](#creating-timelapses)
+        - [Creating Static Visualisations](#creating-static-visualisations)
+        - [Creating Timelapses](#creating-timelapses)
     - [5.2 **Subgroup B: System Optimization and Forecasting**](#52-subgroup-b-system-optimization-and-forecasting)
       - [5.2.1 Algorithms Considered](#521-algorithms-considered)
       - [5.2.2 Algorithm Selection Criteria](#522-algorithm-selection-criteria)
@@ -589,12 +589,12 @@ In preparation for Modeling, a substantial amount of data is required for traini
 
 For the analysis of common bus travel patterns among students, we refer to `analyse_travel_patterns.py`. In this file, the `main()` functions from `make_other_visualisations_for_travel_patterns.py` and `make_timelapses_for_travel_patterns.py` are called, in that order.
 
-#### Creating Static Visualisations
+##### Creating Static Visualisations
 In `make_other_visualisations_for_travel_patterns.py`, we discretise values from the `time` column of `train_trip_data_after_sdv.csv` into half-hour intervals. Subsequently, we group the number of rows by each time interval. Finally, we use `pandas` to plot a line graph of the number of trips against time, throughout a typical day. This line graph is saved as `num_of_trips_throughout_day.png`.
 
 From the graph, we note that a typical day's rush hours range from 11 am to 3 pm, where the number of trips remain consistently above 250. The number of bus trips peaks at approximately 12 pm, during the lunch break.
 
-#### Creating Timelapses
+##### Creating Timelapses
 In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
 
 | File Name | Timelapse |
@@ -614,15 +614,18 @@ For each timelapse, the positions of all the bus stops are labelled in white tex
 
 We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 11 am - 3 pm, further supporting the conclusion drawn from `num_of_trips_throughout_day.png`. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
 
-- 8.50 am - 9.10 am (9 am classes)
-- 9.30 am - 10.10 am (10 am classes)
-- 10.30 am - 11.10 am (11 am classes)
-- 11.40 am - 12.10 pm (12 pm classes + lunch hour)
-- 12.40 pm - 1.10 pm (1 pm classes + lunch hour)
-- 1.30 pm - 1.40 pm, 2.00 pm - 2.10 pm (2 pm classes + lunch hour)
-- 2.30 pm - 4.30 pm (afternoon classes)
+| Time Period | Possible Reason |
+| :-------: | :----: |
+| 8.50 am - 9.10 am | 9 am classes |
+| 9.30 am - 10.10 am | 10 am classes |
+| 10.30 am - 11.10 am | 11 am classes |
+| 11.40 am - 12.10 pm | 12 pm classes + lunch hour |
+| 12.40 pm - 1.10 pm | 1 pm classes + lunch hour |
+| 1.30 pm - 1.40 pm | 2 pm classes + lunch hour |
+| 2.00 pm - 2.10 pm | 2 pm classes + lunch hour |
+| 2.30 pm - 4.30 pm | Afternoon classes |
 
-From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular 1 hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
+From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
 
 The following are observed to be the busiest bus stops:
 
@@ -631,6 +634,27 @@ The following are observed to be the busiest bus stops:
 - UTown
 - IT / CLB
 - LT13 / Ventus
+
+Looking at the timelapses for individual bus services, we obtain a few additional insights. The following is a list of popular trips, for a given bus service at a given time period:
+
+| Bus Service | Time Period | Start | End |
+| :-------: | :-------: | :----: | :----: |
+| A1 | 8.30 am | LT13 / Ventus | LT27 / S17 |
+| A1 | 10.30 am - 10.40 am, 2.30 pm - 2.40 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
+| A1 | 10.30 am - 10.40 am, 1.30 pm - 1.50 pm, 2.30 pm - 2.50 pm, 3.30 pm - 3.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | IT / CLB |
+| A1 | 11.40 am - 11.50 am | LT27 / S17 | IT / CLB |
+| A1 | 2 pm - 2.20 pm, 4 pm - 4.20 pm | LT13 / Ventus | Kent Ridge MRT / Opp Kent Ridge MRT |
+| A2 | 9.40 am - 9.50 am, 12.30 pm - 12.50 pm, 1.10 pm, 1.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | BIZ2 / Opp HSSML |
+| A2 | 10 am - 10.10 am, 11 am - 11.10 am, 12 pm - 12.10 pm, 1 pm - 1.10 pm, 2 pm - 2.10 pm, 3 pm - 3.10 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
+| A2 | 10.40 am - 10.50 am, 11.10 pm - 11.50 pm, 12.40 pm - 1.10 pm, 2.20 pm - 3 pm, 3.50 pm - 4.10 pm, 4.40 pm - 4.50 pm, 5.40 pm | IT / CLB | Kent Ridge MRT / Opp Kent Ridge MRT |
+| D1 | 10.30 am - 10.40 am, 12 pm - 12.10 pm, 2 pm - 2.10 pm, 3.10 pm | LT13 / Ventus | UTown |
+| D1 | 11.30 am - 11.40 am, 2.40 pm | UTown | IT / CLB |
+| D1 | 11.30 am - 11.40 am, 2.40 pm | IT / CLB | UTown |
+| D2 | 8.30 am - 8.50 am, 1.30 pm - 1.40 pm | Kent Ridge MRT / Opp Kent Ridge MRT | UTown |
+| D2 | 9 am - 9.10 am, 10 am - 10.10 am, 11 am - 11.10 am | PGP | UTown |
+| D2 | 10.40 am, 11.30 am - 11.50 am | Kent Ridge MRT / Opp Kent Ridge MRT | COM3 |
+| D2 | 12 pm - 12.10 pm | UTown | LT27 / S17 |
+| D2 | 12 pm - 12.10 pm, 3 pm - 3.10 pm, 5 pm - 5.10 pm | COM3 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
 
 

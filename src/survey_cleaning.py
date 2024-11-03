@@ -53,7 +53,7 @@ def format_dates(data, col_names):  # col_names: names of all columns with dates
 
 def correct_indiv_time(trip_time):
     time_only = trip_time.time()    # get only the timestamp from datetime
-    FIRST_BUS_TIME, LAST_BUS_TIME = datetime.time(hour=7, minute=0), datetime.time(hour=23, minute=0) # just general operating hours for now (7 am - 11 pm), we can change this in the future if we want
+    FIRST_BUS_TIME, LAST_BUS_TIME = config.FIRST_BUS_TIME, config.LAST_BUS_TIME
     if time_only < FIRST_BUS_TIME:
         trip_time += datetime.timedelta(hours=12)   # change invalid AMs to PMs
     elif time_only > LAST_BUS_TIME:

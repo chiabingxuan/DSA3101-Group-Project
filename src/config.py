@@ -1,3 +1,5 @@
+import datetime
+
 # 1. survey_cleaning.py
 """
 Possible reasons on unclean / unstandardised data:
@@ -94,6 +96,8 @@ BUS_NUMS_OF_BUS_STOPS = {
         "IT / CLB": ["A1", "A2", "D1", "E"],
         "PGP": ["A1", "A2", "D2"]
 }
+
+FIRST_BUS_TIME, LAST_BUS_TIME = datetime.time(hour=7, minute=0), datetime.time(hour=23, minute=0) # just general operating hours for now (7 am - 11 pm), we can change this in the future if we want
 
 # 2. synthetic_data_generation_train.py
 NUM_NEW_ROWS_SYNTHESISED_TRAIN = 2000
