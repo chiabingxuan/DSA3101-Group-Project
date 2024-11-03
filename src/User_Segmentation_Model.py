@@ -268,7 +268,7 @@ def main():
     df_with_cluster_labels = segmentation_model(training_dataframe)
     print(cluster_profile(df_with_cluster_labels))
 
-# IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 3 using a custom_defined segmentation_model( ) function
+# IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 3, WITH CUSTOM-DEFINED FUNCTION segmentation_model() 
 def segmentation_model(dataframe): # must only input the training dataset
 # simply repeating what was done above
     dataframe = dataframe.replace([np.inf, -np.inf], np.nan)
