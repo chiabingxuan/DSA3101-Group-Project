@@ -187,6 +187,7 @@ def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars, save_fold
 
     for var_index in histogram_vars:
         var_name = data.columns[var_index]
+        plt.figure(figsize=(12,6))
         data.iloc[:, var_index].plot(kind="hist")
         plt.title(f"Histogram for {data.columns[var_index]}")
         plt.xlabel(var_name)
