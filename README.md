@@ -623,7 +623,8 @@ We take a preliminary look at the travel patterns, with reference to `nus_trip_m
 | 12.40 pm - 1.10 pm | 1 pm classes + lunch hour |
 | 1.30 pm - 1.40 pm | 2 pm classes + lunch hour |
 | 2.00 pm - 2.10 pm | 2 pm classes + lunch hour |
-| 2.30 pm - 4.30 pm | Afternoon classes |
+| 2.30 pm - 3.10 pm | 3 pm classes |
+| 3.30 pm - 4.30 pm | Afternoon classes |
 
 From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
 
