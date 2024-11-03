@@ -255,13 +255,45 @@ def main():
     # and K = 3 yields the 2nd-highest Average Silhouette Score.
     # So, it seems REASONABLE/ACCEPTABLE that the COMPROMISE BETWEEN the ELBOW AND SILHOUETTE METHODS would be to TAKE OPTIMAL K = 3.
 
-    # IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 3.
-    # Create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 3.
-    segmentation_model = kprototypes.KPrototypes(n_clusters = 3, max_iter = 20, random_state = 42)
-    # Train the K-Prototypes model using the input TRAINING dataset (as a numpy array) and fit_predict() function.
-    segmentation_model.fit_predict(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
-    # Add a new column for cluster labels associated with each row (data point).
-    dataframe['cluster_labels_of_data_point'] = segmentation_model.labels_
+    # IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 3 using a custom_defined segmentation_model( ) function
+    def segmentation_model(dataframe): # must only input the training dataset
+        # simply repeating what was done above
+        dataframe = dataframe.replace([np.inf, -np.inf], np.nan)
+        dataframe = dataframe.dropna()
+        dataframe['time'] = dataframe['time'].str.replace('1900-01-01', '')
+        dataframe['datetime'] = dataframe['date'] + ' ' + dataframe['time']
+        dataframe['datetime'] = pd.to_datetime(dataframe['datetime']) 
+        dataframe['day_of_week'] = dataframe['datetime'].dt.day_name()
+        dataframe['hour'] = dataframe['datetime'].dt.hour
+        dataframe['trip'] = dataframe['start'] + ' ' + dataframe['end'] + ' ' + dataframe['bus_num']
+        dataframe['duration_per_day'] = dataframe['duration_per_day'].astype(float)
+        dataframe['trips_per_day'] = dataframe['trips_per_day'].astype(float)
+        dataframe['duration_per_trip'] = dataframe['duration_per_day'] / dataframe['trips_per_day']
+        dataframe = dataframe.replace([np.inf, -np.inf], np.nan) 
+        dataframe = dataframe.dropna() 
+        dataframe = dataframe.drop(['date', 'time','datetime','datetime','start','end','bus_num','duration_per_day','trips_per_day',
+                        'waiting_time_satisfaction','crowdedness_satisfaction'], axis = 'columns')
+        continuous_variable_columns = ["num_people_at_bus_stop", "waiting_time", "crowdedness", "comfort", "safety", "overall_satisfaction", "duration_per_trip"]
+        categorical_variable_columns = ["year", "major", "on_campus", "main_reason_for_taking_isb", "has_exam", "weather", "day_of_week", "hour", "trip"]
+        dataframe[continuous_variable_columns] = dataframe[continuous_variable_columns].astype(float)
+        dataframe[categorical_variable_columns] = dataframe[categorical_variable_columns].astype(str)
+        scaler = MinMaxScaler()
+        dataframe[continuous_variable_columns] = scaler.fit_transform(dataframe[continuous_variable_columns])
+        df_array = dataframe.values
+        df_array[:, 0:6] = df_array[:, 0:6].astype(str)
+        df_array[:, 6:12] = df_array[:, 6:12].astype(float)
+        df_array[:, 12:15] = df_array[:, 12:15].astype(str)
+        df_array[:, 15] = df_array[:, 15].astype(float)
+        # Create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 3.
+        segmentation_model = kprototypes.KPrototypes(n_clusters = 3, max_iter = 20, random_state = 42)
+        # Train the K-Prototypes model using the input TRAINING dataset (as a numpy array) and fit_predict() function.
+        segmentation_model.fit_predict(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
+        # Add a new column for cluster labels associated with each row (data point).
+        dataframe['cluster_labels_of_data_point'] = segmentation_model.labels_
+
+        return dataframe 
+        # Return the new training dataset with an additional column 'cluster_labels_of_data_points' that 
+        # essentially labels each row of trip data with its respective cluster number (0 / 1 / 2)
 
     # VISUALISE CLUSTERS GIVEN BY K-PROTOTYPES USING CUSTOM-DEFINED FUNCTION cluster_profile().
     # FIRSTLY, cluster_profile() groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier.
@@ -298,8 +330,9 @@ def main():
     pd.set_option("display.max_columns", None) 
 
     # Print out the 3 main clusters.
-    print(cluster_profile(dataframe))
-
+    training_dataframe = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), encoding='utf-8')
+    df_with_cluster_labels = segmentation_model(training_dataframe)
+    print(cluster_profile(df_with_cluster_labels))
 
 if __name__ == "__main__":
     main()
