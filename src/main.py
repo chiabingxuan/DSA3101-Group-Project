@@ -3,8 +3,8 @@ import smote
 import synthetic_data_generation_train
 import synthetic_data_generation_test
 import analyse_travel_patterns
-import Route_Optimization
 import User_Segmentation_Model
+import Route_Optimization
 
 if __name__ == "__main__":
     # 1. Clean the data
