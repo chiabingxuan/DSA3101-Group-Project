@@ -591,8 +591,22 @@ In `make_other_visualisations_for_travel_patterns.py`, we discretise values from
 
 From the graph, we note that a typical day's rush hours range from 11 am to 3 pm, where the number of trips remain consistently above 250. The number of bus trips peaks at approximately 12 pm, during the lunch break.
 
+In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
 
+| File name | Timelapse |
+| :-------: | :----: |
+| `nus_trip_markers_timelapse.html` | Timelapse of all bus trips from 7 am - 11 pm |
+| `nus_exam_trip_markers_timelapse.html` | Timelapse of all bus trips on a exam day, from 7 am - 11 pm |
+| `nus_no_exam trip_markers_timelapse.html` | Timelapse of all bus trips on a non-exam day, from 7 am - 11 pm |
+| `nus_a1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A1, from 7 am - 11 pm |
+| `nus_a2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A2, from 7 am - 11 pm |
+| `nus_d1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D1, from 7 am - 11 pm |
+| `nus_d2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D2, from 7 am - 11 pm |
+| `nus_cluster_0_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 0, from 7 am - 11 pm |
+| `nus_cluster_1_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 1, from 7 am - 11 pm |
+| `nus_cluster_2_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 2, from 7 am - 11 pm |
 
+For each timelapse, the positions of all the bus stops are labelled in white text. Each trip corresponds to a single straight line. The line is coloured according to the bus service involved in the given trip (here, we use the standard colours found on the [official NUS website](https://uci.nus.edu.sg/oca/mobilityservices/getting-around-nus/), as specified in `config.py`). One end of this line coincides with the starting bus stop - represented by the green marker - while the other end matches up with the ending bus stop - this is indicated by the red marker.
 
 
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
