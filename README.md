@@ -24,6 +24,7 @@
         - [Elbow Method to Find Optimal K (Number of Clusters)](#elbow-method-to-find-optimal-k-number-of-clusters)
         - [Silhouette Method to Find the Optimal K (Number of Clusters)](#silhouette-method-to-find-the-optimal-k-number-of-clusters)
         - [K-Prototypes Model Interpretation](#k-prototypes-model-interpretation)
+      - [5.1.5 Analysing Travel Patterns](#515-analysing-travel-patterns)
     - [5.2 **Subgroup B: System Optimization and Forecasting**](#52-subgroup-b-system-optimization-and-forecasting)
       - [5.2.1 Algorithms Considered](#521-algorithms-considered)
       - [5.2.2 Algorithm Selection Criteria](#522-algorithm-selection-criteria)
@@ -316,7 +317,7 @@ By calling `clean_other_feedback_data()` on `other_feedback_data`, we do the fol
 
 ### 4.2 Initial Data Exploration
 
-After this first round of data cleaning, we now create visualisations to better understand the distributions of values for each attribute. Consider the common attributes for `trip_data` and `other_feedback_data`. Note that the distribution of each of these attributes is similar for both `pandas.DataFrames`. Hence, it suffices to investigate the distributions of attributes for `trip_data`.
+After this first round of data cleaning, we now create visualisations to better understand the distributions of values for each attribute. Consider the common attributes for `trip_data` and `other_feedback_data`. Note that the distribution of each of these attributes is similar for both `pandas.DataFrames`. Hence, it suffices to investigate the distributions of attributes for `trip_data`. All visualisations from this phase of data exploration can be found under `visualisations/initial_data_exploration/`.
 
 In `survey_cleaning.py`, by calling `visualise_data()` on `trip_data`, we obtain the following insights:
 
@@ -579,6 +580,20 @@ In preparation for Modeling, a substantial amount of data is required for traini
   - Thirdly, cluster 1’s travel time at 1 PM coincides with post-lunch schedules, which may contribute to higher student energy levels and correspondingly, better ability to manage travel expectations while using the ISB, contributing to higher overall satisfaction levels. Conversely, earlier travel times at 11 AM in cluster 0 may lead to fatigue or a rush, influencing their overall experience negatively.
 
 - Moreover, we note that despite cluster 2 (year 2 students) having the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions as they accept high crowd levels as the "norm". In turn, such a change in mindset is part of students internalising that usage of ISB services is a necessity (since most of them use the ISB to go to class, as indicated by how clusters 0, 1, and 2 all have the exact same `main_reason_for_taking_ISB` = to go to class). This desensitisation to crowded conditions might buffer the negative impact of crowdedness on overall satisfaction levels.
+
+#### 5.1.5 Analysing Travel Patterns
+- Analyse and visualise travel patterns across different routes, times, and user segments.
+- Identify opportunities for service improvements based on these patterns.
+
+For the analysis of common bus travel patterns among students, we refer to `analyse_travel_patterns.py`. In this file, the `main()` functions from `make_other_visualisations_for_travel_patterns.py` and `make_timelapses_for_travel_patterns.py` are called, in that order.
+
+In `make_other_visualisations_for_travel_patterns.py`, we discretise values from the `time` column of `train_trip_data_after_sdv.csv` into half-hour intervals. Subsequently, we group the number of rows by each time interval. Finally, we use `pandas` to plot a line graph of the number of trips against time, throughout a typical day. This line graph is saved as `num_of_trips_throughout_day.png`.
+
+From the graph, we note that a typical day's rush hours range from 11 am to 3 pm, where the number of trips remain consistently above 250. The number of bus trips peaks at approximately 12 pm, during the lunch break.
+
+
+
+
 
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
 
