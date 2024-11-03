@@ -17,7 +17,6 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 def main():
-
     # Importing the TRAINING data set (AFTER SMOTE-NC and SDV) as a Pandas dataframe.
     dataframe = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), encoding='utf-8')
 
