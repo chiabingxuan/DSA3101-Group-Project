@@ -25,6 +25,8 @@
         - [Silhouette Method to Find the Optimal K (Number of Clusters)](#silhouette-method-to-find-the-optimal-k-number-of-clusters)
         - [K-Prototypes Model Interpretation](#k-prototypes-model-interpretation)
       - [5.1.5 Analysing Travel Patterns](#515-analysing-travel-patterns)
+      - [Creating Static Visualisations](#creating-static-visualisations)
+      - [Creating Timelapses](#creating-timelapses)
     - [5.2 **Subgroup B: System Optimization and Forecasting**](#52-subgroup-b-system-optimization-and-forecasting)
       - [5.2.1 Algorithms Considered](#521-algorithms-considered)
       - [5.2.2 Algorithm Selection Criteria](#522-algorithm-selection-criteria)
@@ -587,26 +589,55 @@ In preparation for Modeling, a substantial amount of data is required for traini
 
 For the analysis of common bus travel patterns among students, we refer to `analyse_travel_patterns.py`. In this file, the `main()` functions from `make_other_visualisations_for_travel_patterns.py` and `make_timelapses_for_travel_patterns.py` are called, in that order.
 
+#### Creating Static Visualisations
 In `make_other_visualisations_for_travel_patterns.py`, we discretise values from the `time` column of `train_trip_data_after_sdv.csv` into half-hour intervals. Subsequently, we group the number of rows by each time interval. Finally, we use `pandas` to plot a line graph of the number of trips against time, throughout a typical day. This line graph is saved as `num_of_trips_throughout_day.png`.
 
 From the graph, we note that a typical day's rush hours range from 11 am to 3 pm, where the number of trips remain consistently above 250. The number of bus trips peaks at approximately 12 pm, during the lunch break.
 
+#### Creating Timelapses
 In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
 
-| File name | Timelapse |
+| File Name | Timelapse |
 | :-------: | :----: |
-| `nus_trip_markers_timelapse.html` | Timelapse of all bus trips from 7 am - 11 pm |
-| `nus_exam_trip_markers_timelapse.html` | Timelapse of all bus trips on a exam day, from 7 am - 11 pm |
-| `nus_no_exam trip_markers_timelapse.html` | Timelapse of all bus trips on a non-exam day, from 7 am - 11 pm |
-| `nus_a1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A1, from 7 am - 11 pm |
-| `nus_a2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A2, from 7 am - 11 pm |
-| `nus_d1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D1, from 7 am - 11 pm |
-| `nus_d2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D2, from 7 am - 11 pm |
-| `nus_cluster_0_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 0, from 7 am - 11 pm |
-| `nus_cluster_1_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 1, from 7 am - 11 pm |
-| `nus_cluster_2_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 2, from 7 am - 11 pm |
+| `nus_trip_markers_timelapse.html` | Timelapse of all bus trips |
+| `nus_exam_trip_markers_timelapse.html` | Timelapse of all bus trips on a exam day |
+| `nus_no_exam trip_markers_timelapse.html` | Timelapse of all bus trips on a non-exam day |
+| `nus_a1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A1 |
+| `nus_a2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A2 |
+| `nus_d1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D1 |
+| `nus_d2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D2 |
+| `nus_cluster_0_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 0 |
+| `nus_cluster_1_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 1 |
+| `nus_cluster_2_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 2 |
 
-For each timelapse, the positions of all the bus stops are labelled in white text. Each trip corresponds to a single straight line. The line is coloured according to the bus service involved in the given trip (here, we use the standard colours found on the [official NUS website](https://uci.nus.edu.sg/oca/mobilityservices/getting-around-nus/), as specified in `config.py`). One end of this line coincides with the starting bus stop - represented by the green marker - while the other end matches up with the ending bus stop - this is indicated by the red marker.
+For each timelapse, the positions of all the bus stops are labelled in white text. Each trip corresponds to a single straight line. The line is coloured according to the bus service involved in the given trip (here, we use the standard colours found on the [official NUS website](https://uci.nus.edu.sg/oca/mobilityservices/getting-around-nus/), as specified in `config.py`). One end of this line coincides with the starting bus stop - represented by the green marker - while the other end matches up with the ending bus stop - this is indicated by the red marker. In addition, for timelapses illustrating individual bus services, the overall route of the given bus service is marked out using a strongly weighted `PolyLine`.
+
+We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 11 am - 3 pm, further supporting the conclusion drawn from `num_of_trips_throughout_day.png`. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
+
+- 8.50 am - 9.10 am (9 am classes)
+- 9.30 am - 10.10 am (10 am classes)
+- 10.30 am - 11.10 am (11 am classes)
+- 11.40 am - 12.10 pm (12 pm classes + lunch hour)
+- 12.40 pm - 1.10 pm (1 pm classes + lunch hour)
+- 1.30 pm - 1.40 pm, 2.00 pm - 2.10 pm (2 pm classes + lunch hour)
+- 2.30 pm - 4.30 pm (afternoon classes)
+
+From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular 1 hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
+
+The following are observed to be the busiest bus stops:
+
+- Kent Ridge MRT / Opp Kent Ridge MRT
+- LT27 / S17
+- UTown
+- IT / CLB
+- LT13 / Ventus
+
+
+
+
+
+
+
 
 
 ### 5.2 **Subgroup B: System Optimization and Forecasting**
