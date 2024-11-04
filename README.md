@@ -64,7 +64,7 @@
       - [6.3.3 Detailed Description of Chosen Model](#633-detailed-description-of-chosen-model)
       - [6.3.4 Performance Metrics and Interpretation](#634-performance-metrics-and-interpretation)
         - [6.3.4.1 Time Complexity: Explain](#6341-time-complexity-explain)
-      - [6.3.4.2 Space Complexity: Explain](#6342-space-complexity-explain)
+        - [6.3.4.2 Space Complexity: Explain](#6342-space-complexity-explain)
     - [6.4 Evaluation](#64-evaluation)
       - [6.4.1 Demand Forecasting Model](#641-demand-forecasting-model)
         - [6.4.1.1 Evaluation of model performance against business objectives](#6411-evaluation-of-model-performance-against-business-objectives)
@@ -990,7 +990,7 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 ##### 6.3.4.1 Time Complexity: Explain
 
-#### 6.3.4.2 Space Complexity: Explain
+##### 6.3.4.2 Space Complexity: Explain
 
 
 ### 6.4 Evaluation
