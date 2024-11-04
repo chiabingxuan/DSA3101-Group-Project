@@ -15,6 +15,6 @@
 * Realistically, password are not to be shared like this in README.
 
 ## Anonymizer:
-* This can be used by either of the above parties to anonymize the data.
+* This can be used by any parties to anonymize the data for privacy protection once data is rendered obsolete.
 * Before running the python file, replace the path accordingly.
 * Running the python file would permanently anonymize the CSV file.
