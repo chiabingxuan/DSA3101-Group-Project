@@ -569,26 +569,24 @@ For the analysis of common bus travel patterns among students, we refer to Table
 We create [Tableau dashboards](https://chiabingxuan.github.io/DSA3101-Group-Project/) to visualise how travel patterns vary throughout the day. This is done by taking various scenarios into consideration - dashboard filters such as "Bus Number", "Starting Bus Stops", "Weather" and "Exam" are incorporated into our visualisations.
 
 ##### 5.3.1.1 General Peak Hours
-From the graph, we note that a typical day's rush hours range from 10 am to 2 pm, where the number of trips remain consistently above 500. The number of bus trips peaks at approximately 11 am, during the lunch break.
+From the graph, we note that a typical day's rush hours range from 10 am to 2 pm, where the number of trips remain consistently above 500. The number of bus trips peaks at approximately 11 am (679 trips), during the lunch break.
 
 ##### 5.3.1.2 Individual Bus Services
 The usage of each bus service (A1, A2, D1, D2) also varies in a similar way throughout the day, with D1 being much less utilised than the others. This is most likely because D1 services fewer bus stops, and thus a smaller area of the campus.
 
 In addition, each of the usages of A1, A2 and D1 peaks at two separate time periods (11 am and 1 pm - 2 pm). Evidently, students have a greater need to commute from one place to another, both before and after their lunch.
 
-In comparison, the ridership for bus service D2 peaks at 11 am only. This could be accounted for by the fact that D2 services University Town (UTown), unlike A1 and A2:
+In comparison, the ridership for bus service D2 peaks at 11 am only (240 trips). This could be accounted for by the fact that D2 services University Town (UTown), unlike A1 and A2:
 - For students who commute to UTown right before the lunchtime period, they may be more inclined to stay there for longer periods of time, given that there are a larger variety of amenities available in the area.
 - Students may be travelling to UTown in order to access bus service 96, which goes to Clementi MRT Station - they have no intention of subsequently travelling to other bus stops within campus.
 
 Hence, there is no notable peak in ridership for D2 in the early afternoon. Although D1 also services UTown, it is a significantly less popular bus service than D2 - figures associated with D1 should be treated with less weightage than other bus services.
 
 ##### 5.3.1.3 Day of Week
-During the weekend (Saturday - Sunday), peak hours occur later in the day, at around 1 pm. This is a rightwards shift in comparison to weekdays (Monday - Friday), when the busiest hours range from 11 am - 12 pm. This may be attributed to the differences in the purpose of travel, between weekdays and weekends. Unlike weekdays, schedules for weekends consist of fewer classes and more college activities for leisure, with events beginning later in the day. On Saturdays and Sundays, students travel on campus to attend these recreational activities, instead of going for classes. Consequently, they begin their commute closer to midday, pushing peak hours to around 1 pm.
+During the weekend (Saturday - Sunday), peak hours occur later in the day, at around 1 pm (62 trips). This is a rightwards shift in comparison to weekdays (Monday - Friday), when the busiest hours range from 11 am - 12 pm (at least 590 trips). This may be attributed to the differences in the purpose of travel, between weekdays and weekends. Unlike weekdays, schedules for weekends consist of fewer classes and more college activities for leisure, with events beginning later in the day. On Saturdays and Sundays, students travel on campus to attend these recreational activities, instead of going for classes. Consequently, they begin their commute closer to midday, pushing peak hours to around 1 pm.
 
 ##### 5.3.1.4 Exam Period
-Consider the bus trips starting from "Kent Ridge MRT / Opp Kent Ridge MRT"
-
-
+Consider the bus trips starting from Kent Ridge MRT / Opp Kent Ridge MRT. On days with no examinations, the number of these trips increases consistently from 7 am - 11 am (from 27 trips to 198 trips), whilst decreasing consistently from 11 am - 7 pm (from 198 trips to 9 trips). Contrastingly, the number of trips originating from Kent Ridge MRT / Opp Kent Ridge MRT sees two additional sharp spikes throughout a typical examination day - namely, 10 am (29 trips) and 3 pm (16 trips). These sudden jumps in ridership may stem from an increase in the number of students travelling to examination venues (ie. UHC / Opp UHC) for their morning and afternoon papers respectively.
 
 #### 5.3.2 Creating Origin-Destination Matrix
 
