@@ -593,7 +593,9 @@ In `origin_destination_matrix.py`, we create
 
 
 #### 5.3.3 Creating Timelapses
-In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
+In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). Here, for each timelapse, we also call the `filter_route_counts()` function in `filter_count.py` to obtain a CSV file that describes the most popular bus trips throughout the day. For example, for 
+
+The following timelapses were created and saved under `visualisations/timelapses/`:
 
 | File Name | Timelapse |
 | :-------: | :----: |

@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 import User_Segmentation_Model
+import filter_count
 import datetime
 import config
 
@@ -35,19 +36,19 @@ def get_geojson_for_timelapse(data):
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [0, 0]  # Coordinate off the map to keep it hidden
+                "coordinates": [0, 0]  # choose coordinate off the map to keep it hidden
             },
             "properties": {
-                "times": [FIRST_BUS_DATETIME.strftime("%Y-%m-%dT%H:%M:%SZ")]  # Starting time of animation
+                "times": [FIRST_BUS_DATETIME.strftime("%Y-%m-%dT%H:%M:%SZ")]  # starting time of animation
             }
         }, {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [0, 0]  # Coordinate off the map to keep it hidden
+                "coordinates": [0, 0]  # choose coordinate off the map to keep it hidden
             },
             "properties": {
-                "times": [LAST_BUS_DATETIME.strftime("%Y-%m-%dT%H:%M:%SZ")]  # Starting time of animation
+                "times": [LAST_BUS_DATETIME.strftime("%Y-%m-%dT%H:%M:%SZ")]  # ending time of animation
             }
         }]
     for _, row in data.iterrows():
@@ -108,7 +109,7 @@ def get_geojson_for_timelapse(data):
     return geojson_data
 
 
-def make_and_save_timelapse(trip_data_path, save_path, scenario):
+def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
     # Read trip_data
     trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), trip_data_path), keep_default_na=False)
 
@@ -138,6 +139,9 @@ def make_and_save_timelapse(trip_data_path, save_path, scenario):
             trip_data["cluster"] = cluster_column
             cluster = scenario["cluster"]
             trip_data = trip_data[trip_data["cluster"] == cluster]
+    
+    # Get most popular trips from trip_data (which is already filtered on the chosen scenario). Then, save it as a CSV file in data/
+    filter_count.filter_route_counts(trip_data=trip_data, output_file_name=f"{timelapse_type}_popular_trips", min_count=10)
 
     # Get iso format from "time" column of trip_data
     format_time_and_add_iso_time(trip_data, "time")
@@ -174,21 +178,22 @@ def make_and_save_timelapse(trip_data_path, save_path, scenario):
             next_bus_stop_coords = config.BUS_STOP_COORDINATES[bus_stops_in_route[index + 1]]
             folium.PolyLine(locations=[this_bus_stop_coords, next_bus_stop_coords], color="cyan", weight=5, opacity=0.8).add_to(map)
     
-    map.save(os.path.join(os.path.dirname(__file__), save_path))
+    map.save(os.path.join(os.path.dirname(__file__), f"../visualisations/timelapses/{timelapse_type}.html"))
     
 
 def main():
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_trip_markers_timelapse.html", scenario={"want_overall": True})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_exam_trip_markers_timelapse.html", scenario={"want_overall": False, "want_exam_day": True})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_no_exam_trip_markers_timelapse.html", scenario={"want_overall": True, "want_exam_day": False})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_a1_trip_markers_timelapse.html", scenario={"want_overall": False, "bus_num": "A1"})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_a2_trip_markers_timelapse.html", scenario={"want_overall": False, "bus_num": "A2"})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_d1_trip_markers_timelapse.html", scenario={"want_overall": False, "bus_num": "D1"})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_d2_trip_markers_timelapse.html", scenario={"want_overall": False, "bus_num": "D2"})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_cluster_0_trip_markers_timelapse.html", scenario={"want_overall": False, "cluster": 0})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_cluster_1_trip_markers_timelapse.html", scenario={"want_overall": False, "cluster": 1})
-    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", save_path="../visualisations/timelapses/nus_cluster_2_trip_markers_timelapse.html", scenario={"want_overall": False, "cluster": 2})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_trip_markers_timelapse", scenario={"want_overall": True})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_exam_trip_markers_timelapse", scenario={"want_overall": False, "want_exam_day": True})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_no_exam_trip_markers_timelapse", scenario={"want_overall": True, "want_exam_day": False})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_a1_trip_markers_timelapse", scenario={"want_overall": False, "bus_num": "A1"})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_a2_trip_markers_timelapse", scenario={"want_overall": False, "bus_num": "A2"})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_d1_trip_markers_timelapse", scenario={"want_overall": False, "bus_num": "D1"})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_d2_trip_markers_timelapse", scenario={"want_overall": False, "bus_num": "D2"})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_cluster_0_trip_markers_timelapse", scenario={"want_overall": False, "cluster": 0})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_cluster_1_trip_markers_timelapse", scenario={"want_overall": False, "cluster": 1})
+    make_and_save_timelapse(trip_data_path="../data/train_trip_data_after_sdv.csv", timelapse_type="nus_cluster_2_trip_markers_timelapse", scenario={"want_overall": False, "cluster": 2})
 
 
 if __name__ == "__main__":
+    np.random.seed(42)
     main()

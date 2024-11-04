@@ -1,0 +1,42 @@
+start,end,bus_num,time_floored,count
+COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 15:00:00,11
+COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,1900-01-01 17:00:00,11
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 10:30:00,14
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 10:40:00,17
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 11:00:00,15
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 11:30:00,22
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 12:30:00,13
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 12:40:00,13
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 13:00:00,12
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 13:30:00,14
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 14:10:00,12
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 14:30:00,20
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 14:40:00,13
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 15:10:00,11
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 15:40:00,16
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 16:40:00,13
+IT / CLB,UTown,D1,1900-01-01 14:30:00,12
+Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,1900-01-01 12:40:00,11
+Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,1900-01-01 13:00:00,11
+Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,1900-01-01 13:40:00,13
+Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,1900-01-01 10:30:00,15
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 10:30:00,13
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 11:40:00,13
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 12:30:00,13
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 12:40:00,14
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 13:30:00,19
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 13:40:00,15
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 14:30:00,19
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 14:40:00,19
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 15:30:00,17
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 15:40:00,18
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 16:40:00,16
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 17:00:00,11
+Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 10:00:00,14
+Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 11:00:00,11
+Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 12:00:00,16
+Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 13:00:00,11
+Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 14:00:00,28
+Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 15:00:00,18
+LT27 / S17,IT / CLB,A1,1900-01-01 11:40:00,13
+UTown,LT27 / S17,D2,1900-01-01 12:00:00,11
