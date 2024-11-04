@@ -57,5 +57,5 @@ def encrypt_and_save_dict(decoding_dict, password, file_path):
 # Encrypt and save decoding dictionary enc file into the 'Shared' folder. Replace the file path correspondingly.
 decrypt_dict_path = r'..\Shared\encrypted_decoding_dict.enc'
 # Replace the 2nd parameter with the password you intend to encrypt the above dictionary with.
-# This password is only intended for the encrypter. The decrypter is NOT supposed to have access to this file.
+# This password MUST only be shared to the intended decrypter. The decrypter is NOT supposed to have access to this file.
 encrypt_and_save_dict(decoding_dict, 'DBWL38192@#%', decrypt_dict_path)
