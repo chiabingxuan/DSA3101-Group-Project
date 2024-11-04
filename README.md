@@ -563,7 +563,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 - Analyse and visualise travel patterns across different routes, times, and user segments.
 - Identify opportunities for service improvements based on these patterns.
 
-For the analysis of common bus travel patterns among students, we refer to Tableau visualisations under `visualisations/Dashboards/` and `make_timelapses_for_travel_patterns.py`.
+For the analysis of common bus travel patterns among students, we refer to Tableau visualisations under `visualisations/Dashboards/` and `analyse_travel_patterns.py`. Within `analyse_travel_patterns.py`, the `main()` functions from `origin_destination_matrix.py` and `make_timelapses_for_travel_patterns.py` are called, in that order.
 
 #### 5.3.1 Creating Tableau Visualisations
 We create [Tableau dashboards](https://chiabingxuan.github.io/DSA3101-Group-Project/) to visualise how travel patterns vary throughout the day. This is done by taking various scenarios into consideration - dashboard filters such as "Bus Number", "Starting Bus Stops", "Weather" and "Exam" are incorporated into our visualisations.
@@ -589,6 +589,7 @@ During the weekend (Saturday - Sunday), peak hours occur later in the day, at ar
 Consider the bus trips starting from Kent Ridge MRT / Opp Kent Ridge MRT. On days with no examinations, the number of these trips increases consistently from 7 am - 11 am (from 27 trips to 198 trips), whilst decreasing consistently from 11 am - 7 pm (from 198 trips to 9 trips). Contrastingly, the number of trips originating from Kent Ridge MRT / Opp Kent Ridge MRT sees two additional sharp spikes throughout a typical examination day - namely, 10 am (29 trips) and 3 pm (16 trips). These sudden jumps in ridership may stem from an increase in the number of students travelling to examination venues (ie. UHC / Opp UHC) for their morning and afternoon papers respectively.
 
 #### 5.3.2 Creating Origin-Destination Matrix
+In `origin_destination_matrix.py`, we create 
 
 
 #### 5.3.3 Creating Timelapses
