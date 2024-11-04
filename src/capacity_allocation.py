@@ -54,3 +54,5 @@ def capacity_allocation():
 
 def main():
     capacity_allocation()
+
+capacity_allocation()

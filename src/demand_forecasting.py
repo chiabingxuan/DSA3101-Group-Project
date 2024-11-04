@@ -133,7 +133,7 @@ def demand_forecasting():
     pd.set_option('display.max_rows', None)
 
     # Print the entire feature importance DataFrame
-    print(feature_importance_df)
+    # print(feature_importance_df)
 
     # Select top N features (example selecting top 10 features)
     top_features = feature_importance_df['Feature'][:10].values
@@ -152,7 +152,7 @@ def demand_forecasting():
     # Convert predictions and true values to a DataFrame for visualisations
     output_df = pd.DataFrame({
         'bus_stop_name': X_test['start'],  # Corrected column name
-        'time': X_test['time'],                    # Include the time column from the test set
+        'time': X_test['time'],            # Include the time column from the test set
         'actual_demand': y_test,
         'predicted_demand': y_pred
     })
@@ -187,9 +187,13 @@ def demand_forecasting():
 
     # Convert to a list of lists
     final_demand_array = list(demand_arrays.values())
-    # print(final_demand_array)
 
-    """
+    return final_demand_array
+
+def main():
+    demand_forecasting()
+
+"""
     Output:
 
     MAE: 19.067862714508582
@@ -241,6 +245,3 @@ def demand_forecasting():
     plt.tight_layout()
     plt.show()
     """
-
-def main():
-    demand_forecasting()
