@@ -27,8 +27,9 @@
         - [5.2.4.3 K-Prototypes Model Interpretation](#5243-k-prototypes-model-interpretation)
     - [5.3 Analysing Travel Patterns](#53-analysing-travel-patterns)
       - [5.3.1 Creating Tableau Visualisations](#531-creating-tableau-visualisations)
-      - [5.3.2 Creating Timelapses](#532-creating-timelapses)
-    - [5.3.3 Opportunities for Service Improvements](#533-opportunities-for-service-improvements)
+      - [5.3.2 Creating Origin-Destination Matrix](#532-creating-origin-destination-matrix)
+      - [5.3.3 Creating Timelapses](#533-creating-timelapses)
+    - [5.3.4 Opportunities for Service Improvements](#534-opportunities-for-service-improvements)
     - [5.4 Evaluation](#54-evaluation)
       - [5.4.1 Evaluation of model performance against business objectives](#541-evaluation-of-model-performance-against-business-objectives)
       - [5.4.2 Limitations of Current Approach](#542-limitations-of-current-approach)
@@ -558,14 +559,16 @@ In preparation for Modeling, a substantial amount of data is required for traini
 - Analyse and visualise travel patterns across different routes, times, and user segments.
 - Identify opportunities for service improvements based on these patterns.
 
-For the analysis of common bus travel patterns among students, we refer to `analyse_travel_patterns.py`. In this file, the `main()` functions from `make_other_visualisations_for_travel_patterns.py` and `make_timelapses_for_travel_patterns.py` are called, in that order.
+For the analysis of common bus travel patterns among students, we refer to Tableau visualisations under `visualisations/Dashboards/` and `make_timelapses_for_travel_patterns.py`.
 
 #### 5.3.1 Creating Tableau Visualisations
 We create [Tableau dashboards](https://chiabingxuan.github.io/DSA3101-Group-Project/) to visualise how travel patterns vary throughout the day. This is done by taking various scenarios into consideration - dashboard filters such as "Bus Number", "Starting Bus Stops", "Weather" and "Exam" are incorporated into our visualisations.
 
-From the graph, we note that a typical day's rush hours range from 11 am to 3 pm, where the number of trips remain consistently above 250. The number of bus trips peaks at approximately 12 pm, during the lunch break.
+From the graph, we note that a typical day's rush hours range from 10 am to 2 pm, where the number of trips remain consistently above 500. The number of bus trips peaks at approximately 11 am, during the lunch break. The degree of usage of each bus service (A1, A2, D1, D2) also varies in a similar way throughout the day, with D1 being significantly less utilised than the others.
 
-#### 5.3.2 Creating Timelapses
+#### 5.3.2 Creating Origin-Destination Matrix
+
+#### 5.3.3 Creating Timelapses
 In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
 
 | File Name | Timelapse |
@@ -583,7 +586,7 @@ In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapse
 
 For each timelapse, the positions of all the bus stops are labelled in white text. Each trip corresponds to a single straight line. The line is coloured according to the bus service involved in the given trip (here, we use the standard colours found on the [official NUS website](https://uci.nus.edu.sg/oca/mobilityservices/getting-around-nus/), as specified in `config.py`). One end of this line coincides with the starting bus stop - represented by the green marker - while the other end matches up with the ending bus stop - this is indicated by the red marker. In addition, for timelapses illustrating individual bus services, the overall route of the given bus service is marked out using a strongly weighted `PolyLine`.
 
-We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 11 am - 3 pm, further supporting the conclusion drawn from `num_of_trips_throughout_day.png`. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
+We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 11 am - 3 pm, further supporting the conclusion drawn in Section 5.5.1. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
 
 | Time Period | Possible Reason |
 | :-------: | :----: |
@@ -628,7 +631,7 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 | D2 | 12 pm - 12.10 pm | UTown | LT27 / S17 |
 | D2 | 12 pm - 12.10 pm, 3 pm - 3.10 pm, 5 pm - 5.10 pm | COM3 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
-### 5.3.3 Opportunities for Service Improvements
+### 5.3.4 Opportunities for Service Improvements
 
 
 ### 5.4 Evaluation
