@@ -10,6 +10,7 @@ import os
 import numpy as np
 import config 
 import matplotlib.pyplot as plt
+from sklearn.ensemble import RandomForestClassifier
 
 ####################################################################################################
 ### Objective of model: Predict the demand at specific bus stops at different time interval      ###
@@ -94,10 +95,6 @@ for col in encoded_cols:
 # Add interaction columns to numerical_cols
 numerical_cols.extend([f'{col}_duration_interaction' for col in encoded_cols])
 
-# Update categorical and numerical columns lists
-# categorical_cols.extend(['weather_crowdedness'])  # Add the new interaction feature to categorical columns
-# numerical_cols.extend(['exam_day_duration'])      # Add the interaction feature to numerical columns
-
 # Preprocess data with a pipeline
 # One hot encoding to transform the categorical columns
 preprocessor = ColumnTransformer(
@@ -115,6 +112,34 @@ model = Pipeline(steps=[
 # Train the model with the data
 model.fit(X_train, y_train)
 
+# Evaluate the model
+accuracy_before = model.score(X_test, y_test)
+# print(accuracy_before)
+
+'''feature importance'''
+# Get feature names from the preprocessor
+feature_names = (preprocessor.transformers_[0][1].get_feature_names_out(numerical_cols).tolist() +
+                 preprocessor.transformers_[1][1].get_feature_names_out(categorical_cols).tolist())
+
+# Extract feature importances
+importances = model.named_steps['regressor'].feature_importances_
+feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+
+# Rank features by importance
+feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+# Set Pandas display option to show all rows
+pd.set_option('display.max_rows', None)
+
+# Print the entire feature importance DataFrame
+print(feature_importance_df)
+
+# Select top N features (example selecting top 10 features)
+top_features = feature_importance_df['Feature'][:10].values
+X_train_selected = X_train[top_features]
+X_test_selected = X_test[top_features]
+
+'''Creating an output from the demand forecasting model'''
 # Make predictions / output of floored predictions
 y_pred = np.floor(model.predict(X_test)).astype(int)
 
@@ -161,7 +186,7 @@ for _, row in output_df.iterrows():
 
 # Convert to a list of lists
 final_demand_array = list(demand_arrays.values())
-print(final_demand_array)
+# print(final_demand_array)
 
 """
 Output:
