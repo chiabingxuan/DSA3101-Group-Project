@@ -12,7 +12,7 @@ def filter_route_counts(trip_data, output_file_name, min_count):
 
     route_time_counts = data.groupby(['route', 'bus_num', 'time_ceiling']).size().reset_index(name='count')
 
-    filtered_counts = route_time_counts[route_time_counts['count'] > min_count]
+    filtered_counts = route_time_counts[route_time_counts['count'] >= min_count]
 
     filtered_counts[['start', 'end']] = filtered_counts['route'].str.split(' - ', expand=True)
 
