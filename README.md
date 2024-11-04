@@ -13,7 +13,6 @@
     - [4.3 Synthetic Data Generation](#43-synthetic-data-generation)
   - [5. Subgroup A: User Behavior and Satisfaction](#5-subgroup-a-user-behavior-and-satisfaction)
     - [5.1 Key Factors Influencing User Satisfaction](#51-key-factors-influencing-user-satisfaction)
-- [*******************PLEASE FILL IN*******************\*\*\*\*\*\*\*\*](#please-fill-in)
     - [5.2 User Segmentation](#52-user-segmentation)
       - [5.2.1 Models Considered](#521-models-considered)
       - [5.2.2 Model Selection Critieria](#522-model-selection-critieria)
@@ -356,8 +355,6 @@ In preparation for Modeling, a substantial amount of data is required for traini
 - Identify unique needs and pain points for each user segment
 
 ### 5.1 Key Factors Influencing User Satisfaction
-# *******************PLEASE FILL IN***************************
-
 
 ### 5.2 User Segmentation
 
