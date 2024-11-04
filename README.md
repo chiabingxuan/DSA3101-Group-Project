@@ -25,8 +25,9 @@
       - [Silhouette Method to Find the Optimal K (Number of Clusters)](#silhouette-method-to-find-the-optimal-k-number-of-clusters)
       - [K-Prototypes Model Interpretation](#k-prototypes-model-interpretation)
     - [5.5 Analysing Travel Patterns](#55-analysing-travel-patterns)
-      - [Creating Static Visualisations](#creating-static-visualisations)
-      - [Creating Timelapses](#creating-timelapses)
+      - [5.5.1 Creating Tableau Visualisations](#551-creating-tableau-visualisations)
+      - [5.5.2 Creating Timelapses](#552-creating-timelapses)
+      - [5.5.3 Opportunities for Service Improvements](#553-opportunities-for-service-improvements)
   - [6 Modeling Subgroup B](#6-modeling-subgroup-b)
     - [6.1 Subgroup B: System Optimization and Forecasting](#61-subgroup-b-system-optimization-and-forecasting)
     - [6.1.1 Algorithms Considered](#611-algorithms-considered)
@@ -591,12 +592,12 @@ In preparation for Modeling, a substantial amount of data is required for traini
 
 For the analysis of common bus travel patterns among students, we refer to `analyse_travel_patterns.py`. In this file, the `main()` functions from `make_other_visualisations_for_travel_patterns.py` and `make_timelapses_for_travel_patterns.py` are called, in that order.
 
-#### Creating Static Visualisations
-In `make_other_visualisations_for_travel_patterns.py`, we discretise values from the `time` column of `train_trip_data_after_sdv.csv` into half-hour intervals. Subsequently, we group the number of rows by each time interval. Finally, we use `pandas` to plot a line graph of the number of trips against time, throughout a typical day. This line graph is saved as `num_of_trips_throughout_day.png`.
+#### 5.5.1 Creating Tableau Visualisations
+We create [Tableau dashboards](https://chiabingxuan.github.io/DSA3101-Group-Project/) to visualise how travel patterns vary throughout the day. This is done by taking various scenarios into consideration - dashboard filters such as "Bus Number", "Starting Bus Stops", "Weather" and "Exam" are incorporated into our visualisations.
 
 From the graph, we note that a typical day's rush hours range from 11 am to 3 pm, where the number of trips remain consistently above 250. The number of bus trips peaks at approximately 12 pm, during the lunch break.
 
-#### Creating Timelapses
+#### 5.5.2 Creating Timelapses
 In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
 
 | File Name | Timelapse |
@@ -659,7 +660,7 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 | D2 | 12 pm - 12.10 pm | UTown | LT27 / S17 |
 | D2 | 12 pm - 12.10 pm, 3 pm - 3.10 pm, 5 pm - 5.10 pm | COM3 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
-
+#### 5.5.3 Opportunities for Service Improvements
 
 
 
