@@ -638,11 +638,9 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 | Bus Service | Time Period | Start | End |
 | :-------: | :-------: | :----: | :----: |
-| A1 | 8.30 am | LT13 / Ventus | LT27 / S17 |
-| A1 | 10.30 am - 10.40 am, 2.30 pm - 2.40 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
-| A1 | 10.30 am - 10.40 am, 1.30 pm - 1.50 pm, 2.30 pm - 2.50 pm, 3.30 pm - 3.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | IT / CLB |
-| A1 | 11.40 am - 11.50 am | LT27 / S17 | IT / CLB |
-| A1 | 2 pm - 2.20 pm, 4 pm - 4.20 pm | LT13 / Ventus | Kent Ridge MRT / Opp Kent Ridge MRT |
+| A1 | 9:30 am, 10:30 am, 11 am, 11:30 am - 11:40 am, 12 pm, 12:30 pm - 12:40 pm, 1:30 pm - 1:40 pm, 2:30 pm - 2:40 pm, 3:30 pm - 3:40 pm, 4:40 pm, 5 pm | Kent Ridge MRT / Opp Kent Ridge MRT | IT / CLB |
+| A1 | 12:30 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT27 / S17 |
+| A1 | 10:30 am, 11:40 am | LT27 / S17 | IT / CLB |
 | A2 | 9.40 am - 9.50 am, 12.30 pm - 12.50 pm, 1.10 pm, 1.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | BIZ2 / Opp HSSML |
 | A2 | 10 am - 10.10 am, 11 am - 11.10 am, 12 pm - 12.10 pm, 1 pm - 1.10 pm, 2 pm - 2.10 pm, 3 pm - 3.10 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
 | A2 | 10.40 am - 10.50 am, 11.10 pm - 11.50 pm, 12.40 pm - 1.10 pm, 2.20 pm - 3 pm, 3.50 pm - 4.10 pm, 4.40 pm - 4.50 pm, 5.40 pm | IT / CLB | Kent Ridge MRT / Opp Kent Ridge MRT |
