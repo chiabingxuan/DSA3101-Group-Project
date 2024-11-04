@@ -36,8 +36,8 @@ def main():
 
     X_train = X_train.drop(columns=['yeardate', 'date']) # Dropped 'year' column as all the years should be 2024 and considered a redundant feature
 
-    # Categorical cols: 'year', 'on_campus', 'main_reason_for_taking_isb', 'has_exam', 'weather', 'trip'
-    categorical_features = [0, 1, 2, 5, 6, 15]
+    # Categorical cols
+    categorical_features = ['year', 'on_campus', 'main_reason_for_taking_isb', 'has_exam', 'weather', 'trip']
 
     # SMOTE-NC
     smote_nc = SMOTENC(categorical_features = categorical_features, 
