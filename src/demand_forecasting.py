@@ -18,6 +18,7 @@ from sklearn.ensemble import RandomForestClassifier
 ####################################################################################################
 
 def demand_forecasting():
+    '''Preparing the data'''
     # import train and test datasets
     train = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False))
     test = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False))
@@ -26,36 +27,6 @@ def demand_forecasting():
     categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'weather', 'bus_num']
     numerical_cols = ['trips_per_day', 'duration_per_day', 'waiting_time', 'waiting_time_satisfaction', 
                     'crowdedness', 'crowdedness_satisfaction', 'comfort', 'safety', 'overall_satisfaction']
-
-
-    # feature selection
-    """
-    # Time-based features
-    data['date'] = pd.to_datetime(data['date'])
-    data['day_of_week'] = data['date'].dt.dayofweek  # Monday=0, Sunday=6
-    data['month'] = data['date'].dt.month
-    data['hour'] = pd.to_datetime(data['time']).dt.hour  # Assumes 'time' is in HH:MM format
-
-
-    # Lagged features (previous day's demand)
-    train['demand_lag_1'] = train['num_people_at_bus_stop'].shift(1)
-    train['rolling_demand_7'] = train['num_people_at_bus_stop'].rolling(window=7).mean()
-
-    test['demand_lag_1'] = test['num_people_at_bus_stop'].shift(1)
-    test['rolling_demand_7'] = test['num_people_at_bus_stop'].rolling(window=7).mean()
-
-
-    # Interaction features (does not change the rmse a lot)
-    # data['weather_crowdedness'] = data['weather'].astype(str) + '_' + data['crowdedness'].astype(str)
-
-
-    # Derived features
-    data['average_trip_duration'] = data['duration_per_day'] / data['trips_per_day']
-    data['waiting_time_satisfaction_adjusted'] = data['waiting_time'] * data['waiting_time_satisfaction']
-
-    # Encoding categorical variables
-    data = pd.get_dummies(data, columns=categorical_cols)
-    """
 
     # Drop rows with NaN values (from lagging)
     train = train.dropna()
@@ -72,6 +43,7 @@ def demand_forecasting():
     X_train['time'] = pd.to_datetime(X_train['time']).dt.time
     X_test['time'] = pd.to_datetime(X_test['time']).dt.time
 
+    '''Adding Interaction Features'''
     # One-hot encode the 'has_exam' column
     encoder = OneHotEncoder(drop='first', sparse_output=False)
     has_exam_encoded = encoder.fit_transform(X_train[['has_exam']])
@@ -96,6 +68,7 @@ def demand_forecasting():
     # Add interaction columns to numerical_cols
     numerical_cols.extend([f'{col}_duration_interaction' for col in encoded_cols])
 
+    '''Train the Random Forest Model'''
     # Preprocess data with a pipeline
     # One hot encoding to transform the categorical columns
     preprocessor = ColumnTransformer(
@@ -117,7 +90,7 @@ def demand_forecasting():
     accuracy_before = model.score(X_test, y_test)
     # print(accuracy_before)
 
-    '''feature importance'''
+    '''Feature Importance'''
     # Get feature names from the preprocessor
     feature_names = (preprocessor.transformers_[0][1].get_feature_names_out(numerical_cols).tolist() +
                     preprocessor.transformers_[1][1].get_feature_names_out(categorical_cols).tolist())
@@ -225,7 +198,7 @@ def main():
     Bus Stop PGP: [32, 24, 27, 15, 20, 16, 14, 18, 16, 25, 41, 26, 13, 15, 22]
     Bus Stop UHC / Opp UHC: [0, 31, 19, 31, 23, 22, 33, 29, 21, 20, 10, 20, 0, 0, 17]
     Bus Stop UTown: [0, 30, 0, 25, 27, 31, 27, 15, 21, 18, 33, 23, 18, 0, 0]
-    """
+"""
 
 
     #######################################################################################
@@ -233,7 +206,7 @@ def main():
     ### Visualisation 1) Actual vs Predicted demand                                     ###
     #######################################################################################
 
-    """
+"""
     for bus_stop in bus_stops:
         plt.plot(hour_intervals, demand_arrays[bus_stop], label=bus_stop)
 
@@ -244,4 +217,4 @@ def main():
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
-    """
+"""
