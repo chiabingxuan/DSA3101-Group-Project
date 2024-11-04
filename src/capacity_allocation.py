@@ -10,7 +10,7 @@ import demand_forecasting as df
 
 def capacity_allocation():
     # Flatten the demand_forecast matrix to work with linear programming
-    demand_forecast = df.final_demand_array
+    demand_forecast = df.demand_forecasting()
     (num_routes, num_time_slots) = demand_forecast.shape
     flattened_demand = demand_forecast.flatten()
 
