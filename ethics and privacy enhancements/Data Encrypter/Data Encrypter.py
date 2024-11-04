@@ -8,7 +8,7 @@ import base64
 import os
 
 # Replace with the path where you stored the trip data
-df = pd.read_csv(r"..\Shared\hypothetical_trip_data.csv")
+df = pd.read_csv(r"\hypothetical_trip_data.csv")
 
 # Columns to encode
 columns_to_encode = ['ID', 'Name', 'Email', 'year', 'major', 'date', 'time']
