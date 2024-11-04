@@ -10,104 +10,80 @@
   - [4. Data Preparation](#4-data-preparation)
     - [4.1 Initial Data Cleaning](#41-initial-data-cleaning)
     - [4.2 Initial Data Exploration](#42-initial-data-exploration)
-  - [5. Modeling](#5-modeling)
-    - [5.1 Subgroup A: User Behavior and Satisfaction](#51-subgroup-a-user-behavior-and-satisfaction)
-      - [5.1.1 Models Considered](#511-models-considered)
-      - [5.1.2 Model Selection Critieria](#512-model-selection-critieria)
-        - [Relevance](#relevance)
-      - [5.1.3 Detailed Description of the chosen models](#513-detailed-description-of-the-chosen-models)
-        - [Dimensionality Reduction](#dimensionality-reduction)
-        - [Manual Description Reduction using domain knowledge](#manual-description-reduction-using-domain-knowledge)
-        - [Modelling Process](#modelling-process)
-      - [5.1.4 Model Performance Metrics and Interpretation](#514-model-performance-metrics-and-interpretation)
-        - [Elbow Method to Find Optimal K (Number of Clusters)](#elbow-method-to-find-optimal-k-number-of-clusters)
-        - [Silhouette Method to Find the Optimal K (Number of Clusters)](#silhouette-method-to-find-the-optimal-k-number-of-clusters)
-        - [K-Prototypes Model Interpretation](#k-prototypes-model-interpretation)
-    - [5.2 **Subgroup B: System Optimization and Forecasting**](#52-subgroup-b-system-optimization-and-forecasting)
-      - [5.2.1 Algorithms Considered](#521-algorithms-considered)
-      - [5.2.2 Algorithm Selection Criteria](#522-algorithm-selection-criteria)
-        - [Relevance](#relevance-1)
-        - [Adaptability](#adaptability)
-        - [Value-add](#value-add)
-      - [5.2.3 Detailed Description of Chosen Algorithm](#523-detailed-description-of-chosen-algorithm)
-      - [Bus Stop Prioritization and Sorting Algorithm](#bus-stop-prioritization-and-sorting-algorithm)
-        - [Initialize the MinMaxScaler:](#initialize-the-minmaxscaler)
-        - [Define the Normalization Function:](#define-the-normalization-function)
-        - [Initialize an Empty Dictionary:](#initialize-an-empty-dictionary)
-        - [Iterate through Each Bus:](#iterate-through-each-bus)
-        - [Loop through Each Day of the Week:](#loop-through-each-day-of-the-week)
-        - [Loop through Each Hour of the Day:](#loop-through-each-hour-of-the-day)
-        - [Loop through Each Weather Condition:](#loop-through-each-weather-condition)
-        - [Loop through Each Exam Status:](#loop-through-each-exam-status)
-        - [Normalize the Data by Bus Stop:](#normalize-the-data-by-bus-stop)
-        - [Calculate Priority Scores by Bus Stop:](#calculate-priority-scores-by-bus-stop)
-        - [Sort Bus Stops by Priority Score:](#sort-bus-stops-by-priority-score)
-        - [Store the Sorted Priority in a Dictionary:](#store-the-sorted-priority-in-a-dictionary)
-        - [Sort the Dictionary:](#sort-the-dictionary)
-        - [Print the Sorted Priorities:](#print-the-sorted-priorities)
-        - [Summary:](#summary)
-      - [User Customization Algorithm](#user-customization-algorithm)
-        - [Dictionary Initialization:](#dictionary-initialization)
-        - [Retrieve Unique Bus Numbers:](#retrieve-unique-bus-numbers)
-        - [User Bus Number Selection:](#user-bus-number-selection)
-        - [Check for Valid Bus Number:](#check-for-valid-bus-number)
-        - [Display Days for Selected Bus:](#display-days-for-selected-bus)
-        - [Display Hours for Selected Bus and Day:](#display-hours-for-selected-bus-and-day)
-        - [Display Weather Conditions for Selected Bus, Day, and Hour:](#display-weather-conditions-for-selected-bus-day-and-hour)
-        - [Display Exam Status for Selected Bus, Day, Hour, and Weather:](#display-exam-status-for-selected-bus-day-hour-and-weather)
-        - [Retrieve and Display Final Bus Route:](#retrieve-and-display-final-bus-route)
-        - [Organize Final Routes:](#organize-final-routes)
-        - [Display User Selection and Bus Stop Order:](#display-user-selection-and-bus-stop-order)
-        - [Summary:](#summary-1)
-      - [5.2.4 Performance Metrics and Interpretation](#524-performance-metrics-and-interpretation)
-      - [Bus Stop Prioritization and Sorting Algorithm](#bus-stop-prioritization-and-sorting-algorithm-1)
-      - [User Customization Algorithm](#user-customization-algorithm-1)
-        - [Time Complexity: Explain](#time-complexity-explain)
-        - [Space Complexity: Explain](#space-complexity-explain)
-    - [5.3 **Subgroup B: System Optimization and Forecasting**](#53-subgroup-b-system-optimization-and-forecasting)
-      - [5.3.1 Modeling Techinques Considered](#531-modeling-techinques-considered)
-      - [5.3.2 Model Selection Criteria](#532-model-selection-criteria)
-        - [Relevance](#relevance-2)
-        - [Ease of Integration](#ease-of-integration)
-        - [Flexibility](#flexibility)
-        - [Feasibility](#feasibility)
-      - [5.3.3 Detailed Description of Chosen Model](#533-detailed-description-of-chosen-model)
-        - [Defining model components](#defining-model-components)
-        - [Variable initialisation](#variable-initialisation)
-        - [Input: Forecasted Demand](#input-forecasted-demand)
-        - [Setting up objective coefficients](#setting-up-objective-coefficients)
-        - [Setting up constraints](#setting-up-constraints)
-        - [Setting up bounds](#setting-up-bounds)
-        - [Model output](#model-output)
-      - [5.3.4 Performance Metrics and Interpretation](#534-performance-metrics-and-interpretation)
-      - [Time Complexity: Explain](#time-complexity-explain-1)
-      - [Space Complexity: Explain](#space-complexity-explain-1)
-  - [6. Evaluation](#6-evaluation)
-    - [6.2 **Subgroup B: System Optimization and Forecasting**](#62-subgroup-b-system-optimization-and-forecasting)
-      - [6.2.1 Evaluation of model performance against business objectives](#621-evaluation-of-model-performance-against-business-objectives)
-      - [6.2.1 Limitations of current approaches](#621-limitations-of-current-approaches)
-      - [Bus Stop Prioritzation and Sorting Algorithm](#bus-stop-prioritzation-and-sorting-algorithm)
-        - [Over-simplification:](#over-simplification)
-        - [Scalability:](#scalability)
-        - [Lack of Real-time Updates:](#lack-of-real-time-updates)
-      - [User Customization Algorithm](#user-customization-algorithm-2)
-        - [User Input Validity:](#user-input-validity)
-        - [Limited Customizations:](#limited-customizations)
-    - [6.2.2 Suggestions for algorithm improvements](#622-suggestions-for-algorithm-improvements)
-      - [Bus Stop Prioritzation and Sorting Algorithm](#bus-stop-prioritzation-and-sorting-algorithm-1)
-        - [Addressing Over-simplication:](#addressing-over-simplication)
-        - [Addressing Scalability:](#addressing-scalability)
-        - [Addressing Lack of Real-time Updates:](#addressing-lack-of-real-time-updates)
-      - [User Customization Algorithm](#user-customization-algorithm-3)
-        - [Addressing User Input Validity:](#addressing-user-input-validity)
-        - [Addressing Limited Customizations:](#addressing-limited-customizations)
-    - [6.3 **Subgroup B: System Optimization and Forecasting**](#63-subgroup-b-system-optimization-and-forecasting)
-      - [6.3.1 Evaluation of model performance against business objectives](#631-evaluation-of-model-performance-against-business-objectives)
-      - [6.3.2 Limitations of current approaches](#632-limitations-of-current-approaches)
-        - [Simplified assumptions](#simplified-assumptions)
-      - [6.3.3 Suggestions for model improvements](#633-suggestions-for-model-improvements)
-        - [Feedback Loops](#feedback-loops)
-        - [Sensitivity Analysis](#sensitivity-analysis)
+    - [4.3 Synthetic Data Generation](#43-synthetic-data-generation)
+  - [5. Subgroup A: User Behavior and Satisfaction](#5-subgroup-a-user-behavior-and-satisfaction)
+    - [5.1 Key Factors Influencing User Satisfaction](#51-key-factors-influencing-user-satisfaction)
+    - [5.2 User Segmentation](#52-user-segmentation)
+      - [5.2.1 Models Considered](#521-models-considered)
+      - [5.2.2 Model Selection Critieria](#522-model-selection-critieria)
+        - [5.2.2.1 Relevance](#5221-relevance)
+      - [5.2.3 Detailed Description of the Chosen Model](#523-detailed-description-of-the-chosen-model)
+        - [5.2.3.1 Dimensionality Reduction](#5231-dimensionality-reduction)
+        - [5.2.3.2 Manual Dimensionality Reduction Using Domain Knowledge](#5232-manual-dimensionality-reduction-using-domain-knowledge)
+        - [5.2.3.3 Modelling Process](#5233-modelling-process)
+      - [5.2.4 Model Performance Metrics and Interpretation](#524-model-performance-metrics-and-interpretation)
+        - [5.2.4.1 Elbow Method to Find Optimal K (Number of Clusters)](#5241-elbow-method-to-find-optimal-k-number-of-clusters)
+        - [5.2.4.2 Silhouette Method to Find the Optimal K (Number of Clusters)](#5242-silhouette-method-to-find-the-optimal-k-number-of-clusters)
+        - [5.2.4.3 K-Prototypes Model Interpretation](#5243-k-prototypes-model-interpretation)
+    - [5.3 Analysing Travel Patterns](#53-analysing-travel-patterns)
+      - [5.3.1 Creating Tableau Visualisations](#531-creating-tableau-visualisations)
+      - [5.3.2 Creating Origin-Destination Matrix](#532-creating-origin-destination-matrix)
+      - [5.3.3 Creating Timelapses](#533-creating-timelapses)
+    - [5.3.4 Opportunities for Service Improvements](#534-opportunities-for-service-improvements)
+    - [5.4 Evaluation](#54-evaluation)
+      - [5.4.1 Evaluation of model performance against business objectives](#541-evaluation-of-model-performance-against-business-objectives)
+      - [5.4.2 Limitations of Current Approach](#542-limitations-of-current-approach)
+      - [5.4.3 Suggestions for Model Improvements](#543-suggestions-for-model-improvements)
+  - [6 Subgroup B: System Optimization and Forecasting](#6-subgroup-b-system-optimization-and-forecasting)
+    - [6.1 Demand Forecasting Model](#61-demand-forecasting-model)
+      - [6.1.1 Models Considered](#611-models-considered)
+      - [6.1.2 Model Selection Criteria](#612-model-selection-criteria)
+      - [6.1.3 Detailed Description of Chosen Model(s)](#613-detailed-description-of-chosen-models)
+      - [6.1.4 Model Performance Metrics and Interpretation](#614-model-performance-metrics-and-interpretation)
+        - [6.1.4.1 Time Complexity:](#6141-time-complexity)
+        - [6.1.4.2 Space Complexity:](#6142-space-complexity)
+    - [6.2 Route Optimization](#62-route-optimization)
+      - [6.2.1 Algorithms Considered](#621-algorithms-considered)
+      - [6.2.2 Algorithm Selection Criteria](#622-algorithm-selection-criteria)
+      - [6.2.3 Detailed Description of Chosen Algorithm](#623-detailed-description-of-chosen-algorithm)
+        - [6.2.3.1 Bus Stop Prioritization and Sorting Algorithm](#6231-bus-stop-prioritization-and-sorting-algorithm)
+        - [6.2.3.2 User Customization Algorithm](#6232-user-customization-algorithm)
+        - [6.2.3.3 Impact Simulation Model](#6233-impact-simulation-model)
+      - [6.2.4 Performance Metrics and Interpretation](#624-performance-metrics-and-interpretation)
+        - [6.2.4.1 Bus Stop Prioritization and Sorting Algorithm](#6241-bus-stop-prioritization-and-sorting-algorithm)
+        - [6.2.4.1.1 Time Complexity:](#62411-time-complexity)
+        - [6.2.4.1.2 Space Complexity:](#62412-space-complexity)
+        - [6.2.4.2 User Customization Algorithm](#6242-user-customization-algorithm)
+        - [6.2.4.2.1 Time Complexity:](#62421-time-complexity)
+        - [6.2.4.2.2 Space Complexity:](#62422-space-complexity)
+        - [6.2.4.3 Impact Simulation Model](#6243-impact-simulation-model)
+          - [6.2.4.3.1 Time Complexity:](#62431-time-complexity)
+          - [6.2.4.3.2 Space Complexity:](#62432-space-complexity)
+    - [6.3 Capacity Allocation Optimization Model](#63-capacity-allocation-optimization-model)
+      - [6.3.1 Modeling Techinques Considered](#631-modeling-techinques-considered)
+      - [6.3.2 Model Selection Criteria](#632-model-selection-criteria)
+      - [6.3.3 Detailed Description of Chosen Model](#633-detailed-description-of-chosen-model)
+      - [6.3.4 Performance Metrics and Interpretation](#634-performance-metrics-and-interpretation)
+        - [6.3.4.1 Time Complexity: Explain](#6341-time-complexity-explain)
+        - [6.3.4.2 Space Complexity: Explain](#6342-space-complexity-explain)
+    - [6.4 Evaluation](#64-evaluation)
+      - [6.4.1 Demand Forecasting Model](#641-demand-forecasting-model)
+        - [6.4.1.1 Evaluation of model performance against business objectives](#6411-evaluation-of-model-performance-against-business-objectives)
+        - [6.4.1.2 Limitations of Current Approach](#6412-limitations-of-current-approach)
+        - [6.4.1.3 Suggestions for Model Improvements](#6413-suggestions-for-model-improvements)
+      - [6.4.2 Route Optimization](#642-route-optimization)
+        - [6.4.2.1 Bus Stop Prioritization and Sorting Algorithm, User Customization Algorithm](#6421-bus-stop-prioritization-and-sorting-algorithm-user-customization-algorithm)
+          - [6.4.2.1.1 Evaluation of model performance against business objectives](#64211-evaluation-of-model-performance-against-business-objectives)
+          - [6.4.2.1.2 Limitations of Current Approach](#64212-limitations-of-current-approach)
+        - [6.4.2.1.3 Suggestions for Model Improvements](#64213-suggestions-for-model-improvements)
+        - [6.4.2.2 Impact Simulation Model](#6422-impact-simulation-model)
+          - [6.4.2.2.1 Evaluation of model performance against business objectives](#64221-evaluation-of-model-performance-against-business-objectives)
+          - [6.4.2.2.2 Limitations of Current Approach](#64222-limitations-of-current-approach)
+        - [6.4.2.2.3 Suggestions for Model Improvements](#64223-suggestions-for-model-improvements)
+        - [6.4.2.3 Capcacity Allocation Optimization Model](#6423-capcacity-allocation-optimization-model)
+          - [6.4.2.3.1 Evaluation of model performance against business objectives](#64231-evaluation-of-model-performance-against-business-objectives)
+          - [6.4.2.3.2 Limitations of Current Approach](#64232-limitations-of-current-approach)
+        - [6.4.2.3.3 Suggestions for Model Improvements](#64233-suggestions-for-model-improvements)
   - [7. Deployment](#7-deployment)
   - [8. Technical Implementation](#8-technical-implementation)
     - [8.1 Repository Structure](#81-repository-structure)
@@ -131,19 +107,21 @@
 Data Scavengers is a collaborative project aimed at collecting real time data to optimise the bus system in NUS by utilising various models, such as Route Optimisation, Demand Forecasting and Capacity Allocation models. Visualisations have also been made to assist us in understanding the current problems faced.
 
 **Project Objectives**
+
 - Predict the demand of bus users at a specific bus stop at specific hour intervals
 - Optimise the bus routes to reduce waiting times
 - Allocate the capacity of buses to meet the demand
 
 **Team Members**
+
 - Bing Xuan -
 - Chong Gui - Route Optimisations
 - Yeongkyu -
-- Wei Ting -
+- Wei Ting - User Segmentation
 - Haidah -
 - Beckham - SMOTE analysis
-- Iffah: Capacity Allocation 
-- Rean:
+- Iffah - Capacity Allocation
+- Rean -
 
 **Quick Links**
 ???
@@ -157,15 +135,17 @@ How can NUS develop an efficient, reliable and safe internal bus system that opt
 The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The exisitng resource allocation, which ncludes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waitign times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
 
 **Key Stakeholders and their needs**
-- ***Primary Users***: **Students** are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
-- ***Specific Needs***: Reliable transport during peak times like class start/end times, during exams.
+<u>Students</u>
 
+- _Primary Users_: Students are the primary users of the bus system, and are our target focus. They rely heavily on the Internal Bus System, to commute between campus facilities, dorms, cafeterias to libraries and faculties. Their needs are focused around convenience, safety, punctuality and minimal wait times.
+- _Specific Needs_: Reliable transport during peak times like class start/end times, during exams.
 
 **Success Criteria for the project**
-- ***Enhance Student Mobility***: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
-- ***Improve Safety Standards***: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
-- ***Optimise Resource Allocation***: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
-- ***Provide Flexibility during Seasonal Events***: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
+
+- _Enhance Student Mobility_: Ensure that students have access to a convenient and punctual transportation for commuting to campus and school facilities, supporting timely attendance and overall ease of movement
+- _Improve Safety Standards_: Prioritise a safe environment for students while on their commute, ensuring the students' well-being.
+- _Optimise Resource Allocation_: Efficient allocation of buses, schedules, and routes to balance operational costs with demand.
+- _Provide Flexibility during Seasonal Events_: Adjust bus schedules and allocate additional buses during seasonal events, such as exams, to accomodate higher demand and ensure students reach the destinations punctually, as well as minimise the waiting time during post exams.
 
 ## 3. Data Understanding
 
@@ -311,7 +291,7 @@ By calling `clean_other_feedback_data()` on `other_feedback_data`, we do the fol
 
 ### 4.2 Initial Data Exploration
 
-After this first round of data cleaning, we now create visualisations to better understand the distributions of values for each attribute. Consider the common attributes for `trip_data` and `other_feedback_data`. Note that the distribution of each of these attributes is similar for both `pandas.DataFrames`. Hence, it suffices to investigate the distributions of attributes for `trip_data`.
+After this first round of data cleaning, we now create visualisations to better understand the distributions of values for each attribute. Consider the common attributes for `trip_data` and `other_feedback_data`. Note that the distribution of each of these attributes is similar for both `pandas.DataFrames`. Hence, it suffices to investigate the distributions of attributes for `trip_data`. All visualisations from this phase of data exploration can be found under `visualisations/initial_data_exploration/`.
 
 In `survey_cleaning.py`, by calling `visualise_data()` on `trip_data`, we obtain the following insights:
 
@@ -342,24 +322,52 @@ For `other_feedback_data`:
 - 6 outliers removed for `year`
 - 1 outlier removed for `trips_per_day`
 
-## 5. Modeling
+### 4.3 Synthetic Data Generation
 
-### 5.1 Subgroup A: User Behavior and Satisfaction
+In preparation for Modeling, a substantial amount of data is required for training machine learning models effectively, thus we will conduct the following synthetic data generation methods to augment our dataset.
 
+1. We will perform a 80-20 train-test split to generate synthetic data for both the training and test sets separately to prevent data leakage.
+
+2. Synthetic Minority Over-sampling Technique for Nominal and Continuous (SMOTE-NC)
+
+   - We chose to use SMOTE-NC as it accomodates datasets containing both nominal and continuous variables, thus ideal for our dataset which contains both types of variables. In contrast, SMOTE can only handle continuous features.
+   - Our dataset `cleaned_trip_data.csv` is imbalanced for the `major` variable, where the highest count in the training set is 95 for "data science and analytics" while lowest is 8 for "architecture" and "industrial systems engineering". Therefore we need to conduct over-sampling as mentioned in 4.2.
+   - We will apply SMOTE-NC `smote.py` on the train set to balance the `major` variable, resulting in a balanced sample of 95 counts for each major in `major`.
+   - The balanced sample dataset is saved as `train_trip_data_after_smote.csv`
+   - Some important points to take note:
+     - We combined `start`, `end`, `bus_num` into a single `trip` column. This approach prevents SMOTE-NC from individually generating synthetic data for each column, which may result in the case where the `start` and `end` being the same which is not logical for a person taking the bus.
+     - We decomposed `date` and `time` into its numerical components: day, month, year, hour, and minute, so that it can be processed by SMOTE-NC as it cannot directly process datetime type values.
+
+3. Synthetic Data Vault (SDV)
+
+   - After `major` classes are balanced, we can proceed with using SDV to increase the size of our dataset.
+   - We adopted the Gaussian Copula model to help us create realistic synthetic samples that are characteristically close to the original dataset.
+   - We will apply SDV onto the train set after SMOTE-NC has been done `train_trip_data_after_smote.csv` and onto the test set `test_trip_data_before_sdv.csv`
+   - Overall train dataset: `train_trip_data_after_sdv.csv`
+   - Overall test dataset: `test_trip_data_after_sdv.csv`
+
+4. Further notes
+   - We did not implement SMOTE-NC onto the test dataset as after the 80-20 train-test split, it resulted in some majors in `major` column having less than 5 counts. This prevents us from oversampling the test dataset to balance the majors as the model parameter was set to `k_neighbors = 5` for the train set. Decreasing the `k_neighbors` is not feasible as it may lead to overfitting.
+   - Thus we only used SDV to generate synthetic data for test dataset, while both SMOTE-NC and SDV were used for train dataset.
+
+## 5. Subgroup A: User Behavior and Satisfaction
 - How can we segment our users based on their travel behavior and preferences?
 - Develop a user segmentation model using the collected data
 - Identify unique needs and pain points for each user segment
 
-#### 5.1.1 Models Considered
+### 5.1 Key Factors Influencing User Satisfaction
 
+### 5.2 User Segmentation
+
+#### 5.2.1 Models Considered
 - There are 3 main modelling techniques considered at first.
   - K-Means
   - K-Modes
   - K-Prototypes
 
-#### 5.1.2 Model Selection Critieria
+#### 5.2.2 Model Selection Critieria
 
-##### Relevance
+##### 5.2.2.1 Relevance
 
 - K-Means was not chosen because it is a clustering model applicable to datasets containing only continuous (numerical) features.
 - K-Modes was not chosen because it is a clustering model applicable to datasets containing only categorical features.
@@ -371,20 +379,20 @@ For `other_feedback_data`:
   - Principal Component Analysis (PCA): inappropriate because it applies to datasets comprising solely continuous(numerical) data, whereas our dataset comprises categorical data as well.
   - Encoding the categorical variables, and then applying the PCA algorithm over the resulting data, does not work as well.
   - This is because the weight given to a categorical variable would inherently depend on the number of modalities available to the variable, and on the probabilities of these modalities. As a result, it would be impossible to give a similar weight to all the initial variables over the calculated principal components.
-  - Factor Analysis of Mixed Data (FAMD): appropriate for our mixed (categorical + continuous) dataset. This is because FAMD wants to give the exact same weight to all the variables, continuous or categorical, when searching for the principal components. 
+  - Factor Analysis of Mixed Data (FAMD): appropriate for our mixed (categorical + continuous) dataset. This is because FAMD wants to give the exact same weight to all the variables, continuous or categorical, when searching for the principal components.
   - However, Python libraries, such as `light_famd` and `prince` implementing FAMD were tried and tested, but did not work out due to compatibility issues with our data frame, and lack of updates.
   - Moreover, FAMD ultimately still increases our data's number of features beyond 16 with encoding, worsening the Curse of Dimensionality, which defeats the original purpose of dimensionality reduction.
 
-#### 5.1.3 Detailed Description of the chosen models
+#### 5.2.3 Detailed Description of the Chosen Model
 
-##### Dimensionality Reduction
+##### 5.2.3.1 Dimensionality Reduction
 
 - Dimensionality reduction should always be done before clustering. This is because clustering generally depends on some sort of distance measure.
 - Points near each other are in the same cluster; points far apart are in different clusters.
 - But in high dimensional spaces, distance measures do not work very well.
 - We reduce the number of dimensions first so that our distance metric in clustering will make sense.
 
-##### Manual Dimensionality Reduction Using Domain Knowledge
+##### 5.2.3.2 Manual Dimensionality Reduction Using Domain Knowledge
 
 - As standard practice, we replace all inf values with NaN, and remove all NaN values, to ensure inf and NaN values do not interfere with the code.
 - Firstly, we remove the '1900-01-01' from all rows of the `time` column since it is redundant.
@@ -399,7 +407,7 @@ For `other_feedback_data`:
   - `waiting_time_satisfaction`, `crowdedness_satsifaction` columns since the relationship is rather obvious: higher waiting time and higher crowdedness level = lower corresponding satisfaction
 - After the above process, the number of features is effectively reduced from 21 to 16.
 
-##### Modelling Process
+##### 5.2.3.3 Modelling Process
 
 - We convert the continuous variable columns into `float` type, and categorical variable columns into `str` type.
 - We also employ the normalisation technique of Min-Max Scaling so that the scale of continuous data is rescaled/changed to fall between 0 and 1, while preserving the original shape/distribution of continuous data with no distortion. This is because Machine Learning (ML) algorithms tend to perform better, or converge faster, when the different features are on a smaller scale. Standardisation is not chosen as the scaling method here because we do not know for sure that our continuous data follows a normal distribution.
@@ -407,12 +415,15 @@ For `other_feedback_data`:
 - Secondly, we train the K-Prototypes model using the input training dataset (as a numpy array) and `fit_predict()` function.
 - Thirdly, with respect to the input dataset, we add a new column for cluster labels associated with each row (data point), as procured by `fit_predict()`, and accessed using the `.labels_` attribute of the trained K-Prototypes model.
 - Fourthly, we proceed to use a custom-defined `cluster_profile()` function to visualise the 3 clusters.
-- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier. Subsequently, for each cluster, `cluster_profile()` proceeds to compute the mean of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
+- `cluster_profile()` groups the input dataframe by the clusters, using the cluster labels outputted by the K-Prototypes model earlier.
+  Subsequently, for each cluster, `cluster_profile()` proceeds to compute the median of each continuous/numerical column, and identify the mode (most frequently-occurring category) of each categorical column.
+- Here, the median is the preferred measure of central tendency because it is less affected by outliers than the mean, and
+  also because we do not know for sure that our continuous data is symmetrical or normally distributed- so the mean is not as appropriate here.
 - Lastly, we simply call `print(cluster_profile(name_of_our_dataset))` to visualise the 3 clusters.
 
-#### 5.1.4 Model Performance Metrics and Interpretation
+#### 5.2.4 Model Performance Metrics and Interpretation
 
-##### Elbow Method to Find Optimal K (Number of Clusters)
+##### 5.2.4.1 Elbow Method to Find Optimal K (Number of Clusters)
 
 - It involves running the K-Prototypes clustering model for different values of K, calculating the total cluster variance for each K using the `.cost_` attribute.
 - "Total Cluster Variance" is essentially equivalent to the intra(within)-cluster variance, which we seek to minimize, and at the same time, maximize the inter(between)-cluster variance since total variance is constant. Ideally, this will ensure a clear distinction between the clusters, indicating good performance of the clustering model.
@@ -426,7 +437,7 @@ For `other_feedback_data`:
 - From the given plot, it seems that the optimal K = 3, but the "elbow point" is not so clear and sharp.
 - This is because the Elbow Method often fails to give a specific value for the optimal K if the input dataset has abnormal distribution.
 
-##### Silhouette Method to Find the Optimal K (Number of Clusters)
+##### 5.2.4.2 Silhouette Method to Find the Optimal K (Number of Clusters)
 
 - The Silhouette Method is used to complement the Elbow Method.
 - The silhouette value measures how similar a point is to its own cluster (cohesion) compared to other clusters (separation).
@@ -447,413 +458,644 @@ For `other_feedback_data`:
 - On top of that, the difference in Average Silhouette Score between K = 2 (0.03958666420217967) and K = 3 (0.03291258008340998) is relatively small, and K = 3 yields the 2nd-highest Average Silhouette Score
 - So, it seems reasonable/acceptable that the compromise between the Elbow and Silhouette methods would be to take optimal K = 3.
 
-##### K-Prototypes Model Interpretation
+##### 5.2.4.3 K-Prototypes Model Interpretation
 
-- TBC
+- Our K-Prototypes model procured 3 clusters.
 
-### 5.2 **Subgroup B: System Optimization and Forecasting**
+- Cluster 0 has the following attributes.
 
-- What changes to routes and schedules would optimize the public transport network?
-- Create an algorithm to optimize route planning based on predicted demand and user preferences.
+|            Column            |                     Value                      |
+| :--------------------------: | :--------------------------------------------: |
+|             Year             |                       1                        |
+|            Major             |             Biomedical Engineering             |
+|          On_Campus           |                       No                       |
+|  Main Reason for Taking ISB  |                 To go to Class                 |
+|           Has Exam           |                       No                       |
+|           Weather            |                     Sunny                      |
+|         Day of Week          |                    Thursday                    |
+|             Hour             |                       11                       |
+|             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
+| Number of People at Bus Stop |                    0.314286                    |
+|         Waiting Time         |                    0.300000                    |
+|         Crowdedness          |                    0.666667                    |
+|           Comfort            |                    0.333333                    |
+|            Safety            |                    0.333333                    |
+|     Overall Satisfaction     |                    0.333333                    |
 
-#### 5.2.1 Algorithms Considered
+- Cluster 1 has the following attributes.
+
+|            Column            |                     Value                      |
+| :--------------------------: | :--------------------------------------------: |
+|             Year             |                       3                        |
+|            Major             |                    Business                    |
+|          On_Campus           |                       No                       |
+|  Main Reason for Taking ISB  |                 To go to Class                 |
+|           Has Exam           |                       No                       |
+|           Weather            |                     Sunny                      |
+|         Day of Week          |                    Thursday                    |
+|             Hour             |                       13                       |
+|             Trip             | Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1 |
+| Number of People at Bus Stop |                    0.200000                    |
+|         Waiting Time         |                    0.166667                    |
+|         Crowdedness          |                    0.444444                    |
+|           Comfort            |                    0.555556                    |
+|            Safety            |                    0.666667                    |
+|     Overall Satisfaction     |                    0.555556                    |
+
+- Cluster 2 has the following attributes.
+
+|            Column            |                     Value                      |
+| :--------------------------: | :--------------------------------------------: |
+|             Year             |                       2                        |
+|            Major             |                   Chemistry                    |
+|          On_Campus           |                       No                       |
+|  Main Reason for Taking ISB  |                 To go to Class                 |
+|           Has Exam           |                       No                       |
+|           Weather            |                     Sunny                      |
+|         Day of Week          |                    Thursday                    |
+|             Hour             |                       12                       |
+|             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
+| Number of People at Bus Stop |                    0.357143                    |
+|         Waiting Time         |                    0.200000                    |
+|         Crowdedness          |                    0.777778                    |
+|           Comfort            |                    0.555556                    |
+|            Safety            |                    0.666667                    |
+|     Overall Satisfaction     |                    0.555556                    |
+
+- Across the 3 clusters labelled 0, 1 and 2, we observe that they share certain similarities in the following aspects:
+
+  - Do not stay on campus
+  - Main reason for taking the ISB is to go to class
+  - On the day of the bus trip chosen to input in the survey, there was no exam, it was a Thursday, and the weather was sunny.
+  - So, perhaps the features of `on_campus`, `main_reason_for_taking_ISB`, `has_exam`, `day_of_week`, and `weather`, are not as useful
+    for identifying each cluster's pain points and needs in this context.
+
+- Between clusters 1 and 2, we observe that they have the exact same overall satisfaction level = 0.555556,
+  safety level = 0.66667, and comfort level = 0.55556.
+
+  - However, cluster 2 has a higher crowdedness level = 0.77778 compared to cluster 1 with a lower crowdedness level = 0.444444.
+  - At the same time, cluster 2 has a longer waiting time = 0.200000 compared to cluster 1 with a shorter waiting time = 0.166667.
+  - By intuition, cluster 2 should thus have a lower overall satisfaction level than cluster 1, but yet this is clearly not the case.
+  - One possible reason is that for cluster 2, there exists other factors influencing overall satisfaction, that are even more
+    important than crowdedness and waiting time- which could be the smell of the bus (whether or not the bus smells pleasant), and/or the attitude of the bus driver, amongst the many responses to our ending survey question: "Are there any other factors that influence how satisfied you are with the NUS bus system?" Perhaps, for cluster 2, most of them felt that the bus smelt pleasant during their bus trips, and/or most of them also were very pleased with the positive attitudes of the bus drivers, which in turn outweighed the more negative factors of higher crowdedness levels and longer waiting times (relative to cluster 1).
+
+- Between clusters 0 and 1, we observe that:
+
+  - Cluster 0 has a longer waiting time = 0.300000 compared to cluster 1 with a shorter waiting time = 0.166667.
+  - Cluster 0 has a higher crowdedness level = 0.666667 compared to cluster 1 with a lower crowdedness level = 0.444444.
+  - Cluster 0 has a lower comfort level = 0.333333 compared to cluster 1 with a higher comfort level = 0.555556.
+  - Cluster 0 has a lower safety level = 0.333333 compared to cluster 1 with a higher safety level = 0.666667.
+  - This reaffirms our initial beliefs on the relationship between the 4 factors and overall satisfaction, which is that a longer waiting time, higher crowdedness level, lower comfort level, and lower safety level, all translate to a lower overall satisfaction level. This is backed by cluster 0 having a lower overall satisfaction level = 0.333333, compared to cluster 1 with a higher overall satisfaction level = 0.555556.
+
+- From the comparisons we drew between cluster 0 (year 1 students) and cluster 1 (year 3 students), there are 3 more possible insights that we can draw:
+
+  - Firstly, since students in earlier years (cluster 0) exhibit lower overall satisfaction levels, this may reflect a steeper learning curve in navigating the campus and transportation systems, indicating that year 1 students might be struggling to adapt to both academic demands and logistical challenges simultaneously. In other words, this suggests an adjustment phase for year 1 students where they are not only acclimating to university life but also learning to navigate a potentially complex transportation network. This might indicate that the National University of Singapore (NUS) should consider mentorship programs or orientation sessions focusing on transportation logistics to help ease this transition.
+  - Secondly, since cluster 1 (year 3 students) shows improved overall satisfaction levels compared to cluster 0 (year 1 students), this may suggest that as students progress from their first year to their third year, they likely become more familiar with the transportation system and class schedules, resulting in less anxiety and frustration during commutes.
+  - Thirdly, cluster 1’s travel time at 1 PM coincides with post-lunch schedules, which may contribute to higher student energy levels and correspondingly, better ability to manage travel expectations while using the ISB, contributing to higher overall satisfaction levels. Conversely, earlier travel times at 11 AM in cluster 0 may lead to fatigue or a rush, influencing their overall experience negatively.
+
+- Moreover, we note that despite cluster 2 (year 2 students) having the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions as they accept high crowd levels as the "norm". In turn, such a change in mindset is part of students internalising that usage of ISB services is a necessity (since most of them use the ISB to go to class, as indicated by how clusters 0, 1, and 2 all have the exact same `main_reason_for_taking_ISB` = to go to class). This desensitisation to crowded conditions might buffer the negative impact of crowdedness on overall satisfaction levels.
+
+### 5.3 Analysing Travel Patterns
+- Analyse and visualise travel patterns across different routes, times, and user segments.
+- Identify opportunities for service improvements based on these patterns.
+
+For the analysis of common bus travel patterns among students, we refer to Tableau visualisations under `visualisations/Dashboards/` and `make_timelapses_for_travel_patterns.py`.
+
+#### 5.3.1 Creating Tableau Visualisations
+We create [Tableau dashboards](https://chiabingxuan.github.io/DSA3101-Group-Project/) to visualise how travel patterns vary throughout the day. This is done by taking various scenarios into consideration - dashboard filters such as "Bus Number", "Starting Bus Stops", "Weather" and "Exam" are incorporated into our visualisations.
+
+From the graph, we note that a typical day's rush hours range from 10 am to 2 pm, where the number of trips remain consistently above 500. The number of bus trips peaks at approximately 11 am, during the lunch break. The degree of usage of each bus service (A1, A2, D1, D2) also varies in a similar way throughout the day, with D1 being significantly less utilised than the others.
+
+#### 5.3.2 Creating Origin-Destination Matrix
+
+#### 5.3.3 Creating Timelapses
+In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
+
+| File Name | Timelapse |
+| :-------: | :----: |
+| `nus_trip_markers_timelapse.html` | Timelapse of all bus trips |
+| `nus_exam_trip_markers_timelapse.html` | Timelapse of all bus trips on a exam day |
+| `nus_no_exam trip_markers_timelapse.html` | Timelapse of all bus trips on a non-exam day |
+| `nus_a1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A1 |
+| `nus_a2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A2 |
+| `nus_d1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D1 |
+| `nus_d2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D2 |
+| `nus_cluster_0_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 0 |
+| `nus_cluster_1_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 1 |
+| `nus_cluster_2_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 2 |
+
+For each timelapse, the positions of all the bus stops are labelled in white text. Each trip corresponds to a single straight line. The line is coloured according to the bus service involved in the given trip (here, we use the standard colours found on the [official NUS website](https://uci.nus.edu.sg/oca/mobilityservices/getting-around-nus/), as specified in `config.py`). One end of this line coincides with the starting bus stop - represented by the green marker - while the other end matches up with the ending bus stop - this is indicated by the red marker. In addition, for timelapses illustrating individual bus services, the overall route of the given bus service is marked out using a strongly weighted `PolyLine`.
+
+We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 11 am - 3 pm, further supporting the conclusion drawn in Section 5.5.1. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
+
+| Time Period | Possible Reason |
+| :-------: | :----: |
+| 8.50 am - 9.10 am | 9 am classes |
+| 9.30 am - 10.10 am | 10 am classes |
+| 10.30 am - 11.10 am | 11 am classes |
+| 11.40 am - 12.10 pm | 12 pm classes + lunch hour |
+| 12.40 pm - 1.10 pm | 1 pm classes + lunch hour |
+| 1.30 pm - 1.40 pm | 2 pm classes + lunch hour |
+| 2.00 pm - 2.10 pm | 2 pm classes + lunch hour |
+| 2.30 pm - 3.10 pm | 3 pm classes |
+| 3.30 pm - 4.30 pm | Afternoon classes |
+
+From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
+
+The following are observed to be the busiest bus stops:
+
+- Kent Ridge MRT / Opp Kent Ridge MRT
+- LT27 / S17
+- UTown
+- IT / CLB
+- LT13 / Ventus
+
+Looking at the timelapses for individual bus services, we obtain a few additional insights. The following is a list of popular trips, for a given bus service at a given time period:
+
+| Bus Service | Time Period | Start | End |
+| :-------: | :-------: | :----: | :----: |
+| A1 | 8.30 am | LT13 / Ventus | LT27 / S17 |
+| A1 | 10.30 am - 10.40 am, 2.30 pm - 2.40 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
+| A1 | 10.30 am - 10.40 am, 1.30 pm - 1.50 pm, 2.30 pm - 2.50 pm, 3.30 pm - 3.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | IT / CLB |
+| A1 | 11.40 am - 11.50 am | LT27 / S17 | IT / CLB |
+| A1 | 2 pm - 2.20 pm, 4 pm - 4.20 pm | LT13 / Ventus | Kent Ridge MRT / Opp Kent Ridge MRT |
+| A2 | 9.40 am - 9.50 am, 12.30 pm - 12.50 pm, 1.10 pm, 1.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | BIZ2 / Opp HSSML |
+| A2 | 10 am - 10.10 am, 11 am - 11.10 am, 12 pm - 12.10 pm, 1 pm - 1.10 pm, 2 pm - 2.10 pm, 3 pm - 3.10 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
+| A2 | 10.40 am - 10.50 am, 11.10 pm - 11.50 pm, 12.40 pm - 1.10 pm, 2.20 pm - 3 pm, 3.50 pm - 4.10 pm, 4.40 pm - 4.50 pm, 5.40 pm | IT / CLB | Kent Ridge MRT / Opp Kent Ridge MRT |
+| D1 | 10.30 am - 10.40 am, 12 pm - 12.10 pm, 2 pm - 2.10 pm, 3.10 pm | LT13 / Ventus | UTown |
+| D1 | 11.30 am - 11.40 am, 2.40 pm | UTown | IT / CLB |
+| D1 | 11.30 am - 11.40 am, 2.40 pm | IT / CLB | UTown |
+| D2 | 8.30 am - 8.50 am, 1.30 pm - 1.40 pm | Kent Ridge MRT / Opp Kent Ridge MRT | UTown |
+| D2 | 9 am - 9.10 am, 10 am - 10.10 am, 11 am - 11.10 am | PGP | UTown |
+| D2 | 10.40 am, 11.30 am - 11.50 am | Kent Ridge MRT / Opp Kent Ridge MRT | COM3 |
+| D2 | 12 pm - 12.10 pm | UTown | LT27 / S17 |
+| D2 | 12 pm - 12.10 pm, 3 pm - 3.10 pm, 5 pm - 5.10 pm | COM3 | Kent Ridge MRT / Opp Kent Ridge MRT |
+
+### 5.3.4 Opportunities for Service Improvements
+
+
+### 5.4 Evaluation
+
+#### 5.4.1 Evaluation of model performance against business objectives
+
+#### 5.4.2 Limitations of Current Approach
+
+#### 5.4.3 Suggestions for Model Improvements
+
+
+
+
+
+
+## 6 Subgroup B: System Optimization and Forecasting
+
+### 6.1 Demand Forecasting Model
+
+#### 6.1.1 Models Considered
+
+#### 6.1.2 Model Selection Criteria
+
+#### 6.1.3 Detailed Description of Chosen Model(s)
+
+#### 6.1.4 Model Performance Metrics and Interpretation
+
+##### 6.1.4.1 Time Complexity:
+
+##### 6.1.4.2 Space Complexity:
+
+
+### 6.2 Route Optimization
+
+#### 6.2.1 Algorithms Considered
 
 - The 1st approach we considered was to model the roads and bus stops as edges and vertices. We will then assign weights to the edges and proceed to use Single Source Shortest Path Algorithms, such as Dijkstra's Algorithm to find the shortest path between the bus stops. The shortest paths will then be the optimized routes.
 - The 2nd approach we considered was to use the current routes, but optimize the order of bus stops each bus visits. The idea is to organize bus stops according to their importance at different times and conditions. This entails assigning priority scores to certain bus stops under different scenarios and sorting the bus stops to produce the optimized order of visit.
 
-#### 5.2.2 Algorithm Selection Criteria
+#### 6.2.2 Algorithm Selection Criteria
 
-##### Relevance
+* **Relevance**:
+  - 1st Approach:  
+    - Shortest Path algorithm is effective at finding the shortest path, but it primarily focuses on minimizing travel distances between stops, not passenger preferences or demand. It does not factor in bus stop popularity or times when specific stops are likely to see higher demand.
+  - 2nd Approach:  
+    - By prioritizing stops based on demand and user preferences, this approach is explicitly designed to optimize according to passenger needs. The priority scoring accounts for fluctuating demand across days, times, and events, allowing routes to adapt based on who needs the service and when. This makes it more responsive to actual user preferences and system demand.
+  - Conclusion:  
+    - The 2nd approach aligns better with the goal of responding to passenger needs which directly addresses the issue at hand.
 
-- 1st Approach:  
-  Shortest Path algorithm is effective at finding the shortest path, but it primarily focuses on minimizing travel distances between stops, not passenger preferences or demand. It does not factor in bus stop popularity or times when specific stops are likely to see higher demand.
-- 2nd Approach:  
-  By prioritizing stops based on demand and user preferences, this approach is explicitly designed to optimize according to passenger needs. The priority scoring accounts for fluctuating demand across days, times, and events, allowing routes to adapt based on who needs the service and when. This makes it more responsive to actual user preferences and system demand.
-- Conclusion:  
-  The 2nd approach aligns better with the goal of responding to passenger needs which directly addresses the issue at hand.
+* **Adaptability**:
+  - 1st Approach:  
+    - Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
+  - 2nd Approach:  
+    - This approach allows the system to adjust routes dynamically based on predefined priority scores under varying conditions. Since each bus stop’s priority can shift according to time-based demand and satisfaction data, the model naturally adapts without requiring computationally intensive recalculations.
+  - Conclusion:  
+    - The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
 
-##### Adaptability
+* **Value-add**:
+  - 1st Approach:  
+    - The current bus routes are already optimized by transportation professionals to follow the shortest or most efficient paths possible, rendering a new shortest-path calculation unnecessary. Implementing Dijkstra’s or similar algorithms would likely replicate existing routes without providing added benefit, making this approach redundant for the current setup.
+  - 2nd Approach:  
+    - Since this approach is not aimed at finding new paths but rather optimizes the order of stops based on historical demand and user preferences, it adds value by focusing on enhancing passenger satisfaction and operational efficiency. By reorganizing stops rather than recalculating routes, this approach complements the pre-established routes without duplicating existing efforts.
+  - Conclusion:  
+    - The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
 
-- 1st Approach:  
-  Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
-- 2nd Approach:  
-  This approach allows the system to adjust routes dynamically based on predefined priority scores under varying conditions. Since each bus stop’s priority can shift according to time-based demand and satisfaction data, the model naturally adapts without requiring computationally intensive recalculations.
-- Conclusion:  
-  The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
+#### 6.2.3 Detailed Description of Chosen Algorithm
 
-##### Value-add
+##### 6.2.3.1 Bus Stop Prioritization and Sorting Algorithm
 
-- 1st Approach:  
-  The current bus routes are already optimized by transportation professionals to follow the shortest or most efficient paths possible, rendering a new shortest-path calculation unnecessary. Implementing Dijkstra’s or similar algorithms would likely replicate existing routes without providing added benefit, making this approach redundant for the current setup.
-- 2nd Approach:  
-  Since this approach is not aimed at finding new paths but rather optimizes the order of stops based on historical demand and user preferences, it adds value by focusing on enhancing passenger satisfaction and operational efficiency. By reorganizing stops rather than recalculating routes, this approach complements the pre-established routes without duplicating existing efforts.
-- Conclusion:  
-  The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
+* **Initialize the MinMaxScaler**:
+  * `scaler = MinMaxScaler()`
+  * Sets up a MinMaxScaler, which is used to normalize numerical columns by scaling values to a range, typically [0, 1].
 
-#### 5.2.3 Detailed Description of Chosen Algorithm
+* **Define the Normalization Function**:
+  * `normalize_group(group)` is defined to normalize specific columns in each group.
+  * Within the function:
+    * The columns `num_people_at_bus_stop` and `overall_satisfaction` are normalized to bring their values to a common scale.
+    * Categorical columns like `weather` and `has_exam` are excluded from normalization.
 
-#### Bus Stop Prioritization and Sorting Algorithm
+* **Initialize an Empty Dictionary**:
+  * `bus_route_priorities = {}` creates a dictionary to store prioritized bus stop orders for different conditions.
 
-##### Initialize the MinMaxScaler:
+* **Iterate through Each Bus**:
+  * A loop iterates over each unique bus number in the dataset `unique_bus_numbers`.
+  * For each bus, a DataFrame `bus_df` is created, containing data specific to that bus.
 
-- `scaler = MinMaxScaler()`
-- Sets up a MinMaxScaler, which is used to normalize numerical columns by scaling values to a range, typically [0, 1].
+* **Loop through Each Day of the Week**:
+  * For each bus, another loop iterates through each unique day of the week.
+  * A new DataFrame `bus_day_df` is created for the bus data on that specific day.
 
-##### Define the Normalization Function:
+* **Loop through Each Hour of the Day**:
+  * Within each day, a loop iterates over each unique hour.
+  * A new DataFrame `bus_hour_df` is created for data during that hour.
 
-- `normalize_group(group)` is defined to normalize specific columns in each group.
-- Within the function:
-  - The columns `num_people_at_bus_stop` and `overall_satisfaction` are normalized to bring their values to a common scale.
-  - Categorical columns like `weather` and `has_exam` are excluded from normalization.
+* **Loop through Each Weather Condition**:
+  * For each hour, a loop iterates over unique weather conditions.
+  * A new DataFrame `bus_weather_df` is created to contain data for that specific weather condition.
 
-##### Initialize an Empty Dictionary:
+* **Loop through Each Exam Status**:
+  * Within each weather condition, a loop iterates over the unique values for `has_exam` (where 0 and 1 stands for having exam and not having exam respectively).
+  * A new DataFrame `bus_exam_df` is created for each exam status scenario.
 
-- `bus_route_priorities = {}` creates a dictionary to store prioritized bus stop orders for different conditions.
+* **Normalize the Data by Bus Stop**:
+  * The data is copied to a new DataFrame `df_hour` to avoid altering the original.
+  * The normalize_group function is applied group-wise for each starting bus stop within the filtered data `df_hour`.
+  * `df_hour_normalized` stores the normalized DataFrame by bus stop.
 
-##### Iterate through Each Bus:
+* **Calculate Priority Scores by Bus Stop**:
+  * The normalized data is grouped by starting bus stop to calculate the average values for `num_people_at_bus_stop` and `overall_satisfaction`.
+  * A `priority_score` column is created, calculated as the sum of normalized `num_people_at_bus_stop` and normalized `overall_satisfaction` values.
+  * Normalization here ensures that `priority_score` reflects both demand and satisfaction equally, making the prioritization system fairer and more reliable across different bus stops and conditions.
 
-- A loop iterates over each unique bus number in the dataset `unique_bus_numbers`.
-- For each bus, a DataFrame `bus_df` is created, containing data specific to that bus.
+* **Sort Bus Stops by Priority Score**:
+  * The bus stops are sorted in descending order based on `priority_score`.
+  * `average_stats_by_start_sorted` holds the sorted list of bus stops for the current scenario.
 
-##### Loop through Each Day of the Week:
+* **Store the Sorted Priority in a Dictionary**:
+  * For each combination of bus number, day, hour, weather, and exam status, the sorted bus stop priority is stored in the dictionary `bus_route_priorities`.
 
-- For each bus, another loop iterates through each unique day of the week.
-- A new DataFrame `bus_day_df` is created for the bus data on that specific day.
+* **Sort the Dictionary**:
+  * The dictionary is sorted based on the tuple keys (bus number, day of the week, hour, weather, and exam status).
+  * The result is stored in `sorted_bus_route_priorities`.
 
-##### Loop through Each Hour of the Day:
+* **Print the Sorted Priorities**:
+  * A loop prints out the priority order of bus stops for each bus, day, hour, weather, and exam condition, showing the optimal order of bus stops per scenario.
 
-- Within each day, a loop iterates over each unique hour.
-- A new DataFrame `bus_hour_df` is created for data during that hour.
+* **Summary**:
+  * The above algorithm is designed to optimize bus stop prioritization based on survey data, taking into account factors like demand (number of people at the bus stop), user satisfaction, time of day, day of the week, weather conditions, and whether there’s an exam. By creating priority scores for each bus stop, it identifies the most important stops under specific conditions.
 
-##### Loop through Each Weather Condition:
+##### 6.2.3.2 User Customization Algorithm
 
-- For each hour, a loop iterates over unique weather conditions.
-- A new DataFrame `bus_weather_df` is created to contain data for that specific weather condition.
+* **Dictionary Initialization**:
+  * `days_of_week`, `time_ranges`, `weather_conditions`, and `exam_statuses` are dictionaries used to map numerical or binary values to their descriptive labels (e.g., "Monday" for day 1, "Sunny" for weather 0, etc.).
 
-##### Loop through Each Exam Status:
+* **Retrieve Unique Bus Numbers**:
+  * Extracts all unique bus numbers from the `sorted_bus_route_priorities` dictionary.
+  * Displays these bus numbers for the user to choose from.
 
-- Within each weather condition, a loop iterates over the unique values for `has_exam` (where 0 and 1 stands for having exam and not having exam respectively).
-- A new DataFrame `bus_exam_df` is created for each exam status scenario.
+* **User Bus Number Selection**:
+  * Asks the user to select a bus number from the displayed options.
+  * Sets `terminate_algorithm` to 0, used later to check if any invalid input is encountered, if so, algorithm should be stopped prematurely.
 
-##### Normalize the Data by Bus Stop:
+* **Check for Valid Bus Number**:
+  * If the selected bus number exists in `sorted_bus_route_priorities`, it continues to the next step. If not, an error is printed, and the process is terminated.
 
-- The data is copied to a new DataFrame `df_hour` to avoid altering the original.
-- The normalize_group function is applied group-wise for each starting bus stop within the filtered data `df_hour`.
-- `df_hour_normalized` stores the normalized DataFrame by bus stop.
+* **Display Days for Selected Bus**:
+  * Extracts and displays all unique days available for the chosen bus number.
+  * Asks the user to select a day and verifies if it is valid.
 
-##### Calculate Priority Scores by Bus Stop:
+* **Display Hours for Selected Bus and Day**:
+  * If the day is valid, it retrieves and displays available hours for the selected bus and day.
+  * Asks the user to pick an hour and verifies if it is valid.
 
-- The normalized data is grouped by starting bus stop to calculate the average values for `num_people_at_bus_stop` and `overall_satisfaction`.
-- A `priority_score` column is created, calculated as the sum of normalized `num_people_at_bus_stop` and normalized `overall_satisfaction` values.
-- Normalization here ensures that `priority_score` reflects both demand and satisfaction equally, making the prioritization system fairer and more reliable across different bus stops and conditions.
+* **Display Weather Conditions for Selected Bus, Day, and Hour**:
+  * If the hour is valid, it retrieves and displays weather conditions for the selected bus, day, and hour.
+  * Asks the user to pick a weather condition and verifies if it is valid.
 
-##### Sort Bus Stops by Priority Score:
+* **Display Exam Status for Selected Bus, Day, Hour, and Weather**:
+  * If the weather condition is valid, it retrieves and displays exam status options for the selected bus, day, hour, and weather.
+  * Asks the user to pick an exam status and verifies if it is valid.
 
-- The bus stops are sorted in descending order based on `priority_score`.
-- `average_stats_by_start_sorted` holds the sorted list of bus stops for the current scenario.
+* **Retrieve and Display Final Bus Route**:
+  * If all inputs are valid, it constructs a `final_tuple` of the selected options (bus number, day, hour, weather, exam status).
+  * Retrieves the priority order of bus stops for this specific tuple from `bus_route_priorities`.
 
-##### Store the Sorted Priority in a Dictionary:
+* **Organize Final Routes**:
+  - Separates prioritized stops from the complete list of stops (`all_routes` for the selected bus).
+  - Combines prioritized stops with non-prioritized stops to form the `final_routes`, which places higher-priority stops first.
 
-- For each combination of bus number, day, hour, weather, and exam status, the sorted bus stop priority is stored in the dictionary `bus_route_priorities`.
-
-##### Sort the Dictionary:
-
-- The dictionary is sorted based on the tuple keys (bus number, day of the week, hour, weather, and exam status).
-- The result is stored in `sorted_bus_route_priorities`.
-
-##### Print the Sorted Priorities:
-
-- A loop prints out the priority order of bus stops for each bus, day, hour, weather, and exam condition, showing the optimal order of bus stops per scenario.
-
-##### Summary:
-
-- The above algorithm is designed to optimize bus stop prioritization based on survey data, taking into account factors like demand (number of people at the bus stop), user satisfaction, time of day, day of the week, weather conditions, and whether there’s an exam. By creating priority scores for each bus stop, it identifies the most important stops under specific conditions.
-
-#### User Customization Algorithm
-
-##### Dictionary Initialization:
-
-- `days_of_week`, `time_ranges`, `weather_conditions`, and `exam_statuses` are dictionaries used to map numerical or binary values to their descriptive labels (e.g., "Monday" for day 1, "Sunny" for weather 0, etc.).
-
-##### Retrieve Unique Bus Numbers:
-
-- Extracts all unique bus numbers from the `sorted_bus_route_priorities` dictionary.
-- Displays these bus numbers for the user to choose from.
-
-##### User Bus Number Selection:
-
-- Asks the user to select a bus number from the displayed options.
-- Sets `terminate_algorithm` to 0, used later to check if any invalid input is encountered, if so, algorithm should be stopped prematurely.
-
-##### Check for Valid Bus Number:
-
-- If the selected bus number exists in `sorted_bus_route_priorities`, it continues to the next step. If not, an error is printed, and the process is terminated.
-
-##### Display Days for Selected Bus:
-
-- Extracts and displays all unique days available for the chosen bus number.
-- Asks the user to select a day and verifies if it is valid.
-
-##### Display Hours for Selected Bus and Day:
-
-- If the day is valid, it retrieves and displays available hours for the selected bus and day.
-- Asks the user to pick an hour and verifies if it is valid.
-
-##### Display Weather Conditions for Selected Bus, Day, and Hour:
-
-- If the hour is valid, it retrieves and displays weather conditions for the selected bus, day, and hour.
-- Asks the user to pick a weather condition and verifies if it is valid.
-
-##### Display Exam Status for Selected Bus, Day, Hour, and Weather:
-
-- If the weather condition is valid, it retrieves and displays exam status options for the selected bus, day, hour, and weather.
-- Asks the user to pick an exam status and verifies if it is valid.
-
-##### Retrieve and Display Final Bus Route:
-
-- If all inputs are valid, it constructs a `final_tuple` of the selected options (bus number, day, hour, weather, exam status).
-- Retrieves the priority order of bus stops for this specific tuple from `bus_route_priorities`.
-
-##### Organize Final Routes:
-
-- Separates prioritized stops from the complete list of stops (`all_routes` for the selected bus).
-- Combines prioritized stops with non-prioritized stops to form the `final_routes`, which places higher-priority stops first.
-
-##### Display User Selection and Bus Stop Order:
-
+* **Display User Selection and Bus Stop Order**:
 - Displays the selected bus settings (bus number, day, time, weather, exam status) for the user’s confirmation.
 - Prints out:
   - The priority order of bus stops based on the calculated priority score.
   - The final optimized order of bus stops, which first includes priority stops followed by remaining stops.
 
-##### Summary:
-
+* **Summary**:
 - The above algorithm uses the output of 5.3.1 Bus Stop Prioritization and Sorting Algorithm and enables personalized bus route prioritization by allowing users to select criteria such as bus number, day, time, weather, and exam status. It validates each input, retrieves priority stops based on user demand and satisfaction, and outputs an optimized order of bus stops, ensuring efficient and tailored service.
 
-#### 5.2.4 Performance Metrics and Interpretation
+##### 6.2.3.3 Impact Simulation Model
 
-#### Bus Stop Prioritization and Sorting Algorithm
+#### 6.2.4 Performance Metrics and Interpretation
 
-#### User Customization Algorithm
+##### 6.2.4.1 Bus Stop Prioritization and Sorting Algorithm
 
-##### Time Complexity: Explain
+##### 6.2.4.1.1 Time Complexity:
 
-##### Space Complexity: Explain
+* **Outer Loop over Each Bus `for bus_num in unique_bus_numbers`**:
+* This loop iterates over each unique bus in `unique_bus_numbers`. Denote the number of unique bus as B.
 
-### 5.3 **Subgroup B: System Optimization and Forecasting**
+  * **Loop over Each Day `for day in bus_df['day_of_week'].unique()`**:
+  * This iterates over each unique days of the week for each bus. Denote the number of unique days as D.
 
-- Develop a model to optimise capacity allocation across the network.
-- Incorporate factors such as peak hours, special events, and seasonal variations.
+    * **Loop over Each Hour `for hour in bus_day_df['hour'].unique()`**:
+    * This iterates over each unique hours for the day. Denote the number of unique hours as H.
 
-#### 5.3.1 Modeling Techinques Considered
+      * **Loop over Each Weather Condition `for weather in bus_hour_df['weather'].unique()`**:
+      * This loop iterates over each unique weather conditions for each hour. Denote the number of unique weather conditions as W.
+
+        * **Loop over Exam Status `for has_exam in bus_weather_df['has_exam'].unique()`**:
+        * This iterates over each unique exam status for each weather condition. Denote the number of unique exam status as E.
+
+          * **Grouping and Normalization by Bus Stop `df_hour.groupby('start', group_keys=False).apply(normalize_group)`**:
+          * The `groupby` operation divides data by unique bus stops, and `apply(normalize_group)` is used to normalize the selected columns. Denote the number of unique bus stops as S.
+          * MinMaxScaler normalization on two columns `num_people_at_bus_stop` and `overall_satisfaction` is an O(N) operation. Denote the number of records per bus stop as N.
+          * Applying `normalize_group` and mean calculations for each bus stop is an O(N) operation. Denote the number of records per bus stop as N.
+          * **Sorting Bus Stops by Priority Score `average_stats_by_start.sort_values(by='priority_score', ascending=False)`**:
+          * Sorting a list of bus stops by priority_score is an O(SlogS) operation. Denote the number of unique bus stops as S.
+
+* **Dictionary Storage and Sorting `sorted(bus_route_priorities.items(), key=lambda x: (x[0][0], x[0][1], x[0][2], x[0][3], x[0][4]))`**:
+* Sorting a dictionary with K entries based on its keys has a complexity of O(KlogK), where K is the number of dictionary entries, K = B × D × H × W × E.
+
+* **Total Time Complexity**: **O((K(N + SlogS)) + O(KlogK))**, where K = B × D × H × W × E, S = number of unique bus stops and N = number of records per bus stop.
+
+##### 6.2.4.1.2 Space Complexity:
+
+* **DataFrames (e.g., `bus_df`, `bus_day_df`, `bus_hour_df`)**:
+  * Each DataFrame subset of df2 holds filtered records based on unique values in loops. The memory usage scales with O(N) for each segment. Denote the number of records per bus stop as N.
+
+* **Dictionary `bus_route_priorities`**:
+  * The dictionary bus_route_priorities stores sorted bus stop orders for each combination of factors, with K entries. Denote K = B × D × H × W × E.
+  * Each entry in the dictionary holds a list of bus stops, making the space complexity for the dictionary O(K×S), where K = B × D × H × W × E and S = number of unique bus stops.
+
+* **Total Space Complexity: **O(N + K(S))****, where N = number of records per bus stop, K = B × D × H × W × E and S = number of unique bus stops.
+
+##### 6.2.4.2 User Customization Algorithm
+
+##### 6.2.4.2.1 Time Complexity: 
+* **Mapping Initialization**:
+  * The dictionaries (`days_of_week`, `time_ranges`, `weather_conditions`, `exam_statuses`) are initialized. These operations are O(1) since they involve constant time lookups.
+* **Extracting Unique Bus Numbers**:
+  * `unique_bus_numbers` is extracted using `sorted(set([key[0] for key in sorted_bus_route_priorities.keys()]))`, which iterates through keys of sorted_bus_route_priorities.
+
+* **Nested Loops in `run_algorithm`**:
+  * The function navigates through several nested `for` loops and `if` conditions based on user inputs.
+  * Denote the number of unique bus as B.
+  * Denote the number of unique days as D.
+  * Denote the number of unique hours as H.
+  * Denote the number of unique weather conditions as W.
+  * Denote the number of unique exam status as E.
+  * Denote K = B × D × H × W × E.
+  * The maximum number of tuples in `sorted_bus_route_priorities` would then be K, which represents the total combinations of bus schedules.
+
+* **Checking Valid User Inputs using `if` Conditions**:
+  * At each stage (bus, day, hour, weather, and exam status), the code checks if the user input matches a valid option. These checks are all O(1).
+
+* **Retrieving and Sorting Priorities**:
+  * After constructing the tuple for the chosen schedule `final_tuple`, the code retrieves `bus_route` which is the list of prioritized bus stops for that schedule.
+  * Separating `bus_route` into `prioritized_stops` and `non_prioritized_stops` is O(M), where M is the total number of bus stops for a given bus.
+
+* **Total Time Complexity**: **O(K + M)**, where K = B × D × H × W × E and M = total number of bus stops for a given bus.
+
+##### 6.2.4.2.2 Space Complexity:
+* **Mapping Dictionary (`days_of_week`, `time_ranges`, `weather_conditions`, `exam_statuses`)**:
+  * Similar to above, denote K = B × D × H × W × E
+  * The dictionary contribute to O(K) space.
+
+* **Extracted Unique Bus Numbers `unique_bus_numbers`**:
+  * `unique_bus_number`s stores unique bus numbers derived from `sorted_bus_route_priorities`. Denote this as B.
+
+* **Bus Routes Dictionaries**:
+  * Let N be the total number of keys in `sorted_bus_route_priorities` and `bus_route_priorities`, which would be at most K = B × D × H × W × E based on combinations of bus numbers, days, hours, weather conditions, and exam statuses.
+  * These 2 dictionaries will collectively contribute to O(K) space.
+
+* **User Selection Variables (`selected_bus_num`, `selected_day`, `selected_hour`, `selected_weather`, `selected_exam`)**:
+  * These variables are single values used to store the user’s choices and are overwritten with each new selection. They contribute O(1) space in total.
+
+* **Extracted Unique Values per Selection (e.g., `unique_days`,`unique_hours`, `unique_weathers`, `unique_exams`)**:
+  * These sets hold unique values of days, hours, weather conditions, and exam statuses based on the current selection.
+  * Each set size depends on the possible values per category but is independent of N. They require O(D + H + W + E) space in total.
+
+* **Final Route Lists (`prioritized_stops`, `non_prioritized_stops`, `final_routes`)**:
+  * These lists hold the bus stops based on the selected route configuration.
+  * Let M represent the total number of bus stops for the selected bus.
+  * `prioritized_stops` and `non_prioritized_stops` each take O(M) space.
+  * `final_routes` combines both lists, also resulting in O(M) space.
+
+* **Total Space Complexity**: **O(K + M)**, K =  B × D × H × W × E and M = total number of bus stops for a given bus.
+
+##### 6.2.4.3 Impact Simulation Model
+
+###### 6.2.4.3.1 Time Complexity: 
+
+###### 6.2.4.3.2 Space Complexity:
+
+### 6.3 Capacity Allocation Optimization Model
+
+#### 6.3.1 Modeling Techinques Considered
 
 - Some techniques considered include linear programming, stochastic modelling, machine learning models (clustering techniques) such as K-Means, and network flow models.
 - These methods handle complexity and existing constraints in the real world, which allow for optimization that ensures resource efficiency. Models like stochastic modelling also incorporate uncertainty and variability due to factors like demand peaks, unpredictable events, and/or seasonal changes, which makes the system more resilient. These techniques can be integrated with the demand forecasting model to facilitate real-time and adaptive, efficient allocation.
 
-#### 5.3.2 Model Selection Criteria
+#### 6.3.2 Model Selection Criteria
 
 **Our group decided to use linear programming to model capacity allocation.**
 
-##### Relevance
+* **Relevance**:
+  - Linear programming effectively meets the objective of finding the optimal solution- number of
+    buses to allocate to each bus stop for every hour.
 
-- Linear programming effectively meets the objective of finding the optimal solution- number of
-  buses to allocate to each bus stop for every hour.
-
-##### Ease of Integration
-
-- Linear programming can be integrated with other modelling techniques, including the
+* **Ease of Integration**:
+  - Linear programming can be integrated with other modelling techniques, including the
   (previously-defined) demand forecasting model, to enhance decision-making. This ensures
   capacity allocation also takes into account demand size, and remains optimal by minimising
   the number of unmet demands.
 
-##### Flexibility
-
-- Linear programming depends on parameters that can be defined and adjusted. This
+* **Flexibility**:
+  - Linear programming depends on parameters that can be defined and adjusted. This
   increases the model's adaptability to changes, including demand forecasts during
   peak hours, special events, and seasonal variations.
 
-##### Feasibility
+* **Feasibility**:
+  - Linear programming can manage multiple constraints, which increases its feasibility in handling the complexity of the real world.
 
-- Linear programming can manage multiple constraints, which increases its feasibility
-  in handling the complexity of the real world.
+#### 6.3.3 Detailed Description of Chosen Model
 
-#### 5.3.3 Detailed Description of Chosen Model
+* **Defining model components**:
+  - We begin by defining the components of the model. The model’s objective is to minimise the unmet demand of passengers using the NUS Internal Shuttle Bus (ISB) Services. This implies (indirectly) reducing passenger waiting times caused by missed buses due to overcrowding. A constraint identified in this problem and model is that the total number of buses must not exceed the maximum fleet capacity. Lastly, the model’s decision variable, the choice that is being controlled in order to achieve the objective, is the number of buses allocated to each bus stop for each hour.
 
-##### Defining model components
-- We begin by defining the components of the model. The model’s objective is to minimise the unmet demand of passengers using the NUS Internal Shuttle Bus (ISB) Services. This implies (indirectly) reducing passenger waiting times caused by missed buses due to overcrowding. A constraint identified in this problem and model is that the total number of buses must not exceed the maximum fleet capacity. Lastly, the model’s decision variable - the choice that is being controlled in order to achieve the objective - is the number of buses allocated to each bus stop for each hour.
+* **Input: Forecasted Demand**:
+  - From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an array which has a number of rows equal to the number of bus stops `num_routes` and a number of columns equal to the number of hourly intervals `num_time_slots` in the analysis.
+  - We initialised `(num_routes, num_time_slots)` as the shape of `demand_forecast`.
+  - Sample `demand_forecast`
+    - ` [  
+       [30, 50, 80, 100], # Bus stop A demand across four hours  
+       [40, 70, 90, 120], # Bus stop B demand across four hours  
+       [20, 60, 85, 110], # Bus stop C demand across four hours  
+       ]
+  - We flattened `demand_forecast` for linear programming.
+  - This is assigned to `flattened_demand`.
 
-##### Input: Forecasted Demand
+* **Setting up objective coefficients**:
+  - Objective coefficients are the values associated with (multiplied to) the decision variables in linear
+    programming. They quantify how much each variable contributes in the overall optimization.
+  - Our optimization problem is a minimization problem. Thus, the coefficients are set to
+    `-flattened_demand`.
+  - This is assigned to `objective_coefficients`.
 
-- From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an array which has a number of rows equal to the number of bus stops `num_routes` and a number of columns equal to the number of hourly intervals `num_time_slots` in the analysis. 
-- We initialised `(num_routes, num_time_slots)` as the shape of `demand_forecast`.
-- Sample `demand_forecast`
-  - ` [  
-     [30, 50, 80, 100], # Bus stop A demand across four hours  
-     [40, 70, 90, 120], # Bus stop B demand across four hours  
-     [20, 60, 85, 110], # Bus stop C demand across four hours  
-     ]
-- We flattened `demand_forecast` for linear programming.
-- This is assigned to `flattened_demand`.
+* **Setting up constraints**:
+  - We initialised the (average) capacity of each bus `bus_capacity` and the maximum number of buses available for deployment `max_buses` since these values are fixed and not variable.
+  - We have estimated `bus_capacity` to be 50 and let `max_buses` to be 6.
+  - `max_buses` is estimated based on the assumption that ISB is able and willing to expand its fleet size to twice the current size as part of achieving the business objectives.
+  - There are 2 types of constraints in linear programming: equality constraints and inequality constraints.
+  - An equality constraint refers to a condition that requires a variable to hold exactly at a specified value.
+    - We defined the left-hand side of the equality `A_eq` to be a matrix of ones, with 1 row and (`num_routes` \* `num_time_slots`) columns. The right-hand side `b_eq` is an array containing `max_buses`.
+  - An inequality constraint, on the other hand, allows for a range of possible values. In defining inequality constraints, we consider the upper bounds.
+    - We defined the left-hand side of the inequality `A_ub` to be an identity matrix- a matrix in which all of its diagonal elements are ones and the rest are zeros- having (`num_routes` \* `num_time_slots`) rows and columns. The right hand side `b_ub` (upper bound) is `flattened_demand`.
 
-##### Setting up objective coefficients
+* **Setting up bounds**:
+  - We set up the bounds for the decision variables of the problem. The lower bound is set to 0, while the upper bound is set to `bus_capacity`.
+  - This also ensures that the total number of people boarding the bus, as accounted for in the model's optimisation, does not exceed its capacity for safety and practical purposes.
+  - The bounds are stored as a tuple `(0, bus_capacity)` in an array with 1 row and (`num_routes` \* `num_time_slots`) columns.
 
-- Objective coefficients are the values associated with (multiplied to) the decision variables in linear
-  programming. They quantify how much each variable contributes in the overall optimization.
-- Our optimization problem is a minimization problem. Thus, the coefficients are set to
-  `-flattened_demand`.
-- This is assigned to `objective_coefficients`.
+* **Model output**:
+  - The objective coefficients, constraints and bounds are input into the function `linprog` with `method = “highs”`. The output is assigned to `result`.
+  - If the optimization is a success, the model reshapes `result` to the initial `demand_forecast` shape, and assigns it to `allocated_buses`. The model then prints out the message “Optimised Capacity Allocation (Buses per Route per Time Slot): `allocated_buses`”.
+  - If the optimization fails, the model prints out the message "Optimization failed: `result.message`”, where `result.message` is the error message.
 
-##### Setting up constraints
+#### 6.3.4 Performance Metrics and Interpretation
 
-- We initialised the (average) capacity of each bus `bus_capacity` and the maximum number of buses available for deployment `max_buses` since these values are fixed and not variable.
-- We have estimated `bus_capacity` to be 50 and let `max_buses` to be 6.
-- `max_buses` is estimated based on the assumption that ISB is able and willing to expand its fleet size to twice the current size as part of achieving the business objectives.
+##### 6.3.4.1 Time Complexity: Explain
 
-- There are 2 types of constraints in linear programming: equality constraints and inequality constraints.
-- An equality constraint refers to a condition that requires a variable to hold exactly at a specified value.
-  - We defined the left-hand side of the equality `A_eq` to be a matrix of ones, with 1 row and (`num_routes` \* `num_time_slots`) columns. The right-hand side `b_eq` is an array containing `max_buses`.
-- An inequality constraint, on the other hand, allows for a range of possible values. In defining inequality constraints, we consider the upper bounds.
-  - We defined the left-hand side of the inequality `A_ub` to be an identity matrix- a matrix in which all of its diagonal elements are ones and the rest are zeros- having (`num_routes` \* `num_time_slots`) rows and columns. The right hand side `b_ub` (upper bound) is `flattened_demand`.
+##### 6.3.4.2 Space Complexity: Explain
 
-##### Setting up bounds
 
-- We set up the bounds for the decision variables of the problem. The lower bound is set to 0, while the upper bound is set to `bus_capacity`.
-- This also ensures that the total number of people boarding the bus, as accounted for in the model's optimisation, does not exceed its capacity for safety and practical purposes.
-- The bounds are stored as a tuple `(0, bus_capacity)` in an array with 1 row and (`num_routes` \* `num_time_slots`) columns.
+### 6.4 Evaluation
 
-##### Model output
+#### 6.4.1 Demand Forecasting Model
 
-- The objective coefficients, constraints and bounds are input into the function `linprog` with `method = “highs”`. The output is assigned to `result`.
-- If the optimization is a success, the model reshapes `result` to the initial `demand_forecast` shape, and assigns it to `allocated_buses`. The model then prints out the message “Optimised Capacity Allocation (Buses per Route per Time Slot): `allocated_buses`”.
-- If the optimization fails, the model prints out the message "Optimization failed: `result.message`”, where `result.message` is the error message.
+##### 6.4.1.1 Evaluation of model performance against business objectives
 
-#### 5.3.4 Performance Metrics and Interpretation
+##### 6.4.1.2 Limitations of Current Approach
 
-#### Time Complexity: Explain
-- For a typical case, the expected time complexity is O(N^3), where N = (`num_routes` x `num_time_slots`). This is based on the average-case complexity.
-  - This accounts for the main computational effort of the linear programming optimization.
+##### 6.4.1.3 Suggestions for Model Improvements
 
-#### Space Complexity: Explain
-- Space complexity is O(N^2), where N = (`num_routes` x `num_time_slots`).
-  - This is due to the storage requirements for the constraint matrices.
 
-#### Overall
-- The time and space complexity are generally reasonable. However, it is worth noting that it can be challenging if N (i.e. the number of decision variables) grows too large.
-  - For time complexity O(N^3), if N becomes very large (e.g. number of routes and time slots increase significantly), the time required to run the model grows rapidly, potentially making it too slow for real-time applications.
-  - For space complexity O(N^2), large N would similarly strain memory resources.
+#### 6.4.2 Route Optimization
 
-- For small to moderate N, the model is good and would provide precise results. For large N, it can potentially be problematic.
-  - Since the number of decision variables in this problem can be controlled by adjusting the granularity of allocation parameters — such as carefully selecting the number of routes and time slots considered at a time — the model remains reasonable and computationally efficient.
+##### 6.4.2.1 Bus Stop Prioritization and Sorting Algorithm, User Customization Algorithm
 
-### 5.4 **Subgroup B: System Optimization and Forecasting**
+###### 6.4.2.1.1 Evaluation of model performance against business objectives
 
+* **Demand Prediction Accuracy**:
+  * By segmenting data based on detailed features (bus, day, hour, weather, and exam status), the algorithm provides a granular view of demand patterns.
+  * This level of detail supports robust demand forecasting, allowing for better resource allocation during peak and off-peak periods, reducing operational costs, and improving the user experience by managing overcrowding effectively.
 
+* **Scalability**:
+  * The algorithm’s complexity depends heavily on the number of combinations of factors (K) and the number of stops (S). If K or S grows significantly, the runtime can become a constraint, especially with high data volume (N records per stop).
+  * For large-scale systems with hundreds of bus stops and numerous combinations, this algorithm could become computationally intensive and may need optimization (e.g., parallel processing) to run efficiently in real-time or near real-time. Such enhancements would be necessary for dynamic adjustments but could increase operational costs.
+  * The space complexity O(N+K(S)) implies high memory usage, especially as unique factor combinations (K) and bus stops (S) increase. This high dimensionality can lead to excessive memory needs, making the algorithm less scalable and costly to implement in large transit systems.
 
-#### 5.4.1 Modeling Techniques considered
-- Some techniques considered include *Traditional Statistical Models* such as *Regression Analysis* and *Seasonal Decomposition of Time Series (STL)*, or *Machine Learning Models* such as *Linear Regression* and *Random Forest*
-- These models are structured to capture the nuances of demand patterns, improving the accuracy of forecasts. Models like *Random Forest* are also able to capture categorical variables to incorporate into the predictions.
+* **Operational Cost Management**:
+  * MinMaxScaler and normalization steps are O(N) operations, providing necessary preprocessing for effective comparisons without excessive complexity.
+  * Grouping and normalization, combined with sorting steps, may incur computational costs, especially for larger datasets.
+  * These costs can be justified if the model significantly improves scheduling and capacity management. However, if the scale grows, costs could outweigh benefits, so monitoring computational resources and runtime is essential for balancing cost-effectiveness.
 
-#### 5.4.2 Model Selection Criteria
+* **Flexibility in Route Adjustment**:
+  * The priority-based ranking system allows dynamic route adjustments based on changing factors like weather and exam schedules, aligning with the objective of flexible, real-time optimization.
+  * This flexibility allows transport authorities to respond to real-time data, potentially minimizing underused capacity during off-peak times or adjusting routes to better serve users during high-demand periods, directly impacting user satisfaction and loyalty.
 
-**Our Team has decided to go ahead with utilising the Random Forest as our Demand Forecasting Model**
+###### 6.4.2.1.2 Limitations of Current Approach
 
+* **Over-simplification**:
+  * The calculation of `priority_score` using only two factors (number of people and user satisfaction) might not capture other important variables, such as bus stop accessibility, operational constraints, etc.
 
-#### 5.4.3 Detailed Description 
+* **Scalability**:
+  * The nested loops iterating over buses, days, hours, weather conditions, and exam statuses can lead to a combinatorial explosion, making the algorithm inefficient with large datasets or when many unique combinations exist.
 
-#### 5.4.4 Model performance metrics and intepretation
+* **Lack of Real-time Updates**:
+  * The algorithm might not be very apt at incorporating real-time changes, such as sudden shifts in demand or changes in weather, which can affect bus stop prioritization. Outdated data can lead to suboptimal prioritization
 
+* **User Input Validity**:
+  * The algorithm depends on users making correct selections. If users misunderstand the options or input invalid choices (even if they are checked), it can lead to frustration and a poor user experience.
 
-## 6. Evaluation
+* **Limited Customizations**:
+  * Although the algorithm allows for some user customization, it may not cover all potential user preferences and scenarios, limiting its practicaly and user experience.
 
-### 6.2 **Subgroup B: System Optimization and Forecasting**
+##### 6.4.2.1.3 Suggestions for Model Improvements
 
-- What changes to routes and schedules would optimize the public transport network?
-- Create an algorithm to optimize route planning based on predicted demand and user preferences.
+* **Addressing Over-simplication**:
+  * Incorporate additional factors into the `priority_score`, such as bus stop accessibility ratings, operational constraints, etc. This could provide a more comprehensive view of each bus stop's importance.
 
-#### 6.2.1 Evaluation of model performance against business objectives
+* **Addressing Scalability**:
+  * Implement optimization techniques such as memoization or heuristics to reduce the number of calculations needed by avoiding redundant computations.
 
--
+* **Addressing Lack of Real-time Updates**:
+  * Develop a mechanism to dynamically adjust priorities based on real-time information, such as changes in demand or environmental conditions.
 
-#### 6.2.1 Limitations of current approaches
+* **Addressing User Input Validity**:
+  * Design a more intuitive user interface with clear instructions and tooltips to guide users in making their selections correctly.
 
-#### Bus Stop Prioritzation and Sorting Algorithm
+* **Addressing Limited Customizations**:
+  * Allow users to specify additional criteria for customization and even scenarios that are not covered by our current survey data.
 
-##### Over-simplification:
+##### 6.4.2.2 Impact Simulation Model
 
-- The calculation of `priority_score` using only two factors (number of people and user satisfaction) might not capture other important variables, such as bus stop accessibility, operational constraints, etc.
+###### 6.4.2.2.1 Evaluation of model performance against business objectives
 
-##### Scalability:
+###### 6.4.2.2.2 Limitations of Current Approach
 
-- The nested loops iterating over buses, days, hours, weather conditions, and exam statuses can lead to a combinatorial explosion, making the algorithm inefficient with large datasets or when many unique combinations exist.
+##### 6.4.2.2.3 Suggestions for Model Improvements
 
-##### Lack of Real-time Updates:
+##### 6.4.2.3 Capcacity Allocation Optimization Model
 
-- The algorithm might not be very apt at incorporating real-time changes, such as sudden shifts in demand or changes in weather, which can affect bus stop prioritization. Outdated data can lead to suboptimal prioritization
+###### 6.4.2.3.1 Evaluation of model performance against business objectives
 
-#### User Customization Algorithm
+* The model minimises the number of passengers unable to board the bus each hour (and maximises bus utilisation) without exceeding capacity. This effectively reduces wait times for passengers and increases their satisfaction levels, given the negative correlation between wait time and user satisfaction.
+* Keeping optimization upper bound at the (average) capacity of the bus also ensures that the safety of the ISB service is accounted for and remains a top priority.
 
-##### User Input Validity:
+###### 6.4.2.3.2 Limitations of Current Approach
 
-- The algorithm depends on users making correct selections. If users misunderstand the options or input invalid choices (even if they are checked), it can lead to frustration and a poor user experience.
+* **Simplified assumptions**:
+  * The model does not account for potential disruptions, such as traffic delays and mechanical failures. The output might be too optimistic. As a result, in these instances, the model could overestimate the number of passengers that can be served, and in turn, fall short of objectives.
+  * The assumption made for the value of `max_buses` did not take into account other constraints such as budget and number of drivers.
 
-##### Limited Customizations:
+##### 6.4.2.3.3 Suggestions for Model Improvements
 
-- Although the algorithm allows for some user customization, it may not cover all potential user preferences and scenarios, limiting its practicaly and user experience.
+* **Feedback Loops**:
+  * Mechanisms can be implemented to regularly update the model based on actual data and user feedback. This allows for the identification and refinement of gaps to improve the model’s accuracy and effectiveness.
+  * However, this project is constrained by limited access to the actual ISB service for testing, as well as by the time needed to collect additional data and feedback over time.
 
-### 6.2.2 Suggestions for algorithm improvements
+* **Sensitivity Analysis**:
+  * Sensitivity analyses can be conducted to understand how variations in `max_buses` affect the results. This would allow for determining the number of additional shuttle buses ISB should acquire in order to optimise capacity allocation, for a given budget and other relevant constraints, assuming the bus type remains the same and the bus capacity does not change.
+  * However, in this project, we are constrained by limited information on ISB and its resources.
 
-#### Bus Stop Prioritzation and Sorting Algorithm
-
-##### Addressing Over-simplication:
-
-- Incorporate additional factors into the `priority_score`, such as bus stop accessibility ratings, operational constraints, etc. This could provide a more comprehensive view of each bus stop's importance.
-
-##### Addressing Scalability:
-
-- Implement optimization techniques such as memoization or heuristics to reduce the number of calculations needed by avoiding redundant computations.
-
-##### Addressing Lack of Real-time Updates:
-
-- Develop a mechanism to dynamically adjust priorities based on real-time information, such as changes in demand or environmental conditions.
-
-#### User Customization Algorithm
-
-##### Addressing User Input Validity:
-
-- Design a more intuitive user interface with clear instructions and tooltips to guide users in making their selections correctly.
-
-##### Addressing Limited Customizations:
-
-- Allow users to specify additional criteria for customization and even scenarios that are not covered by our current survey data.
-
-### 6.3 **Subgroup B: System Optimization and Forecasting**
-
-- Develop a model to optimise capacity allocation across the network.
-- Incorporate factors such as peak hours, special events, and seasonal variations.
-
-#### 6.3.1 Evaluation of model performance against business objectives
-
-- The model minimises the number of passengers unable to board the bus each hour (and maximises bus utilisation) without exceeding capacity. This effectively reduces wait times for passengers and increases their satisfaction levels, given the negative correlation between wait time and user satisfaction.
-- Keeping optimization upper bound at the (average) capacity of the bus also ensures that the safety of the ISB service is accounted for and remains a top priority.
-
-#### 6.3.2 Limitations of current approaches
-
-##### Simplified assumptions
-
-- The model does not account for potential disruptions, such as traffic delays and mechanical failures. The output might be too optimistic. As a result, in these instances, the model could overestimate the number of passengers that can be served, and in turn, fall short of objectives.
-- The assumption made for the value of `max_buses` did not take into account other constraints such as budget and number of drivers.
-
-#### 6.3.3 Suggestions for model improvements
-
-##### Feedback Loops
-
-- Mechanisms can be implemented to regularly update the model based on actual data and user feedback. This allows for the identification and refinement of gaps to improve the model’s accuracy and effectiveness.
-- However, this project is constrained by limited access to the actual ISB service for testing, as well as by the time needed to collect additional data and feedback over time.
-
-##### Sensitivity Analysis
-
-- Sensitivity analyses can be conducted to understand how variations in `max_buses` affect the results. This would allow for determining the number of additional shuttle buses ISB should acquire in order to optimise capacity allocation, for a given budget and other relevant constraints, assuming the bus type remains the same and the bus capacity does not change.
-- However, in this project, we are constrained by limited information on ISB and its resources.
 
 ## 7. Deployment
 

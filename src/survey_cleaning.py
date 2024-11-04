@@ -53,7 +53,7 @@ def format_dates(data, col_names):  # col_names: names of all columns with dates
 
 def correct_indiv_time(trip_time):
     time_only = trip_time.time()    # get only the timestamp from datetime
-    FIRST_BUS_TIME, LAST_BUS_TIME = datetime.time(hour=7, minute=0), datetime.time(hour=23, minute=0) # just general operating hours for now (7 am - 11 pm), we can change this in the future if we want
+    FIRST_BUS_TIME, LAST_BUS_TIME = config.FIRST_BUS_TIME, config.LAST_BUS_TIME
     if time_only < FIRST_BUS_TIME:
         trip_time += datetime.timedelta(hours=12)   # change invalid AMs to PMs
     elif time_only > LAST_BUS_TIME:
@@ -164,7 +164,7 @@ def clean_other_feedback_data(other_feedback_data):
     print("Other feedback data cleaned!\n")
 
 
-def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars):
+def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars, save_folder):
     for var_index in bar_chart_vars:
         var_name = data.columns[var_index]
         plt.figure(figsize=(12,6))
@@ -173,7 +173,7 @@ def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars):
         plt.xlabel("Count")
         plt.ylabel(var_name)
         plt.tight_layout()
-        plt.show()
+        plt.savefig(os.path.join(os.path.dirname(__file__), save_folder, f"initial_{var_name}_bar_chart.png"))
 
     for var_index in boxplot_vars:
         var_name = data.columns[var_index]
@@ -183,16 +183,17 @@ def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars):
         plt.xlabel("Count")
         plt.ylabel(var_name)
         plt.tight_layout()
-        plt.show()
+        plt.savefig(os.path.join(os.path.dirname(__file__), save_folder, f"initial_{var_name}_bar_chart.png"))
 
     for var_index in histogram_vars:
         var_name = data.columns[var_index]
+        plt.figure(figsize=(12,6))
         data.iloc[:, var_index].plot(kind="hist")
         plt.title(f"Histogram for {data.columns[var_index]}")
         plt.xlabel(var_name)
         plt.ylabel("Frequency")
         plt.tight_layout()
-        plt.show()
+        plt.savefig(os.path.join(os.path.dirname(__file__), save_folder, f"initial_{var_name}_bar_chart.png"))
 
 
 def remove_outliers(data, year_of_study, trips_per_day, num_people_at_bus_stop=None):
@@ -233,8 +234,8 @@ def main():
     clean_other_feedback_data(other_feedback_data)
 
     # Conduct preliminary data exploration
-    # visualise_data(trip_data, bar_chart_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], boxplot_vars=[4, 5, 13, 14], histogram_vars=[15, 16, 17, 18, 19, 20])    # omit date and time column
-    # visualise_data(other_feedback_data, bar_chart_vars=[0, 1, 2, 3, 7], boxplot_vars=[4, 5], histogram_vars=[])    # omit date column
+    visualise_data(trip_data, bar_chart_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], boxplot_vars=[4, 5, 13, 14], histogram_vars=[15, 16, 17, 18, 19, 20], save_folder="../visualisations/initial_data_exploration/")    # omit date and time column
+    visualise_data(other_feedback_data, bar_chart_vars=[0, 1, 2, 3, 7], boxplot_vars=[4, 5], histogram_vars=[], save_folder="../visualisations/initial_data_exploration/")    # omit date column
 
     # Remove outliers
     remove_outliers(trip_data, year_of_study="year", trips_per_day="trips_per_day", num_people_at_bus_stop="num_people_at_bus_stop")
