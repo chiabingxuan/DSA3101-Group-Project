@@ -1,0 +1,611 @@
+ID,Name,Email,year,major,date,time,on_campus,main_reason_for_taking_isb,trips_per_day,duration_per_day,has_exam,start,end,bus_num,weather,num_people_at_bus_stop,waiting_time,waiting_time_satisfaction,crowdedness,crowdedness_satisfaction,comfort,safety,overall_satisfaction
+0,Jennifer Walker,jenniferwalker@example.org,Year 1,data science and analytics,16/9/2024,1/1/1900 8:50,No,To go to class,2,5,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,20,6,7,9,7,7,9,8
+1,Jamie Barron,jamiebarron@example.net,Year 3,data science and analytics,16/9/2024,1/1/1900 9:30,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,10,5,7,8,4,4,8,6
+2,Mary Greene,marygreene@example.org,Year 3,data science and analytics,17/9/2024,1/1/1900 16:00,No,To go to MRT,4,30,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,20,10,4,9,3,4,6,5
+3,Brianna Turner,briannaturner@example.org,Year 3,data science and analytics,19/9/2024,1/1/1900 14:00,No,To go to MRT,2,25,No,COM3,LT27 / S17,D2,Sunny,15,5,6,6,6,7,8,7
+4,Mary Perez,maryperez@example.org,Year 4,data science and analytics,19/9/2024,1/1/1900 18:53,No,To go to class,2,5,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,13,3,8,8,6,7,10,8
+5,Jennifer Smith,jennifersmith@example.net,Year 4,environmental studies,19/9/2024,1/1/1900 15:30,Yes,To go to class,4,30,No,UTown,LT27 / S17,D2,Sunny,50,15,4,8,5,3,7,5
+6,Mrs. April Foster,mrs.aprilfoster@example.net,Year 3,computer science,19/9/2024,1/1/1900 13:45,No,To go to class,1,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,7,5,8,10,5,4,7,5
+7,Erika Mercer,erikamercer@example.com,Year 1,data science and analytics,20/9/2024,1/1/1900 7:50,No,To go to class,2,7,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,6,4,9,4,3,6,6
+8,Jennifer Wood,jenniferwood@example.net,Year 2,life sciences,20/9/2024,1/1/1900 11:40,Yes,To go to class,4,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A2,Sunny,20,5,10,7,7,5,6,5
+9,Bradley Matthews,bradleymatthews@example.net,Year 3,business,20/9/2024,1/1/1900 11:30,No,To go to MRT,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,15,5,7,8,4,5,5,6
+10,Victoria Adams,victoriaadams@example.net,Year 3,dentistry,24/9/2024,1/1/1900 17:00,No,To go for meals,1,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,30,9,7,6,6,5,4
+11,Henry Romero,henryromero@example.org,Year 3,dentistry,25/9/2024,1/1/1900 7:30,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,20,Yes,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,60,10,8,7,8,6,7,7
+12,Corey Cooper,coreycooper@example.net,Year 1,data science and analytics,26/9/2024,1/1/1900 15:00,No,To go to class,2,7,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Rainy,10,5,5,5,6,7,7,7
+13,James Park,jamespark@example.com,Year 1,data science and analytics,26/9/2024,1/1/1900 11:00,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Rainy,15,7,8,10,4,7,5,9
+14,Elizabeth Hart,elizabethhart@example.net,Year 2,data science and analytics,26/9/2024,1/1/1900 11:00,Yes,To go to class,6,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,30,4,8,9,3,3,4,5
+15,Victor Moore,victormoore@example.net,Year 3,life sciences,26/9/2024,1/1/1900 14:00,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Rainy,30,10,3,7,3,3,5,3
+16,Lauren Graham,laurengraham@example.net,Year 3,nursing,26/9/2024,1/1/1900 12:30,No,To go to class,2,40,No,LT27 / S17,IT / CLB,A1,Rainy,40,6,4,8,2,2,6,4
+17,Stephen Hudson,stephenhudson@example.com,Year 2,data science and analytics,26/9/2024,1/1/1900 11:00,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Rainy,20,7,6,8,5,6,6,6
+18,Matthew Jordan,matthewjordan@example.org,Year 2,business,26/9/2024,1/1/1900 11:45,Yes,To go to class,2,30,No,UTown,BIZ2 / Opp HSSML,D1,Sunny,30,15,4,9,6,4,9,6
+19,Nicholas Dickson,nicholasdickson@example.net,Year 2,social work,27/9/2024,1/1/1900 10:02,No,To go to class,5,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,10,4,8,4,8,7,7,8
+20,Gregory Molina DDS,gregorymolinadds@example.net,Year 3,data science and analytics,27/9/2024,1/1/1900 10:00,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A2,Sunny,50,5,10,10,5,10,6,7
+21,William French,williamfrench@example.com,Year 4,nursing,27/9/2024,1/1/1900 10:00,No,To go to class,2,5,No,LT27 / S17,IT / CLB,A1,Sunny,10,7,5,7,4,4,6,5
+22,Crystal Matthews,crystalmatthews@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 11:00,Yes,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,5,1,10,1,10,10,10,10
+23,Robert Tran,roberttran@example.net,Year 3,data science and analytics,27/9/2024,1/1/1900 9:00,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A2,Rainy,50,20,1,10,1,1,1,1
+24,Mary Watson,marywatson@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 10:30,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,5,3,7,3,7,7,7,7
+25,Hunter Cunningham,huntercunningham@example.net,Year 3,data science and analytics,27/9/2024,1/1/1900 13:00,Yes,To go for meals,4,60,No,UHC / Opp UHC,UTown,D2,Sunny,40,15,3,8,3,3,3,3
+26,Daniel Johnson,danieljohnson@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 18:00,Yes,To go for meals,4,15,No,UHC / Opp UHC,UTown,D2,Sunny,40,20,3,8,3,3,3,3
+27,Kimberly Young,kimberlyyoung@example.net,Year 1,computer science,27/9/2024,1/1/1900 12:00,Yes,To go to class,2,60,No,UTown,LT27 / S17,D2,Sunny,30,10,8,4,8,9,9,9
+28,Michael Clark,michaelclark@example.net,Year 3,life sciences,27/9/2024,1/1/1900 11:45,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,6,0,10,5,8,7,8,8
+29,James Lamb,jameslamb@example.org,Year 1,geography,27/9/2024,1/1/1900 14:00,Yes,To go to class,2,10,No,UTown,LT27 / S17,D2,Sunny,10,3,8,3,8,8,8,8
+30,Brenda Hall,brendahall@example.org,Year 1,geography,27/9/2024,1/1/1900 14:00,Yes,To go to class,2,10,No,UTown,LT27 / S17,D2,Rainy,35,20,2,9,2,2,2,2
+31,Martin Giles,martingiles@example.org,Year 3,psychology,27/9/2024,1/1/1900 10:00,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,5,7,7,7,7,9,7
+32,Michelle Baker,michellebaker@example.org,Year 2,computer science,27/9/2024,1/1/1900 11:00,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,20,10,10,5,5,5,7,7
+33,Thomas Hunter,thomashunter@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 10:00,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,50,6,8,5,5,6,5,5
+34,Jessica Holmes,jessicaholmes@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 10:30,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,10,8,5,3,8,5,9,6
+35,Jennifer Burnett,jenniferburnett@example.org,Year 2,data science and analytics,27/9/2024,1/1/1900 15:00,No,To go to CCA sessions,4,18,No,UTown,UHC / Opp UHC,D2,Sunny,15,5,7,5,7,6,6,6
+36,Brianna Byrd,briannabyrd@example.net,Year 1,mathematics,27/9/2024,1/1/1900 15:30,Yes,To go to class,4,30,No,LT27 / S17,IT / CLB,A1,Sunny,50,8,7,8,5,4,7,6
+37,Randy Hinton,randyhinton@example.com,Year 4,chemistry,27/9/2024,1/1/1900 7:30,No,To go to class,2,5,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Rainy,20,5,5,8,5,5,9,7
+38,Thomas Mcknight,thomasmcknight@example.org,Year 1,law,28/9/2024,1/1/1900 8:30,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,20,10,6,8,4,6,8,7
+39,Justin Keller,justinkeller@example.com,Year 2,computer science,29/9/2024,1/1/1900 13:12,Yes,To go to class,2,30,No,UTown,LT27 / S17,D2,Sunny,10,10,6,7,5,8,6,5
+40,Dr. Heather Benton,dr.heatherbenton@example.com,Year 1,data science and analytics,30/9/2024,1/1/1900 7:35,No,To go to class,4,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Rainy,30,6,5,8,4,5,7,7
+41,John Andrews,johnandrews@example.org,Year 3,data science and analytics,30/9/2024,1/1/1900 9:30,No,To go to class,3,35,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,3,8,8,3,4,7,6
+42,Edward Berry,edwardberry@example.org,Year 3,data science and analytics,30/9/2024,1/1/1900 11:30,No,To go to class,4,30,Yes,UTown,UHC / Opp UHC,D2,Sunny,30,2,9,5,8,8,9,9
+43,Deanna Howard,deannahoward@example.com,Year 1,data science and analytics,30/9/2024,1/1/1900 7:45,No,To go to MRT,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,25,10,3,3,2,3,3,2
+44,Barbara Wilson,barbarawilson@example.net,Year 1,sociology,30/9/2024,1/1/1900 9:00,Yes,To go to class,4,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,5,7,4,4,4,4,5,4
+45,Andrew Choi,andrewchoi@example.org,Year 3,data science and analytics,30/9/2024,1/1/1900 13:50,No,To go to MRT,2,25,Yes,UHC / Opp UHC,LT27 / S17,D2,Sunny,35,5,7,9,3,3,6,4
+46,Shannon Williams,shannonwilliams@example.org,Year 3,data science and analytics,30/9/2024,1/1/1900 14:00,Yes,To go to class,2,10,Yes,UHC / Opp UHC,LT27 / S17,A2,Sunny,10,3,8,4,9,8,8,8
+47,John Watkins,johnwatkins@example.com,Year 1,data science and analytics,30/9/2024,1/1/1900 9:30,No,To go to class,1,5,No,LT27 / S17,UTown,D2,Sunny,20,5,7,10,5,5,6,6
+48,Francisco Wilson,franciscowilson@example.com,Year 2,computer science,30/9/2024,1/1/1900 17:00,No,To go to class,1,5,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,5,7,7,7,7,8,7
+49,Amber Jones,amberjones@example.com,Year 2,computer science,30/9/2024,1/1/1900 13:30,No,To go to class,2,30,No,LT27 / S17,LT13 / Ventus,A2,Sunny,10,4,6,8,5,4,5,6
+50,Anthony Singh,anthonysingh@example.org,Year 2,computer science,30/9/2024,1/1/1900 16:00,No,To go to class,2,10,No,COM3,LT27 / S17,D2,Sunny,35,7,5,8,6,5,5,6
+51,Kenneth Peterson,kennethpeterson@example.net,Year 2,economics,30/9/2024,1/1/1900 11:55,Yes,To go to class,4,30,Yes,PGP,UTown,D2,Sunny,10,10,7,5,3,6,8,6
+52,Harry Boyd,harryboyd@example.org,Year 2,data science and analytics,30/9/2024,1/1/1900 11:40,Yes,To go to MRT,4,10,Yes,UHC / Opp UHC,LT27 / S17,D2,Sunny,20,10,6,9,5,5,8,7
+53,Richard Oneill,richardoneill@example.net,Year 2,data science and analytics,1/10/2024,1/1/1900 21:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,10,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,10,5,8,3,8,8,8,8
+54,Roger Bailey,rogerbailey@example.org,Year 2,data science and analytics,1/10/2024,1/1/1900 10:00,Yes,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A1,Sunny,20,8,6,6,5,5,5,5
+55,Colton Taylor,coltontaylor@example.net,Year 2,history,1/10/2024,1/1/1900 10:30,No,To go to class,4,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,10,4,9,4,4,4,4
+56,Angela Baird,angelabaird@example.net,Year 3,data science and analytics,1/10/2024,1/1/1900 11:30,No,To go to MRT,3,35,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,15,8,4,2,8,8,9,8
+57,Alexandra Mitchell,alexandramitchell@example.com,Year 3,data science and analytics,1/10/2024,1/1/1900 16:00,No,To go to class,2,25,Yes,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,20,5,6,8,3,4,7,6
+58,Anna Chaney,annachaney@example.net,Year 4,mechanical engineering,1/10/2024,1/1/1900 11:15,No,All of the above,2,10,No,IT / CLB,UTown,D1,Rainy,20,7,5,9,5,5,5,5
+59,Nathan Rios,nathanrios@example.org,Year 3,data science and analytics,1/10/2024,1/1/1900 15:40,No,To go to class,3,40,Yes,LT13 / Ventus,LT27 / S17,A1,Sunny,40,4,6,9,6,8,9,10
+60,Jordan Martinez,jordanmartinez@example.org,Year 1,political science,1/10/2024,1/1/1900 18:00,No,To go to CCA sessions,1,5,No,IT / CLB,UHC / Opp UHC,A2,Sunny,30,5,7,9,5,2,7,6
+61,Joel Olson,joelolson@example.com,Year 1,malay studies,1/10/2024,1/1/1900 11:40,No,To go to class,1,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A2,Sunny,45,1,8,9,4,4,7,7
+62,Kara James,karajames@example.net,Year 1,anthropology,1/10/2024,1/1/1900 15:40,No,To go to CCA sessions,1,5,No,IT / CLB,LT27 / S17,A2,Sunny,30,4,10,8,6,4,10,9
+63,Heather Alexander,heatheralexander@example.org,Year 1,life sciences,1/10/2024,1/1/1900 9:50,No,To go to class,2,15,No,IT / CLB,LT27 / S17,A2,Sunny,0,8,3,1,10,10,10,6
+64,Mr. Charles Brown,mr.charlesbrown@example.com,Year 3,geography,1/10/2024,1/1/1900 8:22,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,18,5,7,4,5,7,8,7
+65,Angela Moore MD,angelamooremd@example.org,Year 1,pharmaceutical science,1/10/2024,1/1/1900 9:40,Yes,To go to class,3,60,No,LT13 / Ventus,LT27 / S17,A1,Sunny,10,4,7,4,6,7,8,8
+66,Nicole Hill,nicolehill@example.org,Year 4,economics,1/10/2024,1/1/1900 14:00,No,To go to class,2,10,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,25,5,8,6,8,8,9,8
+67,Alyssa Rivera,alyssarivera@example.net,Year 4,data science and analytics,1/10/2024,1/1/1900 15:45,No,To go to MRT,2,10,No,UHC / Opp UHC,LT27 / S17,D2,Sunny,30,5,6,9,2,6,6,6
+68,Vincent Ward,vincentward@example.com,Year 3,life sciences,1/10/2024,1/1/1900 11:48,No,To go to class,2,10,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Rainy,10,3,8,5,8,8,8,9
+69,Jonathan Brown,jonathanbrown@example.net,Year 2,data science and analytics,2/10/2024,1/1/1900 12:15,No,To go for meals,4,20,No,LT27 / S17,UTown,D2,Sunny,30,15,3,9,3,3,3,4
+70,Alexander Cross,alexandercross@example.org,Year 1,nursing,2/10/2024,1/1/1900 12:45,No,To go to class,1,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A2,Sunny,8,12,6,8,4,3,3,5
+71,Alison Bryant,alisonbryant@example.com,Year 4,history,2/10/2024,1/1/1900 7:50,No,To go to class,2,22,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,25,4,8,8,7,7,7,7
+72,Jared Henson,jaredhenson@example.net,Year 4,mechanical engineering,2/10/2024,1/1/1900 10:00,No,To go to class,3,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,10,2,8,5,7,7,8,8
+73,Brian Dickson,briandickson@example.net,Year 4,biomedical engineering,2/10/2024,1/1/1900 10:30,No,To go to class,4,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,12,2,7,3,3,6,3
+74,Mary Wall,marywall@example.org,Year 2,quantitative finance,2/10/2024,1/1/1900 8:50,No,To go to class,3,30,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,30,1,10,8,7,6,10,7
+75,Johnny Bass,johnnybass@example.org,Year 3,environmental engineering,2/10/2024,1/1/1900 11:45,No,To go to class,2,7,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,8,1,8,4,4,5,5
+76,Rodney Nicholson,rodneynicholson@example.net,Year 4,psychology,2/10/2024,1/1/1900 9:00,No,To go to class,3,15,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,30,13,2,10,2,2,3,2
+77,David Russell,davidrussell@example.org,Year 3,data science and analytics,2/10/2024,1/1/1900 13:10,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,15,6,5,7,5,6,8,7
+78,Paul Henry,paulhenry@example.com,Year 3,statistics,2/10/2024,1/1/1900 18:00,No,To go to class,1,5,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A2,Sunny,10,5,5,6,6,5,5,5
+79,Kevin Lawson,kevinlawson@example.net,Year 4,materials science and engineering,2/10/2024,1/1/1900 8:10,No,To go to class,2,15,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,15,1,10,2,9,10,10,10
+80,Felicia Brooks,feliciabrooks@example.com,Year 4,materials science and engineering,2/10/2024,1/1/1900 7:53,No,To go to class,2,12,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,15,5,7,5,8,9,9,8
+81,Michael Bennett,michaelbennett@example.com,Year 1,environmental studies,2/10/2024,1/1/1900 12:30,No,To go to class,4,40,Yes,LT27 / S17,UHC / Opp UHC,D2,Sunny,30,6,6,9,5,5,10,5
+82,Louis Grant,louisgrant@example.com,Year 3,data science and analytics,3/10/2024,1/1/1900 10:30,No,To go to class,2,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,60,3,8,10,3,5,9,7
+83,Danny Jacobs,dannyjacobs@example.org,Year 3,data science and analytics,3/10/2024,1/1/1900 12:30,No,To go to class,4,40,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Rainy,15,6,5,6,7,7,8,8
+84,Mark Stephenson,markstephenson@example.org,Year 3,life sciences,3/10/2024,1/1/1900 9:30,No,To go for meals,0,15,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,50,10,4,10,2,3,7,5
+85,Megan Smith,megansmith@example.com,Year 4,psychology,3/10/2024,1/1/1900 18:24,No,To go to MRT,2,5,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,10,0,9,5,9,10,10,10
+86,William Roberts,williamroberts@example.org,Year 3,data science and analytics,3/10/2024,1/1/1900 10:40,No,To go to class,2,30,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,40,8,6,6,4,5,7,7
+87,Anna Johnson,annajohnson@example.org,Year 3,data science and analytics,3/10/2024,1/1/1900 18:00,No,To go to class,4,25,Yes,LT27 / S17,UHC / Opp UHC,D2,Sunny,25,2,8,7,4,6,8,6
+88,David Hansen,davidhansen@example.com,Year 1,sociology,3/10/2024,1/1/1900 9:25,Yes,To go to class,2,5,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,25,6,4,8,3,3,4,4
+89,Meredith Lee,meredithlee@example.net,Year 1,data science and analytics,3/10/2024,1/1/1900 9:20,No,To go to class,1,10,Yes,LT27 / S17,UHC / Opp UHC,D2,Sunny,15,3,7,3,6,7,7,7
+90,Casey Humphrey,caseyhumphrey@example.com,Year 3,anthropology,3/10/2024,1/1/1900 15:00,No,To go to class,2,35,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,25,5,7,8,6,5,8,7
+91,James Payne,jamespayne@example.org,Year 2,environmental studies,3/10/2024,1/1/1900 9:20,Yes,To go to class,5,50,Yes,UTown,IT / CLB,D1,Sunny,50,3,9,10,3,6,8,6
+92,Jose Pollard,josepollard@example.com,Year 3,data science and analytics,4/10/2024,1/1/1900 9:20,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,15,6,6,3,8,8,9,8
+93,Nicole Brown,nicolebrown@example.com,Year 4,economics,4/10/2024,1/1/1900 10:04,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Rainy,20,8,7,8,6,7,7,8
+94,George Brewer,georgebrewer@example.net,Year 4,economics,4/10/2024,1/1/1900 9:12,No,To go to CCA sessions,4,12,No,LT27 / S17,UHC / Opp UHC,A1,Sunny,5,6,6,4,7,7,8,8
+95,Brandon Martinez,brandonmartinez@example.net,Year 1,sociology,4/10/2024,1/1/1900 9:30,Yes,To go to class,4,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A2,Sunny,15,5,5,7,5,5,4,4
+96,Destiny Holmes,destinyholmes@example.com,Year 1,data science and analytics,4/10/2024,1/1/1900 9:30,No,To go to class,1,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A2,Sunny,10,8,5,7,5,4,5,4
+97,Janet Ryan,janetryan@example.org,Year 3,data science and analytics,7/10/2024,1/1/1900 9:30,No,To go to class,4,50,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,40,20,3,10,1,3,5,2
+98,Christopher Rogers,christopherrogers@example.com,Year 3,data science and analytics,7/10/2024,1/1/1900 10:00,No,To go to class,4,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,30,6,5,10,1,6,6,5
+99,Nicole Parks,nicoleparks@example.com,Year 3,data science and analytics,7/10/2024,1/1/1900 9:45,No,To go to class,4,10,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,25,11,5,10,3,3,6,5
+100,Scott Perry,scottperry@example.org,Year 1,"politics, philosophy, economics",7/10/2024,1/1/1900 9:40,Yes,To go to class,2,20,No,UTown,LT13 / Ventus,D1,Sunny,20,3,6,8,4,5,10,7
+101,Edward Hernandez,edwardhernandez@example.org,Year 3,business analytics,7/10/2024,1/1/1900 10:00,No,To go to class,3,30,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,40,3,6,9,8,8,8,6
+102,Belinda Finley,belindafinley@example.net,Year 1,chemistry,7/10/2024,1/1/1900 7:49,No,To go to class,4,12,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,16,3,7,6,6,6,8,8
+103,Kevin Fisher,kevinfisher@example.net,Year 2,psychology,7/10/2024,1/1/1900 9:15,No,To go to class,2,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,3,8,4,7,8,9,8
+104,Joseph Patterson,josephpatterson@example.com,Year 2,life sciences,7/10/2024,1/1/1900 10:06,No,To go to class,4,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,18,5,3,4,8,6,10,9
+105,Julie Wright,juliewright@example.com,Year 3,data science and analytics,7/10/2024,1/1/1900 11:45,No,To go to class,4,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,20,5,7,7,5,6,8,6
+106,David Grant,davidgrant@example.org,Year 3,chemistry,7/10/2024,1/1/1900 18:00,No,To go to class,6,30,Yes,UHC / Opp UHC,UTown,D2,Sunny,20,10,4,10,3,6,8,4
+107,Anthony Foster,anthonyfoster@example.com,Year 1,life sciences,7/10/2024,1/1/1900 10:00,Yes,To go to class,2,10,Yes,UTown,LT27 / S17,D2,Sunny,20,10,3,8,4,4,3,4
+108,Carlos Mills,carlosmills@example.net,Year 1,mathematics,7/10/2024,1/1/1900 7:30,Yes,To go to MRT,2,10,Yes,UTown,UHC / Opp UHC,D2,Sunny,10,10,3,3,7,6,6,6
+109,Heather Hale,heatherhale@example.com,Year 2,law,7/10/2024,1/1/1900 12:00,No,To go to class,5,60,No,UTown,PGP,D2,Sunny,20,5,8,7,5,6,7,7
+110,Jessica Brock,jessicabrock@example.net,Year 3,dentistry,7/10/2024,1/1/1900 8:30,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,15,5,9,3,9,8,9,9
+111,Robert Williams,robertwilliams@example.com,Year 2,dentistry,7/10/2024,1/1/1900 8:00,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,15,8,3,8,3,6,9,5
+112,John Welch,johnwelch@example.org,Year 3,nursing,7/10/2024,1/1/1900 7:30,Yes,To go to class,2,40,No,LT13 / Ventus,LT27 / S17,A1,Sunny,20,5,7,4,8,9,10,9
+113,Frederick Smith,fredericksmith@example.org,Year 4,food science and technology,8/10/2024,1/1/1900 14:15,No,To go to class,1,10,No,UTown,LT27 / S17,D2,Sunny,20,5,7,8,5,5,7,6
+114,Jonathon Williams,jonathonwilliams@example.com,Year 3,data science and analytics,8/10/2024,1/1/1900 11:20,No,To go to MRT,4,40,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Rainy,30,3,8,7,4,5,7,6
+115,Andrew Johnson,andrewjohnson@example.net,Year 3,data science and analytics,8/10/2024,1/1/1900 16:00,No,To go to class,4,35,Yes,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,35,5,6,9,3,3,7,5
+116,Rachel Thomas,rachelthomas@example.com,Year 2,industrial systems engineering,8/10/2024,1/1/1900 7:45,Yes,To go to class,4,6,No,UHC / Opp UHC,IT / CLB,A1,Sunny,5,4,7,3,10,10,10,8
+117,Karen Berry,karenberry@example.com,Year 4,anthropology,8/10/2024,1/1/1900 9:30,No,To go to class,2,8,No,UTown,LT13 / Ventus,D1,Sunny,25,9,4,7,5,5,4,4
+118,Taylor Griffith,taylorgriffith@example.org,Year 2,life sciences,8/10/2024,1/1/1900 11:15,No,To go to class,2,10,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,20,7,7,5,6,6,6,6
+119,Ernest Barker,ernestbarker@example.com,Year 1,food science and technology,8/10/2024,1/1/1900 11:30,Yes,To go for meals,2,8,No,UTown,LT27 / S17,D2,Sunny,20,8,5,5,5,5,5,5
+120,Beverly Holloway,beverlyholloway@example.com,Year 1,food science and technology,8/10/2024,1/1/1900 11:15,No,To go to class,2,10,Yes,UTown,IT / CLB,D1,Sunny,10,6,6,7,5,4,5,5
+121,Richard Weber,richardweber@example.net,Year 2,mathematics,8/10/2024,1/1/1900 12:20,No,To go to class,2,20,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,20,9,5,9,2,2,3,5
+122,Bethany Watkins,bethanywatkins@example.net,Year 3,law,8/10/2024,1/1/1900 9:00,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,10,5,9,2,4,8,5
+123,Jordan Zimmerman,jordanzimmerman@example.org,Year 4,dentistry,8/10/2024,1/1/1900 9:00,No,To go to class,3,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,40,15,2,9,4,7,9,6
+124,Troy Smith,troysmith@example.org,Year 2,nursing,8/10/2024,1/1/1900 9:50,Yes,To go to class,2,30,Yes,LT13 / Ventus,LT27 / S17,A1,Sunny,40,6,8,9,3,9,10,7
+125,William Hampton,williamhampton@example.net,Year 2,environmental studies,8/10/2024,1/1/1900 7:10,Yes,To go to class,4,50,Yes,PGP,UHC / Opp UHC,A1,Sunny,30,4,9,4,9,10,10,9
+126,Patricia Anderson,patriciaanderson@example.org,Year 3,data science and analytics,9/10/2024,1/1/1900 10:40,No,To go to class,2,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,20,7,4,6,6,7,8,7
+127,Roberto Kirk,robertokirk@example.org,Year 3,mathematics,9/10/2024,1/1/1900 13:30,Yes,To go to class,4,15,Yes,PGP,IT / CLB,A1,Sunny,10,5,9,5,9,9,9,9
+128,Angela Torres,angelatorres@example.com,Year 3,economics,9/10/2024,1/1/1900 11:45,Yes,To go to CCA sessions,2,10,No,UHC / Opp UHC,IT / CLB,A1,Sunny,5,7,5,8,5,5,5,4
+129,Bradley Evans,bradleyevans@example.net,Year 1,anthropology,9/10/2024,1/1/1900 11:50,No,To go for meals,4,15,No,UHC / Opp UHC,LT27 / S17,A2,Sunny,6,6,6,6,5,5,4,6
+130,Katherine Luna,katherineluna@example.org,Year 3,life sciences,9/10/2024,1/1/1900 21:15,Yes,To go to MRT,1,8,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,10,5,8,7,7,6,5,6
+131,Matthew Douglas,matthewdouglas@example.net,Year 3,food science and technology,9/10/2024,1/1/1900 15:50,No,To go to CCA sessions,2,10,No,LT27 / S17,UHC / Opp UHC,D2,Sunny,7,1,10,1,10,10,10,10
+132,Laura Jordan,laurajordan@example.net,Year 3,mathematics,9/10/2024,1/1/1900 13:23,No,To go to CCA sessions,3,15,No,BIZ2 / Opp HSSML,LT13 / Ventus,A2,Sunny,7,3,10,5,5,5,5,5
+133,Christopher Obrien,christopherobrien@example.net,Year 3,law,9/10/2024,1/1/1900 13:00,No,To go to MRT,4,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,35,15,2,10,1,3,7,3
+134,Richard Macdonald,richardmacdonald@example.net,Year 3,political science,9/10/2024,1/1/1900 9:30,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,20,No,PGP,LT13 / Ventus,A2,Sunny,20,10,4,8,5,7,8,7
+135,Maria Green,mariagreen@example.net,Year 1,dentistry,9/10/2024,1/1/1900 11:30,No,To go to class,3,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,5,9,8,3,6,9,8
+136,Robert Johnson,robertjohnson@example.com,Year 1,nursing,9/10/2024,1/1/1900 7:15,No,To go to class,2,30,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Rainy,35,4,9,9,4,8,10,8
+137,John Huffman,johnhuffman@example.com,Year 3,data science and analytics,10/10/2024,1/1/1900 10:45,No,To go to class,4,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,20,5,6,7,5,6,8,7
+138,Jason Jones,jasonjones@example.org,Year 4,sociology,10/10/2024,1/1/1900 8:50,Yes,To go for meals,2,2,No,UHC / Opp UHC,IT / CLB,A1,Sunny,3,1,9,9,5,5,7,6
+139,Dominic Todd,dominictodd@example.org,Year 2,social work,10/10/2024,1/1/1900 13:45,Yes,To go to class,3,15,No,UHC / Opp UHC,UTown,D2,Sunny,15,4,6,6,6,5,6,6
+140,Abigail Williams,abigailwilliams@example.net,Year 2,anthropology,10/10/2024,1/1/1900 9:50,No,To go to class,2,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,30,15,2,9,2,2,2,2
+141,James Higgins,jameshiggins@example.com,Year 4,life sciences,10/10/2024,1/1/1900 13:30,No,To go for meals,4,20,No,BIZ2 / Opp HSSML,PGP,A1,Rainy,7,7,7,4,6,6,5,7
+142,Amanda Murphy,amandamurphy@example.com,Year 4,food science and technology,10/10/2024,1/1/1900 9:15,No,To go to MRT,2,15,No,PGP,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,8,3,5,5,5,5,5,5
+143,Jenna Moore,jennamoore@example.org,Year 4,mathematics,10/10/2024,1/1/1900 10:50,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,12,2,8,4,4,4,4
+144,Heather Rodriguez,heatherrodriguez@example.net,Year 2,psychology,10/10/2024,1/1/1900 12:00,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,20,6,6,7,6,8,8,7
+145,Gregory Erickson,gregoryerickson@example.org,Year 4,political science,10/10/2024,1/1/1900 10:00,No,To go to class,4,45,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,8,7,8,4,8,9,7
+146,Paul Lee,paullee@example.org,Year 4,political science,10/10/2024,1/1/1900 9:30,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,10,6,7,5,7,10,7
+147,Devin Miller,devinmiller@example.org,Year 2,dentistry,10/10/2024,1/1/1900 9:30,No,To go to class,3,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,30,15,3,10,3,6,5,3
+148,Karen Adams,karenadams@example.net,Year 2,computer science,11/10/2024,1/1/1900 8:55,Yes,To go to class,2,10,No,UHC / Opp UHC,IT / CLB,A1,Sunny,9,5,3,7,7,6,9,8
+149,Barbara Sanchez,barbarasanchez@example.org,Year 2,data science and analytics,11/10/2024,1/1/1900 15:30,Yes,To go to class,2,10,No,UTown,UHC / Opp UHC,D2,Rainy,20,4,7,5,7,6,6,7
+150,John Chen,johnchen@example.net,Year 2,psychology,11/10/2024,1/1/1900 17:10,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",1,10,No,LT13 / Ventus,UTown,D1,Sunny,4,8,4,4,9,7,10,8
+151,Katherine Mitchell,katherinemitchell@example.com,Year 2,food science and technology,11/10/2024,1/1/1900 17:30,Yes,To go to class,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,10,10,1,10,1,1,3,1
+152,Gary May,garymay@example.net,Year 2,data science and analytics,11/10/2024,1/1/1900 11:30,Yes,To go to class,2,30,No,UHC / Opp UHC,COM3,D2,Rainy,5,7,7,10,3,3,4,4
+153,Susan Parsons,susanparsons@example.org,Year 2,social work,11/10/2024,1/1/1900 9:45,Yes,To go to class,2,10,No,UHC / Opp UHC,IT / CLB,A2,Sunny,20,6,6,9,5,3,3,5
+154,Natalie Williams,nataliewilliams@example.com,Year 3,data science and analytics,11/10/2024,1/1/1900 9:50,No,To go to class,3,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,20,5,6,7,6,7,8,6
+155,Madeline Cox,madelinecox@example.net,Year 2,anthropology,11/10/2024,1/1/1900 19:00,Yes,To go to CCA sessions,2,12,No,LT27 / S17,UHC / Opp UHC,A1,Sunny,10,3,8,4,9,8,8,8
+156,Amy Gallegos,amygallegos@example.net,Year 2,malay studies,11/10/2024,1/1/1900 9:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,PGP,LT13 / Ventus,A2,Sunny,15,6,6,6,7,7,7,7
+157,Melissa Martinez,melissamartinez@example.net,Year 3,global studies,11/10/2024,1/1/1900 16:00,No,To go to class,4,40,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,35,6,5,8,4,6,7,6
+158,Samantha Wilson,samanthawilson@example.org,Year 2,political science,11/10/2024,1/1/1900 8:30,No,To go to class,3,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,10,4,8,3,7,8,5
+159,Sara Hill,sarahill@example.net,Year 3,nursing,11/10/2024,1/1/1900 13:20,No,To go to class,2,25,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,15,6,5,6,7,7,9,8
+160,Jessica Washington,jessicawashington@example.com,Year 2,data science and analytics,12/10/2024,1/1/1900 21:10,Yes,To go to class,3,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,15,7,5,6,8,9,8,8
+161,Jeffrey Neal,jeffreyneal@example.com,Year 2,geography,12/10/2024,1/1/1900 18:00,Yes,To go to class,2,10,No,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,50,8,7,7,5,4,10,7
+162,Meagan Ramos,meaganramos@example.net,Year 3,data science and analytics,14/10/2024,1/1/1900 11:20,No,To go to MRT,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Rainy,20,3,7,3,7,8,9,8
+163,Amber Gibbs,ambergibbs@example.org,Year 3,data science and analytics,14/10/2024,1/1/1900 14:20,No,To go to class,3,25,No,COM3,LT27 / S17,D2,Rainy,15,5,6,7,6,7,7,6
+164,Heather Herrera,heatherherrera@example.com,Year 2,anthropology,14/10/2024,1/1/1900 11:00,Yes,To go to class,2,10,No,LT27 / S17,UHC / Opp UHC,A1,Rainy,20,5,6,8,5,5,5,5
+165,Elizabeth Gomez,elizabethgomez@example.com,Year 3,materials science and engineering,14/10/2024,1/1/1900 11:35,Yes,To go to class,2,20,No,UTown,IT / CLB,D1,Rainy,15,7,5,8,3,3,5,5
+166,Joseph Kelley,josephkelley@example.net,Year 4,statistics,14/10/2024,1/1/1900 18:00,No,To go to CCA sessions,3,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,7,3,7,5,5,5,8,8
+167,Brian Lindsey,brianlindsey@example.org,Year 2,life sciences,14/10/2024,1/1/1900 12:00,No,To go to class,2,10,No,UTown,LT13 / Ventus,D1,Sunny,10,4,6,6,4,5,7,8
+168,Mary Dixon,marydixon@example.org,Year 2,malay studies,14/10/2024,1/1/1900 12:00,No,To go to class,2,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,4,7,6,7,7,8,7
+169,Marcus Sandoval,marcussandoval@example.org,Year 2,global studies,14/10/2024,1/1/1900 9:00,No,To go to CCA sessions,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,20,5,6,8,4,5,8,6
+170,Michelle Parker,michelleparker@example.com,Year 4,psychology,14/10/2024,1/1/1900 14:00,No,To go to class,4,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Rainy,25,4,6,6,6,7,7,8
+171,Michael Solis,michaelsolis@example.com,Year 1,law,14/10/2024,1/1/1900 8:45,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Rainy,40,15,4,10,2,4,4,5
+172,Stacey Martinez,staceymartinez@example.com,Year 2,political science,14/10/2024,1/1/1900 9:30,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,30,15,2,10,2,5,4,4
+173,Kenneth Smith,kennethsmith@example.org,Year 1,nursing,14/10/2024,1/1/1900 7:50,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Rainy,60,7,6,10,4,7,9,8
+174,Donna Blankenship,donnablankenship@example.com,Year 1,environmental studies,14/10/2024,1/1/1900 9:35,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,65,7,4,10,6,6,9,7
+175,Kimberly Baxter,kimberlybaxter@example.net,Year 4,anthropology,15/10/2024,1/1/1900 10:10,No,To go to class,2,5,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,20,10,3,9,3,3,3,3
+176,Katherine Camacho,katherinecamacho@example.org,Year 3,data science and analytics,15/10/2024,1/1/1900 11:20,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Rainy,10,5,6,3,8,8,8,8
+177,Brooke Alexander,brookealexander@example.com,Year 3,malay studies,15/10/2024,1/1/1900 11:00,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,25,6,5,7,6,7,8,7
+178,Mercedes Pierce,mercedespierce@example.com,Year 2,global studies,15/10/2024,1/1/1900 10:00,No,To go to class,3,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,20,6,5,7,5,7,8,6
+179,Julie Lewis,julielewis@example.com,Year 3,global studies,15/10/2024,1/1/1900 11:00,No,To go to MRT,2,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,15,8,4,6,6,7,8,7
+180,Courtney Kent,courtneykent@example.com,Year 2,political science,15/10/2024,1/1/1900 11:45,No,To go to MRT,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,35,15,4,8,5,6,9,3
+181,James Patton,jamespatton@example.net,Year 3,chemistry,16/10/2024,1/1/1900 7:40,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,20,5,8,9,8,9,10,9
+182,Jasmine Russell,jasminerussell@example.com,Year 1,malay studies,16/10/2024,1/1/1900 10:00,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,15,5,6,8,4,7,8,7
+183,Daniel Best,danielbest@example.org,Year 1,global studies,16/10/2024,1/1/1900 9:00,No,To go to class,3,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,25,5,6,8,4,7,8,6
+184,Lori Thompson,lorithompson@example.org,Year 3,psychology,16/10/2024,1/1/1900 13:30,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,20,7,4,7,5,7,7,7
+185,Crystal Hawkins,crystalhawkins@example.net,Year 1,malay studies,17/10/2024,1/1/1900 9:00,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,5,6,7,4,6,7,7
+186,Matthew Lopez,matthewlopez@example.net,Year 3,global studies,17/10/2024,1/1/1900 12:00,No,To go to class,2,20,No,LT13 / Ventus,LT27 / S17,A1,Rainy,30,6,5,9,3,4,7,5
+187,Francisco Jones,franciscojones@example.net,Year 1,psychology,17/10/2024,1/1/1900 11:30,No,To go to class,3,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,30,5,5,9,3,5,8,6
+188,Michael Ruiz,michaelruiz@example.org,Year 4,psychology,17/10/2024,1/1/1900 13:00,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,30,3,7,6,6,7,8,7
+189,Scott Jefferson,scottjefferson@example.org,Year 2,law,17/10/2024,1/1/1900 14:30,No,To go to class,4,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,15,5,8,4,9,8,10,9
+190,John Davis,johndavis@example.org,Year 1,nursing,17/10/2024,1/1/1900 9:30,Yes,To go to class,3,40,No,PGP,LT27 / S17,D2,Rainy,40,4,7,9,5,6,9,8
+191,Barbara Wade,barbarawade@example.net,Year 3,malay studies,18/10/2024,1/1/1900 11:00,No,To go to MRT,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,30,4,7,8,4,6,7,5
+192,Mr. Steven Green,mr.stevengreen@example.com,Year 4,psychology,18/10/2024,1/1/1900 11:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,20,4,7,6,6,7,7,7
+193,John Nicholson,johnnicholson@example.org,Year 3,law,18/10/2024,1/1/1900 8:50,No,To go to class,3,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,5,8,8,4,5,7,7
+194,Mrs. Donna Riddle,mrs.donnariddle@example.net,Year 3,dentistry,18/10/2024,1/1/1900 9:30,No,To go to MRT,4,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,5,8,5,6,8,8,8
+195,Whitney Hancock,whitneyhancock@example.org,Year 2,materials science and engineering,15/10/2024,1/1/1900 11:45,No,To go to MRT,3,20,No,LT27 / S17,IT / CLB,A1,Rainy,20,5,3,9,4,3,4,3
+196,Valerie Fuller,valeriefuller@example.com,Year 1,statistics,15/10/2024,1/1/1900 8:45,No,To go for meals,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Rainy,9,5,5,6,4,7,8,6
+197,Angel Taylor,angeltaylor@example.org,Year 4,life sciences,15/10/2024,1/1/1900 9:45,No,To go to CCA sessions,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,10,2,9,2,3,3,3
+198,John Alexander,johnalexander@example.com,Year 1,economics,17/10/2024,1/1/1900 11:45,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Rainy,30,15,7,7,7,7,7,7
+199,Teresa Frank,teresafrank@example.org,Year 1,economics,18/10/2024,1/1/1900 11:30,No,To go to MRT,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Rainy,30,15,7,7,7,7,7,7
+200,Jessica Peters,jessicapeters@example.net,Year 4,economics,14/10/2024,1/1/1900 9:00,No,To go to class,1,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,10,5,10,6,6,7,10,9
+201,Elizabeth Hall,elizabethhall@example.net,Year 4,economics,15/10/2024,1/1/1900 15:00,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,3,3,10,1,10,10,10,10
+202,David Cortez,davidcortez@example.org,Year 1,sociology,16/10/2024,1/1/1900 8:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,UTown,PGP,D2,Sunny,30,20,1,10,1,1,4,3
+203,Ryan Lambert,ryanlambert@example.org,Year 2,sociology,16/10/2024,1/1/1900 9:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,UTown,PGP,D2,Rainy,50,25,1,10,1,1,1,1
+204,Timothy Villarreal,timothyvillarreal@example.org,Year 3,environmental studies,11/10/2024,1/1/1900 9:50,No,To go to class,3,40,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,50,5,8,10,3,6,9,7
+205,Leslie Gibson,lesliegibson@example.net,Year 4,environmental studies,17/10/2024,1/1/1900 11:50,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Rainy,30,3,9,10,6,6,9,8
+206,Mary Li,maryli@example.org,Year 1,chemistry,7/10/2024,1/1/1900 7:20,Yes,To go to class,4,45,Yes,UTown,UHC / Opp UHC,D2,Sunny,25,5,9,7,6,7,9,9
+207,Andrew Williams,andrewwilliams@example.org,Year 1,computer science,14/10/2024,1/1/1900 9:30,Yes,To go to class,2,15,No,UTown,COM3,D1,Sunny,17,15,6,7,6,6,6,6
+208,James Kennedy,jameskennedy@example.net,Year 1,computer science,15/10/2024,1/1/1900 17:00,Yes,To go to class,2,15,No,UTown,COM3,D1,Sunny,25,20,4,9,4,6,5,4
+209,Alicia Meza,aliciameza@example.net,Year 1,chemistry,15/10/2024,1/1/1900 9:30,No,To go to class,4,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Rainy,55,5,8,10,4,7,9,7
+210,Bailey Fuller,baileyfuller@example.org,Year 2,chemistry,2/10/2024,1/1/1900 8:50,Yes,To go to class,5,40,Yes,PGP,UHC / Opp UHC,A1,Sunny,35,5,8,9,7,7,9,9
+211,Ryan Velasquez,ryanvelasquez@example.com,Year 3,chemistry,17/10/2024,1/1/1900 9:40,No,To go to class,2,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Rainy,50,5,8,10,7,6,9,9
+212,Barry Lewis,barrylewis@example.com,Year 3,data science and analytics,17/10/2024,1/1/1900 10:30,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Rainy,20,1,9,5,7,7,8,8
+213,Stephen Roberts,stephenroberts@example.org,Year 3,data science and analytics,16/10/2024,1/1/1900 10:40,No,To go to class,2,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Rainy,20,4,7,7,6,7,8,7
+214,Taylor Newman,taylornewman@example.net,Year 1,computer science,15/10/2024,1/1/1900 12:00,Yes,To go for meals,4,45,No,PGP,UTown,D2,Sunny,20,10,7,9,6,8,8,8
+215,Destiny Richards,destinyrichards@example.net,Year 2,social work,8/10/2024,1/1/1900 17:15,Yes,To go for meals,4,35,No,UHC / Opp UHC,IT / CLB,A2,Sunny,20,12,5,8,7,8,7,7
+216,Cody Forbes,codyforbes@example.net,Year 4,social work,10/10/2024,1/1/1900 10:30,No,To go to class,4,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,7,7,10,3,9,8,10,9
+217,Luis Barnett,luisbarnett@example.net,Year 4,social work,10/10/2024,1/1/1900 9:00,No,"To go to in-school accommodation (halls, RCs, houses etc.)",2,37,No,Kent Ridge MRT / Opp Kent Ridge MRT,PGP,A2,Sunny,35,15,5,9,5,6,7,6
+218,Ronnie Johnson,ronniejohnson@example.com,Year 4,chemistry,11/10/2024,1/1/1900 8:02,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,30,4,8,9,5,6,9,8
+219,Joseph Peters,josephpeters@example.org,Year 2,chemistry,17/10/2024,1/1/1900 9:51,Yes,To go to class,5,40,No,UTown,LT27 / S17,D2,Rainy,40,5,6,9,6,7,9,7
+220,Melissa Estrada,melissaestrada@example.com,Year 1,history,14/10/2024,1/1/1900 7:50,Yes,To go to class,4,40,No,UTown,IT / CLB,D1,Sunny,20,5,7,7,8,9,10,7
+221,James Cook,jamescook@example.com,Year 2,statistics,16/10/2024,1/1/1900 9:45,No,To go to class,3,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,30,4,5,9,3,4,3,5
+222,Steve Russo,steverusso@example.net,Year 4,history,15/10/2024,1/1/1900 9:30,No,To go to class,2,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,40,5,7,10,4,6,9,7
+223,Daniel Douglas,danieldouglas@example.net,Year 2,history,16/10/2024,1/1/1900 7:00,Yes,To go to class,4,50,Yes,PGP,UHC / Opp UHC,A1,Rainy,30,4,7,10,8,8,10,7
+224,Angela Taylor,angelataylor@example.net,Year 1,materials science and engineering,16/10/2024,1/1/1900 16:00,No,To go to CCA sessions,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,15,2,9,6,8,7,8,8
+225,Melissa Carroll,melissacarroll@example.org,Year 3,life sciences,16/10/2024,1/1/1900 9:45,Yes,To go to class,3,30,No,PGP,LT27 / S17,D2,Rainy,8,5,5,7,6,7,8,7
+226,Corey Brown,coreybrown@example.net,Year 1,history,17/10/2024,1/1/1900 11:30,Yes,To go to class,5,40,No,LT27 / S17,IT / CLB,A1,Sunny,15,3,8,10,5,8,9,7
+227,Abigail Brooks,abigailbrooks@example.com,Year 4,materials science and engineering,17/10/2024,1/1/1900 12:20,No,To go for meals,2,20,No,LT27 / S17,IT / CLB,A1,Sunny,15,2,9,7,5,6,5,7
+228,Stephanie Green,stephaniegreen@example.org,Year 3,history,18/10/2024,1/1/1900 9:50,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,45,5,7,10,4,8,9,7
+229,Charles Ochoa,charlesochoa@example.net,Year 3,statistics,17/10/2024,1/1/1900 12:40,No,To go to MRT,2,15,No,UTown,LT13 / Ventus,D1,Rainy,40,6,3,9,4,3,4,4
+230,Christine Patrick,christinepatrick@example.org,Year 2,life sciences,17/10/2024,1/1/1900 13:15,No,To go for meals,3,30,No,LT27 / S17,UTown,D2,Sunny,20,4,5,7,5,6,6,5
+231,Jason Barron,jasonbarron@example.org,Year 3,history,14/10/2024,1/1/1900 11:40,No,To go to class,2,25,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Rainy,40,5,7,10,5,6,9,7
+232,Alex Lee,alexlee@example.org,Year 4,materials science and engineering,18/10/2024,1/1/1900 17:00,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A2,Sunny,15,4,7,4,8,8,9,8
+233,Logan Black,loganblack@example.net,Year 4,statistics,18/10/2024,1/1/1900 12:30,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,20,2,8,7,4,6,6,5
+234,Jordan Brady,jordanbrady@example.net,Year 1,life sciences,18/10/2024,1/1/1900 12:30,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",3,30,No,UHC / Opp UHC,LT27 / S17,A2,Sunny,5,3,7,5,7,7,9,8
+235,Adam Shields,adamshields@example.org,Year 3,materials science and engineering,14/10/2024,1/1/1900 12:35,No,To go to class,3,30,No,UTown,LT13 / Ventus,D1,Sunny,30,4,4,8,5,4,4,6
+236,David Mathis,davidmathis@example.com,Year 2,statistics,16/10/2024,1/1/1900 13:00,Yes,To go to class,2,20,No,UHC / Opp UHC,IT / CLB,A1,Rainy,5,3,7,7,4,5,6,6
+237,Luis Matthews,luismatthews@example.org,Year 4,life sciences,18/10/2024,1/1/1900 10:20,No,To go to MRT,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,3,6,8,5,6,6,5
+238,Michael Meadows,michaelmeadows@example.com,Year 3,architecture,14/10/2024,1/1/1900 14:30,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,10,5,4,4,6,6,4,6
+239,Jamie Warner,jamiewarner@example.net,Year 3,architecture,15/10/2024,1/1/1900 15:30,No,To go to class,2,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,10,10,7,4,7,6,7,7
+240,Joseph Gibson,josephgibson@example.net,Year 3,architecture,17/10/2024,1/1/1900 18:30,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,10,10,6,6,7,7,7,6
+241,Linda Lynn,lindalynn@example.com,Year 3,architecture,10/8/2024,1/1/1900 13:30,No,To go to class,2,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A1,Sunny,20,10,6,7,4,6,6,6
+242,Dr. Laurie Solis,dr.lauriesolis@example.com,Year 3,architecture,10/10/2024,1/1/1900 7:30,No,To go to class,2,50,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A1,Sunny,20,16,4,6,4,4,6,5
+243,Elaine Brooks,elainebrooks@example.org,Year 1,biomedical engineering,21/10/2024,1/1/1900 7:30,No,To go to class,2,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,10,8,5,3,3,7,7,7
+244,Whitney Myers DDS,whitneymyersdds@example.net,Year 4,biomedical engineering,15/10/2024,1/1/1900 15:30,No,To go to class,2,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,15,12,7,6,4,6,7,7
+245,Sara Ramos,sararamos@example.com,Year 4,biomedical engineering,16/10/2024,1/1/1900 11:30,No,To go to class,2,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,15,3,8,3,5,4,4
+246,Jeanette Little,jeanettelittle@example.com,Year 4,biomedical engineering,21/10/2024,1/1/1900 9:30,No,To go to class,2,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A1,Sunny,35,18,2,10,1,3,3,3
+247,Dean Cantrell,deancantrell@example.org,Year 1,biomedical engineering,18/10/2024,1/1/1900 13:30,No,To go to class,4,45,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A1,Sunny,15,10,6,4,4,4,4,4
+248,Michelle Williamson,michellewilliamson@example.com,Year 1,biomedical engineering,21/10/2024,1/1/1900 11:30,No,To go to class,3,45,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,20,2,9,2,3,4,3
+249,Diane Hopkins,dianehopkins@example.com,Year 2,biomedical engineering,21/10/2004,1/1/1900 8:30,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A1,Sunny,25,15,3,7,3,3,4,4
+250,Whitney Glover,whitneyglover@example.net,Year 2,biomedical engineering,16/10/2024,1/1/1900 8:30,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,18,3,8,2,3,4,3
+251,Sheila Richardson,sheilarichardson@example.com,Year 2,business analytics,14/10/2024,1/1/1900 9:30,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Rainy,15,5,4,7,4,5,6,6
+252,Kristen Rogers,kristenrogers@example.com,Year 4,business analytics,15/10/2024,1/1/1900 10:30,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,UTown,BIZ2 / Opp HSSML,D1,Rainy,20,5,4,7,4,5,7,6
+253,Laurie Boone,laurieboone@example.org,Year 1,business analytics,16/10/2024,1/1/1900 11:45,No,To go to MRT,3,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,20,4,5,8,3,4,5,4
+254,Amanda Morris,amandamorris@example.org,Year 4,business analytics,17/10/2024,1/1/1900 11:00,No,To go for meals,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,4,5,8,3,5,6,5
+255,David Woods,davidwoods@example.org,Year 2,business analytics,18/10/2024,1/1/1900 9:15,Yes,To go to class,2,20,No,UHC / Opp UHC,IT / CLB,A1,Sunny,5,2,8,7,4,6,6,5
+256,Dustin Reyes,dustinreyes@example.com,Year 3,business analytics,16/10/2024,1/1/1900 11:15,No,To go to class,3,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,20,6,3,8,2,4,5,3
+257,Christopher Johnston,christopherjohnston@example.org,Year 1,"politics, philosophy, economics",17/10/2024,1/1/1900 13:30,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,15,10,4,6,4,4,4,5
+258,Hannah Flores,hannahflores@example.net,Year 1,"politics, philosophy, economics",7/10/2024,1/1/1900 15:30,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,12,8,6,5,7,7,6,7
+259,Amy Aguilar,amyaguilar@example.net,Year 3,"politics, philosophy, economics",17/10/2024,1/1/1900 13:30,No,To go to class,3,45,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,15,10,6,6,4,4,5,4
+260,Christopher Bradshaw,christopherbradshaw@example.net,Year 4,"politics, philosophy, economics",17/10/2024,1/1/1900 15:40,No,To go to class,3,45,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,15,8,8,3,7,7,6,7
+261,Peter Smith,petersmith@example.org,Year 4,"politics, philosophy, economics",10/10/2024,1/1/1900 8:35,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,15,4,7,4,5,4,4
+262,Jennifer Pittman,jenniferpittman@example.org,Year 1,"politics, philosophy, economics",7/10/2024,1/1/1900 15:30,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,15,10,6,6,5,6,6,6
+263,Kelly Thornton,kellythornton@example.net,Year 2,mechanical engineering,2/10/2024,1/1/1900 9:50,No,To go to class,2,12,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,10,5,9,5,5,7,5
+264,Teresa Mckinney,teresamckinney@example.org,Year 2,mechanical engineering,4/10/2024,1/1/1900 11:30,No,To go to class,2,12,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Sunny,30,10,6,10,3,4,7,4
+265,Anita Wilson,anitawilson@example.org,Year 2,mechanical engineering,7/10/2024,1/1/1900 11:40,No,To go to class,4,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,5,7,8,5,6,7,6
+266,Robert Acosta,robertacosta@example.org,Year 3,mechanical engineering,8/10/2024,1/1/1900 10:40,No,To go to class,4,20,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,25,10,5,9,4,5,7,5
+267,Rita Mccarthy,ritamccarthy@example.org,Year 3,mechanical engineering,9/10/2024,1/1/1900 11:40,No,To go to class,4,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,25,10,3,10,3,5,7,5
+268,Melinda Green,melindagreen@example.org,Year 1,mechanical engineering,10/10/2024,1/1/1900 10:40,Yes,To go to class,2,10,No,UTown,IT / CLB,D1,Sunny,30,15,3,9,3,6,8,5
+269,Bradley Pacheco,bradleypacheco@example.com,Year 1,geography,11/10/2024,1/1/1900 9:40,Yes,To go to class,2,10,No,UHC / Opp UHC,IT / CLB,A1,Sunny,10,5,8,8,5,7,8,6
+270,Denise Harrison,deniseharrison@example.net,Year 1,geography,30/9/2024,1/1/1900 15:40,Yes,To go to class,2,10,No,UHC / Opp UHC,IT / CLB,A1,Sunny,10,5,9,5,8,7,8,7
+271,Andrew Edwards,andrewedwards@example.net,Year 2,geography,1/10/2024,1/1/1900 13:30,No,To go to class,2,15,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,15,8,6,8,6,7,7,6
+272,Heather Strong,heatherstrong@example.com,Year 2,geography,2/10/2024,1/1/1900 10:40,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Rainy,20,10,6,8,5,6,7,5
+273,Morgan Leonard,morganleonard@example.com,Year 2,geography,3/10/2024,1/1/1900 11:40,No,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,10,6,9,5,6,7,5
+274,Jennifer Rodriguez,jenniferrodriguez@example.org,Year 3,quantitative finance,4/10/2024,1/1/1900 10:40,Yes,To go to class,3,20,No,BIZ2 / Opp HSSML,LT27 / S17,A1,Sunny,15,8,6,7,6,7,8,7
+275,Lynn Williams,lynnwilliams@example.org,Year 3,quantitative finance,7/10/2024,1/1/1900 10:30,Yes,To go to class,3,20,No,BIZ2 / Opp HSSML,LT27 / S17,A1,Rainy,15,8,7,7,6,7,7,7
+276,Colton Johnson,coltonjohnson@example.net,Year 3,quantitative finance,8/10/2024,1/1/1900 12:30,No,To go to class,4,20,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,20,10,6,8,5,8,8,6
+277,Brandon House,brandonhouse@example.org,Year 3,quantitative finance,9/10/2024,1/1/1900 10:35,No,To go to class,4,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Rainy,15,5,7,7,6,7,8,6
+278,Tina Harper,tinaharper@example.com,Year 4,quantitative finance,10/10/2024,1/1/1900 7:45,No,To go to MRT,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,10,5,8,4,8,8,8,8
+279,Casey Turner,caseyturner@example.com,Year 4,quantitative finance,11/10/2024,1/1/1900 11:35,No,To go to MRT,2,8,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,15,10,6,8,5,7,8,5
+280,Patricia Costa,patriciacosta@example.net,Year 3,accountancy,30/9/2024,1/1/1900 8:45,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,20,5,8,5,7,8,9,8
+281,Mark Zimmerman,markzimmerman@example.org,Year 2,accountancy,1/10/2024,1/1/1900 9:45,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,25,10,6,8,2,7,7,6
+282,Anna King,annaking@example.net,Year 2,accountancy,3/10/2024,1/1/1900 13:45,No,To go to MRT,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,15,5,9,3,8,8,9,8
+283,Janet Hawkins,janethawkins@example.org,Year 1,industrial systems engineering,21/10/2024,1/1/1900 10:00,No,To go to class,3,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,30,8,3,8,3,4,3,4
+284,Pamela Lucero,pamelalucero@example.net,Year 1,accountancy,4/10/2024,1/1/1900 15:00,Yes,To go to class,2,20,No,PGP,COM3,D2,Sunny,15,5,10,4,10,9,10,9
+285,Linda Morgan,lindamorgan@example.net,Year 2,industrial systems engineering,22/10/2024,1/1/1900 13:00,Yes,To go to class,3,20,No,UTown,COM3,D1,Rainy,20,10,4,7,5,5,5,6
+286,Heather Lopez,heatherlopez@example.com,Year 1,pharmaceutical science,30/9/2024,1/1/1900 8:40,Yes,To go to class,2,10,No,UTown,LT27 / S17,D2,Sunny,25,5,8,8,5,6,8,6
+287,Jennifer Norman,jennifernorman@example.com,Year 3,industrial systems engineering,23/10/2024,1/1/1900 11:15,No,To go to CCA sessions,2,10,No,LT13 / Ventus,UHC / Opp UHC,A1,Rainy,5,5,8,3,7,7,7,7
+288,Max Poole,maxpoole@example.org,Year 1,pharmaceutical science,1/10/2024,1/1/1900 9:45,Yes,To go to class,2,10,No,UTown,IT / CLB,D1,Sunny,25,5,8,8,5,6,8,6
+289,Andrew Sanchez,andrewsanchez@example.com,Year 4,industrial systems engineering,24/10/2024,1/1/1900 12:45,No,To go for meals,4,20,No,UHC / Opp UHC,UTown,D2,Sunny,10,20,1,10,1,1,1,1
+290,Kirsten Stephens MD,kirstenstephensmd@example.org,Year 1,accountancy,2/10/2024,1/1/1900 10:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",4,45,No,PGP,BIZ2 / Opp HSSML,A2,Sunny,30,5,8,10,4,6,5,7
+291,Jamie Cisneros,jamiecisneros@example.org,Year 1,business,24/10/2024,1/1/1900 7:30,No,To go to class,3,35,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,7,6,7,2,8,7,8,7
+292,Nicholas Ward Jr.,nicholaswardjr.@example.com,Year 2,pharmaceutical science,2/10/2024,1/1/1900 9:30,No,To go to class,4,20,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,20,7,6,7,6,6,7,6
+293,Maria Goodman,mariagoodman@example.net,Year 4,accountancy,2/10/2024,1/1/1900 11:45,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,20,10,4,9,4,5,8,6
+294,Terry Beck,terrybeck@example.net,Year 3,pharmaceutical science,3/10/2024,1/1/1900 13:40,No,To go to class,2,5,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,15,5,8,5,8,8,8,8
+295,Michael Williamson,michaelwilliamson@example.org,Year 4,pharmaceutical science,4/10/2024,1/1/1900 14:35,No,To go to class,2,5,No,UHC / Opp UHC,LT27 / S17,D2,Sunny,15,5,7,6,6,7,7,7
+296,Jessica Mueller,jessicamueller@example.com,Year 4,business,21/10/2003,1/1/1900 7:30,No,To go to class,3,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,7,10,6,3,7,6,6,7
+297,Timothy Smith,timothysmith@example.net,Year 2,business,22/10/2024,1/1/1900 13:30,No,To go to MRT,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,15,10,4,6,4,6,5,6
+298,George Powell,georgepowell@example.net,Year 1,environmental engineering,7/10/2024,1/1/1900 9:45,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,20,15,2,9,3,3,5,4
+299,Joshua Thomas,joshuathomas@example.com,Year 2,environmental engineering,8/10/2024,1/1/1900 12:30,Yes,To go to class,3,30,No,UTown,LT27 / S17,D2,Sunny,10,4,4,7,3,5,5,6
+300,Bryan Wise,bryanwise@example.org,Year 4,environmental engineering,9/10/2024,1/1/1900 10:20,No,To go to class,2,20,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,15,5,5,7,6,5,8,6
+301,Jeremy Green,jeremygreen@example.org,Year 4,environmental engineering,10/10/2024,1/1/1900 11:30,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,20,5,4,7,3,5,7,5
+302,Kristen Rodriguez,kristenrodriguez@example.com,Year 3,environmental engineering,11/10/2024,1/1/1900 12:00,No,To go for meals,2,20,No,LT27 / S17,IT / CLB,A1,Sunny,15,3,6,8,3,3,5,5
+303,Kristen Bond,kristenbond@example.org,Year 1,data science and analytics,16/9/2024,1/1/1900 12:00,No,To go to class,2,5,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,14,3,8,3,8,9,9,9
+304,Sherri Hickman,sherrihickman@example.net,Year 3,data science and analytics,16/9/2024,1/1/1900 14:30,No,To go to class,3,30,No,COM3,LT27 / S17,D2,Sunny,15,8,5,6,7,7,7,8
+305,Robin Marks,robinmarks@example.net,Year 3,data science and analytics,16/9/2024,1/1/1900 11:50,No,To go to class,3,40,No,UTown,LT27 / S17,D2,Sunny,40,20,3,9,2,3,4,4
+306,Heather Coleman,heathercoleman@example.net,Year 3,data science and analytics,17/9/2024,1/1/1900 11:30,No,To go to MRT,4,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,15,8,6,7,3,6,7,6
+307,Wayne Vega DDS,waynevegadds@example.net,Year 3,data science and analytics,18/9/2024,1/1/1900 13:30,Yes,To go to class,2,15,No,UHC / Opp UHC,UTown,D2,Sunny,5,3,9,4,7,9,7,7
+308,Cynthia Sanchez,cynthiasanchez@example.com,Year 3,data science and analytics,19/9/2024,1/1/1900 11:30,No,To go to MRT,2,25,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,15,5,7,8,4,7,8,6
+309,Ivan Smith,ivansmith@example.net,Year 4,data science and analytics,19/9/2024,1/1/1900 10:06,No,To go to class,2,5,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,7,7,8,4,9,9,10,9
+310,Tony Farrell,tonyfarrell@example.net,Year 3,computer science,19/9/2024,1/1/1900 13:45,No,To go to class,1,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,Sunny,7,5,7,9,4,3,6,6
+311,Jesus Edwards,jesusedwards@example.org,Year 1,data science and analytics,20/9/2024,1/1/1900 18:00,No,To go to class,2,7,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,10,3,9,3,9,8,8,9
+312,Ryan Flores,ryanflores@example.org,Year 2,life sciences,20/9/2024,1/1/1900 18:00,Yes,To go to class,4,40,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,35,20,4,10,4,4,4,4
+313,Kimberly Rodriguez,kimberlyrodriguez@example.com,Year 3,business,20/9/2024,1/1/1900 17:40,No,To go to MRT,2,30,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,10,6,6,6,5,9,9,8
+314,Cody Vincent,codyvincent@example.com,Year 3,dentistry,25/9/2024,1/1/1900 16:30,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,20,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,70,30,6,7,7,6,7,5
+315,Emily Mack,emilymack@example.com,Year 1,data science and analytics,26/9/2024,1/1/1900 18:00,No,To go to class,2,7,No,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,10,6,7,5,6,6,7,7
+316,Thomas Bailey,thomasbailey@example.net,Year 1,data science and analytics,26/9/2024,1/1/1900 13:40,No,To go to class,2,15,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,8,5,9,8,7,9,10,10
+317,Rebecca Johnson,rebeccajohnson@example.com,Year 2,data science and analytics,26/9/2024,1/1/1900 13:00,Yes,To go to class,6,20,No,LT27 / S17,UTown,D2,Sunny,25,5,9,7,3,3,4,5
+318,Andrew Bentley,andrewbentley@example.com,Year 3,life sciences,26/9/2024,1/1/1900 17:00,No,To go to class,2,20,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,40,15,3,8,3,3,5,3
+319,Alicia Lewis,alicialewis@example.com,Year 3,nursing,26/9/2024,1/1/1900 16:00,No,To go to class,2,40,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,10,8,2,9,9,9,9
+320,Holly Campbell,hollycampbell@example.net,Year 2,business,26/9/2024,1/1/1900 21:30,Yes,To go to class,2,30,No,BIZ2 / Opp HSSML,UTown,D1,Sunny,5,12,4,1,10,8,9,6
+321,John Foster,johnfoster@example.com,Year 2,social work,27/9/2024,1/1/1900 18:01,No,To go to class,5,20,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,10,10,8,8,7,7,8,7
+322,Lance Sullivan,lancesullivan@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 17:00,No,To go to class,2,30,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,50,15,1,10,1,1,2,3
+323,Karen Thomas,karenthomas@example.org,Year 4,nursing,27/9/2024,1/1/1900 19:40,No,To go to class,2,5,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,10,4,9,3,4,6,4
+324,Vickie Johnson,vickiejohnson@example.net,Year 3,data science and analytics,27/9/2024,1/1/1900 15:00,Yes,To go to class,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,5,1,10,1,10,10,10,10
+325,Jessica Casey,jessicacasey@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 18:00,No,To go to class,2,15,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,40,25,1,10,1,1,1,1
+326,Christina Turner,christinaturner@example.net,Year 3,data science and analytics,27/9/2024,1/1/1900 17:30,No,To go to class,2,15,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,15,10,7,3,7,7,7,7
+327,Leah Hall,leahhall@example.net,Year 3,data science and analytics,27/9/2024,1/1/1900 15:00,Yes,To go for meals,4,60,No,UTown,UHC / Opp UHC,D2,Sunny,25,15,3,8,3,3,3,3
+328,Kyle Ross,kyleross@example.com,Year 3,data science and analytics,27/9/2024,1/1/1900 20:00,Yes,To go for meals,4,15,No,UTown,UHC / Opp UHC,D2,Sunny,25,15,3,8,3,3,3,3
+329,Robert Carroll,robertcarroll@example.org,Year 1,computer science,27/9/2024,1/1/1900 14:30,Yes,To go to class,2,60,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,40,5,9,4,8,7,10,8
+330,Abigail Green,abigailgreen@example.net,Year 3,life sciences,27/9/2024,1/1/1900 18:00,No,To go to class,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,4,10,5,6,6,5,8,5
+331,Sarah Neal,sarahneal@example.net,Year 3,dentistry,27/9/2024,1/1/1900 16:00,No,To go to class,1,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,50,10,4,8,8,8,8,7
+332,Mark Kennedy,markkennedy@example.com,Year 1,geography,27/9/2024,1/1/1900 15:30,Yes,To go to class,2,10,No,LT27 / S17,UTown,D2,Sunny,15,5,8,3,8,8,8,8
+333,Alexandria Bush,alexandriabush@example.org,Year 1,geography,27/9/2024,1/1/1900 15:30,Yes,To go to class,2,10,No,LT27 / S17,UTown,D2,Rainy,35,20,3,9,3,3,3,3
+334,Kari Craig,karicraig@example.com,Year 3,psychology,27/9/2024,1/1/1900 12:15,No,To go to class,2,10,No,IT / CLB,UHC / Opp UHC,A2,Sunny,15,6,7,7,7,8,9,7
+335,Kelly Mcgee,kellymcgee@example.net,Year 2,computer science,27/9/2024,1/1/1900 12:30,No,To go to class,2,15,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,15,5,7,6,6,6,6
+336,Angel Rios,angelrios@example.com,Year 3,data science and analytics,27/9/2024,1/1/1900 13:00,No,To go to class,2,30,No,UTown,LT27 / S17,D2,Sunny,20,5,8,2,8,8,8,8
+337,Antonio Williams,antoniowilliams@example.org,Year 3,data science and analytics,27/9/2024,1/1/1900 17:00,No,To go to class,3,30,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,20,10,4,7,6,7,7,5
+338,William Brown,williambrown@example.net,Year 2,data science and analytics,27/9/2024,1/1/1900 20:00,No,To go to CCA sessions,4,18,No,UHC / Opp UHC,UTown,D2,Sunny,6,5,7,3,7,7,7,7
+339,Heidi Wall,heidiwall@example.org,Year 4,chemistry,27/9/2024,1/1/1900 14:30,No,To go to class,2,5,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,5,8,8,5,6,8,6
+340,Katelyn Allen DDS,katelynallendds@example.org,Year 1,law,28/9/2024,1/1/1900 10:30,No,To go to class,2,30,No,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,4,10,7,4,8,8,8,8
+341,Vickie Ryan,vickieryan@example.com,Year 2,computer science,29/9/2024,1/1/1900 18:00,Yes,To go to class,2,30,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,30,5,7,7,8,8,7,9
+342,Kevin Melendez,kevinmelendez@example.com,Year 3,data science and analytics,30/9/2024,1/1/1900 14:00,No,To go to class,3,35,Yes,UHC / Opp UHC,LT27 / S17,A2,Sunny,50,20,3,9,2,5,7,4
+343,Elijah Miller,elijahmiller@example.net,Year 3,data science and analytics,30/9/2024,1/1/1900 21:00,No,To go to class,4,30,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,10,4,8,3,4,7,5
+344,Wendy Moore,wendymoore@example.com,Year 1,data science and analytics,30/9/2024,1/1/1900 14:00,No,To go to class,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A2,Sunny,40,25,1,1,1,1,1,1
+345,Ray Wilson,raywilson@example.net,Year 1,data science and analytics,30/9/2024,1/1/1900 14:00,No,To go to MRT,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,D2,Sunny,30,15,3,3,1,2,4,2
+346,Daniel Olsen,danielolsen@example.com,Year 1,sociology,30/9/2024,1/1/1900 11:30,Yes,To go to class,4,15,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,9,4,1,1,2,3,2
+347,Jessica Wilson,jessicawilson@example.com,Year 3,data science and analytics,30/9/2024,1/1/1900 11:00,No,To go to MRT,2,25,Yes,UHC / Opp UHC,UTown,D2,Sunny,15,6,6,4,8,6,8,8
+348,Mr. Brett Meyer,mr.brettmeyer@example.com,Year 3,data science and analytics,30/9/2024,1/1/1900 8:00,Yes,To go to class,2,10,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Sunny,10,5,7,5,7,7,8,8
+349,Daniel Jones,danieljones@example.net,Year 2,computer science,30/9/2024,1/1/1900 9:00,No,To go to class,1,5,No,Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,Sunny,30,5,6,8,6,6,7,6
+350,Stephanie Baldwin,stephaniebaldwin@example.org,Year 2,computer science,30/9/2024,1/1/1900 10:00,No,To go to class,2,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,10,5,7,7,5,5,5,6
+351,Victoria Mason,victoriamason@example.com,Year 2,computer science,30/9/2024,1/1/1900 17:00,No,To go to class,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,2,8,6,7,7,7,8
+352,Michael Mcguire,michaelmcguire@example.net,Year 2,economics,30/9/2024,1/1/1900 15:20,Yes,To go to class,4,30,Yes,UTown,UHC / Opp UHC,D2,Sunny,40,0,10,9,1,1,6,4
+353,Megan Cantu,megancantu@example.net,Year 3,data science and analytics,30/9/2024,1/1/1900 8:00,No,To go to class,3,40,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,A1,Rainy,70,10,6,10,5,3,8,5
+354,Diana Smith,dianasmith@example.net,Year 2,data science and analytics,30/9/2024,1/1/1900 15:00,Yes,To go to MRT,4,10,Yes,LT27 / S17,UHC / Opp UHC,D2,Sunny,15,5,7,6,7,8,8,7
+355,Mrs. Margaret Dudley DVM,mrs.margaretdudleydvm@example.org,Year 2,data science and analytics,1/10/2024,1/1/1900 20:30,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,10,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,5,8,2,8,7,8,8
+356,Kevin Holmes,kevinholmes@example.com,Year 2,data science and analytics,1/10/2024,1/1/1900 16:00,Yes,To go to class,2,15,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,5,5,9,2,9,9,8,8
+357,Melissa Davenport,melissadavenport@example.com,Year 2,history,1/10/2024,1/1/1900 15:17,No,To go to class,4,20,No,IT / CLB,LT13 / Ventus,A1,Sunny,8,5,7,5,6,6,6,6
+358,Matthew Johnson,matthewjohnson@example.net,Year 3,data science and analytics,1/10/2024,1/1/1900 16:00,No,To go to MRT,3,35,Yes,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,20,5,6,7,4,5,7,6
+359,Mark Rivera,markrivera@example.com,Year 3,data science and analytics,1/10/2024,1/1/1900 11:30,No,To go to class,2,25,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Sunny,10,8,4,3,8,8,9,8
+360,Chelsea Taylor,chelseataylor@example.com,Year 4,mechanical engineering,1/10/2024,1/1/1900 16:30,No,All of the above,2,10,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,15,5,5,7,5,5,5,5
+361,Aaron Lawson,aaronlawson@example.org,Year 3,data science and analytics,1/10/2024,1/1/1900 12:30,No,To go to class,3,40,Yes,LT27 / S17,IT / CLB,A1,Sunny,50,5,5,10,6,5,8,7
+362,Mr. Jeremy Hernandez,mr.jeremyhernandez@example.org,Year 4,materials science and engineering,1/10/2024,1/1/1900 9:50,No,To go to class,2,10,Yes,LT27 / S17,IT / CLB,A1,Sunny,10,5,7,7,7,7,7,8
+363,Jessica Norton,jessicanorton@example.net,Year 1,political science,1/10/2024,1/1/1900 10:55,No,To go to CCA sessions,1,5,No,UTown,IT / CLB,D1,Sunny,30,3,9,4,8,8,8,8
+364,James Parker IV,jamesparkeriv@example.com,Year 1,malay studies,1/10/2024,1/1/1900 18:00,No,To go to class,1,10,No,IT / CLB,UTown,D1,Sunny,30,4,7,6,5,5,7,7
+365,Nicole Hernandez,nicolehernandez@example.org,Year 1,global studies,1/10/2024,1/1/1900 15:00,No,To go to CCA sessions,1,5,No,IT / CLB,PGP,A1,Sunny,2,8,4,1,10,10,10,10
+366,Kevin Mcclain,kevinmcclain@example.com,Year 1,anthropology,1/10/2024,1/1/1900 17:21,No,To go to CCA sessions,1,5,No,LT27 / S17,LT13 / Ventus,A1,Sunny,40,5,6,7,6,7,10,8
+367,Shane Williams MD,shanewilliamsmd@example.com,Year 2,accountancy,1/10/2024,1/1/1900 17:45,No,To go to class,3,5,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,15,5,9,4,9,8,8,9
+368,Ruben Woods,rubenwoods@example.org,Year 1,life sciences,1/10/2024,1/1/1900 11:59,No,To go to class,2,15,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,15,5,7,7,8,7,10,8
+369,Bridget Curtis,bridgetcurtis@example.org,Year 3,geography,1/10/2024,1/1/1900 13:35,No,To go to class,2,15,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,35,7,3,8,4,2,5,4
+370,Alexis Cummings,alexiscummings@example.org,Year 1,pharmaceutical science,1/10/2024,1/1/1900 13:30,Yes,To go to class,3,60,No,LT27 / S17,UTown,D2,Sunny,40,4,4,8,4,5,5,6
+371,Brandon Allen,brandonallen@example.org,Year 4,economics,1/10/2024,1/1/1900 16:00,No,To go to class,2,10,Yes,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,5,8,9,8,8,8,8
+372,Adrienne Nguyen,adriennenguyen@example.org,Year 4,data science and analytics,1/10/2024,1/1/1900 20:15,No,To go to MRT,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,20,5,5,10,2,2,3,4
+373,Mrs. Taylor James,mrs.taylorjames@example.org,Year 3,life sciences,1/10/2024,1/1/1900 13:41,No,To go to class,2,10,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,15,6,7,8,5,6,7,7
+374,Christopher Taylor,christophertaylor@example.net,Year 2,data science and analytics,2/10/2024,1/1/1900 14:00,No,To go for meals,4,20,No,UTown,LT27 / S17,D2,Sunny,25,10,6,6,6,6,6,6
+375,Heather Brown,heatherbrown@example.org,Year 1,nursing,2/10/2024,1/1/1900 15:30,No,To go to class,1,10,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,16,17,3,10,4,3,3,4
+376,Kimberly Riley,kimberlyriley@example.org,Year 4,history,2/10/2024,1/1/1900 16:45,No,To go to class,2,22,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,5,6,8,8,7,7,7
+377,Brent Reyes,brentreyes@example.com,Year 3,life sciences,2/10/2024,1/1/1900 14:00,No,To go to class,2,6,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,20,6,4,6,5,7,7,7
+378,Pamela Arnold,pamelaarnold@example.org,Year 4,mechanical engineering,2/10/2024,1/1/1900 16:30,No,To go to class,3,15,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,6,6,8,3,8,8,8,8
+379,Theresa Hill,theresahill@example.com,Year 4,biomedical engineering,2/10/2024,1/1/1900 18:00,No,To go to class,4,20,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,60,15,1,10,1,1,3,2
+380,Jennifer Gallagher,jennifergallagher@example.com,Year 2,quantitative finance,2/10/2024,1/1/1900 10:50,No,To go to class,3,30,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,10,6,6,3,10,10,10,9
+381,Juan Mcintyre,juanmcintyre@example.org,Year 3,environmental engineering,2/10/2024,1/1/1900 17:50,No,To go to class,2,7,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,35,4,8,10,1,1,3,1
+382,Sonya Pace,sonyapace@example.com,Year 4,psychology,2/10/2024,1/1/1900 17:00,No,To go to class,3,15,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,5,8,5,6,6,9,8
+383,Beth Crawford,bethcrawford@example.org,Year 3,data science and analytics,2/10/2024,1/1/1900 15:15,No,To go to class,3,30,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,20,5,7,6,5,7,8,6
+384,Troy Martin,troymartin@example.com,Year 3,statistics,2/10/2024,1/1/1900 19:40,No,To go to class,1,5,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,5,2,5,5,5,5,10,5
+385,Robert Keith,robertkeith@example.net,Year 4,materials science and engineering,2/10/2024,1/1/1900 9:45,No,To go to class,2,12,No,LT27 / S17,IT / CLB,A1,Sunny,8,4,9,7,8,9,9,10
+386,Anthony Jordan,anthonyjordan@example.com,Year 1,environmental studies,2/10/2024,1/1/1900 9:45,No,To go to class,4,40,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,70,5,9,10,2,4,7,5
+387,Tammy Beard,tammybeard@example.org,Year 3,data science and analytics,3/10/2024,1/1/1900 11:40,No,To go to class,2,40,No,COM3,LT27 / S17,D2,Sunny,20,6,5,7,9,8,9,9
+388,Mario White,mariowhite@example.com,Year 3,data science and analytics,3/10/2024,1/1/1900 13:50,No,To go to class,4,40,Yes,COM3,LT27 / S17,D2,Sunny,30,10,3,7,5,7,8,6
+389,Stephanie Hansen,stephaniehansen@example.net,Year 3,life sciences,3/10/2024,1/1/1900 14:44,No,To go for meals,0,15,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,15,5,8,3,9,8,8,7
+390,Brooke Logan,brookelogan@example.net,Year 4,psychology,3/10/2024,1/1/1900 15:20,No,To go to MRT,2,5,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,8,2,9,9,9,9,9,9
+391,Christopher Cox,christophercox@example.net,Year 3,data science and analytics,3/10/2024,1/1/1900 18:00,No,To go to class,2,30,Yes,LT27 / S17,UHC / Opp UHC,A1,Rainy,40,5,6,5,5,5,8,8
+392,Edward Murphy,edwardmurphy@example.com,Year 3,data science and analytics,3/10/2024,1/1/1900 20:50,No,To go to class,4,25,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,50,15,4,9,3,4,7,4
+393,Isabella Burnett,isabellaburnett@example.com,Year 1,sociology,3/10/2024,1/1/1900 11:40,Yes,To go to class,2,5,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,30,15,2,9,3,4,4,4
+394,Jessica Wilson,jessicawilson@example.com,Year 1,data science and analytics,3/10/2024,1/1/1900 11:45,No,To go to class,1,10,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,20,15,2,9,3,3,4,2
+395,Jeffrey Russell,jeffreyrussell@example.org,Year 3,anthropology,3/10/2024,1/1/1900 17:30,No,To go to class,2,35,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,25,2,6,9,6,6,7,6
+396,Chelsea Willis,chelseawillis@example.com,Year 3,data science and analytics,4/10/2024,1/1/1900 11:30,No,To go to class,3,30,No,LT13 / Ventus,LT27 / S17,A1,Rainy,5,2,8,7,5,6,8,6
+397,Michael Nichols,michaelnichols@example.com,Year 4,economics,4/10/2024,1/1/1900 13:30,No,To go to class,2,10,No,UTown,IT / CLB,D1,Rainy,32,15,6,8,7,5,7,6
+398,Connor Thomas,connorthomas@example.org,Year 4,economics,4/10/2024,1/1/1900 16:16,No,To go to CCA sessions,4,12,No,PGP,LT13 / Ventus,A2,Sunny,15,12,5,6,5,7,6,7
+399,Theodore Copeland,theodorecopeland@example.com,Year 1,sociology,4/10/2024,1/1/1900 13:00,Yes,To go to class,4,10,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,3,6,7,5,4,5,4
+400,William Hanson,williamhanson@example.net,Year 1,data science and analytics,4/10/2024,1/1/1900 16:15,No,To go to class,1,10,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,5,6,4,5,6,6,6
+401,Joseph Rodriguez,josephrodriguez@example.net,Year 3,data science and analytics,7/10/2024,1/1/1900 11:45,No,To go to class,4,50,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,60,30,2,10,2,1,3,1
+402,Debra Ortiz,debraortiz@example.org,Year 3,data science and analytics,7/10/2024,1/1/1900 11:15,No,To go to class,4,20,No,LT13 / Ventus,LT27 / S17,A1,Sunny,15,3,7,8,3,6,7,6
+403,Jose Moses,josemoses@example.com,Year 3,data science and analytics,7/10/2024,1/1/1900 11:45,No,To go to class,4,10,Yes,UHC / Opp UHC,IT / CLB,A2,Sunny,20,6,5,9,4,5,8,6
+404,Cory Cannon,corycannon@example.com,Year 1,"politics, philosophy, economics",7/10/2024,1/1/1900 14:30,Yes,To go to class,2,20,No,IT / CLB,UTown,D1,Sunny,6,8,9,2,8,8,10,9
+405,Zachary Tucker,zacharytucker@example.net,Year 3,business analytics,7/10/2024,1/1/1900 11:40,No,To go to class,3,30,Yes,UHC / Opp UHC,LT27 / S17,D2,Sunny,20,6,7,7,7,7,7,7
+406,Jasmine Ball,jasmineball@example.com,Year 1,chemistry,7/10/2024,1/1/1900 11:00,No,To go to class,4,12,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,5,5,8,8,8,8,8,9
+407,Wendy Ibarra MD,wendyibarramd@example.com,Year 1,mathematics,7/10/2024,1/1/1900 17:15,No,To go to class,3,20,No,IT / CLB,LT27 / S17,A2,Sunny,60,7,3,10,1,1,10,3
+408,Justin Berry,justinberry@example.net,Year 2,psychology,7/10/2024,1/1/1900 15:46,No,To go to class,2,25,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,40,5,6,7,5,6,7,6
+409,Brandy Johnston,brandyjohnston@example.org,Year 2,life sciences,7/10/2024,1/1/1900 18:01,No,To go to class,4,20,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,30,3,6,9,6,5,6,5
+410,Cheryl Reed,cherylreed@example.com,Year 3,data science and analytics,7/10/2024,1/1/1900 14:00,No,To go to class,4,30,No,COM3,LT27 / S17,D2,Sunny,25,10,3,7,5,7,8,6
+411,Sarah Martinez,sarahmartinez@example.com,Year 3,chemistry,7/10/2024,1/1/1900 7:20,No,To go to class,6,30,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,LT27 / S17,A1,Sunny,35,2,6,6,8,6,8,6
+412,Anna Freeman,annafreeman@example.com,Year 1,life sciences,7/10/2024,1/1/1900 14:22,Yes,To go to class,2,10,Yes,LT27 / S17,UTown,D2,Sunny,10,5,7,5,6,6,6,6
+413,Kenneth Frank,kennethfrank@example.com,Year 2,food science and technology,7/10/2024,1/1/1900 14:11,No,To go to class,2,5,Yes,UHC / Opp UHC,UTown,D2,Sunny,15,5,7,6,6,5,7,7
+414,Danielle Watkins,daniellewatkins@example.net,Year 1,mathematics,7/10/2024,1/1/1900 15:50,Yes,To go to MRT,2,10,Yes,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,15,8,6,6,6,6,6,6
+415,Laura Christian,laurachristian@example.net,Year 2,law,7/10/2024,1/1/1900 16:00,No,To go to class,5,60,No,PGP,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,40,15,3,10,2,3,5,4
+416,Jennifer Leach,jenniferleach@example.org,Year 3,dentistry,7/10/2024,1/1/1900 16:40,No,To go to class,2,30,No,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,10,3,9,7,5,8,8,9
+417,Kathleen Stone,kathleenstone@example.net,Year 2,dentistry,7/10/2024,1/1/1900 12:00,No,To go to class,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,20,1,8,2,4,7,1
+418,Laura Herring,lauraherring@example.net,Year 3,nursing,7/10/2024,1/1/1900 16:30,Yes,To go to class,2,40,No,LT27 / S17,LT13 / Ventus,A1,Sunny,30,3,9,10,4,8,10,7
+419,Taylor Hall,taylorhall@example.com,Year 4,food science and technology,8/10/2024,1/1/1900 9:36,No,To go to class,1,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,6,4,9,4,3,4,4
+420,James Petersen,jamespetersen@example.net,Year 3,data science and analytics,8/10/2024,1/1/1900 13:45,No,To go to MRT,4,40,Yes,UHC / Opp UHC,IT / CLB,A1,Sunny,50,4,7,9,2,3,7,4
+421,Johnny Taylor,johnnytaylor@example.com,Year 3,data science and analytics,8/10/2024,1/1/1900 16:30,No,To go to class,4,35,Yes,PGP,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,15,6,5,8,3,4,8,6
+422,Bradley Patterson,bradleypatterson@example.org,Year 2,industrial systems engineering,8/10/2024,1/1/1900 9:55,Yes,To go to class,4,6,No,IT / CLB,UHC / Opp UHC,A1,Sunny,12,6,6,7,4,8,9,7
+423,Deanna Mcdaniel,deannamcdaniel@example.com,Year 4,anthropology,8/10/2024,1/1/1900 12:36,No,To go to class,2,8,No,LT13 / Ventus,COM3,D1,Sunny,10,10,3,4,7,6,6,6
+424,Lisa Galloway,lisagalloway@example.org,Year 2,life sciences,8/10/2024,1/1/1900 17:25,No,To go to class,2,10,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,10,3,2,6,5,6,5,6
+425,Jessica Rivera,jessicarivera@example.com,Year 1,food science and technology,8/10/2024,1/1/1900 13:10,Yes,To go for meals,2,8,No,LT27 / S17,UTown,D2,Sunny,15,6,7,7,6,6,6,6
+426,Shelley Sandoval,shelleysandoval@example.com,Year 1,food science and technology,8/10/2024,1/1/1900 16:20,No,To go to class,2,10,Yes,IT / CLB,UTown,D1,Sunny,8,7,4,7,6,7,4,4
+427,Mrs. Helen Knight,mrs.helenknight@example.org,Year 2,mathematics,8/10/2024,1/1/1900 15:56,No,To go to class,2,20,Yes,COM3,IT / CLB,D1,Sunny,5,5,8,4,8,8,8,8
+428,Stephen Wallace,stephenwallace@example.net,Year 3,law,8/10/2024,1/1/1900 11:00,No,To go to class,3,30,No,UTown,PGP,D2,Sunny,25,10,6,8,6,6,7,4
+429,Tricia Mills,triciamills@example.com,Year 4,dentistry,8/10/2024,1/1/1900 12:00,No,To go to class,3,15,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,20,10,8,7,4,4,5,6
+430,Donna Brown,donnabrown@example.net,Year 2,nursing,8/10/2024,1/1/1900 13:00,Yes,To go to class,2,30,Yes,LT27 / S17,UHC / Opp UHC,D2,Sunny,20,5,10,7,7,8,9,7
+431,David Harvey,davidharvey@example.net,Year 2,environmental studies,8/10/2024,1/1/1900 10:30,Yes,To go to class,4,50,Yes,UHC / Opp UHC,IT / CLB,A1,Sunny,25,2,10,10,3,4,9,6
+432,Chad Hunt,chadhunt@example.net,Year 3,data science and analytics,9/10/2024,1/1/1900 15:00,No,To go to class,2,25,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,30,5,6,7,4,6,7,6
+433,Mrs. Jaime Frazier,mrs.jaimefrazier@example.net,Year 3,mathematics,9/10/2024,1/1/1900 14:30,Yes,To go to class,4,15,Yes,LT13 / Ventus,LT27 / S17,A1,Sunny,10,5,9,2,10,10,10,10
+434,Terry Strong,terrystrong@example.net,Year 3,economics,9/10/2024,1/1/1900 14:15,Yes,To go to CCA sessions,2,10,No,IT / CLB,UHC / Opp UHC,A2,Sunny,25,8,4,9,5,4,4,4
+435,Wendy Martin,wendymartin@example.net,Year 1,anthropology,9/10/2024,1/1/1900 12:58,No,To go for meals,4,15,No,LT27 / S17,UHC / Opp UHC,A1,Sunny,20,10,3,7,4,4,4,4
+436,Matthew Booth,matthewbooth@example.com,Year 3,life sciences,9/10/2024,1/1/1900 10:00,Yes,To go to MRT,1,8,No,Kent Ridge MRT / Opp Kent Ridge MRT,UTown,D2,Sunny,30,15,1,10,2,2,1,2
+437,John Martin,johnmartin@example.org,Year 3,food science and technology,9/10/2024,1/1/1900 19:00,No,To go to CCA sessions,2,10,No,BIZ2 / Opp HSSML,PGP,A1,Sunny,12,8,4,6,5,5,4,5
+438,Angela Potts DDS,angelapottsdds@example.com,Year 3,mathematics,9/10/2024,1/1/1900 17:00,No,To go to CCA sessions,3,15,No,LT13 / Ventus,UTown,D1,Sunny,12,7,5,6,4,4,4,4
+439,Jeffrey Allison,jeffreyallison@example.org,Year 3,law,9/10/2024,1/1/1900 18:00,No,To go to MRT,4,30,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,50,15,2,8,1,5,4,1
+440,Brandy Morales,brandymorales@example.net,Year 3,political science,9/10/2024,1/1/1900 15:30,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,20,No,LT13 / Ventus,PGP,A1,Sunny,10,5,8,2,9,9,9,9
+441,Danielle Stephens,daniellestephens@example.com,Year 1,dentistry,9/10/2024,1/1/1900 16:45,No,To go to class,3,20,No,IT / CLB,LT27 / S17,A2,Sunny,30,15,4,10,1,1,3,1
+442,Sonya Johnson,sonyajohnson@example.net,Year 1,nursing,9/10/2024,1/1/1900 10:40,No,To go to class,2,30,Yes,UHC / Opp UHC,LT27 / S17,D2,Rainy,70,10,4,10,1,4,7,4
+443,Joshua Chambers,joshuachambers@example.com,Year 3,data science and analytics,10/10/2024,1/1/1900 14:00,No,To go to class,4,40,No,COM3,UTown,D1,Sunny,30,3,8,7,6,8,8,7
+444,Eric Green,ericgreen@example.net,Year 4,sociology,10/10/2024,1/1/1900 12:30,Yes,To go for meals,2,2,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,1,9,2,8,9,9,9
+445,Tonya Smith,tonyasmith@example.org,Year 2,social work,10/10/2024,1/1/1900 16:15,Yes,To go to class,3,15,No,UTown,UHC / Opp UHC,D2,Sunny,25,5,6,6,5,6,7,7
+446,Andrew Torres,andrewtorres@example.org,Year 2,anthropology,10/10/2024,1/1/1900 16:35,No,To go to class,2,40,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,5,5,7,3,8,7,7,7
+447,Sarah Merritt,sarahmerritt@example.com,Year 4,life sciences,10/10/2024,1/1/1900 15:15,No,To go for meals,4,20,No,PGP,LT27 / S17,A1,Sunny,9,5,9,3,7,7,7,7
+448,Shelby Torres,shelbytorres@example.net,Year 4,food science and technology,10/10/2024,1/1/1900 15:15,No,To go to MRT,2,15,No,Kent Ridge MRT / Opp Kent Ridge MRT,PGP,D2,Sunny,8,7,5,5,5,5,5,5
+449,Sean Kelly,seankelly@example.com,Year 4,mathematics,10/10/2024,1/1/1900 14:30,No,To go to class,2,10,No,IT / CLB,COM3,D1,Sunny,15,5,5,5,5,5,5,5
+450,Stephanie Mullen,stephaniemullen@example.com,Year 2,psychology,10/10/2024,1/1/1900 16:00,No,To go to class,3,30,No,LT13 / Ventus,PGP,A1,Rainy,35,9,3,8,3,5,7,4
+451,Bradley Flores,bradleyflores@example.org,Year 4,political science,10/10/2024,1/1/1900 18:10,No,To go to class,4,45,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,15,2,9,3,6,6,4
+452,Mercedes Johnson,mercedesjohnson@example.org,Year 4,political science,10/10/2024,1/1/1900 16:45,No,To go to class,3,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,25,15,4,7,4,6,9,6
+453,Steve Wright,stevewright@example.com,Year 2,dentistry,10/10/2024,1/1/1900 18:00,No,To go to class,3,15,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,15,2,10,1,6,6,2
+454,Jacob Davenport,jacobdavenport@example.net,Year 2,computer science,11/10/2024,1/1/1900 13:00,Yes,To go to class,2,10,No,IT / CLB,UHC / Opp UHC,A2,Rainy,20,3,9,9,5,4,9,7
+455,Victoria Simon,victoriasimon@example.org,Year 2,data science and analytics,11/10/2024,1/1/1900 14:45,Yes,To go to class,2,10,No,LT27 / S17,UTown,D2,Sunny,10,6,7,7,6,6,6,6
+456,Ryan Anderson,ryananderson@example.com,Year 2,psychology,11/10/2024,1/1/1900 17:26,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",1,10,No,UTown,UHC / Opp UHC,D2,Sunny,14,1,10,8,3,2,9,6
+457,Danielle Walker,daniellewalker@example.net,Year 2,food science and technology,11/10/2024,1/1/1900 14:30,Yes,To go to class,2,10,No,LT27 / S17,UHC / Opp UHC,A1,Sunny,15,5,8,3,8,7,8,9
+458,John Gill,johngill@example.com,Year 2,data science and analytics,11/10/2024,1/1/1900 13:56,Yes,To go to class,2,30,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,15,6,7,8,5,6,6,7
+459,Timothy Cantu,timothycantu@example.com,Year 2,social work,11/10/2024,1/1/1900 12:00,Yes,To go to class,2,10,No,IT / CLB,UHC / Opp UHC,A2,Sunny,30,7,5,7,6,4,5,6
+460,Jacob Jones,jacobjones@example.com,Year 3,data science and analytics,11/10/2024,1/1/1900 12:00,No,To go to class,3,35,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,30,5,6,7,6,7,8,7
+461,Larry Cordova,larrycordova@example.net,Year 2,anthropology,11/10/2024,1/1/1900 21:02,Yes,To go to CCA sessions,2,12,No,UHC / Opp UHC,UTown,D2,Rainy,6,5,7,5,7,7,7,7
+462,Jason Johnson,jasonjohnson@example.org,Year 2,malay studies,11/10/2024,1/1/1900 17:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,UTown,PGP,D2,Sunny,30,5,6,8,5,6,7,6
+463,James Davis,jamesdavis@example.net,Year 3,global studies,11/10/2024,1/1/1900 8:30,No,To go to class,4,40,No,Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,Rainy,25,4,6,8,3,5,7,6
+464,Erica Baxter,ericabaxter@example.net,Year 2,political science,11/10/2024,1/1/1900 14:10,No,To go to class,3,25,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,15,5,7,5,8,8,8,8
+465,Brandi Benitez,brandibenitez@example.net,Year 3,nursing,11/10/2024,1/1/1900 17:50,No,To go to class,2,25,Yes,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,4,7,9,3,6,10,6
+466,Matthew Thomas,matthewthomas@example.net,Year 2,data science and analytics,12/10/2024,1/1/1900 14:16,Yes,To go to class,3,10,No,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,1,3,8,9,7,4,7,8
+467,Patrick Ochoa,patrickochoa@example.net,Year 2,geography,12/10/2024,1/1/1900 20:30,Yes,To go to class,2,10,No,Kent Ridge MRT / Opp Kent Ridge MRT,UHC / Opp UHC,D2,Rainy,20,15,5,5,9,9,10,9
+468,Ashley Gallagher,ashleygallagher@example.com,Year 3,data science and analytics,14/10/2024,1/1/1900 17:30,No,To go to MRT,3,30,No,LT27 / S17,UTown,D2,Sunny,25,5,6,7,4,6,7,6
+469,Jason Collins,jasoncollins@example.org,Year 3,data science and analytics,14/10/2024,1/1/1900 20:30,No,To go to class,3,25,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,40,8,5,7,4,6,7,5
+470,Emily Anderson,emilyanderson@example.org,Year 2,anthropology,14/10/2024,1/1/1900 14:11,Yes,To go to class,2,10,No,UHC / Opp UHC,UTown,D2,Rainy,15,7,6,5,6,6,6,6
+471,Brian Bennett,brianbennett@example.com,Year 3,materials science and engineering,14/10/2024,1/1/1900 17:00,Yes,To go to class,2,20,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,10,5,5,7,4,4,5,6
+472,Jasmine Monroe,jasminemonroe@example.com,Year 4,statistics,14/10/2024,1/1/1900 21:00,No,To go to CCA sessions,3,15,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,6,10,3,6,5,7,8,6
+473,Tracy Lloyd,tracylloyd@example.com,Year 2,life sciences,14/10/2024,1/1/1900 17:45,No,To go to class,2,10,No,IT / CLB,UHC / Opp UHC,A2,Sunny,15,6,3,8,4,3,5,4
+474,Michael Herring,michaelherring@example.net,Year 2,malay studies,14/10/2024,1/1/1900 15:00,No,To go to class,2,25,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,35,6,5,8,3,6,7,6
+475,Kayla Wood,kaylawood@example.org,Year 2,global studies,14/10/2024,1/1/1900 14:00,No,To go to CCA sessions,2,30,No,LT13 / Ventus,UTown,D1,Sunny,40,5,6,9,3,5,6,5
+476,Shawn Patel,shawnpatel@example.org,Year 4,psychology,14/10/2024,1/1/1900 17:00,No,To go to class,4,40,No,UTown,LT27 / S17,D2,Rainy,30,5,5,8,3,5,7,6
+477,Christine Ross MD,christinerossmd@example.net,Year 1,law,14/10/2024,1/1/1900 12:10,No,To go to class,3,30,No,UHC / Opp UHC,LT27 / S17,D2,Rainy,15,15,2,7,5,5,6,6
+478,Maria Anderson,mariaanderson@example.com,Year 2,political science,14/10/2024,1/1/1900 16:15,No,To go to class,2,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,20,2,9,3,6,8,5
+479,Dennis Thomas,dennisthomas@example.org,Year 1,nursing,14/10/2024,1/1/1900 16:00,No,To go to class,2,20,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,40,8,6,10,2,5,9,7
+480,Barbara Montgomery,barbaramontgomery@example.org,Year 1,environmental studies,14/10/2024,1/1/1900 12:30,No,To go to class,3,40,No,IT / CLB,LT27 / S17,A2,Rainy,20,4,10,7,9,10,10,9
+481,Rebekah Smith,rebekahsmith@example.com,Year 4,anthropology,15/10/2024,1/1/1900 13:00,No,To go to class,2,5,Yes,UHC / Opp UHC,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,30,5,5,7,4,5,5,5
+482,Richard Perez,richardperez@example.net,Year 3,data science and analytics,15/10/2024,1/1/1900 16:00,No,To go to class,3,30,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,40,7,4,9,3,6,8,6
+483,Dean Larson,deanlarson@example.com,Year 3,malay studies,15/10/2024,1/1/1900 14:00,No,To go to class,3,30,No,IT / CLB,UTown,D1,Sunny,30,7,3,8,3,6,7,6
+484,Melissa Dodson,melissadodson@example.com,Year 2,global studies,15/10/2024,1/1/1900 14:00,No,To go to class,3,35,No,LT13 / Ventus,PGP,A1,Sunny,25,5,6,8,3,6,7,6
+485,Jacqueline Hamilton,jacquelinehamilton@example.net,Year 3,global studies,15/10/2024,1/1/1900 15:00,No,To go to MRT,2,25,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,40,5,6,8,4,6,7,6
+486,Amy Scott,amyscott@example.net,Year 2,political science,15/10/2024,1/1/1900 17:40,No,To go to MRT,3,30,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,30,10,7,8,4,8,9,7
+487,Lori Castro,loricastro@example.com,Year 3,chemistry,16/10/2024,1/1/1900 15:45,No,To go to class,2,20,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,5,5,8,9,8,8,10,8
+488,Michael Rodriguez,michaelrodriguez@example.net,Year 1,malay studies,16/10/2024,1/1/1900 15:00,No,To go to class,2,20,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,5,6,8,4,7,8,6
+489,Jennifer Reid,jenniferreid@example.org,Year 1,global studies,16/10/2024,1/1/1900 14:00,No,To go to class,3,35,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,30,6,4,7,4,6,8,5
+490,Jason Weber,jasonweber@example.net,Year 3,psychology,16/10/2024,1/1/1900 16:00,No,To go to class,2,20,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,20,5,7,6,6,7,8,7
+491,Derek Graham,derekgraham@example.com,Year 1,malay studies,17/10/2024,1/1/1900 14:00,No,To go to class,3,30,No,IT / CLB,UTown,D1,Sunny,30,5,5,8,4,6,8,6
+492,Jill Coleman,jillcoleman@example.net,Year 3,global studies,17/10/2024,1/1/1900 16:00,No,To go to class,2,20,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,25,4,7,7,5,6,7,6
+493,David Burgess,davidburgess@example.com,Year 1,psychology,17/10/2024,1/1/1900 15:00,No,To go to class,3,25,No,LT13 / Ventus,UTown,D1,Rainy,20,5,6,7,5,6,7,6
+494,Ernest Mcgee,ernestmcgee@example.net,Year 4,psychology,17/10/2024,1/1/1900 16:00,No,To go to class,2,30,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,25,5,6,7,5,6,8,6
+495,Mr. George Abbott,mr.georgeabbott@example.net,Year 2,law,17/10/2024,1/1/1900 18:15,No,To go to class,4,30,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,45,15,1,10,1,2,4,1
+496,Donna Harrell,donnaharrell@example.com,Year 1,nursing,17/10/2024,1/1/1900 17:30,Yes,To go to class,3,40,No,LT27 / S17,PGP,D2,Sunny,40,6,5,10,4,7,10,8
+497,William Hawkins,williamhawkins@example.org,Year 3,malay studies,18/10/2024,1/1/1900 15:00,No,To go to MRT,2,30,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,30,5,6,7,4,6,8,7
+498,Brian Swanson,brianswanson@example.com,Year 4,psychology,18/10/2024,1/1/1900 14:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",3,30,No,LT13 / Ventus,UTown,D1,Rainy,30,9,3,9,3,5,7,5
+499,Aaron Evans,aaronevans@example.net,Year 3,law,18/10/2024,1/1/1900 11:10,No,To go to class,3,20,No,UTown,PGP,D2,Sunny,10,7,7,3,7,7,9,8
+500,Ryan Cooper,ryancooper@example.net,Year 3,dentistry,18/10/2024,1/1/1900 19:00,No,To go to MRT,4,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,40,20,1,10,1,1,1,1
+501,Rachel Faulkner,rachelfaulkner@example.org,Year 2,materials science and engineering,15/10/2024,1/1/1900 16:00,No,To go to MRT,3,20,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Rainy,10,7,4,6,6,6,7,5
+502,Jeffrey Smith,jeffreysmith@example.org,Year 1,statistics,15/10/2024,1/1/1900 14:00,No,To go for meals,2,15,No,BIZ2 / Opp HSSML,IT / CLB,D1,Sunny,8,3,7,6,5,8,8,7
+503,Sheri Bowman,sheribowman@example.net,Year 4,life sciences,15/10/2024,1/1/1900 17:15,No,To go to CCA sessions,2,15,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,15,4,5,7,5,5,6,6
+504,Rebecca Cook,rebeccacook@example.com,Year 1,economics,17/10/2024,1/1/1900 14:30,No,To go to class,2,20,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,25,15,7,7,7,7,7,7
+505,Elizabeth Larson,elizabethlarson@example.com,Year 1,economics,18/10/2024,1/1/1900 14:30,No,To go to MRT,2,20,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,20,15,7,7,7,7,7,7
+506,Elizabeth Simpson,elizabethsimpson@example.org,Year 4,economics,14/10/2024,1/1/1900 11:00,No,To go to class,1,10,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,5,5,10,5,9,10,10,10
+507,Erin Graham,eringraham@example.org,Year 4,economics,15/10/2024,1/1/1900 16:30,No,To go to class,2,10,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,5,3,10,1,10,10,10,10
+508,Amy Roberson,amyroberson@example.net,Year 1,sociology,16/10/2024,1/1/1900 19:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,PGP,UTown,D2,Sunny,30,20,1,10,1,1,1,1
+509,Shane Martinez,shanemartinez@example.net,Year 2,sociology,16/10/2024,1/1/1900 20:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,PGP,UTown,D2,Rainy,35,25,1,10,1,1,1,1
+510,Michael Norman,michaelnorman@example.com,Year 3,environmental studies,11/10/2024,1/1/1900 16:50,No,To go to class,3,40,Yes,LT27 / S17,UHC / Opp UHC,A1,Sunny,20,6,6,9,5,8,10,8
+511,Natalie Cannon,nataliecannon@example.com,Year 4,environmental studies,17/10/2024,1/1/1900 15:30,No,To go to class,2,20,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,15,5,7,6,9,9,10,9
+512,Ashley Patel,ashleypatel@example.com,Year 1,chemistry,7/10/2024,1/1/1900 10:50,Yes,To go to class,4,45,Yes,UHC / Opp UHC,LT27 / S17,D2,Sunny,50,7,5,10,6,6,9,7
+513,Joshua Cook,joshuacook@example.org,Year 1,computer science,14/10/2024,1/1/1900 12:00,Yes,To go to class,2,15,No,COM3,UTown,D1,Sunny,25,15,6,7,6,6,6,6
+514,Albert Richardson,albertrichardson@example.net,Year 1,computer science,15/10/2024,1/1/1900 18:30,Yes,To go to class,2,15,No,COM3,UTown,D1,Sunny,29,19,3,8,3,3,3,3
+515,Sydney Perez,sydneyperez@example.net,Year 1,chemistry,15/10/2024,1/1/1900 11:40,No,To go to class,4,40,No,LT27 / S17,IT / CLB,A1,Rainy,25,4,9,10,7,7,9,8
+516,Brandon Thompson,brandonthompson@example.net,Year 2,chemistry,2/10/2024,1/1/1900 18:50,Yes,To go to class,5,40,Yes,IT / CLB,PGP,A2,Sunny,20,6,7,7,8,9,10,8
+517,Rebecca West,rebeccawest@example.com,Year 3,chemistry,17/10/2024,1/1/1900 16:45,No,To go to class,2,25,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,6,6,7,8,9,10,8
+518,Kimberly Buchanan,kimberlybuchanan@example.net,Year 3,data science and analytics,17/10/2024,1/1/1900 16:30,No,To go to class,3,30,No,LT13 / Ventus,LT27 / S17,A1,Sunny,10,7,4,7,6,6,7,6
+519,Kyle Martinez,kylemartinez@example.net,Year 3,data science and analytics,16/10/2024,1/1/1900 15:00,No,To go to class,2,25,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,30,5,6,8,4,6,8,6
+520,Brent Rodriguez,brentrodriguez@example.net,Year 1,computer science,15/10/2024,1/1/1900 14:00,Yes,To go for meals,4,45,No,UTown,PGP,D2,Sunny,20,10,7,8,7,7,7,8
+521,Eric Harper,ericharper@example.org,Year 2,social work,8/10/2024,1/1/1900 19:00,Yes,To go for meals,4,35,No,IT / CLB,UHC / Opp UHC,A1,Rainy,45,25,2,10,2,3,3,3
+522,Danny Berg,dannyberg@example.org,Year 4,social work,10/10/2024,1/1/1900 12:00,No,To go to class,4,30,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,25,15,5,10,5,6,6,6
+523,Lori Cooper,loricooper@example.org,Year 4,social work,10/10/2024,1/1/1900 22:00,No,"To go to in-school accommodation (halls, RCs, houses etc.)",2,37,No,PGP,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,3,15,5,1,10,10,10,10
+524,Deanna Cabrera,deannacabrera@example.net,Year 4,chemistry,11/10/2024,1/1/1900 17:40,No,To go to class,3,30,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,20,3,8,10,5,7,9,7
+525,Maria Cooley,mariacooley@example.org,Year 2,chemistry,17/10/2024,1/1/1900 15:40,Yes,To go to class,5,40,No,LT27 / S17,UTown,D2,Rainy,15,6,6,5,8,9,10,9
+526,Amy Jones,amyjones@example.org,Year 1,history,14/10/2024,1/1/1900 14:40,Yes,To go to class,4,40,No,LT13 / Ventus,LT27 / S17,A1,Sunny,20,3,9,10,8,10,9,8
+527,Joseph Andersen,josephandersen@example.net,Year 2,statistics,16/10/2024,1/1/1900 11:35,No,To go to class,3,20,No,LT27 / S17,IT / CLB,A1,Sunny,20,3,8,8,6,4,4,5
+528,Rachel Scott,rachelscott@example.org,Year 4,history,15/10/2024,1/1/1900 16:40,No,To go to class,2,40,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Rainy,35,5,7,10,6,6,8,7
+529,Stacey Gregory,staceygregory@example.net,Year 2,history,16/10/2024,1/1/1900 10:30,Yes,To go to class,4,50,Yes,UHC / Opp UHC,IT / CLB,A1,Rainy,15,5,7,9,4,7,10,8
+530,Stephanie Ellis,stephanieellis@example.net,Year 1,materials science and engineering,16/10/2024,1/1/1900 21:00,No,To go to CCA sessions,2,15,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,15,5,5,3,8,8,9,8
+531,Valerie Martinez,valeriemartinez@example.net,Year 3,life sciences,16/10/2024,1/1/1900 14:15,Yes,To go to class,3,30,No,LT27 / S17,IT / CLB,A1,Sunny,15,3,5,6,6,7,7,7
+532,Cassandra Powell,cassandrapowell@example.com,Year 1,history,17/10/2024,1/1/1900 17:40,Yes,To go to class,5,40,No,LT13 / Ventus,UTown,D1,Sunny,35,3,8,9,7,6,9,8
+533,Jamie Odom,jamieodom@example.com,Year 4,materials science and engineering,17/10/2024,1/1/1900 17:20,No,To go for meals,2,20,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,5,4,9,2,3,4,9
+534,Michelle Macias,michellemacias@example.com,Year 3,history,18/10/2024,1/1/1900 15:30,No,To go to class,3,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,7,7,7,9,8,10,7
+535,Susan Carter,susancarter@example.org,Year 3,statistics,17/10/2024,1/1/1900 18:20,No,To go to MRT,2,15,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,5,5,4,4,7,8,6,6
+536,Michael Kemp DDS,michaelkempdds@example.com,Year 2,life sciences,17/10/2024,1/1/1900 18:40,No,To go for meals,3,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,15,5,4,5,7,7,8,7
+537,Aaron Rangel Jr.,aaronrangeljr.@example.net,Year 3,history,14/10/2024,1/1/1900 17:30,No,To go to class,2,25,Yes,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,2,9,10,6,7,10,6
+538,Timothy Smith,timothysmith@example.net,Year 4,materials science and engineering,18/10/2024,1/1/1900 12:45,No,To go to class,3,30,No,Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,Sunny,30,4,4,7,3,4,6,5
+539,Tracy Clay,tracyclay@example.com,Year 4,statistics,18/10/2024,1/1/1900 16:00,No,To go to class,2,15,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,4,5,4,7,8,8,8
+540,David Austin,davidaustin@example.com,Year 1,life sciences,18/10/2024,1/1/1900 14:15,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",3,30,No,LT27 / S17,IT / CLB,A1,Sunny,15,3,8,7,4,4,8,7
+541,Angela Lutz,angelalutz@example.net,Year 3,materials science and engineering,14/10/2024,1/1/1900 16:30,No,To go to class,3,30,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Rainy,20,5,3,8,4,5,6,6
+542,Hannah Wood,hannahwood@example.net,Year 2,statistics,16/10/2024,1/1/1900 15:30,Yes,To go to class,2,20,No,COM3,LT27 / S17,D2,Sunny,20,4,4,7,6,5,7,6
+543,Stephanie Cook,stephaniecook@example.net,Year 4,life sciences,18/10/2024,1/1/1900 17:30,No,To go to MRT,2,15,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,7,2,9,2,3,3,2
+544,Mariah Christensen,mariahchristensen@example.org,Year 3,architecture,14/10/2024,1/1/1900 16:00,No,To go to class,2,15,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,15,2,8,2,3,4,4
+545,Sarah Burch,sarahburch@example.net,Year 3,architecture,15/10/2024,1/1/1900 18:30,No,To go to class,2,40,No,LT13 / Ventus,UHC / Opp UHC,A2,Sunny,30,20,1,9,2,4,6,3
+546,Tiffany Anderson,tiffanyanderson@example.org,Year 3,architecture,17/10/2024,1/1/1900 21:30,No,To go to class,3,40,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,20,4,9,3,3,4,4
+547,Catherine Clark,catherineclark@example.net,Year 3,architecture,10/8/2024,1/1/1900 18:30,No,To go to class,2,40,No,LT13 / Ventus,UHC / Opp UHC,A2,Sunny,30,25,1,10,1,1,3,1
+548,Anthony Bray,anthonybray@example.net,Year 3,architecture,10/10/2024,1/1/1900 21:30,No,To go to class,2,50,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,15,3,9,1,4,6,3
+549,Jason French,jasonfrench@example.com,Year 1,biomedical engineering,21/10/2024,1/1/1900 9:40,No,To go to class,2,35,No,IT / CLB,UTown,D1,Sunny,10,5,7,4,7,7,7,7
+550,Dana Caldwell,danacaldwell@example.com,Year 4,biomedical engineering,15/10/2024,1/1/1900 17:45,No,To go to class,2,35,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,16,4,7,3,4,5,4
+551,Fred Torres,fredtorres@example.net,Year 4,biomedical engineering,16/10/2024,1/1/1900 13:30,No,To go to class,2,35,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,18,4,8,2,3,4,3
+552,Jonathan Vega,jonathanvega@example.org,Year 4,biomedical engineering,21/10/2024,1/1/1900 11:40,No,To go to class,2,35,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,10,7,6,6,7,6,6
+553,Joseph Gomez,josephgomez@example.org,Year 1,biomedical engineering,18/10/2024,1/1/1900 16:40,No,To go to class,4,45,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,25,18,2,9,2,2,4,3
+554,Rachel Johnson,racheljohnson@example.com,Year 1,biomedical engineering,21/10/2024,1/1/1900 13:30,No,To go to class,3,45,No,LT13 / Ventus,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,35,20,3,9,2,3,3,3
+555,Frank Bell,frankbell@example.net,Year 2,biomedical engineering,21/10/2004,1/1/1900 10:30,No,To go to class,3,40,No,LT13 / Ventus,UTown,D1,Sunny,20,15,3,8,3,3,3,4
+556,Brittany Smith,brittanysmith@example.com,Year 2,biomedical engineering,16/10/2024,1/1/1900 12:00,No,To go to class,3,40,No,UTown,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,25,20,2,8,2,2,2,2
+557,Courtney Patel,courtneypatel@example.org,Year 2,business analytics,14/10/2024,1/1/1900 13:40,No,To go to class,3,30,No,COM3,IT / CLB,D1,Rainy,15,4,5,6,5,5,6,5
+558,Monique Nelson,moniquenelson@example.org,Year 4,business analytics,15/10/2024,1/1/1900 17:10,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",2,15,No,COM3,UTown,D1,Sunny,15,3,6,7,5,6,7,6
+559,Alex Stout,alexstout@example.org,Year 1,business analytics,16/10/2024,1/1/1900 15:30,No,To go to MRT,3,20,No,COM3,LT27 / S17,D2,Sunny,10,3,5,7,5,6,8,6
+560,Patrick Mack,patrickmack@example.org,Year 4,business analytics,17/10/2024,1/1/1900 14:15,No,To go for meals,2,15,No,IT / CLB,UTown,D1,Sunny,20,2,8,5,5,7,7,6
+561,William Spears,williamspears@example.com,Year 2,business analytics,18/10/2024,1/1/1900 17:00,Yes,To go to class,2,20,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,15,5,4,7,6,5,7,6
+562,Emily Richards,emilyrichards@example.com,Year 3,business analytics,16/10/2024,1/1/1900 13:15,No,To go to class,3,20,No,IT / CLB,LT27 / S17,A2,Rainy,15,4,5,7,5,6,7,6
+563,Jonathan Fisher,jonathanfisher@example.org,Year 1,"politics, philosophy, economics",17/10/2024,1/1/1900 17:00,No,To go to class,3,40,No,IT / CLB,UHC / Opp UHC,A2,Sunny,15,10,6,7,3,4,4,4
+564,Alexis Martinez,alexismartinez@example.net,Year 1,"politics, philosophy, economics",7/10/2024,1/1/1900 17:40,No,To go to class,3,40,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,25,18,3,8,3,3,3,4
+565,Melissa Miller,melissamiller@example.net,Year 3,"politics, philosophy, economics",17/10/2024,1/1/1900 18:30,No,To go to class,3,45,No,IT / CLB,UHC / Opp UHC,A2,Sunny,35,20,2,9,2,2,2,1
+566,David Henderson,davidhenderson@example.com,Year 4,"politics, philosophy, economics",17/10/2024,1/1/1900 18:30,No,To go to class,3,45,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,30,18,4,8,3,4,3,4
+567,Jason Campbell,jasoncampbell@example.org,Year 4,"politics, philosophy, economics",10/10/2024,1/1/1900 15:47,No,To go to class,3,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,15,10,6,6,5,6,4,6
+568,Regina Brown,reginabrown@example.net,Year 1,"politics, philosophy, economics",7/10/2024,1/1/1900 17:47,No,To go to class,3,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,20,3,8,3,3,4,4
+569,David Butler,davidbutler@example.com,Year 2,mechanical engineering,2/10/2024,1/1/1900 14:45,No,To go to class,2,12,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,30,10,5,9,5,5,5,5
+570,Deborah Brewer,deborahbrewer@example.com,Year 2,mechanical engineering,4/10/2024,1/1/1900 13:15,No,To go to class,2,12,Yes,UHC / Opp UHC,LT27 / S17,D2,Sunny,30,15,5,10,3,5,7,4
+571,Julie Wallace,juliewallace@example.net,Year 2,mechanical engineering,7/10/2024,1/1/1900 14:30,No,To go to class,4,15,No,IT / CLB,UTown,D1,Sunny,15,5,8,7,7,7,7,7
+572,Mr. Brandon Garcia,mr.brandongarcia@example.org,Year 3,mechanical engineering,8/10/2024,1/1/1900 13:45,No,To go to class,4,20,Yes,UHC / Opp UHC,IT / CLB,A1,Sunny,20,10,6,10,3,5,6,5
+573,Courtney Levine,courtneylevine@example.com,Year 3,mechanical engineering,9/10/2024,1/1/1900 15:40,No,To go to class,4,20,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,5,7,8,6,7,8,6
+574,Scott Torres,scotttorres@example.net,Year 1,mechanical engineering,10/10/2024,1/1/1900 14:40,Yes,To go to class,2,10,No,IT / CLB,UTown,D1,Sunny,20,5,7,7,6,7,7,7
+575,Desiree Taylor,desireetaylor@example.net,Year 1,geography,11/10/2024,1/1/1900 16:45,Yes,To go to class,2,10,No,IT / CLB,UHC / Opp UHC,A2,Rainy,25,10,4,9,3,4,6,4
+576,Randy Mendoza,randymendoza@example.com,Year 1,geography,30/9/2024,1/1/1900 17:50,Yes,To go to class,2,10,No,IT / CLB,UTown,D1,Sunny,25,10,6,8,5,6,8,6
+577,Larry Martinez,larrymartinez@example.net,Year 2,geography,1/10/2024,1/1/1900 15:30,No,To go to class,2,15,Yes,UHC / Opp UHC,IT / CLB,A1,Sunny,30,15,3,8,5,5,7,5
+578,John Howell,johnhowell@example.org,Year 2,geography,2/10/2024,1/1/1900 14:30,No,To go to class,2,10,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,10,6,7,6,7,8,7
+579,Olivia Clark,oliviaclark@example.net,Year 2,geography,3/10/2024,1/1/1900 14:30,No,To go to class,2,10,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,15,5,8,6,7,7,7,7
+580,Rachael Hayes,rachaelhayes@example.org,Year 3,quantitative finance,4/10/2024,1/1/1900 15:45,Yes,To go to class,3,20,No,LT27 / S17,BIZ2 / Opp HSSML,A2,Sunny,15,5,8,6,8,7,8,7
+581,Randall Nolan,randallnolan@example.com,Year 3,quantitative finance,7/10/2024,1/1/1900 13:45,Yes,To go to class,3,20,No,LT27 / S17,UTown,D2,Sunny,10,5,8,7,6,7,7,7
+582,Rhonda Cuevas,rhondacuevas@example.org,Year 3,quantitative finance,8/10/2024,1/1/1900 14:10,No,To go to class,4,20,Yes,UHC / Opp UHC,LT27 / S17,A2,Sunny,30,15,3,9,3,6,8,4
+583,Jonathon Thompson,jonathonthompson@example.net,Year 3,quantitative finance,9/10/2024,1/1/1900 12:00,No,To go to class,4,20,No,COM3,LT27 / S17,D2,Rainy,10,5,8,5,8,7,8,7
+584,Robert Warner,robertwarner@example.net,Year 4,quantitative finance,10/10/2024,1/1/1900 12:45,No,To go to MRT,2,10,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,15,5,8,7,6,7,8,6
+585,Miss Kimberly Rice MD,misskimberlyricemd@example.com,Year 4,quantitative finance,11/10/2024,1/1/1900 13:50,No,To go to MRT,2,8,No,COM3,LT27 / S17,D2,Rainy,15,7,7,7,6,7,7,6
+586,Michael Strong,michaelstrong@example.com,Year 3,accountancy,30/9/2024,1/1/1900 12:00,No,To go to class,2,30,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,30,15,3,10,1,4,4,3
+587,Adam Jones,adamjones@example.org,Year 2,accountancy,1/10/2024,1/1/1900 12:00,No,To go to class,3,40,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,20,15,2,8,3,4,1,1
+588,Timothy Henderson,timothyhenderson@example.org,Year 2,accountancy,3/10/2024,1/1/1900 17:00,No,To go to MRT,3,30,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,30,20,1,10,1,1,5,1
+589,Mrs. Dana Smith MD,mrs.danasmithmd@example.net,Year 1,industrial systems engineering,21/10/2024,1/1/1900 18:15,No,To go to class,3,15,No,LT13 / Ventus,UTown,D1,Sunny,15,5,8,5,8,7,7,7
+590,Ryan Walter,ryanwalter@example.com,Year 1,accountancy,4/10/2024,1/1/1900 19:00,Yes,To go to class,2,20,No,BIZ2 / Opp HSSML,PGP,A1,Sunny,30,15,2,10,1,3,2,1
+591,Mr. John Brown,mr.johnbrown@example.net,Year 2,industrial systems engineering,22/10/2024,1/1/1900 17:32,Yes,To go to class,3,20,No,COM3,UTown,D2,Sunny,10,7,5,5,5,6,6,6
+592,Sydney Parks,sydneyparks@example.com,Year 1,pharmaceutical science,30/9/2024,1/1/1900 14:15,Yes,To go to class,2,10,No,LT27 / S17,UTown,D2,Sunny,10,5,8,5,8,8,8,8
+593,James Weber,jamesweber@example.org,Year 3,industrial systems engineering,23/10/2024,1/1/1900 21:18,No,To go to CCA sessions,2,10,No,UHC / Opp UHC,PGP,D2,Sunny,10,5,9,5,9,9,9,9
+594,Kenneth Zavala III,kennethzavalaiii@example.com,Year 1,pharmaceutical science,1/10/2024,1/1/1900 13:30,Yes,To go to class,2,10,No,IT / CLB,UTown,D1,Sunny,20,5,8,6,7,7,8,7
+595,Shaun Harris,shaunharris@example.com,Year 4,industrial systems engineering,24/10/2024,1/1/1900 14:25,No,To go for meals,4,20,No,UTown,UHC / Opp UHC,D2,Sunny,20,5,9,5,6,6,6,6
+596,George Jones,georgejones@example.org,Year 1,accountancy,2/10/2024,1/1/1900 16:00,Yes,"To go to in-school accommodation (halls, RCs, houses etc.)",4,45,No,COM3,PGP,D2,Sunny,15,10,7,2,10,10,10,9
+597,Dawn Fernandez,dawnfernandez@example.com,Year 1,business,24/10/2024,1/1/1900 10:30,No,To go to class,3,35,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,5,10,4,3,7,7,3,6
+598,Robert Thomas,robertthomas@example.com,Year 2,pharmaceutical science,2/10/2024,1/1/1900 11:30,No,To go to class,4,20,Yes,UHC / Opp UHC,UTown,D2,Sunny,30,10,4,8,5,5,7,5
+599,Crystal Hart,crystalhart@example.com,Year 3,business,22/10/2024,1/1/1900 18:30,No,To go to CCA sessions,3,25,No,IT / CLB,UHC / Opp UHC,A2,Sunny,25,7,4,6,4,4,6,6
+600,Larry Goodwin,larrygoodwin@example.com,Year 4,accountancy,2/10/2024,1/1/1900 14:00,No,To go to class,3,30,No,BIZ2 / Opp HSSML,Kent Ridge MRT / Opp Kent Ridge MRT,A1,Sunny,15,8,5,5,7,6,8,6
+601,Nathaniel Jackson,nathanieljackson@example.org,Year 3,pharmaceutical science,3/10/2024,1/1/1900 16:30,No,To go to class,2,5,No,LT27 / S17,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,3,9,4,9,8,8,9
+602,Denise Griffith,denisegriffith@example.net,Year 4,pharmaceutical science,4/10/2024,1/1/1900 17:45,No,To go to class,2,5,No,LT27 / S17,IT / CLB,A1,Sunny,15,5,7,6,6,7,7,7
+603,Crystal Baker,crystalbaker@example.com,Year 4,business,21/10/2003,1/1/1900 10:00,No,To go to class,3,40,No,COM3,Kent Ridge MRT / Opp Kent Ridge MRT,D2,Sunny,15,8,6,6,5,6,6,6
+604,Robert Webb,robertwebb@example.com,Year 2,business,22/10/2024,1/1/1900 18:30,No,To go to MRT,2,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,10,5,9,2,8,8,7,6
+605,Kim Garrison,kimgarrison@example.com,Year 1,environmental engineering,7/10/2024,1/1/1900 11:30,No,To go to class,2,20,No,UTown,IT / CLB,D1,Sunny,15,5,5,6,5,5,5,6
+606,Madison Cooper,madisoncooper@example.com,Year 2,environmental engineering,8/10/2024,1/1/1900 14:30,Yes,To go to class,3,30,No,LT27 / S17,COM3,D2,Sunny,10,3,6,6,7,8,8,6
+607,Paula Chung,paulachung@example.org,Year 4,environmental engineering,9/10/2024,1/1/1900 14:45,No,To go to class,2,20,No,IT / CLB,UTown,D1,Sunny,10,5,4,6,6,6,7,5
+608,Robin Santiago,robinsantiago@example.net,Year 4,environmental engineering,10/10/2024,1/1/1900 15:40,No,To go to class,3,30,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,4,5,7,3,5,7,5
+609,Matthew Roberts,matthewroberts@example.net,Year 3,environmental engineering,11/10/2024,1/1/1900 14:30,No,To go for meals,2,20,No,IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,Sunny,20,5,4,6,5,6,7,6
