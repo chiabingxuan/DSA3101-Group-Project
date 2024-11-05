@@ -18,4 +18,4 @@ def filter_route_counts(trip_data, output_file_name, min_count):
 
     filtered_counts = filtered_counts[['start', 'end', 'bus_num', 'time_ceiling', 'count']]
 
-    filtered_counts.to_csv(os.path.join(os.path.dirname(__file__), f"../data/{output_file_name}.csv"), index=False)
+    filtered_counts.to_csv(os.path.join(os.path.dirname(__file__), f"../data/timelapse_popular_trips/{output_file_name}.csv"), index=False)

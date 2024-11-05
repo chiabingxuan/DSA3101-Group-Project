@@ -110,7 +110,6 @@ def get_geojson_for_timelapse(data):
 
 
 def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
-    print(timelapse_type)
     # Read trip_data
     trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), trip_data_path), keep_default_na=False)
 
