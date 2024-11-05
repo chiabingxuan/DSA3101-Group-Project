@@ -603,7 +603,7 @@ In `origin_destination_matrix.py`, we create
 
 #### 5.3.3 Creating Timelapses
 
-In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). Here, for each timelapse, we also call the `filter_route_counts()` function in `filter_count.py` to obtain a CSV file that describes the most popular bus trips throughout the day. For example, for `nus_a1_trip_markers_timelapse.html`, `nus_a1_trip_markers_timelapse_popular_trips.csv` shows the most popular trips involving bus service A1 throughout the day.
+In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). Here, for each timelapse, we also call the `filter_route_counts()` function in `filter_count.py` to obtain a CSV file that describes the most popular bus trips throughout the day. For example, for `nus_a1_trip_markers_timelapse.html`, `nus_a1_trip_markers_timelapse_popular_trips.csv` shows the most popular trips involving bus service A1 throughout the day. These CSV files can be found in `data/timelapse_popular_trips/`.
 
 The following timelapses were created and saved under `visualisations/timelapses/`:
 
@@ -646,7 +646,7 @@ The following are observed to be the busiest bus stops:
 - IT / CLB
 - LT13 / Ventus
 
-Looking at the timelapses for individual bus services, we obtain a few additional insights. The following is a list of popular trips, for a given bus service at a given time period:
+Looking at the timelapses for individual bus services, we get a general idea of which bus trips are popular. With reference to `data/timelapse_popular_trips`, we obtain the following list of the most frequent bus trips for each bus service, along with their corresponding time periods:
 
 | Bus Service |                                                                Time Period                                                                |                Start                |                 End                 |
 | :---------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------: | :---------------------------------: |
