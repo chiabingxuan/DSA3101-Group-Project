@@ -110,6 +110,7 @@ def get_geojson_for_timelapse(data):
 
 
 def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
+    print(timelapse_type)
     # Read trip_data
     trip_data = pd.read_csv(os.path.join(os.path.dirname(__file__), trip_data_path), keep_default_na=False)
 
@@ -139,9 +140,9 @@ def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
             trip_data["cluster"] = cluster_column
             cluster = scenario["cluster"]
             trip_data = trip_data[trip_data["cluster"] == cluster]
-    
-    # Get most popular trips from trip_data (which is already filtered on the chosen scenario). Then, save it as a CSV file in data/
-    filter_count.filter_route_counts(trip_data=trip_data, output_file_name=f"{timelapse_type}_popular_trips", min_count=10)
+
+    # Get most popular trips from trip_data (which is already filtered on the chosen scenario). Definitions of "popular" are provided in TIMELAPSE_MIN_COUNTS_FOR_POPULAR_TRIPS, within config.py. Then, save it as a CSV file in data/
+    filter_count.filter_route_counts(trip_data=trip_data, output_file_name=f"{timelapse_type}_popular_trips", min_count=config.TIMELAPSE_MIN_COUNTS_FOR_POPULAR_TRIPS[timelapse_type])
 
     # Get iso format from "time" column of trip_data
     format_time_and_add_iso_time(trip_data, "time")
@@ -195,5 +196,4 @@ def main():
 
 
 if __name__ == "__main__":
-    np.random.seed(42)
     main()

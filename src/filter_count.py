@@ -6,7 +6,7 @@ def filter_route_counts(trip_data, output_file_name, min_count):
 
     data['time'] = pd.to_datetime(data['time'])
     
-    data['time_ceiling'] = data['time'].dt.ceil('10T')
+    data['time_ceiling'] = data['time'].dt.ceil('10min')
 
     data['route'] = data['start'] + ' - ' + data['end']
 
