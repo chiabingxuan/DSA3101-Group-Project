@@ -36,12 +36,12 @@
         - [5.3.3.1 Overall Fluctuations in Ridership](#5331-overall-fluctuations-in-ridership)
         - [5.3.3.2 Popular Trips Throughout the Day](#5332-popular-trips-throughout-the-day)
         - [5.3.3.3 Popular Trips Across User Segments](#5333-popular-trips-across-user-segments)
-    - [5.3.4 Opportunities for Service Improvements](#534-opportunities-for-service-improvements)
+      - [5.3.4 Opportunities for Service Improvements](#534-opportunities-for-service-improvements)
     - [5.4 Evaluation](#54-evaluation)
       - [5.4.1 Evaluation of model performance against business objectives](#541-evaluation-of-model-performance-against-business-objectives)
       - [5.4.2 Limitations of Current Approach](#542-limitations-of-current-approach)
       - [5.4.3 Suggestions for Model Improvements](#543-suggestions-for-model-improvements)
-  - [6 Subgroup B: System Optimization and Forecasting](#6-subgroup-b-system-optimization-and-forecasting)
+  - [6. Subgroup B: System Optimization and Forecasting](#6-subgroup-b-system-optimization-and-forecasting)
     - [6.1 Demand Forecasting Model](#61-demand-forecasting-model)
       - [6.1.1 Models Considered](#611-models-considered)
       - [6.1.2 Model Selection Criteria](#612-model-selection-criteria)
@@ -692,15 +692,17 @@ From this information, we can draw the following conclusions:
 - Students from **cluster 2** tend to travel between **Kent Ridge MRT / Opp Kent Ridge MRT** to bus stops like **LT13 / Ventus** and **IT / CLB**
   - From Section 5.2.4.3, we see that this cluster generally consists of Year 2 students who are studying Chemistry courses. As Year 2 Science students, they are more likely to be reading courses associated with the College of Humanities and Sciences, of which a significant number take place at FASS. Hence, this group of students have a greater need to travel to LT13 / Ventus, which is one of the closer bus stops to FASS. Given that the Central Library is connected to FASS, it is possible that these students prefer to study there in between their classes. This would also explain why they favour travelling from IT / CLB to the MRT station.
 
-### 5.3.4 Opportunities for Service Improvements
+#### 5.3.4 Opportunities for Service Improvements
 
 From the insights that we have gleaned, we propose the following service improvements to the NUS bus system:
 
-- More school buses should service the campus from 10 am - 2 pm, which correspond to the general peak hours
-- Moreover, we should ensure that more school buses service the campus at the turn of every hour (eg. 8.50 am - 9.10 am, 9.30 am - 10.10 am, etc.), to meet the demands of students travelling to and from class
+- We should ensure that more school buses service the campus at the turn of every hour (eg. 8.50 am - 9.10 am, 9.30 am - 10.10 am, etc.), to meet the demands of students travelling to and from class
+- In particular, more school buses should service the campus from 10 am - 2 pm, which correspond to the general peak hours
 - During weekdays:
   - For all bus services, the number of buses in operation should be gradually increased from 10 am - 11 am, which is when transport demand is expected to be the highest
-  - For bus services A1, D1 and D2, it is especially imperative that we account for the heightened ridership during after-lunch hours, keeping the number of buses high from 1 pm - 2 pm
+  - For bus services A1, A2 and D1, it is especially imperative that we account for the heightened ridership during after-lunch hours, keeping the number of buses high in the early to late afternoon (1.30 pm - 5 pm)
+    - This would enable students from Clusters 0 and 2 to commute between the MRT station and IT / CLB with less hassle, meeting their demands
+    - This would also allow Business students in Cluster 1 to more easily commute from the MRT station to bus stops near their places of study (ie. IT / CLB, BIZ2 / Opp HSSML, COM3)
 - During weekends:
   - For all bus services, the number of buses in operation should be gradually increased from 12 pm - 1 pm, which is when transport demand is expected to be the highest
 - Note that UHC / Opp UHC is the closest bus stop to most examination venues. Hence during examination periods, we should increase the number of A1 and D2 buses travelling from Kent Ridge MRT to Opp UHC, as well as increase the number of A2 and D2 buses travelling from UHC to Opp Kent Ridge MRT. This increase in bus allocation should primarily take place from 9.30 am - 10.30 am (examinations in the morning) and from 2.30 pm - 3.30 pm (examinations in the afternoon)
@@ -708,7 +710,6 @@ From the insights that we have gleaned, we propose the following service improve
   - Route: LT13 / Ventus ⟷ IT / CLB ⟷ UTown ⟷ Kent Ridge MRT / Opp Kent Ridge MRT ⟷ COM3 ⟷ LT13 / Ventus
   - Operating Hours: 10.30 am - 3.30 pm
   - Purpose: To not only accommodate some of the most popular trips identified, but also to increase the number of buses travelling to UTown and the MRT station during lunch hours. This thus relieves the pressure on other bus services. This bus route also has fewer stops compared to those of other bus services, allowing students to travel to their destinations more swiftly
-
 
 ### 5.4 Evaluation
 
@@ -718,7 +719,7 @@ From the insights that we have gleaned, we propose the following service improve
 
 #### 5.4.3 Suggestions for Model Improvements
 
-## 6 Subgroup B: System Optimization and Forecasting
+## 6. Subgroup B: System Optimization and Forecasting
 
 ### 6.1 Demand Forecasting Model
 
