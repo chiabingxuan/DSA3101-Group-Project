@@ -34,7 +34,8 @@
       - [5.3.2 Creating Origin-Destination Matrix](#532-creating-origin-destination-matrix)
       - [5.3.3 Creating Timelapses](#533-creating-timelapses)
         - [5.3.3.1 Overall Fluctuations in Ridership](#5331-overall-fluctuations-in-ridership)
-        - [5.3.3.2 Popular Trips and Bus Stops](#5332-popular-trips-and-bus-stops)
+        - [5.3.3.2 Popular Trips Throughout the Day](#5332-popular-trips-throughout-the-day)
+        - [5.3.3.3 Popular Trips Across User Segments](#5333-popular-trips-across-user-segments)
     - [5.3.4 Opportunities for Service Improvements](#534-opportunities-for-service-improvements)
     - [5.4 Evaluation](#54-evaluation)
       - [5.4.1 Evaluation of model performance against business objectives](#541-evaluation-of-model-performance-against-business-objectives)
@@ -576,15 +577,15 @@ We create [Tableau dashboards](https://chiabingxuan.github.io/DSA3101-Group-Proj
 
 ##### 5.3.1.1 General Peak Hours
 
-From the graph, we note that a typical day's rush hours range from 10 am to 2 pm, where the number of trips remain consistently above 500. The number of bus trips peaks at approximately 11 am (679 trips), during the lunch break.
+From the graph, we note that **a typical day's rush hours range from 10 am to 2 pm**, where the number of trips remain consistently above 500. The number of bus trips **peaks at approximately 11 am** (679 trips), during the lunch break.
 
 ##### 5.3.1.2 Individual Bus Services
 
-The usage of each bus service (A1, A2, D1, D2) also varies in a similar way throughout the day, with D1 being much less utilised than the others. This is most likely because D1 services fewer bus stops, and thus a smaller area of the campus.
+The usage of each bus service (A1, A2, D1, D2) also varies in a similar way throughout the day, with **D1 being much less utilised than the others**. This is most likely because D1 services fewer bus stops, and thus a smaller area of the campus.
 
-In addition, each of the usages of A1, A2 and D1 peaks at two separate time periods (11 am and 1 pm - 2 pm). Evidently, students have a greater need to commute from one place to another, both before and after their lunch.
+In addition, each of the usages of A1, A2 and D1 **peaks at two separate time periods (11 am and 1 pm - 2 pm)**. Evidently, students have a greater need to commute from one place to another, both before and after their lunch.
 
-In comparison, the ridership for bus service D2 peaks at 11 am only (240 trips). This could be accounted for by the fact that D2 services University Town (UTown), unlike A1 and A2:
+In comparison, the ridership for bus service D2 **peaks at 11 am only** (240 trips). This could be accounted for by the fact that D2 services University Town (UTown), unlike A1 and A2:
 
 - For students who commute to UTown right before the lunchtime period, they may be more inclined to stay there for longer periods of time, given that there is a wider variety of amenities (eg. Education Resource Centre) available in the area.
 - Students may be travelling to UTown in order to access bus service 96, which goes to Clementi MRT Station - they have no intention of subsequently travelling to other bus stops within campus.
@@ -593,11 +594,11 @@ Hence, there is no notable peak in ridership for D2 in the early afternoon. Alth
 
 ##### 5.3.1.3 Day of Week
 
-During the weekend (Saturday - Sunday), peak hours occur later in the day, at around 1 pm (62 trips). This is a rightwards shift in comparison to weekdays (Monday - Friday), when the busiest hours range from 11 am - 12 pm (at least 590 trips). This may be attributed to the differences in the purpose of travel, between weekdays and weekends. Unlike weekdays, schedules for weekends consist of fewer classes and more college activities for leisure, with events beginning later in the day. On Saturdays and Sundays, students travel on campus to attend these recreational activities, instead of going for classes. Consequently, they begin their commute closer to midday, pushing peak hours to around 1 pm.
+During the weekend (Saturday - Sunday), **peak hours occur later in the day, at around 1 pm** (62 trips). This is a rightwards shift in comparison to weekdays (Monday - Friday), when the **busiest hours range from 11 am - 12 pm** (at least 590 trips). This may be attributed to the differences in the purpose of travel, between weekdays and weekends. Unlike weekdays, schedules for weekends consist of fewer classes and more college activities for leisure, with events beginning later in the day. On Saturdays and Sundays, students travel on campus to attend these recreational activities, instead of going for classes. Consequently, they begin their commute closer to midday, pushing peak hours to around 1 pm.
 
 ##### 5.3.1.4 Exam Period
 
-Consider the bus trips starting from Kent Ridge MRT / Opp Kent Ridge MRT. On days with no examinations, the number of these trips increases consistently from 7 am - 11 am (from 27 trips to 198 trips), whilst decreasing consistently from 11 am - 7 pm (from 198 trips to 9 trips). Contrastingly, the number of trips originating from Kent Ridge MRT / Opp Kent Ridge MRT sees two additional sharp spikes throughout a typical examination day - namely, 10 am (29 trips) and 3 pm (16 trips). These sudden jumps in ridership may stem from an increase in the number of students travelling to examination venues (ie. UHC / Opp UHC) for their morning and afternoon papers respectively.
+Consider the bus trips starting from Kent Ridge MRT / Opp Kent Ridge MRT. On days with no examinations, the number of these trips increases consistently from 7 am - 11 am (from 27 trips to 198 trips), whilst decreasing consistently from 11 am - 7 pm (from 198 trips to 9 trips). Contrastingly, the number of trips originating from Kent Ridge MRT / Opp Kent Ridge MRT sees **two additional sharp spikes throughout a typical examination day** - namely, **10 am** (29 trips) and **3 pm** (16 trips). These sudden jumps in ridership may stem from an increase in the number of students travelling to examination venues (ie. UHC / Opp UHC) for their morning and afternoon papers respectively.
 
 #### 5.3.2 Creating Origin-Destination Matrix
 
@@ -626,7 +627,7 @@ For each timelapse, the positions of all the bus stops are labelled in white tex
 
 ##### 5.3.3.1 Overall Fluctuations in Ridership
 
-We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 10 am - 2 pm, further supporting the conclusion drawn in Section 5.5.1. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
+We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn **remain consistently high from 10 am - 2 pm**, further supporting the conclusion drawn in Section 5.5.1. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
 
 |     Time Period     |      Possible Reason       |
 | :-----------------: | :------------------------: |
@@ -640,11 +641,11 @@ We take a preliminary look at the travel patterns, with reference to `nus_trip_m
 |  2.30 pm - 3.10 pm  |        3 pm classes        |
 |  3.30 pm - 4.30 pm  |     Afternoon classes      |
 
-From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
+From these observations, we can tell that the number of students using the NUS bus system **spikes on an hourly basis**, especially **in the morning and early afternoon**. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is **significantly greater during the lunchtime period**, when students commute from their classrooms to bus stops that are near canteens and eateries.
 
-##### 5.3.3.2 Popular Trips and Bus Stops
+##### 5.3.3.2 Popular Trips Throughout the Day
 
-From `nus_trip_markers_timelapse.html`, the following are observed to be the busiest bus stops:
+From `nus_trip_markers_timelapse.html`, the following are observed to be the **busiest bus stops**:
 
 - Kent Ridge MRT / Opp Kent Ridge MRT
 - UTown
@@ -661,10 +662,12 @@ Looking at the timelapses for individual bus services, we get a general idea of 
 |     A2      |          10.40 am, 11.40 am, 2.40 pm          |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
 |     D1      |     11.30 am, 12.20 pm, 2.30 pm - 2.40 pm     |              IT / CLB               |                UTown                |
 |     D1      |                   10.30 am                    |            LT13 / Ventus            |                UTown                |
-|     D2      |              10:40 am, 11:50 am               | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
-|     D2      |             12:30 pm, 3 pm, 5 pm              |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
+|     D2      |              10.40 am, 11.50 am               | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
+|     D2      |             12.30 pm, 3 pm, 5 pm              |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
-From the above, we can see that Kent Ridge MRT / Opp Kent Ridge MRT is a remarkable hotspot for bus rides. For each bus service (A1, A2, D2) that services Kent Ridge MRT / Opp Kent Ridge MRT, this bus stop is consistently involved in the most popular trips. This is understandable, given that this bus stop crucially connects the NUS campus to Singapore's MRT network. Note that from the late morning to early afternoon, students are generally commuting from their classrooms (eg. IT / CLB and COM3) to places like the MRT station and UTown. This could be because there are more dining options available at these locations - students are therefore more inclined to travel there for their meals. Although trips to and from the MRT station are both common throughout the afternoon, there are more trips pointing towards the MRT station in the evening (eg. COM3 to Kent Ridge MRT / Opp Kent Ridge MRT at 5 pm). As their daily schedules come to a close, students are increasingly travelling to the MRT station, so as to head home.
+From the above, we can see that **Kent Ridge MRT / Opp Kent Ridge MRT is a remarkable hotspot** for bus rides. For each bus service (A1, A2, D2) that services Kent Ridge MRT / Opp Kent Ridge MRT, this bus stop is consistently involved in the most popular trips. This is understandable, given that this bus stop crucially connects the NUS campus to Singapore's MRT network. Note that from the late morning to early afternoon, students are generally commuting from their classrooms (eg. **IT / CLB and COM3**) to places like **the MRT station and UTown**. This could be because there are more dining options available at these locations - students are therefore more inclined to travel there for their meals. Although trips to and from the MRT station are both common throughout the afternoon, there are **more trips pointing towards the MRT station in the evening** (eg. COM3 to Kent Ridge MRT / Opp Kent Ridge MRT at 5 pm). As their daily schedules come to a close, students are increasingly travelling to the MRT station, so as to head home.
+
+##### 5.3.3.3 Popular Trips Across User Segments
 
 The following are the trips that students from each cluster (0, 1 and 2) engage in the most:
 
@@ -681,15 +684,31 @@ The following are the trips that students from each cluster (0, 1 and 2) engage 
 
 From this information, we can draw the following conclusions:
 
-- Students from cluster 0 tend to travel between Kent Ridge MRT / Opp Kent Ridge MRT and IT / CLB
-  - From Section 5.2.4.3, we see that this cluster generally corresponds to newer students (ie. Year 1) who are studying Biomedical Engineering. Since IT / CLB is a short distance from College of Design and Engineering (CDE), it makes sense for this category of students to commute to and from this bus stop more frequently.
-- Students from cluster 1 tend to travel from Kent Ridge MRT / Opp Kent Ridge MRT to bus stops like LT13 / Ventus, BIZ2 / Opp HSSML and COM3
+- Students from **cluster 0** tend to travel between **Kent Ridge MRT / Opp Kent Ridge MRT** and **IT / CLB**
+  - From Section 5.2.4.3, we see that this cluster generally corresponds to newer students (ie. Year 1) who are studying Biomedical Engineering. Since IT / CLB is a short distance from College of Design and Engineering (CDE), it makes sense for this category of students to commute to and from this bus stop more frequently
+- Students from **cluster 1** tend to travel from **Kent Ridge MRT / Opp Kent Ridge MRT** to bus stops like **LT13 / Ventus**, **BIZ2 / Opp HSSML** and **COM3**
   - Firstly, note that LT13 / Ventus is near to the Faculty of Arts and Social Sciences (FASS), BIZ2 / Opp HSSML is next to the NUS Business School, and COM3 is located within the School of Computing (SoC). All 3 schools are within close proximity of one another
   - From Section 5.2.4.3, we see that this cluster is generally composed of older students (ie. Year 3) who are studying Business courses. Upon arriving at Kent Ridge MRT, these students thus have a higher tendency to subsequently travel to the aforementioned bus stops for their classes
-- Students from cluster 2 tend to travel between Kent Ridge MRT / Opp Kent Ridge MRT to bus stops like LT13 / Ventus and IT / CLB
+- Students from **cluster 2** tend to travel between **Kent Ridge MRT / Opp Kent Ridge MRT** to bus stops like **LT13 / Ventus** and **IT / CLB**
   - From Section 5.2.4.3, we see that this cluster generally consists of Year 2 students who are studying Chemistry courses. As Year 2 Science students, they are more likely to be reading courses associated with the College of Humanities and Sciences, of which a significant number take place at FASS. Hence, this group of students have a greater need to travel to LT13 / Ventus, which is one of the closer bus stops to FASS. Given that the Central Library is connected to FASS, it is possible that these students prefer to study there in between their classes. This would also explain why they favour travelling from IT / CLB to the MRT station.
 
 ### 5.3.4 Opportunities for Service Improvements
+
+From the insights that we have gleaned, we propose the following service improvements to the NUS bus system:
+
+- More school buses should service the campus from 10 am - 2 pm, which correspond to the general peak hours
+- Moreover, we should ensure that more school buses service the campus at the turn of every hour (eg. 8.50 am - 9.10 am, 9.30 am - 10.10 am, etc.), to meet the demands of students travelling to and from class
+- During weekdays:
+  - For all bus services, the number of buses in operation should be gradually increased from 10 am - 11 am, which is when transport demand is expected to be the highest
+  - For bus services A1, D1 and D2, it is especially imperative that we account for the heightened ridership during after-lunch hours, keeping the number of buses high from 1 pm - 2 pm
+- During weekends:
+  - For all bus services, the number of buses in operation should be gradually increased from 12 pm - 1 pm, which is when transport demand is expected to be the highest
+- Note that UHC / Opp UHC is the closest bus stop to most examination venues. Hence during examination periods, we should increase the number of A1 and D2 buses travelling from Kent Ridge MRT to Opp UHC, as well as increase the number of A2 and D2 buses travelling from UHC to Opp Kent Ridge MRT. This increase in bus allocation should primarily take place from 9.30 am - 10.30 am (examinations in the morning) and from 2.30 pm - 3.30 pm (examinations in the afternoon)
+- From the list of most frequent bus stops for each bus service, we propose a new bus service (**DS**):
+  - Route: LT13 / Ventus ⟷ IT / CLB ⟷ UTown ⟷ Kent Ridge MRT / Opp Kent Ridge MRT ⟷ COM3 ⟷ LT13 / Ventus
+  - Operating Hours: 10.30 am - 3.30 pm
+  - Purpose: To not only accommodate some of the most popular trips identified, but also to increase the number of buses travelling to UTown and the MRT station during lunch hours. This thus relieves the pressure on other bus services. This bus route also has fewer stops compared to those of other bus services, allowing students to travel to their destinations more swiftly
+
 
 ### 5.4 Evaluation
 
