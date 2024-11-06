@@ -141,7 +141,7 @@ def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
             trip_data = trip_data[trip_data["cluster"] == cluster]
 
     # Get most popular trips from trip_data (which is already filtered on the chosen scenario). Definitions of "popular" are provided in TIMELAPSE_MIN_COUNTS_FOR_POPULAR_TRIPS, within config.py. Then, save it as a CSV file in data/
-    filter_count.filter_route_counts(trip_data=trip_data, output_file_name=f"{timelapse_type}_popular_trips", min_count=config.TIMELAPSE_MIN_COUNTS_FOR_POPULAR_TRIPS[timelapse_type])
+    filter_count.filter_route_counts(trip_data=trip_data, output_file_name=f"{timelapse_type}_popular_trips", top_n=config.NUM_TOP_ROWS_FOR_POPULAR_TRIPS)
 
     # Get iso format from "time" column of trip_data
     format_time_and_add_iso_time(trip_data, "time")

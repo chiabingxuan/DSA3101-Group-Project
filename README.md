@@ -650,24 +650,13 @@ Looking at the timelapses for individual bus services, we get a general idea of 
 
 | Bus Service |                                                                Time Period                                                                |                Start                |                 End                 |
 | :---------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------: | :---------------------------------: |
-|     A1      |       10:30 am - 10:40 am, 11:30 am, 12:40 pm - 12:50 pm, 1:30 pm, 1:50 pm, 2:30 pm - 2:50 pm, 3:10 pm, 3:30 pm - 3:50 pm, 4:50 pm        | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
-|     A1      |                                                                 10:40 am                                                                  |             LT27 / S17              |              IT / CLB               |
-|     A1      |                                                                   2 pm                                                                    |            LT13 / Ventus            | Kent Ridge MRT / Opp Kent Ridge MRT |
-|     A1      |                                                                  8:30 am                                                                  |            LT13 / Ventus            |             LT27 / S17              |
-|     A2      |                                                             12:50 pm, 1:50 pm                                                             | Kent Ridge MRT / Opp Kent Ridge MRT |          BIZ2 / Opp HSSML           |
-|     A2      |                                                   10 am, 11 am, 12 pm, 1 pm, 2 pm, 3 pm                                                   | Kent Ridge MRT / Opp Kent Ridge MRT |            LT13 / Ventus            |
-|     A2      | 10:40 am, 11:10 am, 11:30 am - 11:40 am, 12:40 pm - 1 pm, 1:30 pm - 1:40 pm, 2:20 pm - 2:40 pm, 3 pm, 3:20 pm, 3:50 pm, 4:40 pm - 4:50 pm |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
-|     A2      |                                                                  1:30 pm                                                                  |          BIZ2 / Opp HSSML           | Kent Ridge MRT / Opp Kent Ridge MRT |
-|     D1      |                                                              10:30 am, 1 pm                                                               |            LT13 / Ventus            |                UTown                |
-|     D1      |                                              11:30 am, 12:20 pm, 1:30 pm, 2:30 pm - 2:40 pm                                               |              IT / CLB               |                UTown                |
-|     D1      |                                                             11:40 am, 2:40 pm                                                             |                UTown                |              IT / CLB               |
-|     D2      |                                                             8:30 am, 1:30 pm                                                              | Kent Ridge MRT / Opp Kent Ridge MRT |                UTown                |
-|     D2      |                                                       10:40 am, 11:50 am, 12:30 pm                                                        | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
-|     D2      |                                                                12 pm, 2 pm                                                                |                UTown                |             LT27 / S17              |
-|     D2      |                                                        12 pm, 12:30 pm, 3 pm, 5 pm                                                        |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
-|     D2      |                                                                 10:40 am                                                                  | Kent Ridge MRT / Opp Kent Ridge MRT |            UHC / Opp UHC            |
-|     D2      |                                                                  1:40 pm                                                                  |            UHC / Opp UHC            |             LT27 / S17              |
-|     D2      |                                                                  1:40 pm                                                                  |                UTown                | Kent Ridge MRT / Opp Kent Ridge MRT |
+|     A1      |       1.30 pm, 2.40 pm - 2.50 pm, 3.30 pm - 3.50 pm        | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
+|     A2      |                                                             2 pm, 3 pm                                                             | Kent Ridge MRT / Opp Kent Ridge MRT |          LT13 / Ventus           |
+|     A2      |                                                   10.40 am, 11.40 am, 2.40 pm                                                   | IT / CLB |            Kent Ridge MRT / Opp Kent Ridge MRT            |
+|     D1      |                                              11.30 am, 12.20 pm, 2.30 pm - 2.40 pm                                               |              IT / CLB               |                UTown                |
+|     D1      |                                                             10.30 am                                                             |                LT13 / Ventus                |              UTown               |
+|     D2      |                                                       10:40 am, 11:50 am                                                        | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
+|     D2      |                                                        12:30 pm, 3 pm, 5 pm                                                        |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
 ### 5.3.4 Opportunities for Service Improvements
 

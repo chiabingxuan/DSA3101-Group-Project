@@ -1,3 +1,6 @@
 start,end,bus_num,time_ceiling,count
 Kent Ridge MRT / Opp Kent Ridge MRT,COM3,D2,1900-01-01 10:40:00,13
 Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 15:30:00,11
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 14:30:00,9
+Kent Ridge MRT / Opp Kent Ridge MRT,LT13 / Ventus,A2,1900-01-01 14:00:00,9
+Kent Ridge MRT / Opp Kent Ridge MRT,BIZ2 / Opp HSSML,A2,1900-01-01 13:50:00,9

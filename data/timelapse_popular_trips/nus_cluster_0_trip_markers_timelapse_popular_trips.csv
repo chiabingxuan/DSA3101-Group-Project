@@ -1,2 +1,6 @@
 start,end,bus_num,time_ceiling,count
 IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 11:40:00,19
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 16:50:00,9
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 13:30:00,9
+Kent Ridge MRT / Opp Kent Ridge MRT,IT / CLB,A1,1900-01-01 15:50:00,9
+IT / CLB,Kent Ridge MRT / Opp Kent Ridge MRT,A2,1900-01-01 15:50:00,8

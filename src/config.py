@@ -136,15 +136,4 @@ BUS_NUM_ROUTES = {
 
 BUS_STOP_NAMES = list(BUS_STOP_COORDINATES.keys())
 
-TIMELAPSE_MIN_COUNTS_FOR_POPULAR_TRIPS = {
-    "nus_trip_markers_timelapse": 10,
-    "nus_exam_trip_markers_timelapse": 4,
-    "nus_no_exam_trip_markers_timelapse": 10,
-    "nus_a1_trip_markers_timelapse": 10,
-    "nus_a2_trip_markers_timelapse": 10,
-    "nus_d1_trip_markers_timelapse": 6,
-    "nus_d2_trip_markers_timelapse": 10,
-    "nus_cluster_0_trip_markers_timelapse": 10,
-    "nus_cluster_1_trip_markers_timelapse": 10,
-    "nus_cluster_2_trip_markers_timelapse": 10,
-}
+NUM_TOP_ROWS_FOR_POPULAR_TRIPS = 5
