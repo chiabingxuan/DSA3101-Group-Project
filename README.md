@@ -157,7 +157,7 @@ The school's current internal transportation system faces challenges in meeting 
 
 ### 3.1 Data Acquisition
 
-We collected survey data to investigate the travel patterns and satisfaction levels of NUS students, with regards to the NUS bus system. In our survey, respondents were asked to share **two bus trips** that they embarked on for the day. The [survey link](https://docs.google.com/forms/d/1zh5M9Sccn3ifxcOOJd2UMj7cQSFKPWmvD-RG1PZA9QM/edit) was circulated online on various NUS platforms, including the official Telegram channel for the NUS College of Humanities and Sciences.
+We collected survey data to investigate the travel patterns and satisfaction levels of NUS students, with regards to the NUS bus system. In our survey, respondents were asked to share **two bus trips** that they embarked on for the day. The [survey link](https://docs.google.com/forms/d/1zh5M9Sccn3ifxcOOJd2UMj7cQSFKPWmvD-RG1PZA9QM/edit) was circulated online on various NUS platforms, including the official Telegram channel for the NUS College of Humanities and Sciences (CHS).
 
 ### 3.2 Data Dictionary of Original Survey Data
 
@@ -650,7 +650,7 @@ From `nus_trip_markers_timelapse.html`, the following are observed to be the bus
 - LT13 / Ventus
 - COM3
 
-Looking at the timelapses for individual bus services, we get a general idea of which bus trips are popular. With reference to `data/timelapse_popular_trips`, we obtain the following list of the most frequent bus trips for each bus service, along with their corresponding time periods:
+Looking at the timelapses for individual bus services, we get a general idea of which bus trips are popular. With reference to `data/timelapse_popular_trips/`, we obtain the following list of the most frequent bus trips for each bus service, along with their corresponding time periods:
 
 | Bus Service |                                                                Time Period                                                                |                Start                |                 End                 |
 | :---------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------: | :---------------------------------: |
@@ -662,7 +662,7 @@ Looking at the timelapses for individual bus services, we get a general idea of 
 |     D2      |                                                       10:40 am, 11:50 am                                                        | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
 |     D2      |                                                        12:30 pm, 3 pm, 5 pm                                                        |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
-From the above, we can see that Kent Ridge MRT / Opp Kent Ridge MRT is a remarkable hotspot for bus rides. For each bus service (A1, A2, D2) that services Kent Ridge MRT / Opp Kent Ridge MRT, this bus stop is consistently involved in the most popular trips. Note that from the late morning to early afternoon, students are generally commuting from their classrooms (eg. IT / CLB and COM3) to places like the MRT station and UTown. This could be because there are more dining options available at these locations - students are therefore more inclined to travel there for their meals. Although trips to and from the MRT station are both common throughout the afternoon, there are more trips pointing towards the MRT station in the evening (eg. COM3 to Kent Ridge MRT / Opp Kent Ridge MRT at 5 pm). As their daily schedules come to a close, students are increasingly travelling to the MRT station, so as to head home.
+From the above, we can see that Kent Ridge MRT / Opp Kent Ridge MRT is a remarkable hotspot for bus rides. For each bus service (A1, A2, D2) that services Kent Ridge MRT / Opp Kent Ridge MRT, this bus stop is consistently involved in the most popular trips. This is understandable, given that this bus stop crucially connects the NUS campus to Singapore's MRT network. Note that from the late morning to early afternoon, students are generally commuting from their classrooms (eg. IT / CLB and COM3) to places like the MRT station and UTown. This could be because there are more dining options available at these locations - students are therefore more inclined to travel there for their meals. Although trips to and from the MRT station are both common throughout the afternoon, there are more trips pointing towards the MRT station in the evening (eg. COM3 to Kent Ridge MRT / Opp Kent Ridge MRT at 5 pm). As their daily schedules come to a close, students are increasingly travelling to the MRT station, so as to head home.
 
 The following are the trips that students from each cluster (0, 1 and 2) engage in the most:
 
@@ -676,6 +676,15 @@ The following are the trips that students from each cluster (0, 1 and 2) engage 
 | 1 |     D2      |       10.40 am       | Kent Ridge MRT / Opp Kent Ridge MRT | COM3 |
 | 2 |     A2      |       12 pm, 2 pm, 3 pm       | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
 | 2 |     A2      |       10.40 am, 2.40 pm      | IT / CLB | Kent Ridge MRT / Opp Kent Ridge MRT |
+
+From this information, we can draw the following conclusions:
+- Students from cluster 0 tend to travel between Kent Ridge MRT / Opp Kent Ridge MRT and IT / CLB
+  - From Section 5.2.4.3, we see that this cluster generally corresponds to newer students (ie. Year 1) who are studying Biomedical Engineering. Since IT / CLB is a short distance from College of Design and Engineering (CDE), it makes sense for this category of students to commute to and from this bus stop more frequently.
+- Students from cluster 1 tend to travel from Kent Ridge MRT / Opp Kent Ridge MRT to bus stops like LT13 / Ventus, BIZ2 / Opp HSSML and COM3
+  - Firstly, note that LT13 / Ventus is near to the Faculty of Arts and Social Sciences (FASS), BIZ2 / Opp HSSML is next to the NUS Business School, and COM3 is located within the School of Computing (SoC). All 3 schools are within close proximity of one another
+  - From Section 5.2.4.3, we see that this cluster is generally composed of older students (ie. Year 3) who are studying Business courses. Upon arriving at Kent Ridge MRT, these students thus have a higher tendency to subsequently travel to the aforementioned bus stops for their classes
+- Students from cluster 2 tend to travel between Kent Ridge MRT / Opp Kent Ridge MRT to bus stops like LT13 / Ventus and IT / CLB
+  - From Section 5.2.4.3, we see that this cluster generally consists of Year 2 students who are studying Chemistry courses. As Year 2 Science students, they are more likely to be reading courses associated with the College of Humanities and Sciences, of which a significant number take place at FASS. Hence, this group of students have a greater need to travel to LT13 / Ventus, which is one of the closer bus stops to FASS. Given that the Central Library is connected to FASS, it is possible that these students prefer to study there in between their classes. This would also explain why they favour travelling from IT / CLB to the MRT station.
 
 ### 5.3.4 Opportunities for Service Improvements
 
