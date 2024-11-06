@@ -138,7 +138,7 @@ Data Scavengers is a collaborative project aimed at collecting real time data to
 How can NUS develop an efficient, reliable and safe internal bus system that optimally allocates resources to meet fluctuating demand, enhance student mobility and safety, and reduce operational costs?
 
 **Business Problem**
-The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The exisitng resource allocation, which ncludes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waitign times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
+The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The exisiting resource allocation, which ncludes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waitign times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
 
 **Key Stakeholders and their needs**
 <u>Students</u>
@@ -625,6 +625,7 @@ The following timelapses were created and saved under `visualisations/timelapses
 For each timelapse, the positions of all the bus stops are labelled in white text. Each trip corresponds to a single straight line. The line is coloured according to the bus service involved in the given trip (here, we use the standard colours found on the [official NUS website](https://uci.nus.edu.sg/oca/mobilityservices/getting-around-nus/), as specified in `config.py`). One end of this line coincides with the starting bus stop - represented by the green marker - while the other end matches up with the ending bus stop - this is indicated by the red marker. In addition, for timelapses illustrating individual bus services, the overall route of the given bus service is marked out using a strongly weighted `PolyLine`.
 
 ##### 5.3.3.1 Overall Fluctuations in Ridership
+
 We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 10 am - 2 pm, further supporting the conclusion drawn in Section 5.5.1. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
 
 |     Time Period     |      Possible Reason       |
@@ -642,6 +643,7 @@ We take a preliminary look at the travel patterns, with reference to `nus_trip_m
 From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
 
 ##### 5.3.3.2 Popular Trips and Bus Stops
+
 From `nus_trip_markers_timelapse.html`, the following are observed to be the busiest bus stops:
 
 - Kent Ridge MRT / Opp Kent Ridge MRT
@@ -652,32 +654,33 @@ From `nus_trip_markers_timelapse.html`, the following are observed to be the bus
 
 Looking at the timelapses for individual bus services, we get a general idea of which bus trips are popular. With reference to `data/timelapse_popular_trips/`, we obtain the following list of the most frequent bus trips for each bus service, along with their corresponding time periods:
 
-| Bus Service |                                                                Time Period                                                                |                Start                |                 End                 |
-| :---------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------: | :---------------------------------: |
-|     A1      |       1.30 pm, 2.40 pm - 2.50 pm, 3.30 pm - 3.50 pm        | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
-|     A2      |                                                             2 pm, 3 pm                                                             | Kent Ridge MRT / Opp Kent Ridge MRT |          LT13 / Ventus           |
-|     A2      |                                                   10.40 am, 11.40 am, 2.40 pm                                                   | IT / CLB |            Kent Ridge MRT / Opp Kent Ridge MRT            |
-|     D1      |                                              11.30 am, 12.20 pm, 2.30 pm - 2.40 pm                                               |              IT / CLB               |                UTown                |
-|     D1      |                                                             10.30 am                                                             |                LT13 / Ventus                |              UTown               |
-|     D2      |                                                       10:40 am, 11:50 am                                                        | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
-|     D2      |                                                        12:30 pm, 3 pm, 5 pm                                                        |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
+| Bus Service |                  Time Period                  |                Start                |                 End                 |
+| :---------: | :-------------------------------------------: | :---------------------------------: | :---------------------------------: |
+|     A1      | 1.30 pm, 2.40 pm - 2.50 pm, 3.30 pm - 3.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
+|     A2      |                  2 pm, 3 pm                   | Kent Ridge MRT / Opp Kent Ridge MRT |            LT13 / Ventus            |
+|     A2      |          10.40 am, 11.40 am, 2.40 pm          |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
+|     D1      |     11.30 am, 12.20 pm, 2.30 pm - 2.40 pm     |              IT / CLB               |                UTown                |
+|     D1      |                   10.30 am                    |            LT13 / Ventus            |                UTown                |
+|     D2      |              10:40 am, 11:50 am               | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
+|     D2      |             12:30 pm, 3 pm, 5 pm              |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
 From the above, we can see that Kent Ridge MRT / Opp Kent Ridge MRT is a remarkable hotspot for bus rides. For each bus service (A1, A2, D2) that services Kent Ridge MRT / Opp Kent Ridge MRT, this bus stop is consistently involved in the most popular trips. This is understandable, given that this bus stop crucially connects the NUS campus to Singapore's MRT network. Note that from the late morning to early afternoon, students are generally commuting from their classrooms (eg. IT / CLB and COM3) to places like the MRT station and UTown. This could be because there are more dining options available at these locations - students are therefore more inclined to travel there for their meals. Although trips to and from the MRT station are both common throughout the afternoon, there are more trips pointing towards the MRT station in the evening (eg. COM3 to Kent Ridge MRT / Opp Kent Ridge MRT at 5 pm). As their daily schedules come to a close, students are increasingly travelling to the MRT station, so as to head home.
 
 The following are the trips that students from each cluster (0, 1 and 2) engage in the most:
 
-| Cluster | Bus Service | Time Period | Start | End |
-| :-----: | :---------: | :---------: | :---: | :-: |
-| 0 |     A1      |       1.30 pm, 3.50 pm, 4.50 pm        | Kent Ridge MRT / Opp Kent Ridge MRT | IT / CLB |
-| 0 |     A2      |       11.40 am, 3.50 pm        | IT / CLB | Kent Ridge MRT / Opp Kent Ridge MRT |
-| 1 |     A1      |       2.30 pm, 3.30 pm        | Kent Ridge MRT / Opp Kent Ridge MRT | IT / CLB |
-| 1 |     A2      |       2 pm       | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
-| 1 |     A2      |       1.50 pm       | Kent Ridge MRT / Opp Kent Ridge MRT | BIZ2 / Opp HSSML |
-| 1 |     D2      |       10.40 am       | Kent Ridge MRT / Opp Kent Ridge MRT | COM3 |
-| 2 |     A2      |       12 pm, 2 pm, 3 pm       | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
-| 2 |     A2      |       10.40 am, 2.40 pm      | IT / CLB | Kent Ridge MRT / Opp Kent Ridge MRT |
+| Cluster | Bus Service |        Time Period        |                Start                |                 End                 |
+| :-----: | :---------: | :-----------------------: | :---------------------------------: | :---------------------------------: |
+|    0    |     A1      | 1.30 pm, 3.50 pm, 4.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
+|    0    |     A2      |     11.40 am, 3.50 pm     |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
+|    1    |     A1      |     2.30 pm, 3.30 pm      | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
+|    1    |     A2      |           2 pm            | Kent Ridge MRT / Opp Kent Ridge MRT |            LT13 / Ventus            |
+|    1    |     A2      |          1.50 pm          | Kent Ridge MRT / Opp Kent Ridge MRT |          BIZ2 / Opp HSSML           |
+|    1    |     D2      |         10.40 am          | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
+|    2    |     A2      |     12 pm, 2 pm, 3 pm     | Kent Ridge MRT / Opp Kent Ridge MRT |            LT13 / Ventus            |
+|    2    |     A2      |     10.40 am, 2.40 pm     |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
 
 From this information, we can draw the following conclusions:
+
 - Students from cluster 0 tend to travel between Kent Ridge MRT / Opp Kent Ridge MRT and IT / CLB
   - From Section 5.2.4.3, we see that this cluster generally corresponds to newer students (ie. Year 1) who are studying Biomedical Engineering. Since IT / CLB is a short distance from College of Design and Engineering (CDE), it makes sense for this category of students to commute to and from this bus stop more frequently.
 - Students from cluster 1 tend to travel from Kent Ridge MRT / Opp Kent Ridge MRT to bus stops like LT13 / Ventus, BIZ2 / Opp HSSML and COM3
