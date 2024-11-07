@@ -270,7 +270,10 @@ def main():
 
 # IMPLEMENTING THE K-PROTOTYPES ALGORITHM USING THE OPTIMAL K = 3, WITH CUSTOM-DEFINED FUNCTION segmentation_model() 
 def segmentation_model(dataframe): # must only input the training dataset
-# simply repeating what was done above
+# simply repeating what was done above to conduct the Elbow and Silhouette Methods, but with a few tweaks
+# difference here is that we are USING 2 SEPARATE MIN-MAX SCALERS
+# ONE MIN-MAX SCALER IS USED TO NORMALISE "duration_per_trip" ONLY, SO THAT IT CAN BE SEPARATELY UN-NORMALISED LATER ON FOR ANALYSING TRAVEL PATTERNS
+# OTHER MIN-MAX SCALER IS USED TO NORMALISE ALL OTHER CONTINUOUS VARIABLE COLUMNS, THAT WILL NOT BE UN-NORMALISED 
     dataframe = dataframe.replace([np.inf, -np.inf], np.nan)
     dataframe = dataframe.dropna()
     dataframe['time'] = dataframe['time'].str.replace('1900-01-01', '')
@@ -286,25 +289,41 @@ def segmentation_model(dataframe): # must only input the training dataset
     dataframe = dataframe.dropna() 
     dataframe = dataframe.drop(['date', 'time','datetime','start','end','bus_num','duration_per_day','trips_per_day',
                 'waiting_time_satisfaction','crowdedness_satisfaction'], axis = 'columns')
-    continuous_variable_columns = ["num_people_at_bus_stop", "waiting_time", "crowdedness", "comfort", "safety", "overall_satisfaction", "duration_per_trip"]
+    continuous_variable_columns = ["num_people_at_bus_stop", "waiting_time", "crowdedness", "comfort", "safety", "overall_satisfaction"]
     categorical_variable_columns = ["year", "major", "on_campus", "main_reason_for_taking_isb", "has_exam", "weather", "day_of_week", "hour", "trip"]
     dataframe[continuous_variable_columns] = dataframe[continuous_variable_columns].astype(float)
     dataframe[categorical_variable_columns] = dataframe[categorical_variable_columns].astype(str)
-    scaler = MinMaxScaler()
-    dataframe[continuous_variable_columns] = scaler.fit_transform(dataframe[continuous_variable_columns])
+   
+    # separately declaring the data type of "duration_per_trip" to be float, since it is not part of "continuous_variable_columns"
+    dataframe["duration_per_trip"] = dataframe["duration_per_trip"].astype(float) 
+
+    # FIRST MIN-MAX SCALER TO NORMALISE ALL OTHER CONTINUOUS VARIABLE COLUMNS, THAT WILL NOT BE UN-NORMALISED
+    scaler_for_other_continuous_variable_columns = MinMaxScaler()
+    dataframe[continuous_variable_columns] = scaler_for_other_continuous_variable_columns.fit_transform(dataframe[continuous_variable_columns])
+    
+    # SECOND MIN-MAX SCALER TO NORMALISE "duration_per_trip" ONLY, SO THAT IT CAN BE SEPARATELY UN-NORMALISED LATER ON FOR ANALYSING TRAVEL PATTERNS
+    scaler_for_duration_per_trip = MinMaxScaler()
+    dataframe.loc[:, ["duration_per_trip"]] = scaler_for_duration_per_trip.fit_transform(dataframe.loc[:, ["duration_per_trip"]])
+    
     df_array = dataframe.values
     df_array[:, 0:6] = df_array[:, 0:6].astype(str)
     df_array[:, 6:12] = df_array[:, 6:12].astype(float)
     df_array[:, 12:15] = df_array[:, 12:15].astype(str)
     df_array[:, 15] = df_array[:, 15].astype(float)
+
     # Create an untrained K-Prototypes model using the KPrototypes() function and the optimal K = 3.
     segmentation_model = kprototypes.KPrototypes(n_clusters = 3, max_iter = 20, random_state = 42)
+
     # Train the K-Prototypes model using the input TRAINING dataset (as a numpy array) and fit_predict() function.
     segmentation_model.fit_predict(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
+
     # Add a new column for cluster labels associated with each row (data point).
     dataframe['cluster_labels_of_data_point'] = segmentation_model.labels_
 
-    return dataframe 
+    # UN-NORMALISING THE COLUMN 'duration_per_trip' FOR PURPOSES OF ANALYSING TRAVEL PATTERNS LATER ON
+    dataframe.loc[:, ["duration_per_trip"]] = scaler_for_duration_per_trip.inverse_transform(dataframe.loc[:, ["duration_per_trip"]])
+
+    return dataframe
     # Return the new training dataset with an additional column 'cluster_labels_of_data_points' that 
     # essentially labels each row of trip data with its respective cluster number (0 / 1 / 2)
 
