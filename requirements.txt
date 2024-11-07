@@ -9,7 +9,6 @@ exceptiongroup
 executing
 folium
 fonttools
-geopandas
 imblearn
 ipykernel
 ipython
@@ -21,7 +20,6 @@ kiwisolver
 kmodes
 kprototypes
 markdown-it-py
-math
 matplotlib
 numpy
 packaging
@@ -44,13 +42,13 @@ scikit-learn
 scipy
 sdv
 seaborn
+simpy
 six
-sklearn
 statsmodels
 tornado
 tqdm
 traitlets
 typing_extensions
 tzdata
-warnings
 wcwidth
+xgboost
