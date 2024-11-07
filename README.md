@@ -548,7 +548,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 = 0.144654.
 
   - Firstly, we seek to explain cluster 1 having the shortest `duration_per_trip`.
-    - Perhaps, this could be explained by cluster 1's trip is "Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1", which comprises 5 stops from Kent Ridge MRT to LT27 (1st stop), to University Hall (2nd stop), to Opp University Health Centre (3rd stop), to Yusof Ishak House (4th stop), and finally Central Library (5th stop).
+    - Perhaps, this could be explained by cluster 1's trip being "Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1", which comprises 5 stops from Kent Ridge MRT to LT27 (1st stop), to University Hall (2nd stop), to Opp University Health Centre (3rd stop), to Yusof Ishak House (4th stop), and finally Central Library (5th stop).
     - In contrast, cluster 0 and cluster 2's trips are the exact same, which is "IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2", which comprises 6 stops from Information Technology to Opp Yusof Ishak House (1st stop), to Museum (2nd stop), to University Health Centre (3rd stop), to Opp University Hall (4th stop), to S17 (5th stop), and finally Opp Kent Ridge MRT (6th stop).
     - Henceforth, since cluster 1's trip has 1 less stop (total of 5 stops) along the way, its route could be more direct/effiicient, which in turn leads to a shorter `duration_per_trip`, as compared to cluster 0 and 2's trip (total of 6 stops).
 
