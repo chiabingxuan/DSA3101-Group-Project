@@ -488,7 +488,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       11                       |
 |             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
 | Number of People at Bus Stop |                    0.314286                    |
-|       Duration Per Trip      |                    0.144654                    |
+|       Duration Per Trip      |             8.666667(NOT NORMALISED)           |
 |         Waiting Time         |                    0.300000                    |
 |         Crowdedness          |                    0.666667                    |
 |           Comfort            |                    0.333333                    |
@@ -510,7 +510,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       13                       |
 |             Trip             | Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1 |
 | Number of People at Bus Stop |                    0.200000                    |
-|       Duration Per Trip      |                    0.140566                    |
+|       Duration Per Trip      |             8.450000(NOT NORMALISED)           |
 |         Waiting Time         |                    0.166667                    |
 |         Crowdedness          |                    0.444444                    |
 |           Comfort            |                    0.555556                    |
@@ -531,7 +531,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       12                       |
 |             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
 | Number of People at Bus Stop |                    0.357143                    |
-|       Duration Per Trip      |                    0.169811                    |
+|       Duration Per Trip      |             10.00000(NOT NORMALISED)           |
 |         Waiting Time         |                    0.200000                    |
 |         Crowdedness          |                    0.777778                    |
 |           Comfort            |                    0.555556                    |
@@ -547,8 +547,8 @@ In preparation for Modeling, a substantial amount of data is required for traini
     for identifying each cluster's pain points and needs in this context.
 
 - On the other hand, across the 3 clusters labelled 0, 1, and 2, we observe that cluster 1 has the shortest `duration_per_trip`
-= 0.140566, cluster 2 has the longest `duration_per_trip` = 0.169811, with cluster 0 being in between with its `duration_per_trip` 
-= 0.144654.
+= 8.450000, cluster 2 has the longest `duration_per_trip` = 10.000000, with cluster 0 being in between with its `duration_per_trip` 
+= 8.666667.
 
   - Firstly, we seek to explain cluster 1 having the shortest `duration_per_trip`.
     - Perhaps, this could be explained by cluster 1's trip being "Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1", which comprises 5 stops from Kent Ridge MRT to LT27 (1st stop), to University Hall (2nd stop), to Opp University Health Centre (3rd stop), to Yusof Ishak House (4th stop), and finally Central Library (5th stop).
