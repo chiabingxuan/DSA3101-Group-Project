@@ -1325,19 +1325,26 @@ Code style PEP 8 have been adapted for this project
 
 ## 11. Future Work
 
-11.1 Additional research areas in the future
+While our research provides valuable insights into student satisfaction with the university's shuttle bus service, there are several areas that can be expanded upon for a more comprehensive understanding of the system and its potential improvements. In this section, we outline key directions for future research and development that could enhance both the accuracy of our findings and the quality of the shuttle bus service.
 
-- 11.1.1 Simulation and Modeling for Optimal Routing
-  - Use computer simulations to test and optimise various route and scheduling configurations under different conditions.
-    - Discrete Event Simulation (DES):  
-      Using DES like SimPy, helps to focus on key events, like shuttles arriving at or departing from stops, to understand the impact on waiting times and bus crowdedness. This is useful for simulating peak periods and assessing the crowdedness at stops.
-- 11.1.2 Passenger Flow and Mobility Patterns
-  - Study passenger movement patterns on campus. Research methods like mobility clustering analysis to identify frequently travelled paths or "hotspots" on campus, which can help in refining routes to maximise coverage.
-    - Using clustering techniques, like K-means clustering, can help in determining high-demand locations, popular routes, and peak times, which can then inform adjustments to the shuttle routes or schedules.
-    - K-means clustering:
-      - Use methods like the Elbow Method to determine an optimal number of clusters. K-means will assign each trip or stop location to a cluster by minimising the distance to the cluster’s centroid.
-      - Each cluster’s centroid (average location and time) represents a high-demand area and its typical usage time.
-      - For example, one cluster might reveal that many students travel between dorms and lecture halls in the morning, while another shows high movement to recreation areas in the evening.
+### 11.1 Investigation of the Shuttle Bus System Operations
+
+Our current work primarily focuses on student satisfaction based on survey responses, without delving into the operational mechanics of the bus system itself. To build a more robust model, future studies should incorporate data regarding the shuttle buses' operational parameters, including:
+1. Route and Schedule Optimization: Investigating the efficiency of current routes and bus schedules, taking into account traffic patterns, peak times, and student demand.
+2. Vehicle and Fleet Management: Analyzing the fleet's maintenance schedules, bus capacities, and vehicle types to determine how operational decisions impact overall student satisfaction.
+
+### 11.2 Integration of Real-Time Operational Data
+
+Leveraging real-time operational data would enhance the accuracy of our findings and allow for more adaptive models:
+1. IoT and GPS Tracking: By integrating real-time bus location tracking (using GPS or IoT sensors), we could develop predictive models for wait times and journey times based on live traffic and weather conditions.
+2. Crowd Monitoring Tools: Implementing sensors on buses to monitor passenger numbers would allow for more precise tracking of crowdedness and its direct impact on satisfaction.
+3. Traffic Data Integration: Incorporating live traffic data into simulations could help account for delays caused by road conditions, accidents, or construction work, and allow us to assess how these external factors influence service delivery and user satisfaction.
+
+### 11.3 Collaboration with Campus Authorities
+
+Future work should involve direct collaboration with campus transportation authorities to gain access to operational data that is not currently available. This partnership would facilitate:
+1. Access to Internal Data: Obtaining detailed information on bus schedules, maintenance logs, passenger boarding patterns, and traffic data would allow for more precise modeling and recommendations.
+2. Pilot Programs and A/B Testing: After developing new models or strategies, collaborating with campus authorities would allow for real-world testing of proposed changes to the bus service, such as adjustments to bus frequency, route changes, or service timing.
 
 ## 12. Lessons Learned
 
