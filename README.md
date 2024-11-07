@@ -485,11 +485,13 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       11                       |
 |             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
 | Number of People at Bus Stop |                    0.314286                    |
+|       Duration Per Trip      |                    0.144654                    |
 |         Waiting Time         |                    0.300000                    |
 |         Crowdedness          |                    0.666667                    |
 |           Comfort            |                    0.333333                    |
 |            Safety            |                    0.333333                    |
 |     Overall Satisfaction     |                    0.333333                    |
+
 
 - Cluster 1 has the following attributes.
 
@@ -505,6 +507,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       13                       |
 |             Trip             | Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1 |
 | Number of People at Bus Stop |                    0.200000                    |
+|       Duration Per Trip      |                    0.140566                    |
 |         Waiting Time         |                    0.166667                    |
 |         Crowdedness          |                    0.444444                    |
 |           Comfort            |                    0.555556                    |
@@ -525,6 +528,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       12                       |
 |             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
 | Number of People at Bus Stop |                    0.357143                    |
+|       Duration Per Trip      |                    0.169811                    |
 |         Waiting Time         |                    0.200000                    |
 |         Crowdedness          |                    0.777778                    |
 |           Comfort            |                    0.555556                    |
