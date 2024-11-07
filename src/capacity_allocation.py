@@ -2,48 +2,49 @@ import numpy as np
 from scipy.optimize import linprog
 import demand_forecasting as df
 
-#################################################################################
-### Objective of model: Minimise unmet demand                                 ###
-### Constraints: Total buses cannot exceed maximum number of buses            ###
-### Decision variable: Number of buses allocated for each route and time slot ###
-#################################################################################
-
 def capacity_allocation():
-    # Flatten the demand_forecast matrix to work with linear programming
-    demand_forecast = df.demand_forecasting()
-    (num_routes, num_time_slots) = demand_forecast.shape
-    flattened_demand = demand_forecast.flatten()
-
-    # Unmet Demand = Forecasted Demand - Bus Capacity
-    objective_coeffs = -flattened_demand  # Using negative demand to maximize service in linprog
-
-    ### Setting up constraints ###
-
+    # Forecasted demand as a 2D matrix: [routes x time slots]
+    forecasted_demand = df.demand_forecasting()
+    forecasted_demand = np.array(forecasted_demand)
+    
     # Maximum bus capacity per trip
-    bus_capacity = 50
+    bus_capacity = 20
+    total_buses_available = 8
+    
+    # Dimensions of forecasted demand matrix
+    num_routes, num_time_slots = forecasted_demand.shape
 
-    # Maximum number of buses we have to allocate
-    max_buses = 6
+    # Objective function: prioritize minimizing unmet demand
+    c = -forecasted_demand.flatten()  # Flatten for 1D linprog
 
-    # Equality constraint (requires condition to hold exactly):
-    # Total number of buses
-    A_eq = np.ones((1, num_routes * num_time_slots))
-    b_eq = [max_buses]
-    # This means: 1 x1 + 1 x2 + ... + 1 xn = max_buses
+    # Inequality constraints (total buses available)
+    # For each allocation, we ensure that the total buses do not exceed the fleet size.
+    A_ub = np.ones((1, num_routes * num_time_slots))
+    b_ub = [total_buses_available]
 
-    # Inequality constraint (allows for a range of possible values)
-    # Individual demand at each route-time slot
-    A_ub = np.eye(num_routes * num_time_slots)
-    b_ub = flattened_demand  # Upper bounds on demand per route per time slot
-    # This means: x1 <= d1 ; x2 <= d2 ; ... ; xn <= dn
+    print("A_ub----------------------------------")
+    print(A_ub)
+    print("b_ub----------------------------------")
+    print(b_ub)
 
-    # Setting up bounds for decision variables (buses allocated) (>= 0 & <= required demand)
-    bounds = [(0, bus_capacity)] * (num_routes * num_time_slots)
-    # Ensures each allocation (per route per time slot) does not exceed bus capacity
+    # Demand constraints: buses per route and time slot must at least meet demand
+    A_demand = np.eye(num_routes * num_time_slots)
+    b_demand = (forecasted_demand / bus_capacity).flatten()
 
-    # Run the linear programming optimization
-    result = linprog(c = objective_coeffs, A_eq = A_eq, b_eq = b_eq, A_ub = A_ub, b_ub = b_ub, bounds = bounds, method = "highs")
+    print("A_demand----------------------------------")
+    print(A_demand)
+    print("b_demand----------------------------------")
+    print(b_demand)
 
+    # Combine inequality constraints
+    A_ub = np.vstack([A_ub, A_demand])
+    b_ub = np.hstack([b_ub, b_demand])
+
+    # Solve the linear programming problem
+    result = linprog(c, A_ub=A_ub, b_ub=1.2*b_ub, method='highs')
+    print(result)
+
+    # Output the results
     # Print results
     if result.success:
         allocated_buses = result.x.reshape(num_routes, num_time_slots)
