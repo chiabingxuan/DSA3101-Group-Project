@@ -2,7 +2,7 @@ import survey_cleaning
 import smote
 import synthetic_data_generation_train
 import synthetic_data_generation_test
-import make_timelapses_for_travel_patterns
+import analyse_travel_patterns
 import User_Segmentation_Model
 import Route_Optimization
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     User_Segmentation_Model.main()
 
     # 7. Analyse travel patterns
-    make_timelapses_for_travel_patterns.main()
+    analyse_travel_patterns.main()
 
     # 8. Demand forecasting
 

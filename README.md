@@ -27,14 +27,21 @@
         - [5.2.4.3 K-Prototypes Model Interpretation](#5243-k-prototypes-model-interpretation)
     - [5.3 Analysing Travel Patterns](#53-analysing-travel-patterns)
       - [5.3.1 Creating Tableau Visualisations](#531-creating-tableau-visualisations)
+        - [5.3.1.1 General Peak Hours](#5311-general-peak-hours)
+        - [5.3.1.2 Individual Bus Services](#5312-individual-bus-services)
+        - [5.3.1.3 Day of Week](#5313-day-of-week)
+        - [5.3.1.4 Exam Period](#5314-exam-period)
       - [5.3.2 Creating Origin-Destination Matrix](#532-creating-origin-destination-matrix)
       - [5.3.3 Creating Timelapses](#533-creating-timelapses)
-    - [5.3.4 Opportunities for Service Improvements](#534-opportunities-for-service-improvements)
+        - [5.3.3.1 Overall Fluctuations in Ridership](#5331-overall-fluctuations-in-ridership)
+        - [5.3.3.2 Popular Trips Throughout the Day](#5332-popular-trips-throughout-the-day)
+        - [5.3.3.3 Popular Trips Across User Segments](#5333-popular-trips-across-user-segments)
+      - [5.3.4 Opportunities for Service Improvements](#534-opportunities-for-service-improvements)
     - [5.4 Evaluation](#54-evaluation)
       - [5.4.1 Evaluation of model performance against business objectives](#541-evaluation-of-model-performance-against-business-objectives)
       - [5.4.2 Limitations of Current Approach](#542-limitations-of-current-approach)
       - [5.4.3 Suggestions for Model Improvements](#543-suggestions-for-model-improvements)
-  - [6 Subgroup B: System Optimization and Forecasting](#6-subgroup-b-system-optimization-and-forecasting)
+  - [6. Subgroup B: System Optimization and Forecasting](#6-subgroup-b-system-optimization-and-forecasting)
     - [6.1 Demand Forecasting Model](#61-demand-forecasting-model)
       - [6.1.1 Models Considered](#611-models-considered)
       - [6.1.2 Model Selection Criteria](#612-model-selection-criteria)
@@ -97,6 +104,9 @@
     - [Implementation roadmap](#implementation-roadmap)
     - [Expected impact of each recommendations](#expected-impact-of-each-recommendations)
   - [11. Future Work](#11-future-work)
+    - [11.1 Investigation of the Shuttle Bus System Operations](#111-investigation-of-the-shuttle-bus-system-operations)
+    - [11.2 Integration of Real-Time Operational Data](#112-integration-of-real-time-operational-data)
+    - [11.3 Collaboration with Campus Authorities](#113-collaboration-with-campus-authorities)
   - [12. Lessons Learned](#12-lessons-learned)
   - [13. References](#13-references)
   - [14. Appendices](#14-appendices)
@@ -132,7 +142,7 @@ Data Scavengers is a collaborative project aimed at collecting real time data to
 How can NUS develop an efficient, reliable and safe internal bus system that optimally allocates resources to meet fluctuating demand, enhance student mobility and safety, and reduce operational costs?
 
 **Business Problem**
-The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The exisitng resource allocation, which ncludes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waitign times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
+The school's current internal transportation system faces challenges in meeting the varying demands of students commuting at different time periods, or during seasonal events. The existing resource allocation, which includes the routes and schedules may not adequately support peak times, such as the time periods between 1030 hrs to 1330 hrs, or periods like exams or campus events. Additionally, there are concerns about ensuring students' safety and comfort, and minimising the waiting times. Without an optimised and responsive transport system, students may experience delays, overcrowding, or safety concerns. In turn, impacting their academic performance, punctuality, as well as their overall campus experience.
 
 **Key Stakeholders and their needs**
 <u>Students</u>
@@ -151,7 +161,7 @@ The school's current internal transportation system faces challenges in meeting 
 
 ### 3.1 Data Acquisition
 
-We collected survey data to investigate the travel patterns and satisfaction levels of NUS students, with regards to the NUS bus system. In our survey, respondents were asked to share **two bus trips** that they embarked on for the day. The [survey link](https://docs.google.com/forms/d/1zh5M9Sccn3ifxcOOJd2UMj7cQSFKPWmvD-RG1PZA9QM/edit) was circulated online on various NUS platforms, including the official Telegram channel for the NUS College of Humanities and Sciences.
+We collected survey data to investigate the travel patterns and satisfaction levels of NUS students, with regards to the NUS bus system. In our survey, respondents were asked to share **two bus trips** that they embarked on for the day. The [survey link](https://docs.google.com/forms/d/1zh5M9Sccn3ifxcOOJd2UMj7cQSFKPWmvD-RG1PZA9QM/edit) was circulated online on various NUS platforms, including the official Telegram channel for the NUS College of Humanities and Sciences (CHS).
 
 ### 3.2 Data Dictionary of Original Survey Data
 
@@ -351,6 +361,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
    - Thus we only used SDV to generate synthetic data for test dataset, while both SMOTE-NC and SDV were used for train dataset.
 
 ## 5. Subgroup A: User Behavior and Satisfaction
+
 - How can we segment our users based on their travel behavior and preferences?
 - Develop a user segmentation model using the collected data
 - Identify unique needs and pain points for each user segment
@@ -360,6 +371,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 ### 5.2 User Segmentation
 
 #### 5.2.1 Models Considered
+
 - There are 3 main modelling techniques considered at first.
   - K-Means
   - K-Modes
@@ -476,11 +488,13 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       11                       |
 |             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
 | Number of People at Bus Stop |                    0.314286                    |
+|       Duration Per Trip      |                    0.144654                    |
 |         Waiting Time         |                    0.300000                    |
 |         Crowdedness          |                    0.666667                    |
 |           Comfort            |                    0.333333                    |
 |            Safety            |                    0.333333                    |
 |     Overall Satisfaction     |                    0.333333                    |
+
 
 - Cluster 1 has the following attributes.
 
@@ -496,6 +510,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       13                       |
 |             Trip             | Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1 |
 | Number of People at Bus Stop |                    0.200000                    |
+|       Duration Per Trip      |                    0.140566                    |
 |         Waiting Time         |                    0.166667                    |
 |         Crowdedness          |                    0.444444                    |
 |           Comfort            |                    0.555556                    |
@@ -516,6 +531,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       12                       |
 |             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
 | Number of People at Bus Stop |                    0.357143                    |
+|       Duration Per Trip      |                    0.169811                    |
 |         Waiting Time         |                    0.200000                    |
 |         Crowdedness          |                    0.777778                    |
 |           Comfort            |                    0.555556                    |
@@ -529,6 +545,19 @@ In preparation for Modeling, a substantial amount of data is required for traini
   - On the day of the bus trip chosen to input in the survey, there was no exam, it was a Thursday, and the weather was sunny.
   - So, perhaps the features of `on_campus`, `main_reason_for_taking_ISB`, `has_exam`, `day_of_week`, and `weather`, are not as useful
     for identifying each cluster's pain points and needs in this context.
+
+- On the other hand, across the 3 clusters labelled 0, 1, and 2, we observe that cluster 1 has the shortest `duration_per_trip`
+= 0.140566, cluster 2 has the longest `duration_per_trip` = 0.169811, with cluster 0 being in between with its `duration_per_trip` 
+= 0.144654.
+
+  - Firstly, we seek to explain cluster 1 having the shortest `duration_per_trip`.
+    - Perhaps, this could be explained by cluster 1's trip being "Kent Ridge MRT/Opp Kent Ridge MRT to IT/CLB A1", which comprises 5 stops from Kent Ridge MRT to LT27 (1st stop), to University Hall (2nd stop), to Opp University Health Centre (3rd stop), to Yusof Ishak House (4th stop), and finally Central Library (5th stop).
+    - In contrast, cluster 0 and cluster 2's trips are the exact same, which is "IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2", which comprises 6 stops from Information Technology to Opp Yusof Ishak House (1st stop), to Museum (2nd stop), to University Health Centre (3rd stop), to Opp University Hall (4th stop), to S17 (5th stop), and finally Opp Kent Ridge MRT (6th stop).
+    - Henceforth, since cluster 1's trip has 1 less stop (total of 5 stops) along the way, its route could be more direct/effiicient, which in turn leads to a shorter `duration_per_trip`, as compared to cluster 0 and 2's trip (total of 6 stops).
+
+  - Secondly, we seek to explain cluster 2 having the longest `duration_per_trip`.
+    - Perhaps, this could be because cluster 2 has the highest crowdedness = 0.777778, compared to cluster 0 with crowdedness = 0.666667 and cluster 1 with crowdedness = 0.444444. 
+    - Thus, cluster 2 having the highest crowdedness out of the 3 clusters, could result in it having the slowest boarding times, slowest travel speeds, and/or longest delays due to slowest passenger flows- all of which contribute to stretching out the bus trips' durations significantly.
 
 - Between clusters 1 and 2, we observe that they have the exact same overall satisfaction level = 0.555556,
   safety level = 0.66667, and comfort level = 0.55556.
@@ -556,83 +585,151 @@ In preparation for Modeling, a substantial amount of data is required for traini
 - Moreover, we note that despite cluster 2 (year 2 students) having the highest crowdedness level = 0.777778, it still has a moderate overall satisfaction level = 0.555556. This suggests that as students progress past their first year, it is relatively easy for most of them to be accustomed / desensitised to crowded conditions as they accept high crowd levels as the "norm". In turn, such a change in mindset is part of students internalising that usage of ISB services is a necessity (since most of them use the ISB to go to class, as indicated by how clusters 0, 1, and 2 all have the exact same `main_reason_for_taking_ISB` = to go to class). This desensitisation to crowded conditions might buffer the negative impact of crowdedness on overall satisfaction levels.
 
 ### 5.3 Analysing Travel Patterns
+
 - Analyse and visualise travel patterns across different routes, times, and user segments.
 - Identify opportunities for service improvements based on these patterns.
 
-For the analysis of common bus travel patterns among students, we refer to Tableau visualisations under `visualisations/Dashboards/` and `make_timelapses_for_travel_patterns.py`.
+For the analysis of common bus travel patterns among students, we refer to Tableau visualisations under `visualisations/Dashboards/` and `analyse_travel_patterns.py`. Within `analyse_travel_patterns.py`, the `main()` functions from `origin_destination_matrix.py` and `make_timelapses_for_travel_patterns.py` are called, in that order.
 
 #### 5.3.1 Creating Tableau Visualisations
+
 We create [Tableau dashboards](https://chiabingxuan.github.io/DSA3101-Group-Project/) to visualise how travel patterns vary throughout the day. This is done by taking various scenarios into consideration - dashboard filters such as "Bus Number", "Starting Bus Stops", "Weather" and "Exam" are incorporated into our visualisations.
 
-From the graph, we note that a typical day's rush hours range from 10 am to 2 pm, where the number of trips remain consistently above 500. The number of bus trips peaks at approximately 11 am, during the lunch break. The degree of usage of each bus service (A1, A2, D1, D2) also varies in a similar way throughout the day, with D1 being significantly less utilised than the others.
+##### 5.3.1.1 General Peak Hours
+
+From the graph, we note that **a typical day's rush hours range from 10 am to 2 pm**, where the number of trips remain consistently above 500. The number of bus trips **peaks at approximately 11 am** (679 trips), during the lunch break.
+
+##### 5.3.1.2 Individual Bus Services
+
+The usage of each bus service (A1, A2, D1, D2) also varies in a similar way throughout the day, with **D1 being much less utilised than the others**. This is most likely because D1 services fewer bus stops, and thus a smaller area of the campus.
+
+In addition, each of the usages of A1, A2 and D1 **peaks at two separate time periods (11 am and 1 pm - 2 pm)**. Evidently, students have a greater need to commute from one place to another, both before and after their lunch.
+
+In comparison, the ridership for bus service D2 **peaks at 11 am only** (240 trips). This could be accounted for by the fact that D2 services University Town (UTown), unlike A1 and A2:
+
+- For students who commute to UTown right before the lunchtime period, they may be more inclined to stay there for longer periods of time, given that there is a wider variety of amenities (eg. Education Resource Centre) available in the area.
+- Students may be travelling to UTown in order to access bus service 96, which goes to Clementi MRT Station - they have no intention of subsequently travelling to other bus stops within campus.
+
+Hence, there is no notable peak in ridership for D2 in the early afternoon. Although D1 also services UTown, it is a significantly less popular bus service than D2 - figures associated with D1 should be treated with less weightage than other bus services.
+
+##### 5.3.1.3 Day of Week
+
+During the weekend (Saturday - Sunday), **peak hours occur later in the day, at around 1 pm** (62 trips). This is a rightwards shift in comparison to weekdays (Monday - Friday), when the **busiest hours range from 11 am - 12 pm** (at least 590 trips). This may be attributed to the differences in the purpose of travel, between weekdays and weekends. Unlike weekdays, schedules for weekends consist of fewer classes and more college activities for leisure, with events beginning later in the day. On Saturdays and Sundays, students travel on campus to attend these recreational activities, instead of going for classes. Consequently, they begin their commute closer to midday, pushing peak hours to around 1 pm.
+
+##### 5.3.1.4 Exam Period
+
+Consider the bus trips starting from Kent Ridge MRT / Opp Kent Ridge MRT. On days with no examinations, the number of these trips increases consistently from 7 am - 11 am (from 27 trips to 198 trips), whilst decreasing consistently from 11 am - 7 pm (from 198 trips to 9 trips). Contrastingly, the number of trips originating from Kent Ridge MRT / Opp Kent Ridge MRT sees **two additional sharp spikes throughout a typical examination day** - namely, **10 am** (29 trips) and **3 pm** (16 trips). These sudden jumps in ridership may stem from an increase in the number of students travelling to examination venues (ie. UHC / Opp UHC) for their morning and afternoon papers respectively.
 
 #### 5.3.2 Creating Origin-Destination Matrix
 
-#### 5.3.3 Creating Timelapses
-In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). The following timelapses were created and saved under `visualisations/timelapses/`:
+In `origin_destination_matrix.py`, we create
 
-| File Name | Timelapse |
-| :-------: | :----: |
-| `nus_trip_markers_timelapse.html` | Timelapse of all bus trips |
-| `nus_exam_trip_markers_timelapse.html` | Timelapse of all bus trips on a exam day |
-| `nus_no_exam trip_markers_timelapse.html` | Timelapse of all bus trips on a non-exam day |
-| `nus_a1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A1 |
-| `nus_a2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service A2 |
-| `nus_d1_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D1 |
-| `nus_d2_trip_markers_timelapse.html` | Timelapse of bus trips involving bus service D2 |
+#### 5.3.3 Creating Timelapses
+
+In `make_timelapses_for_travel_patterns.py`, we use `folium` to create timelapses that outline the travel patterns over a 16 hour period (7 am - 11 pm). Here, for each timelapse, we also call the `filter_route_counts()` function in `filter_count.py` to obtain a CSV file that describes the most popular bus trips throughout the day. For example, for `nus_a1_trip_markers_timelapse.html`, `nus_a1_trip_markers_timelapse_popular_trips.csv` shows the most popular trips involving bus service A1 throughout the day. These CSV files can be found in `data/timelapse_popular_trips/`.
+
+The following timelapses were created and saved under `visualisations/timelapses/`:
+
+|                  File Name                  |                         Timelapse                          |
+| :-----------------------------------------: | :--------------------------------------------------------: |
+|      `nus_trip_markers_timelapse.html`      |                 Timelapse of all bus trips                 |
+|   `nus_exam_trip_markers_timelapse.html`    |          Timelapse of all bus trips on a exam day          |
+|  `nus_no_exam trip_markers_timelapse.html`  |        Timelapse of all bus trips on a non-exam day        |
+|    `nus_a1_trip_markers_timelapse.html`     |      Timelapse of bus trips involving bus service A1       |
+|    `nus_a2_trip_markers_timelapse.html`     |      Timelapse of bus trips involving bus service A2       |
+|    `nus_d1_trip_markers_timelapse.html`     |      Timelapse of bus trips involving bus service D1       |
+|    `nus_d2_trip_markers_timelapse.html`     |      Timelapse of bus trips involving bus service D2       |
 | `nus_cluster_0_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 0 |
 | `nus_cluster_1_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 1 |
 | `nus_cluster_2_trip_markers_timelapse.html` | Timelapse of bus trips involving passengers from cluster 2 |
 
 For each timelapse, the positions of all the bus stops are labelled in white text. Each trip corresponds to a single straight line. The line is coloured according to the bus service involved in the given trip (here, we use the standard colours found on the [official NUS website](https://uci.nus.edu.sg/oca/mobilityservices/getting-around-nus/), as specified in `config.py`). One end of this line coincides with the starting bus stop - represented by the green marker - while the other end matches up with the ending bus stop - this is indicated by the red marker. In addition, for timelapses illustrating individual bus services, the overall route of the given bus service is marked out using a strongly weighted `PolyLine`.
 
-We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn remain consistently high from 11 am - 3 pm, further supporting the conclusion drawn in Section 5.5.1. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
+##### 5.3.3.1 Overall Fluctuations in Ridership
 
-| Time Period | Possible Reason |
-| :-------: | :----: |
-| 8.50 am - 9.10 am | 9 am classes |
-| 9.30 am - 10.10 am | 10 am classes |
-| 10.30 am - 11.10 am | 11 am classes |
+We take a preliminary look at the travel patterns, with reference to `nus_trip_markers_timelapse.html`. It can be seen that the number of lines drawn **remain consistently high from 10 am - 2 pm**, further supporting the conclusion drawn in Section 5.5.1. However, we look to delve deeper into more specific time periods for which the network of lines drawn is significantly dense. We sieve out a few time periods that are of note:
+
+|     Time Period     |      Possible Reason       |
+| :-----------------: | :------------------------: |
+|  8.50 am - 9.10 am  |        9 am classes        |
+| 9.30 am - 10.10 am  |       10 am classes        |
+| 10.30 am - 11.10 am |       11 am classes        |
 | 11.40 am - 12.10 pm | 12 pm classes + lunch hour |
-| 12.40 pm - 1.10 pm | 1 pm classes + lunch hour |
-| 1.30 pm - 1.40 pm | 2 pm classes + lunch hour |
-| 2.00 pm - 2.10 pm | 2 pm classes + lunch hour |
-| 2.30 pm - 3.10 pm | 3 pm classes |
-| 3.30 pm - 4.30 pm | Afternoon classes |
+| 12.40 pm - 1.10 pm  | 1 pm classes + lunch hour  |
+|  1.30 pm - 1.40 pm  | 2 pm classes + lunch hour  |
+|  2.00 pm - 2.10 pm  | 2 pm classes + lunch hour  |
+|  2.30 pm - 3.10 pm  |        3 pm classes        |
+|  3.30 pm - 4.30 pm  |     Afternoon classes      |
 
-From these observations, we can tell that the number of students using the NUS bus system spikes on an hourly basis, especially in the morning and early afternoon. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is significantly greater during the lunchtime period, when students commute from their classrooms to bus stops that are near canteens and eateries.
+From these observations, we can tell that the number of students using the NUS bus system **spikes on an hourly basis**, especially **in the morning and early afternoon**. We deduce that this is due to the fact that classes at NUS occur at regular one-hour intervals. From our previous analyses, students mainly take the school bus to attend their classes - it is thus not surprising that the demand for bus services peaks every hour. However, this hourly trend is less apparent in the late afternoon. Furthermore, the number of trips is **significantly greater during the lunchtime period**, when students commute from their classrooms to bus stops that are near canteens and eateries.
 
-The following are observed to be the busiest bus stops:
+##### 5.3.3.2 Popular Trips Throughout the Day
+
+From `nus_trip_markers_timelapse.html`, the following are observed to be the **busiest bus stops**:
 
 - Kent Ridge MRT / Opp Kent Ridge MRT
-- LT27 / S17
 - UTown
 - IT / CLB
 - LT13 / Ventus
+- COM3
 
-Looking at the timelapses for individual bus services, we obtain a few additional insights. The following is a list of popular trips, for a given bus service at a given time period:
+Looking at the timelapses for individual bus services, we get a general idea of which bus trips are popular. With reference to `data/timelapse_popular_trips/`, we obtain the following list of the most frequent bus trips for each bus service, along with their corresponding time periods:
 
-| Bus Service | Time Period | Start | End |
-| :-------: | :-------: | :----: | :----: |
-| A1 | 8.30 am | LT13 / Ventus | LT27 / S17 |
-| A1 | 10.30 am - 10.40 am, 2.30 pm - 2.40 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
-| A1 | 10.30 am - 10.40 am, 1.30 pm - 1.50 pm, 2.30 pm - 2.50 pm, 3.30 pm - 3.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | IT / CLB |
-| A1 | 11.40 am - 11.50 am | LT27 / S17 | IT / CLB |
-| A1 | 2 pm - 2.20 pm, 4 pm - 4.20 pm | LT13 / Ventus | Kent Ridge MRT / Opp Kent Ridge MRT |
-| A2 | 9.40 am - 9.50 am, 12.30 pm - 12.50 pm, 1.10 pm, 1.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT | BIZ2 / Opp HSSML |
-| A2 | 10 am - 10.10 am, 11 am - 11.10 am, 12 pm - 12.10 pm, 1 pm - 1.10 pm, 2 pm - 2.10 pm, 3 pm - 3.10 pm | Kent Ridge MRT / Opp Kent Ridge MRT | LT13 / Ventus |
-| A2 | 10.40 am - 10.50 am, 11.10 pm - 11.50 pm, 12.40 pm - 1.10 pm, 2.20 pm - 3 pm, 3.50 pm - 4.10 pm, 4.40 pm - 4.50 pm, 5.40 pm | IT / CLB | Kent Ridge MRT / Opp Kent Ridge MRT |
-| D1 | 10.30 am - 10.40 am, 12 pm - 12.10 pm, 2 pm - 2.10 pm, 3.10 pm | LT13 / Ventus | UTown |
-| D1 | 11.30 am - 11.40 am, 2.40 pm | UTown | IT / CLB |
-| D1 | 11.30 am - 11.40 am, 2.40 pm | IT / CLB | UTown |
-| D2 | 8.30 am - 8.50 am, 1.30 pm - 1.40 pm | Kent Ridge MRT / Opp Kent Ridge MRT | UTown |
-| D2 | 9 am - 9.10 am, 10 am - 10.10 am, 11 am - 11.10 am | PGP | UTown |
-| D2 | 10.40 am, 11.30 am - 11.50 am | Kent Ridge MRT / Opp Kent Ridge MRT | COM3 |
-| D2 | 12 pm - 12.10 pm | UTown | LT27 / S17 |
-| D2 | 12 pm - 12.10 pm, 3 pm - 3.10 pm, 5 pm - 5.10 pm | COM3 | Kent Ridge MRT / Opp Kent Ridge MRT |
+| Bus Service |                  Time Period                  |                Start                |                 End                 |
+| :---------: | :-------------------------------------------: | :---------------------------------: | :---------------------------------: |
+|     A1      | 1.30 pm, 2.40 pm - 2.50 pm, 3.30 pm - 3.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
+|     A2      |                  2 pm, 3 pm                   | Kent Ridge MRT / Opp Kent Ridge MRT |            LT13 / Ventus            |
+|     A2      |          10.40 am, 11.40 am, 2.40 pm          |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
+|     D1      |     11.30 am, 12.20 pm, 2.30 pm - 2.40 pm     |              IT / CLB               |                UTown                |
+|     D1      |                   10.30 am                    |            LT13 / Ventus            |                UTown                |
+|     D2      |              10.40 am, 11.50 am               | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
+|     D2      |             12.30 pm, 3 pm, 5 pm              |                COM3                 | Kent Ridge MRT / Opp Kent Ridge MRT |
 
-### 5.3.4 Opportunities for Service Improvements
+From the above, we can see that **Kent Ridge MRT / Opp Kent Ridge MRT is a remarkable hotspot** for bus rides. For each bus service (A1, A2, D2) that services Kent Ridge MRT / Opp Kent Ridge MRT, this bus stop is consistently involved in the most popular trips. This is understandable, given that this bus stop crucially connects the NUS campus to Singapore's MRT network. Note that from the late morning to early afternoon, students are generally commuting from their classrooms (eg. **IT / CLB and COM3**) to places like **the MRT station and UTown**. This could be because there are more dining options available at these locations - students are therefore more inclined to travel there for their meals. Although trips to and from the MRT station are both common throughout the afternoon, there are **more trips pointing towards the MRT station in the evening** (eg. COM3 to Kent Ridge MRT / Opp Kent Ridge MRT at 5 pm). As their daily schedules come to a close, students are increasingly travelling to the MRT station, so as to head home.
 
+##### 5.3.3.3 Popular Trips Across User Segments
+
+The following are the trips that students from each cluster (0, 1 and 2) engage in the most:
+
+| Cluster | Bus Service |        Time Period        |                Start                |                 End                 |
+| :-----: | :---------: | :-----------------------: | :---------------------------------: | :---------------------------------: |
+|    0    |     A1      | 1.30 pm, 3.50 pm, 4.50 pm | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
+|    0    |     A2      |     11.40 am, 3.50 pm     |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
+|    1    |     A1      |     2.30 pm, 3.30 pm      | Kent Ridge MRT / Opp Kent Ridge MRT |              IT / CLB               |
+|    1    |     A2      |           2 pm            | Kent Ridge MRT / Opp Kent Ridge MRT |            LT13 / Ventus            |
+|    1    |     A2      |          1.50 pm          | Kent Ridge MRT / Opp Kent Ridge MRT |          BIZ2 / Opp HSSML           |
+|    1    |     D2      |         10.40 am          | Kent Ridge MRT / Opp Kent Ridge MRT |                COM3                 |
+|    2    |     A2      |     12 pm, 2 pm, 3 pm     | Kent Ridge MRT / Opp Kent Ridge MRT |            LT13 / Ventus            |
+|    2    |     A2      |     10.40 am, 2.40 pm     |              IT / CLB               | Kent Ridge MRT / Opp Kent Ridge MRT |
+
+From this information, we can draw the following conclusions:
+
+- Students from **cluster 0** tend to travel between **Kent Ridge MRT / Opp Kent Ridge MRT** and **IT / CLB**
+  - From Section 5.2.4.3, we see that this cluster generally corresponds to newer students (ie. Year 1) who are studying Biomedical Engineering. Since IT / CLB is a short distance from College of Design and Engineering (CDE), it makes sense for this category of students to commute to and from this bus stop more frequently
+- Students from **cluster 1** tend to travel from **Kent Ridge MRT / Opp Kent Ridge MRT** to bus stops like **LT13 / Ventus**, **BIZ2 / Opp HSSML** and **COM3**
+  - Firstly, note that LT13 / Ventus is near to the Faculty of Arts and Social Sciences (FASS), BIZ2 / Opp HSSML is next to the NUS Business School, and COM3 is located within the School of Computing (SoC). All 3 schools are within close proximity of one another
+  - From Section 5.2.4.3, we see that this cluster is generally composed of older students (ie. Year 3) who are studying Business courses. Upon arriving at Kent Ridge MRT, these students thus have a higher tendency to subsequently travel to the aforementioned bus stops for their classes
+- Students from **cluster 2** tend to travel between **Kent Ridge MRT / Opp Kent Ridge MRT** to bus stops like **LT13 / Ventus** and **IT / CLB**
+  - From Section 5.2.4.3, we see that this cluster generally consists of Year 2 students who are studying Chemistry courses. As Year 2 Science students, they are more likely to be reading courses associated with the College of Humanities and Sciences, of which a significant number take place at FASS. Hence, this group of students have a greater need to travel to LT13 / Ventus, which is one of the closer bus stops to FASS. Given that the Central Library is connected to FASS, it is possible that these students prefer to study there in between their classes. This would also explain why they favour travelling from IT / CLB to the MRT station.
+
+#### 5.3.4 Opportunities for Service Improvements
+
+From the insights that we have gleaned, we propose the following service improvements to the NUS bus system:
+
+- We should ensure that more school buses service the campus at the turn of every hour (eg. 8.50 am - 9.10 am, 9.30 am - 10.10 am, etc.), to meet the demands of students travelling to and from class
+- In particular, more school buses should service the campus from 10 am - 2 pm, which correspond to the general peak hours
+- During weekdays:
+  - For all bus services, the number of buses in operation should be gradually increased from 10 am - 11 am, which is when transport demand is expected to be the highest
+  - For bus services A1, A2 and D1, it is especially imperative that we account for the heightened ridership during after-lunch hours, keeping the number of buses high in the early to late afternoon (1.30 pm - 5 pm)
+    - This would enable students from Clusters 0 and 2 to commute between the MRT station and IT / CLB with less hassle, meeting their demands
+    - This would also allow Business students in Cluster 1 to more easily commute from the MRT station to bus stops near their places of study (ie. IT / CLB, BIZ2 / Opp HSSML, COM3)
+- During weekends:
+  - For all bus services, the number of buses in operation should be gradually increased from 12 pm - 1 pm, which is when transport demand is expected to be the highest
+- Note that UHC / Opp UHC is the closest bus stop to most examination venues. Hence during examination periods, we should increase the number of A1 and D2 buses travelling from Kent Ridge MRT to Opp UHC, as well as increase the number of A2 and D2 buses travelling from UHC to Opp Kent Ridge MRT. This increase in bus allocation should primarily take place from 9.30 am - 10.30 am (examinations in the morning) and from 2.30 pm - 3.30 pm (examinations in the afternoon)
+- From the list of most frequent bus stops for each bus service, we propose a new bus service (**DS**):
+  - Route: LT13 / Ventus ⟷ IT / CLB ⟷ UTown ⟷ Kent Ridge MRT / Opp Kent Ridge MRT ⟷ COM3 ⟷ LT13 / Ventus
+  - Operating Hours: 10.30 am - 3.30 pm
+  - Purpose: To not only accommodate some of the most popular trips identified, but also to increase the number of buses travelling to UTown and the MRT station during lunch hours. This thus relieves the pressure on other bus services. This bus route also has fewer stops compared to those of other bus services, allowing students to travel to their destinations more swiftly
 
 ### 5.4 Evaluation
 
@@ -642,12 +739,7 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 #### 5.4.3 Suggestions for Model Improvements
 
-
-
-
-
-
-## 6 Subgroup B: System Optimization and Forecasting
+## 6. Subgroup B: System Optimization and Forecasting
 
 ### 6.1 Demand Forecasting Model
 
@@ -663,7 +755,6 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 ##### 6.1.4.2 Space Complexity:
 
-
 ### 6.2 Route Optimization
 
 #### 6.2.1 Algorithms Considered
@@ -673,142 +764,170 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 #### 6.2.2 Algorithm Selection Criteria
 
-* **Relevance**:
-  - 1st Approach:  
+- **Relevance**:
+
+  - 1st Approach:
     - Shortest Path algorithm is effective at finding the shortest path, but it primarily focuses on minimizing travel distances between stops, not passenger preferences or demand. It does not factor in bus stop popularity or times when specific stops are likely to see higher demand.
-  - 2nd Approach:  
+  - 2nd Approach:
     - By prioritizing stops based on demand and user preferences, this approach is explicitly designed to optimize according to passenger needs. The priority scoring accounts for fluctuating demand across days, times, and events, allowing routes to adapt based on who needs the service and when. This makes it more responsive to actual user preferences and system demand.
-  - Conclusion:  
+  - Conclusion:
     - The 2nd approach aligns better with the goal of responding to passenger needs which directly addresses the issue at hand.
 
-* **Adaptability**:
-  - 1st Approach:  
+- **Adaptability**:
+
+  - 1st Approach:
     - Shortest Path algorithm require predefined road networks and do not adapt well to temporal factors like day, hour, or special events, since they treat the network as a static entity. While real-time adjustments could theoretically be added, they would require substantial computational resources and frequent recalculations.
-  - 2nd Approach:  
+  - 2nd Approach:
     - This approach allows the system to adjust routes dynamically based on predefined priority scores under varying conditions. Since each bus stop’s priority can shift according to time-based demand and satisfaction data, the model naturally adapts without requiring computationally intensive recalculations.
-  - Conclusion:  
+  - Conclusion:
     - The 2nd approach ismore flexible and adaptable to varying demand, making it a more practical choice for a dynamic transportation network.
 
-* **Value-add**:
-  - 1st Approach:  
+- **Value-add**:
+  - 1st Approach:
     - The current bus routes are already optimized by transportation professionals to follow the shortest or most efficient paths possible, rendering a new shortest-path calculation unnecessary. Implementing Dijkstra’s or similar algorithms would likely replicate existing routes without providing added benefit, making this approach redundant for the current setup.
-  - 2nd Approach:  
+  - 2nd Approach:
     - Since this approach is not aimed at finding new paths but rather optimizes the order of stops based on historical demand and user preferences, it adds value by focusing on enhancing passenger satisfaction and operational efficiency. By reorganizing stops rather than recalculating routes, this approach complements the pre-established routes without duplicating existing efforts.
-  - Conclusion:  
+  - Conclusion:
     - The redundancy of recalculating shortest paths reinforces that the 2nd approach, which prioritizes stops based on demand brings more added benefits.
 
 #### 6.2.3 Detailed Description of Chosen Algorithm
 
 ##### 6.2.3.1 Bus Stop Prioritization and Sorting Algorithm
 
-* **Initialize the MinMaxScaler**:
-  * `scaler = MinMaxScaler()`
-  * Sets up a MinMaxScaler, which is used to normalize numerical columns by scaling values to a range, typically [0, 1].
+- **Initialize the MinMaxScaler**:
 
-* **Define the Normalization Function**:
-  * `normalize_group(group)` is defined to normalize specific columns in each group.
-  * Within the function:
-    * The columns `num_people_at_bus_stop` and `overall_satisfaction` are normalized to bring their values to a common scale.
-    * Categorical columns like `weather` and `has_exam` are excluded from normalization.
+  - `scaler = MinMaxScaler()`
+  - Sets up a MinMaxScaler, which is used to normalize numerical columns by scaling values to a range, typically [0, 1].
 
-* **Initialize an Empty Dictionary**:
-  * `bus_route_priorities = {}` creates a dictionary to store prioritized bus stop orders for different conditions.
+- **Define the Normalization Function**:
 
-* **Iterate through Each Bus**:
-  * A loop iterates over each unique bus number in the dataset `unique_bus_numbers`.
-  * For each bus, a DataFrame `bus_df` is created, containing data specific to that bus.
+  - `normalize_group(group)` is defined to normalize specific columns in each group.
+  - Within the function:
+    - The columns `num_people_at_bus_stop` and `overall_satisfaction` are normalized to bring their values to a common scale.
+    - Categorical columns like `weather` and `has_exam` are excluded from normalization.
 
-* **Loop through Each Day of the Week**:
-  * For each bus, another loop iterates through each unique day of the week.
-  * A new DataFrame `bus_day_df` is created for the bus data on that specific day.
+- **Initialize an Empty Dictionary**:
 
-* **Loop through Each Hour of the Day**:
-  * Within each day, a loop iterates over each unique hour.
-  * A new DataFrame `bus_hour_df` is created for data during that hour.
+  - `bus_route_priorities = {}` creates a dictionary to store prioritized bus stop orders for different conditions.
 
-* **Loop through Each Weather Condition**:
-  * For each hour, a loop iterates over unique weather conditions.
-  * A new DataFrame `bus_weather_df` is created to contain data for that specific weather condition.
+- **Iterate through Each Bus**:
 
-* **Loop through Each Exam Status**:
-  * Within each weather condition, a loop iterates over the unique values for `has_exam` (where 0 and 1 stands for having exam and not having exam respectively).
-  * A new DataFrame `bus_exam_df` is created for each exam status scenario.
+  - A loop iterates over each unique bus number in the dataset `unique_bus_numbers`.
+  - For each bus, a DataFrame `bus_df` is created, containing data specific to that bus.
 
-* **Normalize the Data by Bus Stop**:
-  * The data is copied to a new DataFrame `df_hour` to avoid altering the original.
-  * The normalize_group function is applied group-wise for each starting bus stop within the filtered data `df_hour`.
-  * `df_hour_normalized` stores the normalized DataFrame by bus stop.
+- **Loop through Each Day of the Week**:
 
-* **Calculate Priority Scores by Bus Stop**:
-  * The normalized data is grouped by starting bus stop to calculate the average values for `num_people_at_bus_stop` and `overall_satisfaction`.
-  * A `priority_score` column is created, calculated as the sum of normalized `num_people_at_bus_stop` and normalized `overall_satisfaction` values.
-  * Normalization here ensures that `priority_score` reflects both demand and satisfaction equally, making the prioritization system fairer and more reliable across different bus stops and conditions.
+  - For each bus, another loop iterates through each unique day of the week.
+  - A new DataFrame `bus_day_df` is created for the bus data on that specific day.
 
-* **Sort Bus Stops by Priority Score**:
-  * The bus stops are sorted in descending order based on `priority_score`.
-  * `average_stats_by_start_sorted` holds the sorted list of bus stops for the current scenario.
+- **Loop through Each Hour of the Day**:
 
-* **Store the Sorted Priority in a Dictionary**:
-  * For each combination of bus number, day, hour, weather, and exam status, the sorted bus stop priority is stored in the dictionary `bus_route_priorities`.
+  - Within each day, a loop iterates over each unique hour.
+  - A new DataFrame `bus_hour_df` is created for data during that hour.
 
-* **Sort the Dictionary**:
-  * The dictionary is sorted based on the tuple keys (bus number, day of the week, hour, weather, and exam status).
-  * The result is stored in `sorted_bus_route_priorities`.
+- **Loop through Each Weather Condition**:
 
-* **Print the Sorted Priorities**:
-  * A loop prints out the priority order of bus stops for each bus, day, hour, weather, and exam condition, showing the optimal order of bus stops per scenario.
+  - For each hour, a loop iterates over unique weather conditions.
+  - A new DataFrame `bus_weather_df` is created to contain data for that specific weather condition.
 
-* **Summary**:
-  * The above algorithm is designed to optimize bus stop prioritization based on survey data, taking into account factors like demand (number of people at the bus stop), user satisfaction, time of day, day of the week, weather conditions, and whether there’s an exam. By creating priority scores for each bus stop, it identifies the most important stops under specific conditions.
+- **Loop through Each Exam Status**:
+
+  - Within each weather condition, a loop iterates over the unique values for `has_exam` (where 0 and 1 stands for having exam and not having exam respectively).
+  - A new DataFrame `bus_exam_df` is created for each exam status scenario.
+
+- **Normalize the Data by Bus Stop**:
+
+  - The data is copied to a new DataFrame `df_hour` to avoid altering the original.
+  - The normalize_group function is applied group-wise for each starting bus stop within the filtered data `df_hour`.
+  - `df_hour_normalized` stores the normalized DataFrame by bus stop.
+
+- **Calculate Priority Scores by Bus Stop**:
+
+  - The normalized data is grouped by starting bus stop to calculate the average values for `num_people_at_bus_stop` and `overall_satisfaction`.
+  - A `priority_score` column is created, calculated as the sum of normalized `num_people_at_bus_stop` and normalized `overall_satisfaction` values.
+  - Normalization here ensures that `priority_score` reflects both demand and satisfaction equally, making the prioritization system fairer and more reliable across different bus stops and conditions.
+
+- **Sort Bus Stops by Priority Score**:
+
+  - The bus stops are sorted in descending order based on `priority_score`.
+  - `average_stats_by_start_sorted` holds the sorted list of bus stops for the current scenario.
+
+- **Store the Sorted Priority in a Dictionary**:
+
+  - For each combination of bus number, day, hour, weather, and exam status, the sorted bus stop priority is stored in the dictionary `bus_route_priorities`.
+
+- **Sort the Dictionary**:
+
+  - The dictionary is sorted based on the tuple keys (bus number, day of the week, hour, weather, and exam status).
+  - The result is stored in `sorted_bus_route_priorities`.
+
+- **Print the Sorted Priorities**:
+
+  - A loop prints out the priority order of bus stops for each bus, day, hour, weather, and exam condition, showing the optimal order of bus stops per scenario.
+
+- **Summary**:
+  - The above algorithm is designed to optimize bus stop prioritization based on survey data, taking into account factors like demand (number of people at the bus stop), user satisfaction, time of day, day of the week, weather conditions, and whether there’s an exam. By creating priority scores for each bus stop, it identifies the most important stops under specific conditions.
 
 ##### 6.2.3.2 User Customization Algorithm
 
-* **Dictionary Initialization**:
-  * `days_of_week`, `time_ranges`, `weather_conditions`, and `exam_statuses` are dictionaries used to map numerical or binary values to their descriptive labels (e.g., "Monday" for day 1, "Sunny" for weather 0, etc.).
+- **Dictionary Initialization**:
 
-* **Retrieve Unique Bus Numbers**:
-  * Extracts all unique bus numbers from the `sorted_bus_route_priorities` dictionary.
-  * Displays these bus numbers for the user to choose from.
+  - `days_of_week`, `time_ranges`, `weather_conditions`, and `exam_statuses` are dictionaries used to map numerical or binary values to their descriptive labels (e.g., "Monday" for day 1, "Sunny" for weather 0, etc.).
 
-* **User Bus Number Selection**:
-  * Asks the user to select a bus number from the displayed options.
-  * Sets `terminate_algorithm` to 0, used later to check if any invalid input is encountered, if so, algorithm should be stopped prematurely.
+- **Retrieve Unique Bus Numbers**:
 
-* **Check for Valid Bus Number**:
-  * If the selected bus number exists in `sorted_bus_route_priorities`, it continues to the next step. If not, an error is printed, and the process is terminated.
+  - Extracts all unique bus numbers from the `sorted_bus_route_priorities` dictionary.
+  - Displays these bus numbers for the user to choose from.
 
-* **Display Days for Selected Bus**:
-  * Extracts and displays all unique days available for the chosen bus number.
-  * Asks the user to select a day and verifies if it is valid.
+- **User Bus Number Selection**:
 
-* **Display Hours for Selected Bus and Day**:
-  * If the day is valid, it retrieves and displays available hours for the selected bus and day.
-  * Asks the user to pick an hour and verifies if it is valid.
+  - Asks the user to select a bus number from the displayed options.
+  - Sets `terminate_algorithm` to 0, used later to check if any invalid input is encountered, if so, algorithm should be stopped prematurely.
 
-* **Display Weather Conditions for Selected Bus, Day, and Hour**:
-  * If the hour is valid, it retrieves and displays weather conditions for the selected bus, day, and hour.
-  * Asks the user to pick a weather condition and verifies if it is valid.
+- **Check for Valid Bus Number**:
 
-* **Display Exam Status for Selected Bus, Day, Hour, and Weather**:
-  * If the weather condition is valid, it retrieves and displays exam status options for the selected bus, day, hour, and weather.
-  * Asks the user to pick an exam status and verifies if it is valid.
+  - If the selected bus number exists in `sorted_bus_route_priorities`, it continues to the next step. If not, an error is printed, and the process is terminated.
 
-* **Retrieve and Display Final Bus Route**:
-  * If all inputs are valid, it constructs a `final_tuple` of the selected options (bus number, day, hour, weather, exam status).
-  * Retrieves the priority order of bus stops for this specific tuple from `bus_route_priorities`.
+- **Display Days for Selected Bus**:
 
-* **Organize Final Routes**:
+  - Extracts and displays all unique days available for the chosen bus number.
+  - Asks the user to select a day and verifies if it is valid.
+
+- **Display Hours for Selected Bus and Day**:
+
+  - If the day is valid, it retrieves and displays available hours for the selected bus and day.
+  - Asks the user to pick an hour and verifies if it is valid.
+
+- **Display Weather Conditions for Selected Bus, Day, and Hour**:
+
+  - If the hour is valid, it retrieves and displays weather conditions for the selected bus, day, and hour.
+  - Asks the user to pick a weather condition and verifies if it is valid.
+
+- **Display Exam Status for Selected Bus, Day, Hour, and Weather**:
+
+  - If the weather condition is valid, it retrieves and displays exam status options for the selected bus, day, hour, and weather.
+  - Asks the user to pick an exam status and verifies if it is valid.
+
+- **Retrieve and Display Final Bus Route**:
+
+  - If all inputs are valid, it constructs a `final_tuple` of the selected options (bus number, day, hour, weather, exam status).
+  - Retrieves the priority order of bus stops for this specific tuple from `bus_route_priorities`.
+
+- **Organize Final Routes**:
+
   - Separates prioritized stops from the complete list of stops (`all_routes` for the selected bus).
   - Combines prioritized stops with non-prioritized stops to form the `final_routes`, which places higher-priority stops first.
 
-* **Display User Selection and Bus Stop Order**:
-- Displays the selected bus settings (bus number, day, time, weather, exam status) for the user’s confirmation.
-- Prints out:
+- **Display User Selection and Bus Stop Order**:
+
+* Displays the selected bus settings (bus number, day, time, weather, exam status) for the user’s confirmation.
+* Prints out:
   - The priority order of bus stops based on the calculated priority score.
   - The final optimized order of bus stops, which first includes priority stops followed by remaining stops.
 
-* **Summary**:
-- The above algorithm uses the output of 5.3.1 Bus Stop Prioritization and Sorting Algorithm and enables personalized bus route prioritization by allowing users to select criteria such as bus number, day, time, weather, and exam status. It validates each input, retrieves priority stops based on user demand and satisfaction, and outputs an optimized order of bus stops, ensuring efficient and tailored service.
+- **Summary**:
+
+* The above algorithm uses the output of 5.3.1 Bus Stop Prioritization and Sorting Algorithm and enables personalized bus route prioritization by allowing users to select criteria such as bus number, day, time, weather, and exam status. It validates each input, retrieves priority stops based on user demand and satisfaction, and outputs an optimized order of bus stops, ensuring efficient and tailored service.
 
 ##### 6.2.3.3 Impact Simulation Model
 
@@ -818,101 +937,115 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 ##### 6.2.4.1.1 Time Complexity:
 
-* **Outer Loop over Each Bus `for bus_num in unique_bus_numbers`**:
-* This loop iterates over each unique bus in `unique_bus_numbers`. Denote the number of unique bus as B.
+- **Outer Loop over Each Bus `for bus_num in unique_bus_numbers`**:
+- This loop iterates over each unique bus in `unique_bus_numbers`. Denote the number of unique bus as B.
 
-  * **Loop over Each Day `for day in bus_df['day_of_week'].unique()`**:
-  * This iterates over each unique days of the week for each bus. Denote the number of unique days as D.
+  - **Loop over Each Day `for day in bus_df['day_of_week'].unique()`**:
+  - This iterates over each unique days of the week for each bus. Denote the number of unique days as D.
 
-    * **Loop over Each Hour `for hour in bus_day_df['hour'].unique()`**:
-    * This iterates over each unique hours for the day. Denote the number of unique hours as H.
+    - **Loop over Each Hour `for hour in bus_day_df['hour'].unique()`**:
+    - This iterates over each unique hours for the day. Denote the number of unique hours as H.
 
-      * **Loop over Each Weather Condition `for weather in bus_hour_df['weather'].unique()`**:
-      * This loop iterates over each unique weather conditions for each hour. Denote the number of unique weather conditions as W.
+      - **Loop over Each Weather Condition `for weather in bus_hour_df['weather'].unique()`**:
+      - This loop iterates over each unique weather conditions for each hour. Denote the number of unique weather conditions as W.
 
-        * **Loop over Exam Status `for has_exam in bus_weather_df['has_exam'].unique()`**:
-        * This iterates over each unique exam status for each weather condition. Denote the number of unique exam status as E.
+        - **Loop over Exam Status `for has_exam in bus_weather_df['has_exam'].unique()`**:
+        - This iterates over each unique exam status for each weather condition. Denote the number of unique exam status as E.
 
-          * **Grouping and Normalization by Bus Stop `df_hour.groupby('start', group_keys=False).apply(normalize_group)`**:
-          * The `groupby` operation divides data by unique bus stops, and `apply(normalize_group)` is used to normalize the selected columns. Denote the number of unique bus stops as S.
-          * MinMaxScaler normalization on two columns `num_people_at_bus_stop` and `overall_satisfaction` is an O(N) operation. Denote the number of records per bus stop as N.
-          * Applying `normalize_group` and mean calculations for each bus stop is an O(N) operation. Denote the number of records per bus stop as N.
-          * **Sorting Bus Stops by Priority Score `average_stats_by_start.sort_values(by='priority_score', ascending=False)`**:
-          * Sorting a list of bus stops by priority_score is an O(SlogS) operation. Denote the number of unique bus stops as S.
+          - **Grouping and Normalization by Bus Stop `df_hour.groupby('start', group_keys=False).apply(normalize_group)`**:
+          - The `groupby` operation divides data by unique bus stops, and `apply(normalize_group)` is used to normalize the selected columns. Denote the number of unique bus stops as S.
+          - MinMaxScaler normalization on two columns `num_people_at_bus_stop` and `overall_satisfaction` is an O(N) operation. Denote the number of records per bus stop as N.
+          - Applying `normalize_group` and mean calculations for each bus stop is an O(N) operation. Denote the number of records per bus stop as N.
+          - **Sorting Bus Stops by Priority Score `average_stats_by_start.sort_values(by='priority_score', ascending=False)`**:
+          - Sorting a list of bus stops by priority_score is an O(SlogS) operation. Denote the number of unique bus stops as S.
 
-* **Dictionary Storage and Sorting `sorted(bus_route_priorities.items(), key=lambda x: (x[0][0], x[0][1], x[0][2], x[0][3], x[0][4]))`**:
-* Sorting a dictionary with K entries based on its keys has a complexity of O(KlogK), where K is the number of dictionary entries, K = B × D × H × W × E.
+- **Dictionary Storage and Sorting `sorted(bus_route_priorities.items(), key=lambda x: (x[0][0], x[0][1], x[0][2], x[0][3], x[0][4]))`**:
+- Sorting a dictionary with K entries based on its keys has a complexity of O(KlogK), where K is the number of dictionary entries, K = B × D × H × W × E.
 
-* **Total Time Complexity**: **O((K(N + SlogS)) + O(KlogK))**, where K = B × D × H × W × E, S = number of unique bus stops and N = number of records per bus stop.
+- **Total Time Complexity**: **O((K(N + SlogS)) + O(KlogK))**, where K = B × D × H × W × E, S = number of unique bus stops and N = number of records per bus stop.
 
 ##### 6.2.4.1.2 Space Complexity:
 
-* **DataFrames (e.g., `bus_df`, `bus_day_df`, `bus_hour_df`)**:
-  * Each DataFrame subset of df2 holds filtered records based on unique values in loops. The memory usage scales with O(N) for each segment. Denote the number of records per bus stop as N.
+- **DataFrames (e.g., `bus_df`, `bus_day_df`, `bus_hour_df`)**:
 
-* **Dictionary `bus_route_priorities`**:
-  * The dictionary bus_route_priorities stores sorted bus stop orders for each combination of factors, with K entries. Denote K = B × D × H × W × E.
-  * Each entry in the dictionary holds a list of bus stops, making the space complexity for the dictionary O(K×S), where K = B × D × H × W × E and S = number of unique bus stops.
+  - Each DataFrame subset of df2 holds filtered records based on unique values in loops. The memory usage scales with O(N) for each segment. Denote the number of records per bus stop as N.
 
-* **Total Space Complexity: **O(N + K(S))****, where N = number of records per bus stop, K = B × D × H × W × E and S = number of unique bus stops.
+- **Dictionary `bus_route_priorities`**:
+
+  - The dictionary bus_route_priorities stores sorted bus stop orders for each combination of factors, with K entries. Denote K = B × D × H × W × E.
+  - Each entry in the dictionary holds a list of bus stops, making the space complexity for the dictionary O(K×S), where K = B × D × H × W × E and S = number of unique bus stops.
+
+- **Total Space Complexity: **O(N + K(S))\*\*\*\*, where N = number of records per bus stop, K = B × D × H × W × E and S = number of unique bus stops.
 
 ##### 6.2.4.2 User Customization Algorithm
 
-##### 6.2.4.2.1 Time Complexity: 
-* **Mapping Initialization**:
-  * The dictionaries (`days_of_week`, `time_ranges`, `weather_conditions`, `exam_statuses`) are initialized. These operations are O(1) since they involve constant time lookups.
-* **Extracting Unique Bus Numbers**:
-  * `unique_bus_numbers` is extracted using `sorted(set([key[0] for key in sorted_bus_route_priorities.keys()]))`, which iterates through keys of sorted_bus_route_priorities.
+##### 6.2.4.2.1 Time Complexity:
 
-* **Nested Loops in `run_algorithm`**:
-  * The function navigates through several nested `for` loops and `if` conditions based on user inputs.
-  * Denote the number of unique bus as B.
-  * Denote the number of unique days as D.
-  * Denote the number of unique hours as H.
-  * Denote the number of unique weather conditions as W.
-  * Denote the number of unique exam status as E.
-  * Denote K = B × D × H × W × E.
-  * The maximum number of tuples in `sorted_bus_route_priorities` would then be K, which represents the total combinations of bus schedules.
+- **Mapping Initialization**:
+  - The dictionaries (`days_of_week`, `time_ranges`, `weather_conditions`, `exam_statuses`) are initialized. These operations are O(1) since they involve constant time lookups.
+- **Extracting Unique Bus Numbers**:
 
-* **Checking Valid User Inputs using `if` Conditions**:
-  * At each stage (bus, day, hour, weather, and exam status), the code checks if the user input matches a valid option. These checks are all O(1).
+  - `unique_bus_numbers` is extracted using `sorted(set([key[0] for key in sorted_bus_route_priorities.keys()]))`, which iterates through keys of sorted_bus_route_priorities.
 
-* **Retrieving and Sorting Priorities**:
-  * After constructing the tuple for the chosen schedule `final_tuple`, the code retrieves `bus_route` which is the list of prioritized bus stops for that schedule.
-  * Separating `bus_route` into `prioritized_stops` and `non_prioritized_stops` is O(M), where M is the total number of bus stops for a given bus.
+- **Nested Loops in `run_algorithm`**:
 
-* **Total Time Complexity**: **O(K + M)**, where K = B × D × H × W × E and M = total number of bus stops for a given bus.
+  - The function navigates through several nested `for` loops and `if` conditions based on user inputs.
+  - Denote the number of unique bus as B.
+  - Denote the number of unique days as D.
+  - Denote the number of unique hours as H.
+  - Denote the number of unique weather conditions as W.
+  - Denote the number of unique exam status as E.
+  - Denote K = B × D × H × W × E.
+  - The maximum number of tuples in `sorted_bus_route_priorities` would then be K, which represents the total combinations of bus schedules.
+
+- **Checking Valid User Inputs using `if` Conditions**:
+
+  - At each stage (bus, day, hour, weather, and exam status), the code checks if the user input matches a valid option. These checks are all O(1).
+
+- **Retrieving and Sorting Priorities**:
+
+  - After constructing the tuple for the chosen schedule `final_tuple`, the code retrieves `bus_route` which is the list of prioritized bus stops for that schedule.
+  - Separating `bus_route` into `prioritized_stops` and `non_prioritized_stops` is O(M), where M is the total number of bus stops for a given bus.
+
+- **Total Time Complexity**: **O(K + M)**, where K = B × D × H × W × E and M = total number of bus stops for a given bus.
 
 ##### 6.2.4.2.2 Space Complexity:
-* **Mapping Dictionary (`days_of_week`, `time_ranges`, `weather_conditions`, `exam_statuses`)**:
-  * Similar to above, denote K = B × D × H × W × E
-  * The dictionary contribute to O(K) space.
 
-* **Extracted Unique Bus Numbers `unique_bus_numbers`**:
-  * `unique_bus_number`s stores unique bus numbers derived from `sorted_bus_route_priorities`. Denote this as B.
+- **Mapping Dictionary (`days_of_week`, `time_ranges`, `weather_conditions`, `exam_statuses`)**:
 
-* **Bus Routes Dictionaries**:
-  * Let N be the total number of keys in `sorted_bus_route_priorities` and `bus_route_priorities`, which would be at most K = B × D × H × W × E based on combinations of bus numbers, days, hours, weather conditions, and exam statuses.
-  * These 2 dictionaries will collectively contribute to O(K) space.
+  - Similar to above, denote K = B × D × H × W × E
+  - The dictionary contribute to O(K) space.
 
-* **User Selection Variables (`selected_bus_num`, `selected_day`, `selected_hour`, `selected_weather`, `selected_exam`)**:
-  * These variables are single values used to store the user’s choices and are overwritten with each new selection. They contribute O(1) space in total.
+- **Extracted Unique Bus Numbers `unique_bus_numbers`**:
 
-* **Extracted Unique Values per Selection (e.g., `unique_days`,`unique_hours`, `unique_weathers`, `unique_exams`)**:
-  * These sets hold unique values of days, hours, weather conditions, and exam statuses based on the current selection.
-  * Each set size depends on the possible values per category but is independent of N. They require O(D + H + W + E) space in total.
+  - `unique_bus_number`s stores unique bus numbers derived from `sorted_bus_route_priorities`. Denote this as B.
 
-* **Final Route Lists (`prioritized_stops`, `non_prioritized_stops`, `final_routes`)**:
-  * These lists hold the bus stops based on the selected route configuration.
-  * Let M represent the total number of bus stops for the selected bus.
-  * `prioritized_stops` and `non_prioritized_stops` each take O(M) space.
-  * `final_routes` combines both lists, also resulting in O(M) space.
+- **Bus Routes Dictionaries**:
 
-* **Total Space Complexity**: **O(K + M)**, K =  B × D × H × W × E and M = total number of bus stops for a given bus.
+  - Let N be the total number of keys in `sorted_bus_route_priorities` and `bus_route_priorities`, which would be at most K = B × D × H × W × E based on combinations of bus numbers, days, hours, weather conditions, and exam statuses.
+  - These 2 dictionaries will collectively contribute to O(K) space.
+
+- **User Selection Variables (`selected_bus_num`, `selected_day`, `selected_hour`, `selected_weather`, `selected_exam`)**:
+
+  - These variables are single values used to store the user’s choices and are overwritten with each new selection. They contribute O(1) space in total.
+
+- **Extracted Unique Values per Selection (e.g., `unique_days`,`unique_hours`, `unique_weathers`, `unique_exams`)**:
+
+  - These sets hold unique values of days, hours, weather conditions, and exam statuses based on the current selection.
+  - Each set size depends on the possible values per category but is independent of N. They require O(D + H + W + E) space in total.
+
+- **Final Route Lists (`prioritized_stops`, `non_prioritized_stops`, `final_routes`)**:
+
+  - These lists hold the bus stops based on the selected route configuration.
+  - Let M represent the total number of bus stops for the selected bus.
+  - `prioritized_stops` and `non_prioritized_stops` each take O(M) space.
+  - `final_routes` combines both lists, also resulting in O(M) space.
+
+- **Total Space Complexity**: **O(K + M)**, K = B × D × H × W × E and M = total number of bus stops for a given bus.
 
 ##### 6.2.4.3 Impact Simulation Model
 
-###### 6.2.4.3.1 Time Complexity: 
+###### 6.2.4.3.1 Time Complexity:
 
 ###### 6.2.4.3.2 Space Complexity:
 
@@ -927,30 +1060,35 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 **Our group decided to use linear programming to model capacity allocation.**
 
-* **Relevance**:
+- **Relevance**:
+
   - Linear programming effectively meets the objective of finding the optimal solution- number of
     buses to allocate to each bus stop for every hour.
 
-* **Ease of Integration**:
+- **Ease of Integration**:
+
   - Linear programming can be integrated with other modelling techniques, including the
-  (previously-defined) demand forecasting model, to enhance decision-making. This ensures
-  capacity allocation also takes into account demand size, and remains optimal by minimising
-  the number of unmet demands.
+    (previously-defined) demand forecasting model, to enhance decision-making. This ensures
+    capacity allocation also takes into account demand size, and remains optimal by minimising
+    the number of unmet demands.
 
-* **Flexibility**:
+- **Flexibility**:
+
   - Linear programming depends on parameters that can be defined and adjusted. This
-  increases the model's adaptability to changes, including demand forecasts during
-  peak hours, special events, and seasonal variations.
+    increases the model's adaptability to changes, including demand forecasts during
+    peak hours, special events, and seasonal variations.
 
-* **Feasibility**:
+- **Feasibility**:
   - Linear programming can manage multiple constraints, which increases its feasibility in handling the complexity of the real world.
 
 #### 6.3.3 Detailed Description of Chosen Model
 
-* **Defining model components**:
+- **Defining model components**:
+
   - We begin by defining the components of the model. The model’s objective is to minimise the unmet demand of passengers using the NUS Internal Shuttle Bus (ISB) Services. This implies (indirectly) reducing passenger waiting times caused by missed buses due to overcrowding. A constraint identified in this problem and model is that the total number of buses must not exceed the maximum fleet capacity. Lastly, the model’s decision variable, the choice that is being controlled in order to achieve the objective, is the number of buses allocated to each bus stop for each hour.
 
-* **Input: Forecasted Demand**:
+- **Input: Forecasted Demand**:
+
   - From the demand forecasting model, the forecasted demand `demand_forecast` is represented by an array which has a number of rows equal to the number of bus stops `num_routes` and a number of columns equal to the number of hourly intervals `num_time_slots` in the analysis.
   - We initialised `(num_routes, num_time_slots)` as the shape of `demand_forecast`.
   - Sample `demand_forecast`
@@ -962,14 +1100,16 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
   - We flattened `demand_forecast` for linear programming.
   - This is assigned to `flattened_demand`.
 
-* **Setting up objective coefficients**:
+- **Setting up objective coefficients**:
+
   - Objective coefficients are the values associated with (multiplied to) the decision variables in linear
     programming. They quantify how much each variable contributes in the overall optimization.
   - Our optimization problem is a minimization problem. Thus, the coefficients are set to
     `-flattened_demand`.
   - This is assigned to `objective_coefficients`.
 
-* **Setting up constraints**:
+- **Setting up constraints**:
+
   - We initialised the (average) capacity of each bus `bus_capacity` and the maximum number of buses available for deployment `max_buses` since these values are fixed and not variable.
   - We have estimated `bus_capacity` to be 50 and let `max_buses` to be 6.
   - `max_buses` is estimated based on the assumption that ISB is able and willing to expand its fleet size to twice the current size as part of achieving the business objectives.
@@ -979,12 +1119,13 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
   - An inequality constraint, on the other hand, allows for a range of possible values. In defining inequality constraints, we consider the upper bounds.
     - We defined the left-hand side of the inequality `A_ub` to be an identity matrix- a matrix in which all of its diagonal elements are ones and the rest are zeros- having (`num_routes` \* `num_time_slots`) rows and columns. The right hand side `b_ub` (upper bound) is `flattened_demand`.
 
-* **Setting up bounds**:
+- **Setting up bounds**:
+
   - We set up the bounds for the decision variables of the problem. The lower bound is set to 0, while the upper bound is set to `bus_capacity`.
   - This also ensures that the total number of people boarding the bus, as accounted for in the model's optimisation, does not exceed its capacity for safety and practical purposes.
   - The bounds are stored as a tuple `(0, bus_capacity)` in an array with 1 row and (`num_routes` \* `num_time_slots`) columns.
 
-* **Model output**:
+- **Model output**:
   - The objective coefficients, constraints and bounds are input into the function `linprog` with `method = “highs”`. The output is assigned to `result`.
   - If the optimization is a success, the model reshapes `result` to the initial `demand_forecast` shape, and assigns it to `allocated_buses`. The model then prints out the message “Optimised Capacity Allocation (Buses per Route per Time Slot): `allocated_buses`”.
   - If the optimization fails, the model prints out the message "Optimization failed: `result.message`”, where `result.message` is the error message.
@@ -994,7 +1135,6 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 ##### 6.3.4.1 Time Complexity: Explain
 
 ##### 6.3.4.2 Space Complexity: Explain
-
 
 ### 6.4 Evaluation
 
@@ -1006,64 +1146,74 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 ##### 6.4.1.3 Suggestions for Model Improvements
 
-
 #### 6.4.2 Route Optimization
 
 ##### 6.4.2.1 Bus Stop Prioritization and Sorting Algorithm, User Customization Algorithm
 
 ###### 6.4.2.1.1 Evaluation of model performance against business objectives
 
-* **Demand Prediction Accuracy**:
-  * By segmenting data based on detailed features (bus, day, hour, weather, and exam status), the algorithm provides a granular view of demand patterns.
-  * This level of detail supports robust demand forecasting, allowing for better resource allocation during peak and off-peak periods, reducing operational costs, and improving the user experience by managing overcrowding effectively.
+- **Demand Prediction Accuracy**:
 
-* **Scalability**:
-  * The algorithm’s complexity depends heavily on the number of combinations of factors (K) and the number of stops (S). If K or S grows significantly, the runtime can become a constraint, especially with high data volume (N records per stop).
-  * For large-scale systems with hundreds of bus stops and numerous combinations, this algorithm could become computationally intensive and may need optimization (e.g., parallel processing) to run efficiently in real-time or near real-time. Such enhancements would be necessary for dynamic adjustments but could increase operational costs.
-  * The space complexity O(N+K(S)) implies high memory usage, especially as unique factor combinations (K) and bus stops (S) increase. This high dimensionality can lead to excessive memory needs, making the algorithm less scalable and costly to implement in large transit systems.
+  - By segmenting data based on detailed features (bus, day, hour, weather, and exam status), the algorithm provides a granular view of demand patterns.
+  - This level of detail supports robust demand forecasting, allowing for better resource allocation during peak and off-peak periods, reducing operational costs, and improving the user experience by managing overcrowding effectively.
 
-* **Operational Cost Management**:
-  * MinMaxScaler and normalization steps are O(N) operations, providing necessary preprocessing for effective comparisons without excessive complexity.
-  * Grouping and normalization, combined with sorting steps, may incur computational costs, especially for larger datasets.
-  * These costs can be justified if the model significantly improves scheduling and capacity management. However, if the scale grows, costs could outweigh benefits, so monitoring computational resources and runtime is essential for balancing cost-effectiveness.
+- **Scalability**:
 
-* **Flexibility in Route Adjustment**:
-  * The priority-based ranking system allows dynamic route adjustments based on changing factors like weather and exam schedules, aligning with the objective of flexible, real-time optimization.
-  * This flexibility allows transport authorities to respond to real-time data, potentially minimizing underused capacity during off-peak times or adjusting routes to better serve users during high-demand periods, directly impacting user satisfaction and loyalty.
+  - The algorithm’s complexity depends heavily on the number of combinations of factors (K) and the number of stops (S). If K or S grows significantly, the runtime can become a constraint, especially with high data volume (N records per stop).
+  - For large-scale systems with hundreds of bus stops and numerous combinations, this algorithm could become computationally intensive and may need optimization (e.g., parallel processing) to run efficiently in real-time or near real-time. Such enhancements would be necessary for dynamic adjustments but could increase operational costs.
+  - The space complexity O(N+K(S)) implies high memory usage, especially as unique factor combinations (K) and bus stops (S) increase. This high dimensionality can lead to excessive memory needs, making the algorithm less scalable and costly to implement in large transit systems.
+
+- **Operational Cost Management**:
+
+  - MinMaxScaler and normalization steps are O(N) operations, providing necessary preprocessing for effective comparisons without excessive complexity.
+  - Grouping and normalization, combined with sorting steps, may incur computational costs, especially for larger datasets.
+  - These costs can be justified if the model significantly improves scheduling and capacity management. However, if the scale grows, costs could outweigh benefits, so monitoring computational resources and runtime is essential for balancing cost-effectiveness.
+
+- **Flexibility in Route Adjustment**:
+  - The priority-based ranking system allows dynamic route adjustments based on changing factors like weather and exam schedules, aligning with the objective of flexible, real-time optimization.
+  - This flexibility allows transport authorities to respond to real-time data, potentially minimizing underused capacity during off-peak times or adjusting routes to better serve users during high-demand periods, directly impacting user satisfaction and loyalty.
 
 ###### 6.4.2.1.2 Limitations of Current Approach
 
-* **Over-simplification**:
-  * The calculation of `priority_score` using only two factors (number of people and user satisfaction) might not capture other important variables, such as bus stop accessibility, operational constraints, etc.
+- **Over-simplification**:
 
-* **Scalability**:
-  * The nested loops iterating over buses, days, hours, weather conditions, and exam statuses can lead to a combinatorial explosion, making the algorithm inefficient with large datasets or when many unique combinations exist.
+  - The calculation of `priority_score` using only two factors (number of people and user satisfaction) might not capture other important variables, such as bus stop accessibility, operational constraints, etc.
 
-* **Lack of Real-time Updates**:
-  * The algorithm might not be very apt at incorporating real-time changes, such as sudden shifts in demand or changes in weather, which can affect bus stop prioritization. Outdated data can lead to suboptimal prioritization
+- **Scalability**:
 
-* **User Input Validity**:
-  * The algorithm depends on users making correct selections. If users misunderstand the options or input invalid choices (even if they are checked), it can lead to frustration and a poor user experience.
+  - The nested loops iterating over buses, days, hours, weather conditions, and exam statuses can lead to a combinatorial explosion, making the algorithm inefficient with large datasets or when many unique combinations exist.
 
-* **Limited Customizations**:
-  * Although the algorithm allows for some user customization, it may not cover all potential user preferences and scenarios, limiting its practicaly and user experience.
+- **Lack of Real-time Updates**:
+
+  - The algorithm might not be very apt at incorporating real-time changes, such as sudden shifts in demand or changes in weather, which can affect bus stop prioritization. Outdated data can lead to suboptimal prioritization
+
+- **User Input Validity**:
+
+  - The algorithm depends on users making correct selections. If users misunderstand the options or input invalid choices (even if they are checked), it can lead to frustration and a poor user experience.
+
+- **Limited Customizations**:
+  - Although the algorithm allows for some user customization, it may not cover all potential user preferences and scenarios, limiting its practicaly and user experience.
 
 ##### 6.4.2.1.3 Suggestions for Model Improvements
 
-* **Addressing Over-simplication**:
-  * Incorporate additional factors into the `priority_score`, such as bus stop accessibility ratings, operational constraints, etc. This could provide a more comprehensive view of each bus stop's importance.
+- **Addressing Over-simplication**:
 
-* **Addressing Scalability**:
-  * Implement optimization techniques such as memoization or heuristics to reduce the number of calculations needed by avoiding redundant computations.
+  - Incorporate additional factors into the `priority_score`, such as bus stop accessibility ratings, operational constraints, etc. This could provide a more comprehensive view of each bus stop's importance.
 
-* **Addressing Lack of Real-time Updates**:
-  * Develop a mechanism to dynamically adjust priorities based on real-time information, such as changes in demand or environmental conditions.
+- **Addressing Scalability**:
 
-* **Addressing User Input Validity**:
-  * Design a more intuitive user interface with clear instructions and tooltips to guide users in making their selections correctly.
+  - Implement optimization techniques such as memoization or heuristics to reduce the number of calculations needed by avoiding redundant computations.
 
-* **Addressing Limited Customizations**:
-  * Allow users to specify additional criteria for customization and even scenarios that are not covered by our current survey data.
+- **Addressing Lack of Real-time Updates**:
+
+  - Develop a mechanism to dynamically adjust priorities based on real-time information, such as changes in demand or environmental conditions.
+
+- **Addressing User Input Validity**:
+
+  - Design a more intuitive user interface with clear instructions and tooltips to guide users in making their selections correctly.
+
+- **Addressing Limited Customizations**:
+  - Allow users to specify additional criteria for customization and even scenarios that are not covered by our current survey data.
 
 ##### 6.4.2.2 Impact Simulation Model
 
@@ -1077,25 +1227,25 @@ Looking at the timelapses for individual bus services, we obtain a few additiona
 
 ###### 6.4.2.3.1 Evaluation of model performance against business objectives
 
-* The model minimises the number of passengers unable to board the bus each hour (and maximises bus utilisation) without exceeding capacity. This effectively reduces wait times for passengers and increases their satisfaction levels, given the negative correlation between wait time and user satisfaction.
-* Keeping optimization upper bound at the (average) capacity of the bus also ensures that the safety of the ISB service is accounted for and remains a top priority.
+- The model minimises the number of passengers unable to board the bus each hour (and maximises bus utilisation) without exceeding capacity. This effectively reduces wait times for passengers and increases their satisfaction levels, given the negative correlation between wait time and user satisfaction.
+- Keeping optimization upper bound at the (average) capacity of the bus also ensures that the safety of the ISB service is accounted for and remains a top priority.
 
 ###### 6.4.2.3.2 Limitations of Current Approach
 
-* **Simplified assumptions**:
-  * The model does not account for potential disruptions, such as traffic delays and mechanical failures. The output might be too optimistic. As a result, in these instances, the model could overestimate the number of passengers that can be served, and in turn, fall short of objectives.
-  * The assumption made for the value of `max_buses` did not take into account other constraints such as budget and number of drivers.
+- **Simplified assumptions**:
+  - The model does not account for potential disruptions, such as traffic delays and mechanical failures. The output might be too optimistic. As a result, in these instances, the model could overestimate the number of passengers that can be served, and in turn, fall short of objectives.
+  - The assumption made for the value of `max_buses` did not take into account other constraints such as budget and number of drivers.
 
 ##### 6.4.2.3.3 Suggestions for Model Improvements
 
-* **Feedback Loops**:
-  * Mechanisms can be implemented to regularly update the model based on actual data and user feedback. This allows for the identification and refinement of gaps to improve the model’s accuracy and effectiveness.
-  * However, this project is constrained by limited access to the actual ISB service for testing, as well as by the time needed to collect additional data and feedback over time.
+- **Feedback Loops**:
 
-* **Sensitivity Analysis**:
-  * Sensitivity analyses can be conducted to understand how variations in `max_buses` affect the results. This would allow for determining the number of additional shuttle buses ISB should acquire in order to optimise capacity allocation, for a given budget and other relevant constraints, assuming the bus type remains the same and the bus capacity does not change.
-  * However, in this project, we are constrained by limited information on ISB and its resources.
+  - Mechanisms can be implemented to regularly update the model based on actual data and user feedback. This allows for the identification and refinement of gaps to improve the model’s accuracy and effectiveness.
+  - However, this project is constrained by limited access to the actual ISB service for testing, as well as by the time needed to collect additional data and feedback over time.
 
+- **Sensitivity Analysis**:
+  - Sensitivity analyses can be conducted to understand how variations in `max_buses` affect the results. This would allow for determining the number of additional shuttle buses ISB should acquire in order to optimise capacity allocation, for a given budget and other relevant constraints, assuming the bus type remains the same and the bus capacity does not change.
+  - However, in this project, we are constrained by limited information on ISB and its resources.
 
 ## 7. Deployment
 
@@ -1178,19 +1328,26 @@ Code style PEP 8 have been adapted for this project
 
 ## 11. Future Work
 
-11.1 Additional research areas in the future
+While our research provides valuable insights into student satisfaction with the university's shuttle bus service, there are several areas that can be expanded upon for a more comprehensive understanding of the system and its potential improvements. In this section, we outline key directions for future research and development that could enhance both the accuracy of our findings and the quality of the shuttle bus service.
 
-- 11.1.1 Simulation and Modeling for Optimal Routing
-  - Use computer simulations to test and optimise various route and scheduling configurations under different conditions.
-    - Discrete Event Simulation (DES):  
-      Using DES like SimPy, helps to focus on key events, like shuttles arriving at or departing from stops, to understand the impact on waiting times and bus crowdedness. This is useful for simulating peak periods and assessing the crowdedness at stops.
-- 11.1.2 Passenger Flow and Mobility Patterns
-  - Study passenger movement patterns on campus. Research methods like mobility clustering analysis to identify frequently travelled paths or "hotspots" on campus, which can help in refining routes to maximise coverage.
-    - Using clustering techniques, like K-means clustering, can help in determining high-demand locations, popular routes, and peak times, which can then inform adjustments to the shuttle routes or schedules.
-    - K-means clustering:
-      - Use methods like the Elbow Method to determine an optimal number of clusters. K-means will assign each trip or stop location to a cluster by minimising the distance to the cluster’s centroid.
-      - Each cluster’s centroid (average location and time) represents a high-demand area and its typical usage time.
-      - For example, one cluster might reveal that many students travel between dorms and lecture halls in the morning, while another shows high movement to recreation areas in the evening.
+### 11.1 Investigation of the Shuttle Bus System Operations
+
+Our current work primarily focuses on student satisfaction based on survey responses, without delving into the operational mechanics of the bus system itself. To build a more robust model, future studies should incorporate data regarding the shuttle buses' operational parameters, including:
+1. Route and Schedule Optimization: Investigating the efficiency of current routes and bus schedules, taking into account traffic patterns, peak times, and student demand.
+2. Vehicle and Fleet Management: Analyzing the fleet's maintenance schedules, bus capacities, and vehicle types to determine how operational decisions impact overall student satisfaction.
+
+### 11.2 Integration of Real-Time Operational Data
+
+Leveraging real-time operational data would enhance the accuracy of our findings and allow for more adaptive models:
+1. IoT and GPS Tracking: By integrating real-time bus location tracking (using GPS or IoT sensors), we could develop predictive models for wait times and journey times based on live traffic and weather conditions.
+2. Crowd Monitoring Tools: Implementing sensors on buses to monitor passenger numbers would allow for more precise tracking of crowdedness and its direct impact on satisfaction.
+3. Traffic Data Integration: Incorporating live traffic data into simulations could help account for delays caused by road conditions, accidents, or construction work, and allow us to assess how these external factors influence service delivery and user satisfaction.
+
+### 11.3 Collaboration with Campus Authorities
+
+Future work should involve direct collaboration with campus transportation authorities to gain access to operational data that is not currently available. This partnership would facilitate:
+1. Access to Internal Data: Obtaining detailed information on bus schedules, maintenance logs, passenger boarding patterns, and traffic data would allow for more precise modeling and recommendations.
+2. Pilot Programs and A/B Testing: After developing new models or strategies, collaborating with campus authorities would allow for real-world testing of proposed changes to the bus service, such as adjustments to bus frequency, route changes, or service timing.
 
 ## 12. Lessons Learned
 

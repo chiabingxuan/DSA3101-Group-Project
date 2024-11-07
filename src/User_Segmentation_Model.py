@@ -284,7 +284,7 @@ def segmentation_model(dataframe): # must only input the training dataset
     dataframe['duration_per_trip'] = dataframe['duration_per_day'] / dataframe['trips_per_day']
     dataframe = dataframe.replace([np.inf, -np.inf], np.nan) 
     dataframe = dataframe.dropna() 
-    dataframe = dataframe.drop(['date', 'time','datetime','datetime','start','end','bus_num','duration_per_day','trips_per_day',
+    dataframe = dataframe.drop(['date', 'time','datetime','start','end','bus_num','duration_per_day','trips_per_day',
                 'waiting_time_satisfaction','crowdedness_satisfaction'], axis = 'columns')
     continuous_variable_columns = ["num_people_at_bus_stop", "waiting_time", "crowdedness", "comfort", "safety", "overall_satisfaction", "duration_per_trip"]
     categorical_variable_columns = ["year", "major", "on_campus", "main_reason_for_taking_isb", "has_exam", "weather", "day_of_week", "hour", "trip"]
@@ -326,6 +326,7 @@ def cluster_profile(df):
         "hour" : lambda x: x.value_counts().index[0],
         "trip" : lambda x: x.value_counts().index[0],
         "num_people_at_bus_stop" : "median",
+        "duration_per_trip" : "median",
         "waiting_time" : "median",
         "crowdedness" : "median",
         "comfort" : "median",
