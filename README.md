@@ -531,7 +531,7 @@ In preparation for Modeling, a substantial amount of data is required for traini
 |             Hour             |                       12                       |
 |             Trip             | IT/CLB to Kent Ridge MRT/Opp Kent Ridge MRT A2 |
 | Number of People at Bus Stop |                    0.357143                    |
-|       Duration Per Trip      |             10.00000(NOT NORMALISED)           |
+|       Duration Per Trip      |            10.000000(NOT NORMALISED)           |
 |         Waiting Time         |                    0.200000                    |
 |         Crowdedness          |                    0.777778                    |
 |           Comfort            |                    0.555556                    |
