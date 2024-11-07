@@ -11,6 +11,11 @@ import numpy as np
 import config 
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
+import xgboost as xgb
+from xgboost import XGBRegressor
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.preprocessing import MinMaxScaler
+
 
 ####################################################################################################
 ### Objective of model: Predict the demand at specific bus stops at different time interval      ###
@@ -24,7 +29,7 @@ def demand_forecasting():
     test = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False))
 
     # Identify categorical and numerical columns
-    categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'weather', 'bus_num']
+    categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'weather', 'bus_num', 'start', 'end', 'has_exam']
     numerical_cols = ['trips_per_day', 'duration_per_day', 'waiting_time', 'waiting_time_satisfaction', 
                     'crowdedness', 'crowdedness_satisfaction', 'comfort', 'safety', 'overall_satisfaction']
 
@@ -43,20 +48,20 @@ def demand_forecasting():
     X_train['time'] = pd.to_datetime(X_train['time']).dt.time
     X_test['time'] = pd.to_datetime(X_test['time']).dt.time
 
-    '''Adding Interaction Features'''
+    '''Adding Interaction Feature between has_exam & duration_per_day'''
     # One-hot encode the 'has_exam' column
-    encoder = OneHotEncoder(drop='first', sparse_output=False)
-    has_exam_encoded = encoder.fit_transform(X_train[['has_exam']])
+    encoder1 = OneHotEncoder(drop='first', sparse_output=False)
+    has_exam_encoded = encoder1.fit_transform(X_train[['has_exam']])
 
     # Convert encoded array to DataFrame
-    encoded_cols = encoder.get_feature_names_out(['has_exam'])
+    encoded_cols = encoder1.get_feature_names_out(['has_exam'])
     has_exam_df = pd.DataFrame(has_exam_encoded, columns=encoded_cols, index=X_train.index)
 
     # Add the encoded columns to X_train
     X_train = pd.concat([X_train, has_exam_df], axis=1)
 
     # Repeat the process for X_test
-    has_exam_encoded_test = encoder.transform(X_test[['has_exam']])
+    has_exam_encoded_test = encoder1.transform(X_test[['has_exam']])
     has_exam_df_test = pd.DataFrame(has_exam_encoded_test, columns=encoded_cols, index=X_test.index)
     X_test = pd.concat([X_test, has_exam_df_test], axis=1)
 
@@ -68,6 +73,7 @@ def demand_forecasting():
     # Add interaction columns to numerical_cols
     numerical_cols.extend([f'{col}_duration_interaction' for col in encoded_cols])
 
+    
     '''Train the Random Forest Model'''
     # Preprocess data with a pipeline
     # One hot encoding to transform the categorical columns
@@ -80,15 +86,15 @@ def demand_forecasting():
     # Define model pipeline - preprocessing the random forest model
     model = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('regressor', RandomForestRegressor(n_estimators=100, random_state=0))
+        ('regressor', XGBRegressor(n_estimators=100, random_state=0))
     ])
 
-    # Train the model with the data
+    # Fit the model pipeline on the training data to set up feature names
     model.fit(X_train, y_train)
-
-    # Evaluate the model
+    accuracy_train = model.score(X_train, y_train)
+    print(f"Model accuracy before feature selection, for training data: {accuracy_train}")
     accuracy_before = model.score(X_test, y_test)
-    # print(accuracy_before)
+    print(f"Model accuracy before feature selection: {accuracy_before}")
 
     '''Feature Importance'''
     # Get feature names from the preprocessor
@@ -101,17 +107,110 @@ def demand_forecasting():
 
     # Rank features by importance
     feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
-
+    
+    # <To display the feature importance, ranked in descending format>
     # Set Pandas display option to show all rows
-    pd.set_option('display.max_rows', None)
-
-    # Print the entire feature importance DataFrame
+    pd.set_option('display.max_rows', None) 
     # print(feature_importance_df)
 
-    # Select top N features (example selecting top 10 features)
-    top_features = feature_importance_df['Feature'][:10].values
-    X_train_selected = X_train[top_features]
-    X_test_selected = X_test[top_features]
+
+    '''Feature Selection'''
+    # Specify features to be excluded 
+    excluded_features = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 
+                         'waiting_time_satisfaction', 'crowdedness', 'crowdedness_satisfaction', 'comfort', 
+                         'safety', 'overall_satisfaction', 'weather', 'has_exam']
+
+
+    # Remove excluded features from both training and test datasets
+    categorical_cols = [col for col in categorical_cols if col not in excluded_features]
+    numerical_cols = [col for col in numerical_cols if col not in excluded_features]
+
+    # Combine categorical and numerical columns to form the complete list of important features
+    important_features = categorical_cols + numerical_cols
+
+    # Filter X_train and X_test to include only the selected important features
+    X_train_selected = X_train[important_features]
+    X_test_selected = X_test[important_features]
+
+    # 3): Re-train the model using only the selected features
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', MinMaxScaler(), numerical_cols),  # Update to selected numerical features
+            ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_cols)  # Update to selected categorical features
+        ]
+    )
+
+    model = Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('regressor', XGBRegressor(n_estimators=100, random_state=0))
+    ])
+
+    # Fit the model
+    model.fit(X_train_selected, y_train)
+    accuracy_after_training = model.score(X_train_selected, y_train)
+    print(f"Model accuracy after feature selection, for training data: {accuracy_after_training}")
+
+    # 4): Evaluate the model
+    accuracy_after = model.score(X_test_selected, y_test)
+    print(f"Model accuracy after feature selection: {accuracy_after}") 
+
+    '''Feature Importance'''
+    """
+    # Get feature names from the preprocessor
+    feature_names = (preprocessor.transformers_[0][1].get_feature_names_out(numerical_cols).tolist() +
+                    preprocessor.transformers_[1][1].get_feature_names_out(categorical_cols).tolist())
+
+    # Extract feature importances
+    importances = model.named_steps['regressor'].feature_importances_
+    feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+
+    # Rank features by importance
+    feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+    
+    # <To display the feature importance, ranked in descending format>
+    # Set Pandas display option to show all rows
+    pd.set_option('display.max_rows', None) 
+    print(feature_importance_df)
+    """
+
+    """
+    # Hyperparameter tuning
+    # Define the hyperparameter grid
+    param_grid = {
+        'regressor__n_estimators': [100, 200, 300],
+        'regressor__max_depth': [3, 5, 7],
+        'regressor__learning_rate': [0.01, 0.1, 0.2],
+        'regressor__subsample': [0.6, 0.8, 1.0]
+    }
+
+    # Use GridSearchCV for exhaustive search or RandomizedSearchCV for a quicker search
+    grid_search = GridSearchCV(
+        estimator=model,
+        param_grid=param_grid,
+        cv=3,  # 3-fold cross-validation
+        scoring='neg_mean_squared_error',
+        verbose=2,
+        n_jobs=-1
+    )
+
+    # Fit the GridSearchCV to the training data
+    grid_search.fit(X_train_selected, y_train)
+
+    # Get the best parameters and best estimator
+    best_model = grid_search.best_estimator_
+    print(f"Best parameters found: {grid_search.best_params_}")
+
+    # Evaluate the best model on the test set
+    accuracy_after_tuning = best_model.score(X_test_selected, y_test)
+    print(f"Model accuracy after hyperparameter tuning: {accuracy_after_tuning}")
+    """
+
+    
+    '''Evaluate the model using metrics like mae, mse, rmse'''
+    y_pred = np.floor(model.predict(X_test)).astype(int)
+    mae = mean_absolute_error(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    rmse = mse ** 0.5
 
     '''Creating an output from the demand forecasting model'''
     # Make predictions / output of floored predictions
@@ -160,11 +259,14 @@ def demand_forecasting():
 
     # Convert to a list of lists
     final_demand_array = list(demand_arrays.values())
+    print(final_demand_array)
 
     return final_demand_array
 
 def main():
     demand_forecasting()
+
+demand_forecasting()
 
 """
     Output:
