@@ -3,8 +3,10 @@ import smote
 import synthetic_data_generation_train
 import synthetic_data_generation_test
 import analyse_travel_patterns
+import demand_forecasting
 import User_Segmentation_Model
 import Route_Optimization
+import capacity_allocation
 
 if __name__ == "__main__":
     # 1. Clean the data
@@ -28,8 +30,10 @@ if __name__ == "__main__":
     analyse_travel_patterns.main()
 
     # 8. Demand forecasting
+    demand_forecasting.main()
 
     # 9. Route optimisation
     Route_Optimization.main()
 
     # 10. Capacity allocation
+    capacity_allocation.main()

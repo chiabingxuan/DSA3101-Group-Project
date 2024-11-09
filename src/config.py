@@ -25,49 +25,49 @@ Please put in alphabetical order, with the mapped versions collated together.
 MAJOR_MAPPING = {
     "accountancy": "accountancy",
     "architecture": "architecture",
-    "anthropology": "anthropology", 
-    "biomedical engineering": "biomedical engineering", 
+    "anthropology": "anthropology",
+    "biomedical engineering": "biomedical engineering",
     "bza": "business analytics",
-    "business analytics": "business analytics", 
+    "business analytics": "business analytics",
     "business": "business",
     "business administration": "business",
     "chemistry": "chemistry",
-    "chem": "chemistry", 
+    "chem": "chemistry",
     "computer science": "computer science",
-    "cs": "computer science",  
+    "cs": "computer science",
     "data science": "data science and analytics",
     "data science & analytics": "data science and analytics",
     "data science and analytics": "data science and analytics",
     "dsa": "data science and analytics",
     "data science and analytics!": "data science and analytics",
     "data science and analtytics": "data science and analytics",
-    "adsa": "data science and analytics", 
+    "adsa": "data science and analytics",
     "dentistry": "dentistry",
     "faculty of dentistry": "dentistry",
     "economics": "economics",
-    "econs" : "economics",
-    "engineering": "mechanical engineering", # edge case  
+    "econs": "economics",
+    "engineering": "mechanical engineering",  # edge case
     "engineering - material science and engineering": "materials science and engineering",
     "materials science and engineering": "materials science and engineering",
-    "material science & engineering": "materials science and engineering",   
-    "environmental science": "environmental studies",  
+    "material science & engineering": "materials science and engineering",
+    "environmental science": "environmental studies",
     "environmental studies": "environmental studies",
-    "eve": "environmental engineering",  
+    "eve": "environmental engineering",
     "food science and technology": "food science and technology",
-    "fst": "food science and technology",  
+    "fst": "food science and technology",
     "geography": "geography",
     "global studies": "global studies",
     "history": "history",
     "industrial systems engineering": "industrial systems engineering",
-    "ise": "industrial systems engineering",  
+    "ise": "industrial systems engineering",
     "law": "law",
     "life sci": "life sciences",
     "life science": "life sciences",
     "life sciences": "life sciences",
     "malay studies": "malay studies",
     "mathematics": "mathematics",
-    "mechanical engineering": "mechanical engineering",  
-    "nursing": "nursing",   
+    "mechanical engineering": "mechanical engineering",
+    "nursing": "nursing",
     "pharmaceutical science": "pharmaceutical science",
     "political science": "political science",
     "political sciences": "political science",
@@ -75,7 +75,7 @@ MAJOR_MAPPING = {
     "ppe-xdp": "politics, philosophy, economics",
     "psych": "psychology",
     "psychology": "psychology",
-    "data science n psych": "psychology", # Edge case, a mixture of 2 majors
+    "data science n psych": "psychology",  # Edge case, a mixture of 2 majors
     "data science n psychology": "psychology",
     "quantitative finance": "quantitative finance",
     "quantitate finance": "quantitative finance",
@@ -86,18 +86,20 @@ MAJOR_MAPPING = {
 }
 
 BUS_NUMS_OF_BUS_STOPS = {
-        "Kent Ridge MRT / Opp Kent Ridge MRT": ["A1", "A2", "D2"],
-        "LT27 / S17": ["A1", "A2", "D2"],
-        "UHC / Opp UHC": ["A1", "A2", "D2"],
-        "UTown": ["D1", "D2", "E"],
-        "COM3": ["D1", "D2"],
-        "BIZ2 / Opp HSSML": ["A1", "A2", "D1"],
-        "LT13 / Ventus": ["A1", "A2", "D1"],
-        "IT / CLB": ["A1", "A2", "D1", "E"],
-        "PGP": ["A1", "A2", "D2"]
+    "Kent Ridge MRT / Opp Kent Ridge MRT": ["A1", "A2", "D2"],
+    "LT27 / S17": ["A1", "A2", "D2"],
+    "UHC / Opp UHC": ["A1", "A2", "D2"],
+    "UTown": ["D1", "D2", "E"],
+    "COM3": ["D1", "D2"],
+    "BIZ2 / Opp HSSML": ["A1", "A2", "D1"],
+    "LT13 / Ventus": ["A1", "A2", "D1"],
+    "IT / CLB": ["A1", "A2", "D1", "E"],
+    "PGP": ["A1", "A2", "D2"]
 }
 
-FIRST_BUS_TIME, LAST_BUS_TIME = datetime.time(hour=7, minute=0), datetime.time(hour=23, minute=0) # just general operating hours for now (7 am - 11 pm), we can change this in the future if we want
+# Just general operating hours for now (7 am - 11 pm), we can change this in the future if we want
+FIRST_BUS_TIME, LAST_BUS_TIME = datetime.time(
+    hour=7, minute=0), datetime.time(hour=23, minute=0)
 
 # 2. synthetic_data_generation_train.py
 NUM_NEW_ROWS_SYNTHESISED_TRAIN = 2000
