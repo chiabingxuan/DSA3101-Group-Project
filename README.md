@@ -103,11 +103,15 @@ The school's current internal transportation system faces challenges in meeting 
 
 To set up the project on a local machine, follow the steps below:
 
-1. If you do not have Git installed, visit the [Git website](https://git-scm.com/downloads) for instructions on installation. Once installed, you can verify your version of Git by running the following in your terminal:
+1. Ensure that you have Python 3.13 installed. If not, you can visit the [Python website](https://www.python.org/downloads/) for instructions on installation. Once installed, you can verify your version of Python by running the following in your terminal:
+```
+python --version
+```
+2. If you do not have Git installed, visit the [Git website](https://git-scm.com/downloads) for instructions on installation. Once installed, you can verify your version of Git by running the following in your terminal:
 ```
 git --version
 ```
-2. Clone the repository. You can do so via SSH:
+3. Clone the repository. You can do so via SSH:
 ```
 git clone git@github.com:chiabingxuan/DSA3101-Group-Project.git
 ```
@@ -115,28 +119,28 @@ Alternatively, you can also clone the repository via HTTPS:
 ```
 git clone https://github.com/chiabingxuan/DSA3101-Group-Project.git
 ```
-3. In `config.py`, you can adjust the configuration parameters to your liking.
-4. Set your working directory to the folder containing the cloned repository:
+4. In `config.py`, you can adjust the configuration parameters to your liking.
+5. Set your working directory to the folder containing the cloned repository:
 ```
 cd DSA3101-Group-Project
 ```
-5. Create a Python virtual environment named `venv/`:
+6. Create a Python virtual environment named `venv/`:
 ```
 python -m venv .
 ```
-6. Activate the virtual environment:
+7. Activate the virtual environment:
 ```
 venv\Scripts\activate
 ```
-7. Install necessary packages:
+8. Install necessary packages:
 ```
 pip install -r requirements.txt
 ```
-8. Run the main program:
+9. Run the main program:
 ```
 python main.py
 ```
-9. To deactivate your virtual environment, run the following:
+10. To deactivate your virtual environment, run the following:
 ```
 deactivate
 ```
