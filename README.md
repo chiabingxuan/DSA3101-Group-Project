@@ -115,7 +115,7 @@ git --version
 ```
 git clone git@github.com:chiabingxuan/DSA3101-Group-Project.git
 ```
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Alternatively, you can also clone the repository via HTTPS:
+&nbsp; &nbsp; &nbsp; &nbsp;Alternatively, you can also clone the repository via HTTPS:
 ```
 git clone https://github.com/chiabingxuan/DSA3101-Group-Project.git
 ```
