@@ -223,43 +223,43 @@ From our survey, we are able to obtain tabular data in the form of a CSV file, `
 
 1. `cleaned_other_feedback_data.csv`
 
-| Field Name                 | Description                                                    | Data Type | Allowed Values                         | Example                    |
-| -------------------------- | -------------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
-| year                       | Year of student                                                | String    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
-| major                      | The student’s major                                            | String    | Various majors                         | Data Science and Analytics |
-| on_campus                  | Indicates whether the student lives on campus                  | String    | "Yes", "No"                            | No                         |
-| main_reason_for_taking_isb | The main purpose of using the internal shuttle bus             | String    | "To go to class", "To go to MRT", etc. | To go to class             |
-| trips_per_day              | Number of bus trips taken by the student per day               | Integer   | Positive integer                       | 2                          |
-| duration_per_day           | Total time spent on the bus per day in minutes                 | Integer   | Positive integer                       | 15                         |
-| date                       | Date of trips                                                  | Date      | yyyy-mm-dd                             | 2024-09-16                 |
-| has_exam                   | Indicates if the student has exams on the day                  | String    | "Yes", "No"                            | No                         |
-| feedback                   | Open-ended feedback provided by the student on the bus service | String    | Free response                          | "Seat availability"        |
+| Field Name                 | Description                                                 | Data Type | Allowed Values                         | Example                    |
+| -------------------------- | ----------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
+| year                       | Year of study                                               | String    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
+| major                      | The student’s major                                         | String    | Various majors                         | Data Science and Analytics |
+| on_campus                  | Is the respondent staying on campus?                        | String    | "Yes", "No"                            | No                         |
+| main_reason_for_taking_isb | Main reason for taking the school bus                       | String    | "To go to class", "To go to MRT", etc. | To go to class             |
+| trips_per_day              | Number of times the respondent takes the school bus per day | Integer   | Positive integer                       | 2                          |
+| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | Integer   | Positive integer                       | 15                         |
+| date                       | Date of trips                                               | Date      | yyyy-mm-dd                             | 2024-09-16                 |
+| has_exam                   | Does the respondent have an exam that day?                  | String    | "Yes", "No"                            | No                         |
+| feedback                   | Other factors influencing satisfaction level                | String    | Free response                          | "Seat availability"        |
 
 2. `cleaned_trip_data.csv`
 
-| Field Name                 | Description                                              | Data Type | Allowed Values                         | Example                    |
-| -------------------------- | -------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
-| year                       | Year of student                                          | String    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
-| major                      | The student’s major                                      | String    | Various majors                         | Data Science and Analytics |
-| on_campus                  | Indicates whether the student lives on campus            | String    | "Yes", "No"                            | No                         |
-| main_reason_for_taking_isb | The main purpose of using the internal shuttle bus       | String    | "To go to class", "To go to MRT", etc. | To go to class             |
-| trips_per_day              | Number of bus trips taken by the student per day         | Integer   | Positive integer                       | 2                          |
-| duration_per_day           | Total time spent on the bus per day in minutes           | Integer   | Positive integer                       | 15                         |
-| date                       | Date of trips                                            | Date      | yyyy-mm-dd                             | 2024-09-16                 |
-| has_exam                   | Indicates if the student has exams on the day            | String    | "Yes", "No"                            | No                         |
-| start                      | Starting location of the bus trip                        | String    | Various locations on campus            | Kent Ridge MRT             |
-| end                        | Destination of the bus trip                              | String    | Various locations on campus            | LT27 / S17                 |
-| bus_num                    | Number of the bus used                                   | String    | Bus codes such as "A1", "A2", etc.     | A1                         |
-| time                       | Time the bus was taken                                   | Time      | HH:MM:SS                               | 08:50:00                   |
-| weather                    | Weather condition during the bus trip                    | String    | "Sunny", "Rainy", etc.                 | Sunny                      |
-| num_people_at_bus_stop     | Number of people at the bus stop at the time of boarding | Integer   | Positive integer                       | 20                         |
-| waiting_time               | Time spent waiting for the bus in minutes                | Integer   | Positive integer                       | 6                          |
-| waiting_time_satisfaction  | Satisfaction level with waiting time                     | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
-| crowdedness                | Level of crowdedness experienced on the bus              | Integer   | Scale from 1 (low) to 10 (high)        | 9                          |
-| crowdedness_satisfaction   | Satisfaction level with bus crowdedness                  | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
-| comfort                    | Comfort level experienced on the bus                     | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
-| safety                     | Safety level felt during the bus trip                    | Integer   | Scale from 1 (low) to 10 (high)        | 8                          |
-| overall_satisfaction       | Overall satisfaction with the bus service                | Integer   | Scale from 1 (low) to 10 (high)        | 8                          |
+| Field Name                 | Description                                                 | Data Type | Allowed Values                         | Example                    |
+| -------------------------- | ----------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
+| year                       | Year of study                                               | String    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
+| major                      | Major                                                       | String    | Various majors                         | Data Science and Analytics |
+| on_campus                  | Is the respondent staying on campus?                        | String    | "Yes", "No"                            | No                         |
+| main_reason_for_taking_isb | Main reason for taking the school bus                       | String    | "To go to class", "To go to MRT", etc. | To go to class             |
+| trips_per_day              | Number of times the respondent takes the school bus per day | Integer   | Positive integer                       | 2                          |
+| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | Integer   | Positive integer                       | 15                         |
+| date                       | Date of trips                                               | Date      | yyyy-mm-dd                             | 2024-09-16                 |
+| has_exam                   | Does the respondent have an exam that day?                  | String    | "Yes", "No"                            | No                         |
+| start                      | Starting location of the bus trip                           | String    | Bus stop names                         | Kent Ridge MRT             |
+| end                        | Destination of the bus trip                                 | String    | Bus stop names                         | LT27 / S17                 |
+| bus_num                    | Number of the bus used                                      | String    | Bus codes such as "A1", "A2", etc.     | A1                         |
+| time                       | Time the bus was taken                                      | Time      | HH:MM:SS                               | 08:50:00                   |
+| weather                    | Weather condition during the bus trip                       | String    | "Sunny", "Rainy", etc.                 | Sunny                      |
+| num_people_at_bus_stop     | Number of people at the bus stop at the time of boarding    | Integer   | Positive integer                       | 20                         |
+| waiting_time               | Time spent waiting for the bus in minutes                   | Integer   | Positive integer                       | 6                          |
+| waiting_time_satisfaction  | Satisfaction level with waiting time                        | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
+| crowdedness                | Level of crowdedness experienced on the bus                 | Integer   | Scale from 1 (low) to 10 (high)        | 9                          |
+| crowdedness_satisfaction   | Satisfaction level with bus crowdedness                     | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
+| comfort                    | Comfort level experienced on the bus                        | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
+| safety                     | Safety level felt during the bus trip                       | Integer   | Scale from 1 (low) to 10 (high)        | 8                          |
+| overall_satisfaction       | Overall satisfaction with the bus service                   | Integer   | Scale from 1 (low) to 10 (high)        | 8                          |
 
 3. `combined_trip_data.csv`
 
@@ -276,7 +276,7 @@ From our survey, we are able to obtain tabular data in the form of a CSV file, `
 | In general, what is the main reason that you take the school bus?                         | Main reason for taking the school bus                       | object    | To go to class, To go for meals, To go to MRT, Other        | To go to class                      |
 | On a normal school day, how many times do you take the school bus?                        | Number of times the respondent takes the school bus per day | object    | Non-negative integer                                        | 2                                   |
 | On a normal school day, how long do you spend riding the school bus                       | Duration spent riding the school bus per day (in minutes)   | object    | Non-negative integer                                        | 5                                   |
-| Please enter today's date.                                                                | Date                                                        | object    | Valid date format (dd-mm-yyyy)                              | 9/16/2024                           |
+| Please enter today's date.                                                                | Date of trips                                               | object    | Valid date format (dd-mm-yyyy)                              | 9/16/2024                           |
 | Do you have an exam today?                                                                | Does the respondent have an exam that day?                  | object    | Yes, No                                                     | No                                  |
 | Which bus stop did you board the bus from? (Trip 1)                                       | Trip 1: Starting bus stop                                   | object    | Bus stop names                                              | Kent Ridge MRT / Opp Kent Ridge MRT |
 | Which bus stop did you alight at? (Trip 1)                                                | Trip 1: Ending bus stop                                     | object    | Bus stop names                                              | LT27 / S17                          |
