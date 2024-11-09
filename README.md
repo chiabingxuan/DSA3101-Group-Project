@@ -225,41 +225,41 @@ From our survey, we are able to obtain tabular data in the form of a CSV file, `
 
 | Field Name                 | Description                                                 | Data Type | Allowed Values                         | Example                    |
 | -------------------------- | ----------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
-| year                       | Year of study                                               | String    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
-| major                      | The student’s major                                         | String    | Various majors                         | Data Science and Analytics |
-| on_campus                  | Is the respondent staying on campus?                        | String    | "Yes", "No"                            | No                         |
-| main_reason_for_taking_isb | Main reason for taking the school bus                       | String    | "To go to class", "To go to MRT", etc. | To go to class             |
-| trips_per_day              | Number of times the respondent takes the school bus per day | Integer   | Positive integer                       | 2                          |
-| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | Integer   | Positive integer                       | 15                         |
-| date                       | Date of trips                                               | Date      | yyyy-mm-dd                             | 2024-09-16                 |
-| has_exam                   | Does the respondent have an exam that day?                  | String    | "Yes", "No"                            | No                         |
-| feedback                   | Other factors influencing satisfaction level                | String    | Free response                          | "Seat availability"        |
+| year                       | Year of study                                               | object    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
+| major                      | The student’s major                                         | object    | Various majors                         | Data Science and Analytics |
+| on_campus                  | Is the respondent staying on campus?                        | object    | "Yes", "No"                            | No                         |
+| main_reason_for_taking_isb | Main reason for taking the school bus                       | object    | "To go to class", "To go to MRT", etc. | To go to class             |
+| trips_per_day              | Number of times the respondent takes the school bus per day | int64     | Positive integer                       | 2                          |
+| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | int64     | Positive integer                       | 15                         |
+| date                       | Date of trips                                               | object    | yyyy-mm-dd                             | 2024-09-16                 |
+| has_exam                   | Does the respondent have an exam that day?                  | object    | "Yes", "No"                            | No                         |
+| feedback                   | Other factors influencing satisfaction level                | object    | Free response                          | "Seat availability"        |
 
 2. `cleaned_trip_data.csv`
 
 | Field Name                 | Description                                                 | Data Type | Allowed Values                         | Example                    |
 | -------------------------- | ----------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
-| year                       | Year of study                                               | String    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
-| major                      | Major                                                       | String    | Various majors                         | Data Science and Analytics |
-| on_campus                  | Is the respondent staying on campus?                        | String    | "Yes", "No"                            | No                         |
-| main_reason_for_taking_isb | Main reason for taking the school bus                       | String    | "To go to class", "To go to MRT", etc. | To go to class             |
-| trips_per_day              | Number of times the respondent takes the school bus per day | Integer   | Positive integer                       | 2                          |
-| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | Integer   | Positive integer                       | 15                         |
-| date                       | Date of trips                                               | Date      | yyyy-mm-dd                             | 2024-09-16                 |
-| has_exam                   | Does the respondent have an exam that day?                  | String    | "Yes", "No"                            | No                         |
-| start                      | Starting location of the bus trip                           | String    | Bus stop names                         | Kent Ridge MRT             |
-| end                        | Destination of the bus trip                                 | String    | Bus stop names                         | LT27 / S17                 |
-| bus_num                    | Number of the bus used                                      | String    | Bus codes such as "A1", "A2", etc.     | A1                         |
-| time                       | Time the bus was taken                                      | Time      | HH:MM:SS                               | 08:50:00                   |
-| weather                    | Weather condition during the bus trip                       | String    | "Sunny", "Rainy", etc.                 | Sunny                      |
-| num_people_at_bus_stop     | Number of people at the bus stop at the time of boarding    | Integer   | Positive integer                       | 20                         |
-| waiting_time               | Time spent waiting for the bus in minutes                   | Integer   | Positive integer                       | 6                          |
-| waiting_time_satisfaction  | Satisfaction level with waiting time                        | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
-| crowdedness                | Level of crowdedness experienced on the bus                 | Integer   | Scale from 1 (low) to 10 (high)        | 9                          |
-| crowdedness_satisfaction   | Satisfaction level with bus crowdedness                     | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
-| comfort                    | Comfort level experienced on the bus                        | Integer   | Scale from 1 (low) to 10 (high)        | 7                          |
-| safety                     | Safety level felt during the bus trip                       | Integer   | Scale from 1 (low) to 10 (high)        | 8                          |
-| overall_satisfaction       | Overall satisfaction with the bus service                   | Integer   | Scale from 1 (low) to 10 (high)        | 8                          |
+| year                       | Year of study                                               | object    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
+| major                      | Major                                                       | object    | Various majors                         | Data Science and Analytics |
+| on_campus                  | Is the respondent staying on campus?                        | object    | "Yes", "No"                            | No                         |
+| main_reason_for_taking_isb | Main reason for taking the school bus                       | object    | "To go to class", "To go to MRT", etc. | To go to class             |
+| trips_per_day              | Number of times the respondent takes the school bus per day | int64     | Positive integer                       | 2                          |
+| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | int64     | Positive integer                       | 15                         |
+| date                       | Date of trips                                               | object    | yyyy-mm-dd                             | 2024-09-16                 |
+| has_exam                   | Does the respondent have an exam that day?                  | object    | "Yes", "No"                            | No                         |
+| start                      | Starting location of the bus trip                           | object    | Bus stop names                         | Kent Ridge MRT             |
+| end                        | Destination of the bus trip                                 | object    | Bus stop names                         | LT27 / S17                 |
+| bus_num                    | Number of the bus used                                      | object    | Bus codes such as "A1", "A2", etc.     | A1                         |
+| time                       | Time the bus was taken                                      | object    | HH:MM:SS                               | 08:50:00                   |
+| weather                    | Weather condition during the bus trip                       | object    | "Sunny", "Rainy", etc.                 | Sunny                      |
+| num_people_at_bus_stop     | Number of people at the bus stop at the time of boarding    | int64     | Positive integer                       | 20                         |
+| waiting_time               | Time spent waiting for the bus in minutes                   | int64     | Positive integer                       | 6                          |
+| waiting_time_satisfaction  | Satisfaction level with waiting time                        | int64     | Scale from 1 (low) to 10 (high)        | 7                          |
+| crowdedness                | Level of crowdedness experienced on the bus                 | int64     | Scale from 1 (low) to 10 (high)        | 9                          |
+| crowdedness_satisfaction   | Satisfaction level with bus crowdedness                     | int64     | Scale from 1 (low) to 10 (high)        | 7                          |
+| comfort                    | Comfort level experienced on the bus                        | int64     | Scale from 1 (low) to 10 (high)        | 7                          |
+| safety                     | Safety level felt during the bus trip                       | int64     | Scale from 1 (low) to 10 (high)        | 8                          |
+| overall_satisfaction       | Overall satisfaction with the bus service                   | int64     | Scale from 1 (low) to 10 (high)        | 8                          |
 
 3. `combined_trip_data.csv`
 
