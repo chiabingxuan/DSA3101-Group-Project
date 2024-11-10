@@ -2,6 +2,7 @@ import survey_cleaning
 import smote
 import synthetic_data_generation_train
 import synthetic_data_generation_test
+import drivers_of_satisfaction
 import analyse_travel_patterns
 import demand_forecasting
 import User_Segmentation_Model
@@ -22,6 +23,7 @@ if __name__ == "__main__":
     synthetic_data_generation_test.main()
 
     # 5. Analysing user satisfaction
+    drivers_of_satisfaction.main()
 
     # 6. User segmentation
     User_Segmentation_Model.main()
