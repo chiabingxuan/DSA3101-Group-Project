@@ -3,13 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import classification_report
 import os
+import shap
 import statsmodels.api as sm
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 ####################################################################################################
 ### Objective: To determine main drivers of overall satisfaction                                 ###
 ### Analysis conducted: Key Driver Analysis                                                      ###
+### End Product: Performance-Importance Matrix                                                   ###
 ####################################################################################################
 
 # Load the File
@@ -38,7 +41,7 @@ plt.show()
 
 # Investigate the Performance of each factor by obtaining the Median score of each factor
 ## Calculate the median score for each column
-median_scores = df[selected_columns].mean()
+median_scores = df[selected_columns].median()
 
 ## Print Median Score for each column
 print("Median Scores for each column:")
@@ -163,3 +166,40 @@ for predictor, r2 in r_squared_values.items():
 ## Based on the Dominance Analysis, the removal of each factor leads to small decrease in explained variance. Comparing them (from largest to smallest impact) is as follows: Comfort, Safety, Crowdedness Satisfaction, Waiting Time Satisfaction
 ## Based on the R-Squared of the Model 0.3216, the explanatory power of the 4 factors identified gives a low contribution to the overall satisfaction. Thus, we will explore other Relative Importance Analysis Methods.
 
+# Conduct SHAP Regression to determine Feature Importance using a Random Forest Model to determine overall satisfaction scores
+shap.initjs()
+
+# Import Train and Test Datasets
+train = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False))
+test = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False))
+
+selected_features = ['waiting_time_satisfaction', 'crowdedness_satisfaction', 'comfort', 'safety']
+X_train = train[selected_features]
+X_test = test[selected_features]
+y_train = train['overall_satisfaction']
+y_test = test['overall_satisfaction']
+
+print(X_train, X_train.shape)
+print(X_test, X_test.shape)
+print(y_train, y_train.shape)
+print(y_test, y_test.shape)
+
+# Train a random forest model
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier()
+clf.fit(X_train, y_train)
+
+# Make prediction on test data
+# y_pred = clf.predict(X_test)
+
+# Classification Report 
+# print(classification_report(y_pred, y_test))
+
+explainer = shap.Explainer(clf, X_train, feature_names=X_train.columns)
+shap_values = explainer(X_test)
+## shap_values_mean = np.mean(shap_values, axis=2)
+
+print(shap_values.shape)
+print(X_test.shape)
+
+shap.summary_plot(shap_values, X_test)
