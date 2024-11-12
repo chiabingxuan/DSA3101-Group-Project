@@ -2,6 +2,12 @@ import numpy as np
 from scipy.optimize import linprog
 import demand_forecasting as df
 
+########################################################################################################
+######## Model Objectives: Minimise unmet demand                                                ########  
+######## Constraint: Total number of buses must not exceed maximum fleet capacity               ########                                                                             
+######## Decision Variable (Controlled Choice): Number of buses allocated per bus stop per hour ########                                                                                              
+########################################################################################################                                                                                                
+
 def capacity_allocation():
 
     # Import forecasted demand
@@ -14,7 +20,7 @@ def capacity_allocation():
     ### ---------- CONSTRAINTS ---------- ###
 
     num_boarded = 20 # Ave number of people that can board the bus
-    total_buses_available = 20 * num_routes * num_time_slots
+    total_buses_available = 12 * num_routes * num_time_slots
 
     # Objective function: prioritize minimizing unmet demand
     c = -forecasted_demand.flatten()  # Flatten for 1D linprog
