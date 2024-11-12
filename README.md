@@ -9,11 +9,12 @@
     - [2.4 Code Style Guide Adherence](#24-code-style-guide-adherence)
   - [3. Data Understanding](#3-data-understanding)
     - [3.1 Data Acquisition](#31-data-acquisition)
-    - [3.2 Data Dictionary](#32-data-dictionary)
+    - [3.2 Data Preparation](#32-data-preparation)
+    - [3.3 Data Dictionaries](#33-data-dictionaries)
 
 ## 1. Project Overview
 
-Data Scavengers is a collaborative project aimed at collecting real time data to optimise the bus system in NUS by utilising various models, such as Route Optimisation, Demand Forecasting and Capacity Allocation models. Visualisations have also been made to assist us in understanding the current problems faced.
+Data Scavengers is a collaborative project aimed at collecting real-time data to optimise the bus system in the National University of Singapore (NUS). This is done by utilising various models, such as Route Optimisation, Demand Forecasting and Capacity Allocation models. Furthermore, visualisations have been created to not only assist us in understanding the current problems faced, but also to inform recommendations that can enhance the commuting experience for NUS students.
 
 **Project Objectives**
 
@@ -65,9 +66,6 @@ DSA3101-Group-Project
 │   └── README.md                             # Documentation for ethics and privacy enhancements
 │
 ├── src/                                          # Source code for data analysis, cleaning, and modeling
-│   ├── __pycache__/                              # Python bytecode cache directory
-│   │   ├── config.cpython-312.pyc                # Compiled bytecode for config.py
-│   │   └── demand_forecasting.cpython-312.pyc    # Compiled bytecode for demand_forecasting.py
 │   ├── analyse_travel_patterns.py                # Analysis of travel patterns from trip data
 │   ├── capacity_allocation.py                    # Allocates transport capacity based on demand
 │   ├── config.py                                 # Configuration settings
@@ -148,56 +146,62 @@ DSA3101-Group-Project
 
 To set up the project on a local machine, follow the steps below:
 
-1. If you do not have Git installed, visit the [Git website](https://git-scm.com/downloads) for instructions on installation. Once installed, you can verify your version of Git by running the following in your terminal:
+1. Ensure that you have Python 3.13 installed. If not, you can visit the [Python website](https://www.python.org/downloads/) for instructions on installation. Once installed, you can verify your version of Python by running the following in your terminal:
+
+```
+python --version
+```
+
+2. If you do not have Git installed, visit the [Git website](https://git-scm.com/downloads) for instructions on installation. Once installed, you can verify your version of Git by running the following in your terminal:
 
 ```
 git --version
 ```
 
-2. Clone the repository. You can do so via SSH:
+3. Clone the repository. You can do so via SSH:
 
 ```
 git clone git@github.com:chiabingxuan/DSA3101-Group-Project.git
 ```
 
-Alternatively, you can also clone the repository via HTTPS:
+&nbsp; &nbsp; &nbsp; &nbsp;Alternatively, you can also clone the repository via HTTPS:
 
 ```
 git clone https://github.com/chiabingxuan/DSA3101-Group-Project.git
 ```
 
-3. In `config.py`, you can adjust the configuration parameters to your liking.
-4. Set your working directory to the folder containing the cloned repository:
+4. In `config.py`, you can adjust the configuration parameters to your liking.
+5. Set your working directory to the folder containing the cloned repository:
 
 ```
 cd DSA3101-Group-Project
 ```
 
-5. Create a Python virtual environment named `venv/`:
+6. Create a Python virtual environment named `venv/`:
 
 ```
 python -m venv .
 ```
 
-6. Activate the virtual environment:
+7. Activate the virtual environment:
 
 ```
 venv\Scripts\activate
 ```
 
-7. Install necessary packages:
+8. Install necessary packages:
 
 ```
 pip install -r requirements.txt
 ```
 
-8. Run the main program:
+9. Run the main program:
 
 ```
 python main.py
 ```
 
-9. To deactivate your virtual environment, run the following:
+10. To deactivate your virtual environment, run the following:
 
 ```
 deactivate
@@ -217,23 +221,60 @@ PEP-8 coding style has been adapted for this project.
 
 We collected survey data to investigate the travel patterns and satisfaction levels of NUS students, with regards to the NUS bus system. In our survey, respondents were asked to share **two bus trips** that they embarked on for the day. The [survey link](https://docs.google.com/forms/d/1zh5M9Sccn3ifxcOOJd2UMj7cQSFKPWmvD-RG1PZA9QM/edit) was circulated online on various NUS platforms, including the official Telegram channel for the NUS College of Humanities and Sciences (CHS).
 
-### 3.2 Data Dictionary
+### 3.2 Data Preparation
 
-From our survey, we are able to obtain tabular data in the form of a CSV file, `survey.csv`. Each row of the CSV file corresponds to a single survey response (two bus trips). In `survey_cleaning.py`, we load the CSV file into a `pandas.DataFrame`, `survey_data`. The data dictionary for `survey_data` is shown below. Given that the column names are rather long, a short description of each attribute is provided instead. Note that all attributes are required.
+From our survey, we are able to obtain tabular data in the form of a CSV file, `survey.csv`. Each row of the CSV file corresponds to a single survey response (two bus trips). Starting from `survey.csv`, we carry out a series of preparatory steps. Please refer to Section 3 - 4 of our Wiki for a detailed documentation of these processes.
 
-1. `cleaned_other_feedback_data.csv`
+1. Carry out data cleaning on `survey.csv`. We ensure that the data has correct and consistent formatting, whilst converting each field to an appropriate data type. Upon conducting preliminary data exploration, we also identify outliers and remove them from our data. The cleaned trip data is saved as `cleaned_trip_data.csv`. We also cleaned data consisting of additional feedback from our respondents - this is saved as `cleaned_other_feedback_data.csv`
+2. Carry out train-test split on `cleaned_trip_data_csv`. The test dataset is saved as `test_trip_data_before_sdv.csv`
+3. Carry out SMOTE (an oversampling technique) on the `major` attribute of the training dataset from Step 2. The resultant dataset is saved as `train_trip_data_after_smote.csv`
+4. Carry out synthetic data generation using SDV, on `train_trip_data_after_smote.csv` and `test_trip_data_before_sdv.csv`. This is saved as `train_trip_data_after_sdv.csv` and `test_trip_data_after_sdv.csv` respectively
+5. Combine `train_trip_data_after_sdv.csv` and `test_trip_data_after_sdv.csv`, saving this dataset as `combined_trip_data.csv`
 
-| Field Name                 | Description                                                 | Data Type | Allowed Values                         | Example                    |
-| -------------------------- | ----------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
-| year                       | Year of study                                               | object    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
-| major                      | The student’s major                                         | object    | Various majors                         | Data Science and Analytics |
-| on_campus                  | Is the respondent staying on campus?                        | object    | "Yes", "No"                            | No                         |
-| main_reason_for_taking_isb | Main reason for taking the school bus                       | object    | "To go to class", "To go to MRT", etc. | To go to class             |
-| trips_per_day              | Number of times the respondent takes the school bus per day | int64     | Positive integer                       | 2                          |
-| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | int64     | Positive integer                       | 15                         |
-| date                       | Date of trips                                               | object    | yyyy-mm-dd                             | 2024-09-16                 |
-| has_exam                   | Does the respondent have an exam that day?                  | object    | "Yes", "No"                            | No                         |
-| feedback                   | Other factors influencing satisfaction level                | object    | Free response                          | "Seat availability"        |
+### 3.3 Data Dictionaries
+
+The following are a list of data dictionaries for each of the CSV files stated in Section 3.2 (Data Preparation), in order of appearance. Note that `train_trip_data_after_sdv.csv`, `test_trip_data_after_sdv.csv` and `cleaned_other_feedback_data.csv` are the datasets that we use in our analysis.
+
+1. `survey.csv`
+
+| Field Name                                                                                | Description of Attribute                                    | Data Type | Allowed Values                                              | Example                             |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------- | --------- | ----------------------------------------------------------- | ----------------------------------- |
+| Timestamp                                                                                 | Date and time when the response was recorded                | object    | Any valid timestamp format (e.g., yyyy-mm-dd hh:mm:ss)      | 9/26/2024 15:49:00                  |
+| What year of study are you in?                                                            | Year of study                                               | object    | Year 1, Year 2, Year 3, Year 4                              | Year 1                              |
+| What major are you studying?                                                              | Major                                                       | object    | Various majors                                              | DSA                                 |
+| Do you stay on campus?                                                                    | Is the respondent staying on campus?                        | object    | Yes, No                                                     | No                                  |
+| In general, what is the main reason that you take the school bus?                         | Main reason for taking the school bus                       | object    | To go to class, To go for meals, To go to MRT, Other        | To go to class                      |
+| On a normal school day, how many times do you take the school bus?                        | Number of times the respondent takes the school bus per day | object    | Non-negative integer                                        | 2                                   |
+| On a normal school day, how long do you spend riding the school bus?                       | Duration spent riding the school bus per day (in minutes)   | object    | Non-negative integer                                        | 5                                   |
+| Please enter today's date.                                                                | Date of trips                                               | object    | Valid date format (dd-mm-yyyy)                              | 9/16/2024                           |
+| Do you have an exam today?                                                                | Does the respondent have an exam that day?                  | object    | Yes, No                                                     | No                                  |
+| Which bus stop did you board the bus from? (Trip 1)                                       | Trip 1: Starting bus stop                                   | object    | Bus stop names                                              | Kent Ridge MRT / Opp Kent Ridge MRT |
+| Which bus stop did you alight at? (Trip 1)                                                | Trip 1: Ending bus stop                                     | object    | Bus stop names                                              | LT27 / S17                          |
+| Which bus did you take? (Trip 1)                                                          | Trip 1: Bus number                                          | object    | Bus number (e.g., A1, A2, D1, D2)                           | A1                                  |
+| What time of day did this trip take place? (Trip 1)                                       | Trip 1: Time of day                                         | object    | Valid time format (e.g., hh:mm am/pm)                       | 8:50:00 am                          |
+| What was the weather like during your trip? (Trip 1)                                      | Trip 1: Weather                                             | object    | Sunny, Rainy                                                | Sunny                               |
+| When you were boarding the bus, approximately how many people were there?                  | Trip 1: Number of people at starting bus stop               | int64     | Non-negative integer                                        | 20                                  |
+| How long did you have to wait for the bus? (Trip 1)                                       | Trip 1: Waiting time (in minutes)                           | object    | Non-negative integer                                        | 6                           |
+| With regards to waiting time, how satisfied are you with the trip? (Trip 1)               | Trip 1: Satisfaction level for waiting time                 | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 7                                   |
+| On a scale from 1 to 10, how crowded was the bus? (Trip 1)                                | Trip 1: Crowdedness level                                   | int64     | 1-10 (1 being least crowded, 10 being most crowded)         | 7                                   |
+| With regards to crowdedness, how satisfied are you with the trip? (Trip 1)                | Trip 1: Satisfaction level for crowdedness                  | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 9                                   |
+| On a scale from 1 to 10, how comfortable was the trip for you? (Trip 1)                   | Trip 1: Comfort level                                       | int64     | 1-10 (1 being least comfortable, 10 being most comfortable) | 7                                   |
+| On a scale from 1 to 10, how safe was the trip for you? (Trip 1)                          | Trip 1: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being safest)               | 7                                   |
+| On a scale from 1 to 10, how satisfied are you with the trip overall? (Trip 1)            | Trip 1: Overall satisfaction level                          | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 9                                   |
+| Which bus stop did you board the bus from? (Trip 2)                                       | Trip 2: Starting bus stop                                   | object    | Bus stop names                                              | Kent Ridge MRT / Opp Kent Ridge MRT |
+| Which bus stop did you alight at? (Trip 2)                                                | Trip 2: Ending bus stop                                     | object    | Bus stop names                                              | LT27 / S17                          |
+| Which bus did you take? (Trip 2)                                                          | Trip 2: Bus number                                          | object    | Bus number (e.g., A1, A2, D1, D2)                           | A2                                  |
+| What time of day did this trip take place? (Trip 2)                                       | Trip 2: Time of day                                         | object    | Valid time format (e.g., hh:mm am/pm)                       | 12:00:00 pm                         |
+| What was the weather like during your trip? (Trip 2)                                      | Trip 2: Weather                                             | object    | Sunny, Rainy                                                | Sunny                               |
+| When you were boarding the bus, approximately how many people were there?                  | Trip 2: Number of people at starting bus stop               | object    | Non-negative integer                                        | 14                                  |
+| How long did you have to wait for the bus? (Trip 2)                                       | Trip 2: Waiting time (in minutes)                           | object    | Non-negative integer                                        | 3                                   |
+| With regards to waiting time, how satisfied are you with the trip? (Trip 2)               | Trip 2: Satisfaction level for waiting time                 | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 8                                   |
+| On a scale from 1 to 10, how crowded was the bus? (Trip 2)                                | Trip 2: Crowdedness level                                   | int64     | 1-10 (1 being least crowded, 10 being most crowded)         | 6                                   |
+| With regards to crowdedness, how satisfied are you with the trip? (Trip 2)                | Trip 2: Satisfaction level for crowdedness                  | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 7                                   |
+| On a scale from 1 to 10, how comfortable was the trip for you? (Trip 2)                   | Trip 2: Comfort level                                       | int64     | 1-10 (1 being least comfortable, 10 being most comfortable) | 7                                   |
+| On a scale from 1 to 10, how safe was the trip for you? (Trip 2)                          | Trip 2: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being safest)               | 6                                   |
+| On a scale from 1 to 10, how satisfied are you with the trip overall? (Trip 2)            | Trip 2: Overall satisfaction level                          | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 8                                   |
+| Are there any other factors that influence how satisfied you are with the NUS bus system? | Other factors influencing satisfaction level                | object    | Free response                                               | "Seat availability"                 |
 
 2. `cleaned_trip_data.csv`
 
@@ -261,63 +302,36 @@ From our survey, we are able to obtain tabular data in the form of a CSV file, `
 | safety                     | Safety level felt during the bus trip                       | int64     | Scale from 1 (low) to 10 (high)        | 8                          |
 | overall_satisfaction       | Overall satisfaction with the bus service                   | int64     | Scale from 1 (low) to 10 (high)        | 8                          |
 
-3. `combined_trip_data.csv`
+3. `cleaned_other_feedback_data.csv`
 
-   Similar to `cleaned_trip_data.csv`
+| Field Name                 | Description                                                 | Data Type | Allowed Values                         | Example                    |
+| -------------------------- | ----------------------------------------------------------- | --------- | -------------------------------------- | -------------------------- |
+| year                       | Year of study                                               | object    | "Year 1", "Year 2", "Year 3", "Year 4" | Year 1                     |
+| major                      | The student’s major                                         | object    | Various majors                         | Data Science and Analytics |
+| on_campus                  | Is the respondent staying on campus?                        | object    | "Yes", "No"                            | No                         |
+| main_reason_for_taking_isb | Main reason for taking the school bus                       | object    | "To go to class", "To go to MRT", etc. | To go to class             |
+| trips_per_day              | Number of times the respondent takes the school bus per day | int64     | Positive integer                       | 2                          |
+| duration_per_day           | Duration spent riding the school bus per day (in minutes)   | int64     | Positive integer                       | 15                         |
+| date                       | Date of trips                                               | object    | yyyy-mm-dd                             | 2024-09-16                 |
+| has_exam                   | Does the respondent have an exam that day?                  | object    | "Yes", "No"                            | No                         |
+| feedback                   | Other factors influencing satisfaction level                | object    | Free response                          | "Seat availability"        |
 
-4. `survey.csv`
+4. `test_trip_data_before_sdv.csv`
 
-| Field Name                                                                                | Description of Attribute                                    | Data Type | Allowed Values                                              | Example                             |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------- | --------- | ----------------------------------------------------------- | ----------------------------------- |
-| Timestamp                                                                                 | Date and time when the response was recorded                | object    | Any valid timestamp format (e.g., yyyy-mm-dd hh:mm:ss)      | 9/26/2024 15:49:00                  |
-| What year of study are you in?                                                            | Year of study                                               | object    | Year 1, Year 2, Year 3, Year 4                              | Year 1                              |
-| What major are you studying?                                                              | Major                                                       | object    | Various majors                                              | DSA                                 |
-| Do you stay on campus?                                                                    | Is the respondent staying on campus?                        | object    | Yes, No                                                     | No                                  |
-| In general, what is the main reason that you take the school bus?                         | Main reason for taking the school bus                       | object    | To go to class, To go for meals, To go to MRT, Other        | To go to class                      |
-| On a normal school day, how many times do you take the school bus?                        | Number of times the respondent takes the school bus per day | object    | Non-negative integer                                        | 2                                   |
-| On a normal school day, how long do you spend riding the school bus                       | Duration spent riding the school bus per day (in minutes)   | object    | Non-negative integer                                        | 5                                   |
-| Please enter today's date.                                                                | Date of trips                                               | object    | Valid date format (dd-mm-yyyy)                              | 9/16/2024                           |
-| Do you have an exam today?                                                                | Does the respondent have an exam that day?                  | object    | Yes, No                                                     | No                                  |
-| Which bus stop did you board the bus from? (Trip 1)                                       | Trip 1: Starting bus stop                                   | object    | Bus stop names                                              | Kent Ridge MRT / Opp Kent Ridge MRT |
-| Which bus stop did you alight at? (Trip 1)                                                | Trip 1: Ending bus stop                                     | object    | Bus stop names                                              | LT27 / S17                          |
-| Which bus did you take? (Trip 1)                                                          | Trip 1: Bus number                                          | object    | Bus number (e.g., A1, A2, D1, D2)                           | A1                                  |
-| What time of day did this trip take place? (Trip 1)                                       | Trip 1: Time of day                                         | object    | Valid time format (e.g., hh:mm am/pm)                       | 8:50:00 am                          |
-| What was the weather like during your trip? (Trip 1)                                      | Trip 1: Weather                                             | object    | Sunny, Rainy                                                | Sunny                               |
-| When you were boarding the bus, approximately how many people were there                  | Trip 1: Number of people at starting bus stop               | int64     | Non-negative integer                                        | 20                                  |
-| How long did you have to wait for the bus? (Trip 1)                                       | Trip 1: Waiting time (in minutes)                           | object    | Non-negative integer                                        | 6 minutes                           |
-| With regards to waiting time, how satisfied are you with the trip? (Trip 1)               | Trip 1: Satisfaction level for waiting time                 | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 7                                   |
-| On a scale from 1 to 10, how crowded was the bus? (Trip 1)                                | Trip 1: Crowdedness level                                   | int64     | 1-10 (1 being least crowded, 10 being most crowded)         | 7                                   |
-| With regards to crowdedness, how satisfied are you with the trip? (Trip 1)                | Trip 1: Satisfaction level for crowdedness                  | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 9                                   |
-| On a scale from 1 to 10, how comfortable was the trip for you? (Trip 1)                   | Trip 1: Comfort level                                       | int64     | 1-10 (1 being least comfortable, 10 being most comfortable) | 7                                   |
-| On a scale from 1 to 10, how safe was the trip for you? (Trip 1)                          | Trip 1: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being most safe)               | 7                                   |
-| On a scale from 1 to 10, how satisfied are you with the trip overall? (Trip 1)            | Trip 1: Overall satisfaction level                          | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 9                                   |
-| Which bus stop did you board the bus from? (Trip 2)                                       | Trip 2: Starting bus stop                                   | object    | Bus stop names                                              | Kent Ridge MRT / Opp Kent Ridge MRT |
-| Which bus stop did you alight at? (Trip 2)                                                | Trip 2: Ending bus stop                                     | object    | Bus stop names                                              | LT27 / S17                          |
-| Which bus did you take? (Trip 2)                                                          | Trip 2: Bus number                                          | object    | Bus number (e.g., A1, A2, D1, D2)                           | A2                                  |
-| What time of day did this trip take place? (Trip 2)                                       | Trip 2: Time of day                                         | object    | Valid time format (e.g., hh:mm am/pm)                       | 12:00:00 pm                         |
-| What was the weather like during your trip? (Trip 2)                                      | Trip 2: Weather                                             | object    | Sunny, Rainy                                                | Sunny                               |
-| When you were boarding the bus, approximately how many people were there                  | Trip 2: Number of people at starting bus stop               | object    | Non-negative integer                                        | 14                                  |
-| How long did you have to wait for the bus? (Trip 2)                                       | Trip 2: Waiting time (in minutes)                           | object    | Non-negative integer                                        | 3                                   |
-| With regards to waiting time, how satisfied are you with the trip? (Trip 2)               | Trip 2: Satisfaction level for waiting time                 | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 8                                   |
-| On a scale from 1 to 10, how crowded was the bus? (Trip 2)                                | Trip 2: Crowdedness level                                   | int64     | 1-10 (1 being least crowded, 10 being most crowded)         | 6                                   |
-| With regards to crowdedness, how satisfied are you with the trip? (Trip 2)                | Trip 2: Satisfaction level for crowdedness                  | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 7                                   |
-| On a scale from 1 to 10, how comfortable was the trip for you? (Trip 2)                   | Trip 2: Comfort level                                       | int64     | 1-10 (1 being least comfortable, 10 being most comfortable) | 7                                   |
-| On a scale from 1 to 10, how safe was the trip for you? (Trip 2)                          | Trip 2: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being most safe)               | 6                                   |
-| On a scale from 1 to 10, how satisfied are you with the trip overall? (Trip 2)            | Trip 2: Overall satisfaction level                          | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 8                                   |
-| Are there any other factors that influence how satisfied you are with the NUS bus system? | Other factors influencing satisfaction level                | object    | Free response                                               | "Seat availability"                 |
+   Same as `cleaned_trip_data.csv`
 
-5. `test_trip_data_after_sdv.csv`
+5. `train_trip_data_after_smote.csv`
 
-   Similar to `cleaned_trip_data.csv`
+   Same as `cleaned_trip_data.csv`
 
-6. `test_trip_data_before_sdv.csv`
+6. `train_trip_data_after_sdv.csv`
 
-   Similar to `cleaned_trip_data.csv`
+   Same as `cleaned_trip_data.csv`
 
-7. `test_trip_data_before_sdv.csv`
+7. `test_trip_data_after_sdv.csv`
 
-   Similar to `cleaned_trip_data.csv`
+   Same as `cleaned_trip_data.csv`
 
-8. `train_trip_data_after_smote.csv`
+8. `combined_trip_data.csv`
 
-   Similar to `cleaned_trip_data.csv`
+   Same as `cleaned_trip_data.csv`
