@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 ###############################################################################################
 
 '''Preparing Data'''
-train = pd.read_csv('A1train_trip_data_after_sdv.csv')
+train = pd.read_csv('train_trip_data_after_sdv.csv')
 
 #Choosing the important columns and reformating the time and other variables into integers
 t = train[['bus_num', 'start', 'end','weather','has_exam', 'num_people_at_bus_stop', 'date', 'time', 'waiting_time','crowdedness', 'comfort', 'safety', 'overall_satisfaction']]
