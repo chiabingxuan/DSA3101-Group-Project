@@ -44,10 +44,6 @@ def main():
     ## Calculate the median score for each column
     median_scores = df[selected_columns].median()
 
-    # Investigate the Performance of each factor by obtaining the Median score of each factor
-    # Calculate the median score for each column
-    median_scores = df[selected_columns].mean()
-
     # Print Median Score for each column
     print("Median Scores for each column:")
     print(median_scores)
