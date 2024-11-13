@@ -61,8 +61,10 @@ def get_geojson_for_timelapse(data):
             "times": [LAST_BUS_DATETIME.strftime("%Y-%m-%dT%H:%M:%SZ")]
         }
     }]
+    seed = 0
     for _, row in data.iterrows():
         # add some normal noise to prevent all points (of the same bus stop) from falling on the same coordinate
+        np.random.seed(seed)
         noises = np.random.normal(0, 0.0001, 4)
         shift = 0.0003  # use shift to separate start and end markers
         iso_time_str = row["iso_time"]
@@ -113,6 +115,7 @@ def get_geojson_for_timelapse(data):
         }
 
         features.extend([feature_start, feature_end, feature_line])
+        seed += 1
 
     geojson_data = {
         "type": "FeatureCollection",
@@ -189,6 +192,12 @@ def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
                 ">{stop_name}</div>
             """)
         ).add_to(map)
+
+    # Add title to map
+    map_title = " ".join(timelapse_type.split("_")[1:]).title()
+    title_html = '<h3 style="position: absolute; left:40vw; top:1rem; z-index: 100000; font-size: 20px; color: white; font-family: Cambria, Cochin, Georgia, Times, serif;"><b>{}</b></h3>'.format(
+        map_title)
+    map.get_root().html.add_child(folium.Element(title_html))
 
     # Add route lines if we are making timelapse for a single bus_num
     # only one bus_num, given by scenario["bus_num"]
