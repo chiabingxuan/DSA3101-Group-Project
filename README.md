@@ -14,7 +14,7 @@
 
 ## 1. Project Overview
 
-Data Scavengers is a collaborative project aimed at collecting real-time data to optimise the bus system in the National University of Singapore (NUS). This is done by utilising various models, such as Route Optimisation, Demand Forecasting and Capacity Allocation models. Furthermore, visualisations have been created to not only assist us in understanding the current problems faced, but also to inform recommendations that can enhance the commuting experience for NUS students.
+"Data Scavengers" is a team of 8 data scientists working on a collaborative project, aiming to collect real-time data to optimise the bus system in NUS. This is done by utilising various models, such as User Segmentation, Route Optimisation, Demand Forecasting, and Capacity Allocation models. Furthermore, visualisations have been created to not only assist in understanding the current problems faced, but also to inform recommendations that can enhance the commuting experience for NUS students.
 
 **Project Objectives**
 

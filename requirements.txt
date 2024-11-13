@@ -9,6 +9,7 @@ exceptiongroup
 executing
 folium
 fonttools
+gym
 imblearn
 ipykernel
 ipython
