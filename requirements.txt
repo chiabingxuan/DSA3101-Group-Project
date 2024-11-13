@@ -28,6 +28,7 @@ parso
 pexpect
 pillow
 platformdirs
+prefixspan
 prompt_toolkit
 psutil
 ptyprocess
