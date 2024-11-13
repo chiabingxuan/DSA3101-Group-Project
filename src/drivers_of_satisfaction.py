@@ -12,7 +12,7 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 ####################################################################################################
 ### Objective: To determine main drivers of overall satisfaction                                 ###
 ### Analysis conducted: Key Driver Analysis                                                      ###
-### End Product: Performance-Importance Matrix                                                   ###
+### End Product: Performance-Importance Matrix (Tableau)                                         ###
 ####################################################################################################
 
 
@@ -157,58 +157,38 @@ def main():
 
     # Calculate R-squared for models excluding each predictor
     r_squared_values = {}
-    for predictor in X.columns:
-        reduced_X = X.drop(columns=[predictor])
-        r_squared_values[predictor] = calculate_r_squared(reduced_X, y)
+    for feature in X.columns:
+        reduced_X = X.drop(columns=[feature])
+        r_squared_values[feature] = calculate_r_squared(reduced_X, y)
 
     # Display the R-squared values for each reduced model
     print("\nR-squared Values for Reduced Models:")
-    for predictor, r2 in r_squared_values.items():
-        print(f"Excluding {predictor}: R-squared = {r2:.4f}")
+    for feature, r2 in r_squared_values.items():
+        print(f"Excluding {feature}: R-squared = {r2:.4f}")
 
     # Calculate the change in R-squared
-    print("\nChange in R-squared when excluding each predictor:")
+    changes = {}
+    changes = {feature: full_r_squared - r2 for feature, r2 in r_squared_values.items()}
+    print("\nChange in R-squared when excluding each feature:")
     for predictor, r2 in r_squared_values.items():
         change = full_r_squared - r2
         print(f"Change when excluding {predictor}: {change:.4f}")
 
+    changes.pop('const', None)
+
+    # Derive the Dominance Scores for each feature
+    ## Calculate the total change in R-squared (sum of all changes)
+    total_change = sum(changes.values())
+
+    # Calculate the dominance score (normalized importance) for each feature
+    dominance_scores = {feature: (change / total_change) for feature, change in changes.items()}
+
+    # Create a DataFrame to display the results
+    dominance_df = pd.DataFrame(list(dominance_scores.items()), columns=['Feature', 'Dominance Score'])
+    print(dominance_df)
+
     # Based on the Dominance Analysis, the removal of each factor leads to small decrease in explained variance. Comparing them (from largest to smallest impact) is as follows: Comfort, Safety, Crowdedness Satisfaction, Waiting Time Satisfaction
-    # Based on the R-Squared of the Model 0.3216, the explanatory power of the 4 factors identified gives a low contribution to the overall satisfaction. Thus, we will explore other Relative Importance Analysis Methods.
 
-    # Conduct SHAP Regression to determine Feature Importance using a Random Forest Model to determine overall satisfaction scores
-    shap.initjs()
-
-    # Import Train and Test Datasets
-    train = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False))
-    test = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False))
-
-    selected_features = ['waiting_time_satisfaction', 'crowdedness_satisfaction', 'comfort', 'safety']
-    X_train = train[selected_features]
-    X_test = test[selected_features]
-    y_train = train['overall_satisfaction']
-    y_test = test['overall_satisfaction']
-
-    print(X_train, X_train.shape)
-    print(X_test, X_test.shape)
-    print(y_train, y_train.shape)
-    print(y_test, y_test.shape)
-
-    # Train a random forest model
-    from sklearn.ensemble import RandomForestClassifier
-    clf = RandomForestClassifier()
-    clf.fit(X_train, y_train)
-
-    # Make prediction on test data
-    # y_pred = clf.predict(X_test)
-
-    # Classification Report 
-    # print(classification_report(y_pred, y_test))
-
-    explainer = shap.Explainer(clf, X_train, feature_names=X_train.columns)
-    shap_values = explainer(X_test)
-    ## shap_values_mean = np.mean(shap_values, axis=2)
-
-    print(shap_values.shape)
-    print(X_test.shape)
-
-    shap.summary_plot(shap_values, X_test)
+    # From the Dominance Score, the Relative Importance of the factors are in the following order: Comfort, Safety, Crowdedness Satisfaction, Waiting Time Satisfaction
+    # From the Median Score of each factor, the Relative Performance of the factors are in the following order: Safety, Comfort and Waiting Time Satisfaction, Crowdedness Satisfaction
+    # Using the Relative Importance and Performance, we proceed to plot a Performance-Importance Matrix to visualise our findings
