@@ -189,7 +189,7 @@ def main():
 
     # Carry out a modified version of BFS to estimate delays that are caused by a single source of disruption
     delays = bfs_disruption_propagation(
-        graph, start_node="COM3", initial_delay=10, decay_factor=0.8, max_depth=3)
+        graph, start_node="COM3", initial_delay=10, decay_factor=config.DECAY_FACTOR, max_depth=config.BFS_MAX_DEPTH)
 
     print(delays)
 

@@ -138,3 +138,7 @@ BUS_NUM_ROUTES = {
 
 # Parameters for identifying popular trips (for each timelapse)
 NUM_TOP_ROWS_FOR_POPULAR_TRIPS = 5
+
+# Parameters for the prediction of impacts of bus disruptions
+DECAY_FACTOR = 0.8
+BFS_MAX_DEPTH = 3
