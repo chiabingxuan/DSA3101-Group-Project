@@ -1,138 +1,349 @@
-##Simulation Of System Efficiency and User Satisfaction
 import pandas as pd
 import numpy as np
 import warnings
 import simpy
-import random
 from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import MinMaxScaler
+
+# Suppress warnings for a more user friendly experience
 warnings.filterwarnings("ignore")
-##Data
-train = pd.read_csv('train_trip_data_after_sdv.csv')
 
-## Cleaning
-# Group by 'bus_num' and 'time' and calculate the mean of 'crowdedness' and 'num_of_waiting_people'
-average_df = t.groupby(['bus_num', 'hour', 'start'])[['crowdedness', 'num_people_at_bus_stop']].mean().reset_index()
+###############################################################################################
+### Objective of model: Simulate the optimised bus route based on different scenarios       ###
+###############################################################################################
+
+'''Preparing Data'''
+train = pd.read_csv('A1train_trip_data_after_sdv.csv')
+
+#Choosing the important columns and reformating the time and other variables into integers
+t = train[['bus_num', 'start', 'end','weather','has_exam', 'num_people_at_bus_stop', 'date', 'time', 'waiting_time','crowdedness', 'comfort', 'safety', 'overall_satisfaction']]
+t['day_of_week'] = pd.to_datetime(t['date']).dt.dayofweek + 1
+t['time'] = pd.to_datetime(t['time']).dt.strftime('%H:%M:%S')
+t['hour'] = pd.to_datetime(t['time']).dt.hour
+t = t.drop(columns = ['time'])
+t['end'] = t['end'].replace('COM3', 'COM3_2')
+t['weather'] = t['weather'].map({'Sunny': 0, 'Rainy': 1})
+t['has_exam'] = t['has_exam'].map({'No': 0, 'Yes': 1})
+
+
+# Creating a dictionary to stall the average number of people at each bus stop during each different scenario
+# Calculate the mean of 'num_of_people_at_bus_stop'
+average_waiting_passengers = t.groupby(['bus_num', 'day_of_week', 'hour', 'weather', 'has_exam', 'start'])[['num_people_at_bus_stop']].mean().reset_index()
+
 # Rename columns if desired
-average_df.columns = ['bus_num', 'hour', 'start', 'average_crowdedness', 'average_num_of_waiting_people']
+average_waiting_passengers.columns = ['bus_num','day_of_week', 'hour', 'weather', 'has_exam', 'start','average_num_of_waiting_people']
+people_at_the_bus_stop = {}
+# Iterate through each row to construct the dictionary
+for _, row in average_waiting_passengers.iterrows():
+    # Create the tuple key from the first five columns
+    tuple_key = (row["bus_num"], row["day_of_week"], row["hour"], row["weather"], row["has_exam"])
+    
+    # Initialize the main key if not already present
+    if tuple_key not in people_at_the_bus_stop:
+        people_at_the_bus_stop[tuple_key] = {}
+    
+    # Assign the 'start' value as a key and 'average_num_of_waiting_people' as the nested value
+    people_at_the_bus_stop[tuple_key][row["start"]] = row["average_num_of_waiting_people"]
 
-## Creating the each bus route and distance
+
+# Creating a dictionary to stall the number of people getting off the bus at each bus stop during each different scenario
+total_disembark = t.groupby(['bus_num', 'day_of_week','hour', 'weather', 'has_exam', 'end']).size().reset_index(name='alighting_passengers')
+people_getting_off = {}
+# Iterate through each row to construct the dictionary
+for _, row in total_disembark.iterrows():
+    # Create the tuple key from the first five columns
+    tuple_key = (row["bus_num"], row["day_of_week"], row["hour"], row["weather"], row["has_exam"])
+    
+    # Initialize the main key if not already present
+    if tuple_key not in people_getting_off:
+        people_getting_off[tuple_key] = {}
+    
+    # Assign the 'start' value as a key and 'average_num_of_waiting_people' as the nested value
+    people_getting_off[tuple_key][row["end"]] = row["alighting_passengers"]
+    
+
+# Creating a dictionary to stall the mean waiting time of passengers at each bus stop during each different scenario
+# Calculate the mean of 'waiting_time'
+average_waiting_times = t.groupby(['bus_num', 'day_of_week', 'hour', 'weather', 'has_exam', 'start'])[['waiting_time']].mean().reset_index()
+
+# Rename columns if desired
+average_waiting_times.columns = ['bus_num','day_of_week', 'hour', 'weather', 'has_exam', 'start','average_waiting_time']
+
+waiting_times = {}
+
+# Iterate through each row to construct the dictionary
+for _, row in average_waiting_times.iterrows():
+    # Create the tuple key from the first five columns
+    tuple_key = (row["bus_num"], row["day_of_week"], row["hour"], row["weather"], row["has_exam"])
+    
+    # Initialize the main key if not already present
+    if tuple_key not in waiting_times:
+        waiting_times[tuple_key] = {}
+    
+    # Assign the 'start' value as a key and 'average_waiting_time' as the nested value
+    waiting_times[tuple_key][row["start"]] = row["average_waiting_time"]
+
+'''Calculation of priority scores'''
+### From Route_Optimisation.py to calculate the priority score ###
+unique_bus_numbers = train['bus_num'].unique().tolist()
+
+# Define the bus numbers and their respective stops present in our survey questions though not all will be used as it depends on whether respondents chose them
+bus_stops = {
+    'A1': ['LT13 / Ventus', 'BIZ2 / Opp HSSML', 'PGP', 'Kent Ridge MRT / Opp Kent Ridge MRT', 'LT27 / S17', 'UHC / Opp UHC', 'IT / CLB'],
+    'A2': ['IT / CLB', 'UHC / Opp UHC', 'LT27 / S17', 'Kent Ridge MRT / Opp Kent Ridge MRT', 'PGP', 'BIZ2 / Opp HSSML', 'LT13 / Ventus'],
+    'D1': ['COM3', 'BIZ2 / Opp HSSML', 'LT13 / Ventus', 'IT / CLB', 'UTown', 'IT / CLB', 'LT13 / Ventus', 'BIZ2 / Opp HSSML', 'COM3'],
+    'D2': ['COM3', 'PGP', 'Kent Ridge MRT / Opp Kent Ridge MRT', 'LT27 / S17', 'UHC / Opp UHC', 'UTown', 'UHC / Opp UHC', 'LT27 / S17', 'Kent Ridge MRT / Opp Kent Ridge MRT', 'PGP', 'COM3']
+}
+
+print(unique_bus_numbers)
+print(bus_stops)
+
+# Check if user filled in starting bus stops that does not exist for that particular bus number, remove such rows as these scenarios are not valid
+for bus_num in unique_bus_numbers:
+    stops = bus_stops.get(bus_num, [])
+    df2 = t[t['start'].isin(stops) | (t['bus_num'] != bus_num)]
+
+# Check if user filled in ending bus stops that does not exist for that particular bus number, remove such rows as these scenarios are not valid
+for bus_num in unique_bus_numbers:
+    stops = bus_stops.get(bus_num, [])
+    df2= t[t['end'].isin(stops) | (t['bus_num'] != bus_num)]
+
+# Initialize the MinMaxScaler
+scaler = MinMaxScaler()
+
+# Define a function to apply normalization for each bus stop group
+def normalize_group(group):
+    # Normalize only the numerical columns, excluding categorical columns like 'weather' and 'has_exam'
+    group[['num_people_at_bus_stop', 'crowdedness', 'comfort', 'safety']] = scaler.fit_transform(
+        group[['num_people_at_bus_stop', 'crowdedness', 'comfort', 'safety']])
+    return group
+
+# Create an empty dictionary to store priority orders for each bus, day, hour, weather, and exam status
+bus_route_priorities = {}
+
+# Loop through each bus
+for bus_num in unique_bus_numbers:
+        # Filter data for the specific bus
+        bus_df = df2[df2['bus_num'] == bus_num]
+
+        # Loop through each unique day of the week
+        for day in bus_df['day_of_week'].unique():
+            # Filter data for the specific day
+            bus_day_df = bus_df[bus_df['day_of_week'] == day]
+
+            # Loop through each unique hour
+            for hour in bus_day_df['hour'].unique():
+                # Filter data for the specific hour
+                bus_hour_df = bus_day_df[bus_day_df['hour'] == hour]
+
+                # Loop through each unique weather condition
+                for weather in bus_hour_df['weather'].unique():
+                    # Filter data for the specific weather condition
+                    bus_weather_df = bus_hour_df[bus_hour_df['weather'] == weather]
+
+                    # Loop through each unique exam status
+                    for has_exam in bus_weather_df['has_exam'].unique():
+                        # Filter data for the specific exam status
+                        bus_exam_df = bus_weather_df[bus_weather_df['has_exam'] == has_exam]
+
+                        # Copy the DataFrame to avoid modifying the original one
+                        df_hour = bus_exam_df.copy()
+
+                        # Apply the normalization group-wise for each unique bus stop (start), excluding 'start'
+                        df_hour_normalized = df_hour.groupby('start', group_keys=False).apply(normalize_group)
+                        # Calculate the average stats by bus stop, taking into account normalized demand (num_people_at_bus_stop) and user preferences (crowdedness, comfort, safety)
+                        # These user preferences (crowdedness, comfort, safety) are the 3 most strongly correlated factors to overall_satisfaction score as shown in our "Enhanced Visualization - Overall Satisfaction Score against Factors" Tableau Dashboard, under the visualisations folder of our repository
+                        average_stats_by_start = df_hour_normalized.groupby('start')[['num_people_at_bus_stop', 'crowdedness', 'comfort', 'safety']].mean()
+
+                        # Priority score will take into account normalized demand (num_people_at_bus_stop) and user preferences (crowdedness, comfort, safety)
+                        average_stats_by_start['priority_score'] = average_stats_by_start['num_people_at_bus_stop'] - average_stats_by_start['crowdedness'] - average_stats_by_start['comfort'] - average_stats_by_start['safety']
+
+                        # Sort the bus stops by the priority score in descending order
+                        average_stats_by_start_sorted = average_stats_by_start.sort_values(by='priority_score', ascending=False)
+
+                        # Store the sorted bus stop priority for this bus, day, hour, weather, and exam status
+                        bus_route_priorities[(bus_num, day, hour, weather, has_exam)] = average_stats_by_start_sorted.index.tolist()
+
+# Sort the bus_route_priorities based on bus, day of the week, hour, weather, and exam status (all in ascending order)
+sorted_bus_route_priorities = dict(sorted(bus_route_priorities.items(), key=lambda x: (x[0][0], x[0][1], x[0][2], x[0][3], x[0][4])))
+
+
+'''Simulation'''
+# Parameters
+BUS_SPEED = 0.4  # Assumption of average bus speed in NUS in km/min 
+MAX_BUS_CAPACITY = 50  # Max number of people on the bus
+
 # Define bus stops and distances
-A1_bus_stops = ["KR BI", "LT13 / Ventus", "BIZ2 / Opp HSSML", "PGP", "Kent Ridge MRT / Opp Kent Ridge MRT", "LT27 / S17", "UHC / Opp UHC", "IT / CLB", "KR BI"]
-A1_distances = [0.5, 0.7, 0.7, 0.9, 0.5, 0.7, 0.5, 0.6]  # Distances between consecutive stops
-A2_bus_stops = ["KR BI", "IT / CLB", "UHC / Opp UHC", "LT27 / S17", "Kent Ridge MRT / Opp Kent Ridge MRT", "PGP", "BIZ2 / Opp HSSML", "LT13 / Ventus", "KR BI"]
-A2_distances = [0.6, 0.5, 0.7, 0.5, 0.9, 0.7, 0.7, 0.5]  # Distances between consecutive stops
-D1_bus_stops = ["COM3", "BIZ2 / Opp HSSML", "LT13 / Ventus", "IT / CLB", "UTown", "IT / CLB", "LT13 / Ventus", "BIZ2 / Opp HSSML", "COM3_2"]
-D1_distances = [0.3, 0.7, 0.4, 0.9, 1.0, 0.4, 0.7, 0.3]  # Distances between consecutive stops
-D2_bus_stops = ["COM3", "PGP", "Kent Ridge MRT / Opp Kent Ridge MRT", "LT27 / S17", "UHC / Opp UHC", "UTown", "UHC / Opp UHC", "LT27 / S17", "Kent Ridge MRT / Opp Kent Ridge MRT", "PGP", "COM3_2"]
-D2_distances = [0.8, 0.9, 0.5, 0.7, 0.7, 0.8, 0.7, 0.5, 0.9, 0.8]  # Distances between consecutive stops
+stop_distances = {
+    "A1": {
+        "LT13 / Ventus": 0.5,
+        "BIZ2 / Opp HSSML": 1.2,
+        "PGP": 1.9,
+        "Kent Ridge MRT / Opp Kent Ridge MRT": 2.8,
+        "LT27 / S17": 3.3,
+        "UHC / Opp UHC": 4.0,
+        "IT / CLB": 4.5
+    },
+    "A2": {
+        "IT / CLB": 0.6,
+        "UHC / Opp UHC": 1.1,
+        "LT27 / S17": 1.8,
+        "Kent Ridge MRT / Opp Kent Ridge MRT": 2.3,
+        "PGP": 3.2,
+        "BIZ2 / Opp HSSML": 3.9,
+        "LT13 / Ventus": 4.6
+    },
+    "D1": {
+        "COM3": 0.0,
+        "BIZ2 / Opp HSSML": 0.3,
+        "LT13 / Ventus": 1.0,
+        "IT / CLB": 1.4,
+        "UTown": 2.3
+    },
+    "D2": {
+        "COM3": 0.0,
+        "PGP": 0.8,
+        "Kent Ridge MRT / Opp Kent Ridge MRT": 1.7,
+        "LT27 / S17": 2.2,
+        "UHC / Opp UHC": 2.9,
+        "UTown": 3.6
+    }
+}
 
-# Initialize dictionary
-A1_bus_stop_distances = {}
-A2_bus_stop_distances = {}
-D1_bus_stop_distances = {}
-D2_bus_stop_distances = {}
 
-# Populate the dictionaries
-
-for i, stop in enumerate(A1_bus_stops):
-    A1_bus_stop_distances[stop] = {}
-    for j in range(i+1, len(A1_bus_stops)):
-        # Accumulate distance for each subsequent stop
-        A1_bus_stop_distances[stop][A1_bus_stops[j]] = round(sum(A1_distances[i:j]), 2)
-for i, stop in enumerate(A2_bus_stops):
-    A2_bus_stop_distances[stop] = {}
-    for j in range(i+1, len(A2_bus_stops)):
-        # Accumulate distance for each subsequent stop
-        A2_bus_stop_distances[stop][A2_bus_stops[j]] = round(sum(A2_distances[i:j]), 2)
-for i, stop in enumerate(D1_bus_stops):
-    D1_bus_stop_distances[stop] = {}
-    for j in range(i+1, len(D1_bus_stops)):
-        # Accumulate distance for each subsequent stop
-        D1_bus_stop_distances[stop][D1_bus_stops[j]] = round(sum(D1_distances[i:j]), 2)
-for i, stop in enumerate(D2_bus_stops):
-    D2_bus_stop_distances[stop] = {}
-    for j in range(i+1, len(D2_bus_stops)):
-        # Accumulate distance for each subsequent stop
-        D2_bus_stop_distances[stop][D2_bus_stops[j]] = round(sum(D2_distances[i:j]), 2)
+def get_condition(): # To get the different scenarios
+    try:
+        # Ask the user for input to form the tuple key
+        print("Please input the values for the route selection.")
         
-# Example crowd level and satisfaction data for training
-crowd_data = train[['crowdedness', 'overall_satisfaction']]
+        # Get inputs and validate their types
+        first_value = str(input("Bus Number (A1 or A2 or D1 or D2): "))
+        if first_value not in ['A1', 'A2', 'D1', 'D2']:
+            raise ValueError("Invalid bus number. Choose from 'A1', 'A2', 'D1', 'D2'.")
+
+        second_value = int(input("Please pick a day from the list above (e.g., 1 for Monday): "))
+        if second_value not in [1, 2, 3, 4, 5, 6, 7]:
+            raise ValueError("Invalid day. Choose a number between 1 and 7.")
+
+        third_value = int(input("Please pick an hour from the list above (e.g, 8 for 0800H - 0859H): "))
+        if third_value not in range(7, 24):
+            raise ValueError("Invalid hour. Choose an hour between 7 and 23.")
+
+        fourth_value = int(input("Please pick a weather condition from the list above (e.g., 0 for Sunny, 1 for Rainy): "))
+        if fourth_value not in [0, 1]:
+            raise ValueError("Invalid weather condition. Choose 0 for Sunny or 1 for Rainy.")
+
+        fifth_value = int(input("Please pick an exam status from the list above (e.g., 0 for No, 1 for Yes): "))
+        if fifth_value not in [0, 1]:
+            raise ValueError("Invalid exam status. Choose 0 for No or 1 for Yes.")
+
+    except ValueError as e:
+        print(f"Error: {e}")
+        return None  # Or you could use a loop to ask again until valid input is given
+
+    # Form the tuple if all inputs are valid
+    route_key = (first_value, second_value, third_value, fourth_value, fifth_value)
+    return route_key
+
+def get_route(route_key):
+
+    # Retrieve the route based on the tuple key
+    route = sorted_bus_route_priorities.get(route_key, [])
+    if not route:
+        print("No optimised route found for this combination.") # Due to lack of data, some scenarios are not included so when it is not in the dictionary keys, this will be printed.
+        return []
+
+    # Reorder the route according to the original order
+    original_order = bus_stops.get(route_key[0], [])  # Get the route order for the given bus
+    # Filter the stops to match those in the provided route, maintaining order
+    filtered_route = [stop for stop in original_order if stop in route]
+    return filtered_route
+
+def get_route_distances(route_key, route): # To get the distances between 2 consecutive bus stops for the suggested route
+    distances = []
+    distances.append(stop_distances[route_key[0]][route[0]])
+    for i in range(1,len(route)):
+        distances.append(round(abs(stop_distances[route_key[0]][route[i-1]] - stop_distances[route_key[0]][route[i]]),2)
+        )
+    return distances
+
+def get_boarding_passengers(route_key, route): # To get the number of passengers boarding
+    boarding_passengers = []
+    for i in range(len(route)):
+        boarding_passengers.append(people_at_the_bus_stop[route_key][route[i]])
+    boarding_passengers = [people // 2 for people in boarding_passengers] # There are 2 buses at each bus stop so assumption made is that probability that the waiting passengers get on the bus is 0.5.
+    return boarding_passengers
+
+def get_alighting_passengers(route_key, route): # To get the number of passengers alighting
+    alighting_passengers = []
+    for i in range(len(route)):
+        if not route[i] in people_getting_off[route_key]:
+            alighting_passengers.append(0)
+        else:
+            alighting_passengers.append(people_getting_off[route_key][route[i]])
+    alighting_passengers = [people * 2 for people in alighting_passengers]
+    return alighting_passengers
+
+def get_crowdedness(boarding_passengers, alighting_passengers): # To calculate crowdedness; crowdedness level is 0 to 10 so the formula for this is no. of passengers in the bus / max capacity * 10
+    crowdedness = []
+    for i in range(len(boarding_passengers)):
+        if i == 0:
+          crowdedness.append(min(round((boarding_passengers[i] - alighting_passengers[i]) / MAX_BUS_CAPACITY * 10, 1), 10))
+        else: 
+          crowdedness.append(min(round((boarding_passengers[i] - alighting_passengers[i])/ MAX_BUS_CAPACITY * 10 + crowdedness[i-1], 1), 10))
+    return crowdedness
+
+def get_waiting_time(route_key, route, distances): # To get the waiting time of the passengers at the bus stop
+    waiting_time = []
+    for i in range(len(route)):
+        if i == 0:
+            waiting_time.append(min(round(waiting_times[route_key][route[i]]), round(distances[i]/ BUS_SPEED))) # either the mean waiting time of the original route or the shortened waiting time due to the new route
+        else:
+            waiting_time.append(min(round(waiting_times[route_key][route[i]]), round((distances[i] + distances[i-1])/ BUS_SPEED)))
+    return waiting_time
 
 # Train a linear regression model for satisfaction prediction
 def train_satisfaction_model(data):
     model = LinearRegression()
-    model.fit(data[['crowdedness']], data['overall_satisfaction'])
+    # Pass both columns as a list inside a single set of brackets
+    model.fit(data[['crowdedness', 'waiting_time']], data['overall_satisfaction'])
     return model
 
-satisfaction_model = train_satisfaction_model(crowd_data)
+satisfaction_model = train_satisfaction_model(t)
 
 # Function to predict satisfaction using the model
-def predict_satisfaction(crowd_level):
-    return satisfaction_model.predict([[crowd_level]])[0]
+def predict_satisfaction(crowdedness, waiting_time):
+    satisfaction_list = []
+    for i in range(len(crowdedness)):
+        # Make sure to pass both crowdedness and waiting_time as a single row
+        satisfaction_list.append(round(satisfaction_model.predict([[crowdedness[i], waiting_time[i]]])[0]))
 
-class Bus:
-    def __init__(self, env, name, stops, distances, crowd_df):
-        self.env = env
-        self.name = name
-        self.stops = stops
-        self.distances = distances
-        self.capacity = MAX_BUS_CAPACITY
-        self.passengers = []  # List to hold current passengers
-        self.crowd_df = crowd_df  # DataFrame showing crowd levels at stops and times
-        self.satisfaction_levels = []
+    return satisfaction_list
 
-    def run_hourly_schedule(self, start_hour, end_hour):
-        # Loop through each hour from start_hour to end_hour
-        for hour in range(start_hour, end_hour + 1):
-            print(f"\n--- Hour {hour}:00 ---")
-            yield self.env.process(self.run_for_hour(hour))
-            yield self.env.timeout(60)  # Move to the next hour (60 minutes)
+# Function to simulate the bus route
+def simulate_bus_route(env, route_key, route, passengers_up, passengers_down, crowdedness, waiting_time, satisfaction):
+    print(f"Starting bus route simulation with stops: {route}")
+    print("---------------------------------------------------------")
+    for i in range(len(route)):
+        print(f"Bus arrived at {route[i]}")
+        print(f"{passengers_up[i]} passengers have boarded the bus")
+        print(f"{passengers_down[i]} passengers have got off the bus")
+        print(f"Crowdedness level: {crowdedness[i]}")
+        print(f"Waiting time: {waiting_time[i]} minutes")
+        print(f"Overall Satisfaction: {satisfaction[i]}")
+        print("---------------------------------------------------------")
+        yield env.timeout(1)  # Simulating time spent at each stop
 
-        mean_satisfaction = np.mean(self.satisfaction_levels) if self.satisfaction_levels else 0
-        print(f"\nMean Satisfaction Level for {self.name}: {mean_satisfaction:.2f}")
-
-    def run_for_hour(self, hour):
-        for i, stop in enumerate(self.stops):
-            travel_time = self.get_travel_time(i)
-            yield self.env.timeout(travel_time)  # Travel to the next stop
-            print(f"{self.name} arrived at {stop}")
-            self.board_passengers(stop, hour)
-
-            # Wait before starting next trip based on bus frequency
-            yield self.env.timeout(get_bus_frequency(hour))
-
-    def get_travel_time(self, stop_index):
-        if stop_index < len(self.distances):
-            distance = self.distances[stop_index]
-            speed = random.uniform(*BUS_SPEED_RANGE)
-            return round(distance / speed, 2)
-        return 0
-
-    def board_passengers(self, stop, hour):
-        # Retrieve crowd level for current stop and time
-        hour = int(self.env.now // 60) % 24  # Get the current hour
-        crowd_level = self.get_crowd_level(stop, hour)
-        
-        # Predict satisfaction using crowd level
-        satisfaction = predict_satisfaction(crowd_level)
-
-        self.satisfaction_levels.append(satisfaction)
-        
-        # Log satisfaction or assign it to passengers
-        print(f"{self.name} boarding passengers at {stop} with crowd level {crowd_level} -> Predicted Satisfaction: {satisfaction:.2f}")
-
-    def get_crowd_level(self, stop, hour):
-        # Retrieve crowd level from DataFrame for the given stop and hour
-        crowd_level = self.crowd_df[(self.crowd_df['start'] == stop) & (self.crowd_df['hour'] == hour)]['average_crowdedness']
-        if not crowd_level.empty:
-            return crowd_level.values[0]
-        return 0  # Default if no data for the stop and hour
-
-# Example DataFrame showing crowd levels at stops and times
-crowd_df = average_df
-
-# Example environment setup and bus creation
+# Set up the SimPy environment and run the simulation
 env = simpy.Environment()
-bus = Bus(env, 'A1', A1_bus_stops, A1_distances, crowd_df)
-env.process(bus.run_hourly_schedule(start_hour=7, end_hour=23))
-env.run()  # Run for a short duration for testing     
+selected_condition = get_condition()
+selected_route = get_route(selected_condition)
+if selected_route != []:
+    distances = get_route_distances(selected_condition, selected_route)
+    boarding_passengers = get_boarding_passengers(selected_condition, selected_route)
+    alighting_passengers = get_alighting_passengers(selected_condition, selected_route)
+    crowdedness = get_crowdedness(boarding_passengers, alighting_passengers)
+    waiting_time = get_waiting_time(selected_condition, selected_route, distances)
+    satisfaction = predict_satisfaction(crowdedness, waiting_time)
+    env.process(simulate_bus_route(env, selected_condition, selected_route, boarding_passengers, alighting_passengers, crowdedness, waiting_time, satisfaction))
+    env.run()  
