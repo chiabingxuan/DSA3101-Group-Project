@@ -1,6 +1,6 @@
 import datetime
 
-# 1. survey_cleaning.py
+# Cleaning of majors
 """
 Possible reasons on unclean / unstandardised data:
 - Removing special characters.
@@ -85,6 +85,17 @@ MAJOR_MAPPING = {
     "statistics": "statistics"
 }
 
+# Parameters for synthetic data generation
+NUM_NEW_ROWS_SYNTHESISED_TRAIN = 2000
+
+NUM_NEW_ROWS_SYNTHESISED_TEST = 1160
+
+# Bus system details
+NUS_COORDINATES = (1.2975, 103.7764)
+
+FIRST_BUS_TIME, LAST_BUS_TIME = datetime.time(
+    hour=7, minute=0), datetime.time(hour=23, minute=0)  # Operating hours
+
 BUS_NUMS_OF_BUS_STOPS = {
     "Kent Ridge MRT / Opp Kent Ridge MRT": ["A1", "A2", "D2"],
     "LT27 / S17": ["A1", "A2", "D2"],
@@ -97,19 +108,6 @@ BUS_NUMS_OF_BUS_STOPS = {
     "PGP": ["A1", "A2", "D2"]
 }
 
-# Just general operating hours for now (7 am - 11 pm), we can change this in the future if we want
-FIRST_BUS_TIME, LAST_BUS_TIME = datetime.time(
-    hour=7, minute=0), datetime.time(hour=23, minute=0)
-
-# 2. synthetic_data_generation_train.py
-NUM_NEW_ROWS_SYNTHESISED_TRAIN = 2000
-
-# 3. synthetic_data_generation_test.py
-NUM_NEW_ROWS_SYNTHESISED_TEST = 1160
-
-# 4. analyse_travel_patterns.py
-NUS_COORDINATES = (1.2975, 103.7764)
-
 BUS_STOP_COORDINATES = {
     "Kent Ridge MRT / Opp Kent Ridge MRT": (1.2949169774094218, 103.78450347558939),
     "LT27 / S17": (1.2974629302644196, 103.78085273302771),
@@ -121,6 +119,8 @@ BUS_STOP_COORDINATES = {
     "IT / CLB": (1.296984108396615, 103.77264737349888),
     "PGP": (1.2914385089186413, 103.78047445708181)
 }
+
+BUS_STOP_NAMES = list(BUS_STOP_COORDINATES.keys())
 
 BUS_NUM_COLOURS = {
     "A1": "red",
@@ -136,6 +136,5 @@ BUS_NUM_ROUTES = {
     "D2": ["COM3", "PGP", "Kent Ridge MRT / Opp Kent Ridge MRT", "LT27 / S17", "UHC / Opp UHC", "UTown", "UHC / Opp UHC", "LT27 / S17", "Kent Ridge MRT / Opp Kent Ridge MRT", "PGP", "COM3"]
 }
 
-BUS_STOP_NAMES = list(BUS_STOP_COORDINATES.keys())
-
+# Parameters for identifying popular trips (for each timelapse)
 NUM_TOP_ROWS_FOR_POPULAR_TRIPS = 5
