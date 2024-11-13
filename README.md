@@ -69,6 +69,7 @@ DSA3101-Group-Project
 │   ├── analyse_travel_patterns.py                # Analysis of travel patterns from trip data
 │   ├── capacity_allocation.py                    # Allocates transport capacity based on demand
 │   ├── config.py                                 # Configuration settings
+│   ├── demand_forecast_visualisation.ipynb       # Creates timelapse of demand heatmap
 │   ├── demand_forecasting.py                     # Forecasts demand using trip data
 │   ├── Drivers_of_Satisfaction.ipynb             # Analysis of satisfaction drivers
 │   ├── filter_count.py                           # Script to count unique trips at 10 min interval
@@ -76,7 +77,7 @@ DSA3101-Group-Project
 │   ├── make_timelapses_for_travel_patterns.py    # Creates timelapses of travel patterns
 │   ├── origin_destination_matrix.py              # Computes origin-destination matrix
 │   ├── Route_Optimization.py                     # Optimizes travel routes based on trip data
-│   ├── Simulation of System Efficiency And Us.py # Simulates system efficiency
+│   ├── Simulation_of_System_Efficiency_And_Us.py # Simulates system efficiency
 │   ├── smote.py                                  # Applies SMOTE-NC to balance data
 │   ├── survey_cleaning.py                        # Cleans and preprocesses survey data
 │   ├── synthetic_data_generation_test.py         # Generates synthetic test data using SDV
@@ -121,6 +122,7 @@ DSA3101-Group-Project
 │   │   └── initial_year_bar_chart.png                          # Bar chart of distribution of student year
 │   │
 │   ├── timelapses/                                             # Timelapse visualizations
+│   │   ├── demand_heatmap.html                                 # Timelapse of demand heatmap
 │   │   ├── nus_a1_trip_markers_timelapse.html                  # Timelapse of trip markers for bus service A1
 │   │   ├── nus_a2_trip_markers_timelapse.html                  # Timelapse of trip markers for bus service A2
 │   │   ├── nus_cluster_0_trip_markers_timelapse.html           # Timelapse of trip markers for cluster 0
@@ -245,7 +247,7 @@ The following are a list of data dictionaries for each of the CSV files stated i
 | Do you stay on campus?                                                                    | Is the respondent staying on campus?                        | object    | Yes, No                                                     | No                                  |
 | In general, what is the main reason that you take the school bus?                         | Main reason for taking the school bus                       | object    | To go to class, To go for meals, To go to MRT, Other        | To go to class                      |
 | On a normal school day, how many times do you take the school bus?                        | Number of times the respondent takes the school bus per day | object    | Non-negative integer                                        | 2                                   |
-| On a normal school day, how long do you spend riding the school bus?                       | Duration spent riding the school bus per day (in minutes)   | object    | Non-negative integer                                        | 5                                   |
+| On a normal school day, how long do you spend riding the school bus?                      | Duration spent riding the school bus per day (in minutes)   | object    | Non-negative integer                                        | 5                                   |
 | Please enter today's date.                                                                | Date of trips                                               | object    | Valid date format (dd-mm-yyyy)                              | 9/16/2024                           |
 | Do you have an exam today?                                                                | Does the respondent have an exam that day?                  | object    | Yes, No                                                     | No                                  |
 | Which bus stop did you board the bus from? (Trip 1)                                       | Trip 1: Starting bus stop                                   | object    | Bus stop names                                              | Kent Ridge MRT / Opp Kent Ridge MRT |
@@ -253,26 +255,26 @@ The following are a list of data dictionaries for each of the CSV files stated i
 | Which bus did you take? (Trip 1)                                                          | Trip 1: Bus number                                          | object    | Bus number (e.g., A1, A2, D1, D2)                           | A1                                  |
 | What time of day did this trip take place? (Trip 1)                                       | Trip 1: Time of day                                         | object    | Valid time format (e.g., hh:mm am/pm)                       | 8:50:00 am                          |
 | What was the weather like during your trip? (Trip 1)                                      | Trip 1: Weather                                             | object    | Sunny, Rainy                                                | Sunny                               |
-| When you were boarding the bus, approximately how many people were there?                  | Trip 1: Number of people at starting bus stop               | int64     | Non-negative integer                                        | 20                                  |
-| How long did you have to wait for the bus? (Trip 1)                                       | Trip 1: Waiting time (in minutes)                           | object    | Non-negative integer                                        | 6                           |
+| When you were boarding the bus, approximately how many people were there?                 | Trip 1: Number of people at starting bus stop               | int64     | Non-negative integer                                        | 20                                  |
+| How long did you have to wait for the bus? (Trip 1)                                       | Trip 1: Waiting time (in minutes)                           | object    | Non-negative integer                                        | 6                                   |
 | With regards to waiting time, how satisfied are you with the trip? (Trip 1)               | Trip 1: Satisfaction level for waiting time                 | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 7                                   |
 | On a scale from 1 to 10, how crowded was the bus? (Trip 1)                                | Trip 1: Crowdedness level                                   | int64     | 1-10 (1 being least crowded, 10 being most crowded)         | 7                                   |
 | With regards to crowdedness, how satisfied are you with the trip? (Trip 1)                | Trip 1: Satisfaction level for crowdedness                  | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 9                                   |
 | On a scale from 1 to 10, how comfortable was the trip for you? (Trip 1)                   | Trip 1: Comfort level                                       | int64     | 1-10 (1 being least comfortable, 10 being most comfortable) | 7                                   |
-| On a scale from 1 to 10, how safe was the trip for you? (Trip 1)                          | Trip 1: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being safest)               | 7                                   |
+| On a scale from 1 to 10, how safe was the trip for you? (Trip 1)                          | Trip 1: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being safest)                  | 7                                   |
 | On a scale from 1 to 10, how satisfied are you with the trip overall? (Trip 1)            | Trip 1: Overall satisfaction level                          | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 9                                   |
 | Which bus stop did you board the bus from? (Trip 2)                                       | Trip 2: Starting bus stop                                   | object    | Bus stop names                                              | Kent Ridge MRT / Opp Kent Ridge MRT |
 | Which bus stop did you alight at? (Trip 2)                                                | Trip 2: Ending bus stop                                     | object    | Bus stop names                                              | LT27 / S17                          |
 | Which bus did you take? (Trip 2)                                                          | Trip 2: Bus number                                          | object    | Bus number (e.g., A1, A2, D1, D2)                           | A2                                  |
 | What time of day did this trip take place? (Trip 2)                                       | Trip 2: Time of day                                         | object    | Valid time format (e.g., hh:mm am/pm)                       | 12:00:00 pm                         |
 | What was the weather like during your trip? (Trip 2)                                      | Trip 2: Weather                                             | object    | Sunny, Rainy                                                | Sunny                               |
-| When you were boarding the bus, approximately how many people were there?                  | Trip 2: Number of people at starting bus stop               | object    | Non-negative integer                                        | 14                                  |
+| When you were boarding the bus, approximately how many people were there?                 | Trip 2: Number of people at starting bus stop               | object    | Non-negative integer                                        | 14                                  |
 | How long did you have to wait for the bus? (Trip 2)                                       | Trip 2: Waiting time (in minutes)                           | object    | Non-negative integer                                        | 3                                   |
 | With regards to waiting time, how satisfied are you with the trip? (Trip 2)               | Trip 2: Satisfaction level for waiting time                 | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 8                                   |
 | On a scale from 1 to 10, how crowded was the bus? (Trip 2)                                | Trip 2: Crowdedness level                                   | int64     | 1-10 (1 being least crowded, 10 being most crowded)         | 6                                   |
 | With regards to crowdedness, how satisfied are you with the trip? (Trip 2)                | Trip 2: Satisfaction level for crowdedness                  | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 7                                   |
 | On a scale from 1 to 10, how comfortable was the trip for you? (Trip 2)                   | Trip 2: Comfort level                                       | int64     | 1-10 (1 being least comfortable, 10 being most comfortable) | 7                                   |
-| On a scale from 1 to 10, how safe was the trip for you? (Trip 2)                          | Trip 2: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being safest)               | 6                                   |
+| On a scale from 1 to 10, how safe was the trip for you? (Trip 2)                          | Trip 2: Safety level                                        | int64     | 1-10 (1 being least safe, 10 being safest)                  | 6                                   |
 | On a scale from 1 to 10, how satisfied are you with the trip overall? (Trip 2)            | Trip 2: Overall satisfaction level                          | int64     | 1-10 (1 being least satisfied, 10 being most satisfied)     | 8                                   |
 | Are there any other factors that influence how satisfied you are with the NUS bus system? | Other factors influencing satisfaction level                | object    | Free response                                               | "Seat availability"                 |
 
