@@ -3,7 +3,7 @@ import os
 
 def main():
     # Load data from CSV
-    data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False)
+    data = pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
 
     # Group by 'bus_num', 'start', and 'end' to obtain counts
     counts = data.groupby(['bus_num', 'start', 'end']).size().reset_index(name='count')
@@ -14,7 +14,7 @@ def main():
     # Probability by dividing the count of each end by the total for each (bus_num, start)
     counts['probability'] = counts['count'] / totals
 
-    # File path to save HTML output
+    # Save HTML output
     output_file = os.path.join(os.path.dirname(__file__), "../visualisations/od_probability_matrices.html")
 
     # Open the file to write HTML content
