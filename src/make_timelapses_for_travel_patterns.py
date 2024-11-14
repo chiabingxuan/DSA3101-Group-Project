@@ -64,7 +64,7 @@ def get_geojson_for_timelapse(data):
     seed = 0
     for _, row in data.iterrows():
         # add some normal noise to prevent all points (of the same bus stop) from falling on the same coordinate
-        np.random.seed(seed)
+        np.random.seed(seed)    # use random seed for reproducibility
         noises = np.random.normal(0, 0.0001, 4)
         shift = 0.0003  # use shift to separate start and end markers
         iso_time_str = row["iso_time"]
@@ -151,9 +151,10 @@ def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
         # Filter using cluster
         if "cluster" in scenario:
             # Assign each row to the pre-defined clusters
-            # first, remove rows with zero trips_per_day, since the clustering makes use of duration_per_day / trips_per_day as an engineered feature (ensures that number of rows of trip_data = number of cluster labels)
+            # First, remove rows with zero trips_per_day, since the clustering makes use of duration_per_day / trips_per_day as an engineered feature (ensures that number of rows of trip_data = number of cluster labels)
             trip_data = trip_data[trip_data["trips_per_day"] != 0]
-            # get column of assigned clusters, ordering of rows is still the same as train_trip_data_after_sdv.csv
+
+            # Get column of assigned clusters, ordering of rows is still the same as train_trip_data_after_sdv.csv
             cluster_column = User_Segmentation_Model.segmentation_model(
                 trip_data)["cluster_labels_of_data_point"]
             trip_data["cluster"] = cluster_column

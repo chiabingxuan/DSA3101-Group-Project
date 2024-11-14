@@ -4,9 +4,11 @@ import synthetic_data_generation_train
 import synthetic_data_generation_test
 import drivers_of_satisfaction
 import analyse_travel_patterns
+import predict_disruption_impact
 import demand_forecasting
 import User_Segmentation_Model
 import Route_Optimization
+import Simulation_Of_System_Efficiency_and_User_Satisfaction
 import capacity_allocation
 
 if __name__ == "__main__":
@@ -31,11 +33,16 @@ if __name__ == "__main__":
     # 7. Analyse travel patterns
     analyse_travel_patterns.main()
 
-    # 8. Demand forecasting
+    # 8. Predicting impact of bus disruptions
+    predict_disruption_impact.main()
+
+    # 9. Demand forecasting
     demand_forecasting.main()
 
-    # 9. Route optimisation
+    # 10. Route optimisation
     Route_Optimization.main()
 
-    # 10. Capacity allocation
+    # 11. Simulating system efficiency and user satisfaction
+
+    # 12. Capacity allocation
     capacity_allocation.main()

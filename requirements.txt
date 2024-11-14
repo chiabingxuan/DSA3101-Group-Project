@@ -9,6 +9,7 @@ exceptiongroup
 executing
 folium
 fonttools
+gym
 imblearn
 ipykernel
 ipython
@@ -28,6 +29,7 @@ parso
 pexpect
 pillow
 platformdirs
+prefixspan
 prompt_toolkit
 psutil
 ptyprocess
