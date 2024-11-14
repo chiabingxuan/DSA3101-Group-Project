@@ -22,11 +22,6 @@ def demand_forecasting():
     train = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False))
     test = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False))
 
-    # Identify categorical and numerical columns
-    categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'has_exam', 'start', 'end', 'bus_num', 'weather' ]
-    numerical_cols = ['trips_per_day', 'duration_per_day', 'waiting_time', 'waiting_time_satisfaction', 
-                      'crowdedness', 'crowdedness_satisfaction', 'comfort', 'safety', 'overall_satisfaction']
-
     # Drop rows with NaN values (from lagging)
     train = train.dropna()
     test = test.dropna()
@@ -37,32 +32,25 @@ def demand_forecasting():
     X_test = test.drop(columns=['num_people_at_bus_stop'])
     y_test = test['num_people_at_bus_stop']
 
-    # Print the dtype of the 'time' column
-    print(f"The dtype of 'time' column is: {X_train['time'].dtype}")
-
-
     # Extract columns and categorize them
-    categorical = []
-    numerical = []
+    categorical_cols = []
+    numerical_cols = []
 
     for col in X_train.columns:
-        if X_train[col].dtype.kind == 'M':  # Exclude datetime columns
+        if col == 'time' or col == 'date':  # Check if the column name is 'time' or 'date'
             continue
         elif X_train[col].dtype == 'object':  # If column is of type object, it's categorical
-            categorical.append(col)
+            categorical_cols.append(col)
         elif pd.api.types.is_numeric_dtype(X_train[col]):  # If it's numerical
-            numerical.append(col)
+            numerical_cols.append(col)
         elif X_train[col].dtype == 'bool':  # Boolean columns
-            categorical.append(col)
-
-    print("Categorical Columns:", categorical)
-    print("Numerical Columns:", numerical)
+            categorical_cols.append(col)
 
     # Change datetime object to only keep time
     X_train['time'] = pd.to_datetime(X_train['time']).dt.time
     X_test['time'] = pd.to_datetime(X_test['time']).dt.time
 
-    '''Adding Interaction Feature between has_exam & duration_per_day'''
+    '''Adding Interaction Feature between has_exam & waiting time'''
     # One-hot encode the 'has_exam' column
     encoder1 = OneHotEncoder(drop='first', sparse_output=False)
     has_exam_encoded = encoder1.fit_transform(X_train[['has_exam']])
@@ -81,12 +69,55 @@ def demand_forecasting():
 
     # Create interaction feature
     for col in encoded_cols:
+        X_train[f'{col}_waiting_time_interaction'] = X_train[col] * X_train['waiting_time']
+        X_test[f'{col}_waiting_time_interaction'] = X_test[col] * X_test['waiting_time']
+
+    # Add interaction columns to numerical_cols
+    numerical_cols.extend([f'{col}_waiting_time_interaction' for col in encoded_cols])
+
+    '''Adding Interaction Feature between has_exam & duration_per_day'''
+    # Create interaction feature
+    for col in encoded_cols:
+        X_train[f'{col}_duration_per_day_interaction'] = X_train[col] * X_train['duration_per_day']
+        X_test[f'{col}_duration_per_day_interaction'] = X_test[col] * X_test['duration_per_day']
+
+    # Add interaction columns to numerical_cols
+    numerical_cols.extend([f'{col}_duration_per_day_interaction' for col in encoded_cols])
+
+    '''Adding Interaction Feature between weather and duration_per_day'''
+    # One-hot encode the 'weather' column
+    encoder2 = OneHotEncoder(drop='first', sparse_output=False)
+    weather_encoded = encoder2.fit_transform(X_train[['weather']])
+
+    # Convert encoded array to DataFrame
+    encoded_cols_weather = encoder2.get_feature_names_out(['weather'])
+    weather_df = pd.DataFrame(weather_encoded, columns=encoded_cols_weather, index=X_train.index)
+    
+    # Add the encoded columns to X_train 
+    X_train = pd.concat([X_train, weather_df], axis=1)
+
+    # Repeat the process for X_test
+    weather_encoded_test = encoder2.transform(X_test[['weather']])
+    weather_df_test = pd.DataFrame(weather_encoded_test, columns=encoded_cols_weather, index=X_test.index)
+    X_test = pd.concat([X_test, weather_df_test], axis=1)
+
+    # Create the interaction feature 
+    for col in encoded_cols_weather:
         X_train[f'{col}_duration_interaction'] = X_train[col] * X_train['duration_per_day']
         X_test[f'{col}_duration_interaction'] = X_test[col] * X_test['duration_per_day']
 
     # Add interaction columns to numerical_cols
-    numerical_cols.extend([f'{col}_duration_interaction' for col in encoded_cols])
+    numerical_cols.extend([f'{col}_duration_interaction' for col in encoded_cols_weather])
 
+    '''Adding Interaction Feature between weather and waiting_time'''
+    # Create the interaction feature 
+    for col in encoded_cols_weather:
+        X_train[f'{col}_waiting_time_interaction'] = X_train[col] * X_train['waiting_time']
+        X_test[f'{col}_waiting_time_interaction'] = X_test[col] * X_test['waiting_time']
+
+    # Add interaction columns to numerical_cols
+    numerical_cols.extend([f'{col}_waiting_time_interaction' for col in encoded_cols_weather])
+    
     '''Feature Selection'''
     excluded_features = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 
                          'waiting_time_satisfaction', 'crowdedness', 'crowdedness_satisfaction', 'comfort', 
@@ -170,4 +201,3 @@ def main():
     demand_forecasting()
 
 demand_forecasting()
-print(demand_forecasting()[1])
