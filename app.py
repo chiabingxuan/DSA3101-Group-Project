@@ -61,3 +61,6 @@ def disruption_impact_model():
 @app.route("/html-visualisations/<filename>")
 def html_visualisations(filename):
     return render_template(f"{filename}.html")
+
+if __name__ == "__main__":
+    app.run()

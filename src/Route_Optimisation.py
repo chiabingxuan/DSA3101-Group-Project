@@ -7,12 +7,13 @@ def main():
     import pandas as pd
     import warnings
     from sklearn.preprocessing import MinMaxScaler
+    import os
 
     # Suppress warnings for a more user friendly experience
     warnings.filterwarnings("ignore")
 
     # Read in the dataset
-    df = pd.read_csv('train_trip_data_after_sdv.csv')
+    df = pd.read_csv(os.path.join(os.path.dirname( __file__), '../data/train_trip_data_after_sdv.csv'), keep_default_na=False)
 
     # Reformat the time, so that the hour can be extracted
     df['time'] = pd.to_datetime(df['time']).dt.strftime('%H:%M:%S')
