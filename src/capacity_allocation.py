@@ -11,7 +11,7 @@ import demand_forecasting as df
 def capacity_allocation():
 
     # Import forecasted demand
-    forecasted_demand = df.demand_forecasting()
+    forecasted_demand = df.demand_forecasting()[0]
     forecasted_demand = np.array(forecasted_demand) # Make into an array
 
     # Dimensions of forecasted demand matrix
