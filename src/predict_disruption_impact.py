@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-import config
+from . import config
 from prefixspan import PrefixSpan
 from collections import deque
 
@@ -28,9 +28,7 @@ def find_bus_stops_visited(bus_num, start, end):
 
     # Next index in the route (if any), for starting bus stop
     if start in route_for_bus_num[start_first_occurrence_index + 1:]:
-        start_second_occurrence_index = route_for_bus_num[start_first_occurrence_index + 1:].index(
-
-            start) + start_first_occurrence_index + 1
+        start_second_occurrence_index = route_for_bus_num[start_first_occurrence_index + 1:].index(start) + start_first_occurrence_index + 1
     else:
         start_second_occurrence_index = -1
 
@@ -39,21 +37,17 @@ def find_bus_stops_visited(bus_num, start, end):
 
     # Next index in the route (if any), for ending bus stop
     if end in route_for_bus_num[end_first_occurrence_index + 1:]:
-        end_second_occurrence_index = route_for_bus_num[end_first_occurrence_index + 1:].index(
-
-            end) + end_first_occurrence_index + 1
+        end_second_occurrence_index = route_for_bus_num[end_first_occurrence_index + 1:].index(end) + end_first_occurrence_index + 1
     else:
         end_second_occurrence_index = -1
 
     # Finding shortest route from start to end
     # Smallest indices of start and end definitely exist
     correct_start_index, correct_end_index = start_first_occurrence_index, end_first_occurrence_index
-    min_distance = find_distance(
-        correct_start_index, correct_end_index, length_of_route)
+    min_distance = find_distance(correct_start_index, correct_end_index, length_of_route)
 
     # List of possible routes between start and end
-    remaining_possible_pairs_of_bus_stop_indices = [(start_first_occurrence_index, end_second_occurrence_index), (
-        start_second_occurrence_index, end_first_occurrence_index), (start_second_occurrence_index, end_second_occurrence_index)]
+    remaining_possible_pairs_of_bus_stop_indices = [(start_first_occurrence_index, end_second_occurrence_index), (start_second_occurrence_index, end_first_occurrence_index), (start_second_occurrence_index, end_second_occurrence_index)]
     for pair in remaining_possible_pairs_of_bus_stop_indices:
         start_index, end_index = pair[0], pair[1]
         if start_index != -1 and end_index != -1:   # ensure that both start and ending indices must exist
@@ -84,16 +78,14 @@ def conduct_prefixspan(trip_data):
     num_of_rows = trip_data.shape[0]    # number of transactions
 
     # Get the ordered sequence of bus stops visited for each transaction
-    sequences_of_bus_stops = list(trip_data.apply(
-        lambda row: find_bus_stops_visited(row["bus_num"], row["start"], row["end"]), axis=1))
+    sequences_of_bus_stops = list(trip_data.apply(lambda row: find_bus_stops_visited(row["bus_num"], row["start"], row["end"]), axis=1))
 
     # Carry out PrefixSpan algorithm to determine the supports of sequences
     ps = PrefixSpan(sequences_of_bus_stops)
 
     # Get sequences and its associated supports. Use minsup = 1 because we want to consider all sequences
     sequences = ps.frequent(minsup=1)
-    sequences_support = {tuple(sequence[1]): sequence[0] / num_of_rows
-                         for sequence in sequences}
+    sequences_support = {tuple(sequence[1]): sequence[0] / num_of_rows for sequence in sequences}
     return sequences_support
 
 
@@ -108,8 +100,7 @@ def get_rules(sequences_supports):
                 antecedent_and_consequent = antecedent + consequent
 
                 # Get confidence for the rule antecedent (X) -> consequent (Y)
-                confidence = get_confidence(
-                    sequences_supports, antecedent, antecedent_and_consequent)
+                confidence = get_confidence(sequences_supports, antecedent, antecedent_and_consequent)
 
                 # Get rule. Also, we extract names of bus stops
                 rule = (antecedent[0], consequent[0], confidence)
@@ -173,10 +164,9 @@ def bfs_disruption_propagation(graph, start_node, initial_delay, decay_factor, m
     return delays
 
 
-def main():
+def main(start_node="COM3", initial_delay=30, decay_factor=config.DECAY_FACTOR, max_depth=config.BFS_MAX_DEPTH):
     # Read trip_data
-    trip_data = pd.read_csv(os.path.join(os.path.dirname(
-        __file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
+    trip_data = pd.read_csv(os.path.join(os.path.dirname( __file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
 
     # Use PrefixSpan algorithm to get sequences of bus stops, along with their supports
     sequences_supports = conduct_prefixspan(trip_data)
@@ -188,10 +178,11 @@ def main():
     graph = make_weighted_graph_from_rules(rules)
 
     # Carry out a modified version of BFS to estimate delays that are caused by a single source of disruption
-    delays = bfs_disruption_propagation(
-        graph, start_node="COM3", initial_delay=10, decay_factor=config.DECAY_FACTOR, max_depth=config.BFS_MAX_DEPTH)
+    delays = bfs_disruption_propagation(graph, start_node=start_node, initial_delay=initial_delay, decay_factor=decay_factor, max_depth=max_depth)
+    delays = [(bus_stop, round(est_delay, 2)) for bus_stop, est_delay in delays.items()]
+    delays.sort(key=lambda pair: pair[1], reverse=True)
 
-    print(delays)
+    return delays
 
 
 if __name__ == "__main__":

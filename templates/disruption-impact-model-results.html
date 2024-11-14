@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Scavengers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+    <header class="sticky">
+        <section class="header-title-line">
+            <h1 class="nowrap">Data Scavengers</h1>
+            <button id="menu-button" class="menu-button">
+                <span id="menu-icon" class="menu-icon"></span>
+            </button>
+        </section>
+        <nav id="nav-bar" class="hide">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('initial_data_exploration_visualisations') }}">Initial Data Exploration Visualisations</a></li>
+                <li><a href="{{ url_for('user_segmentation_visualisations') }}">User Segmentation Visualisations</a></li>
+                <li><a href="{{ url_for('tableau_visualisations') }}">Tableau Visualisations</a></li>
+                <li><a href="{{ url_for('folium_visualisations') }}">Folium Visualisations</a></li>
+                <li><a href="{{ url_for('kpi_dashboard') }}">KPI Dashboard</a></li>
+                <li><a href="{{ url_for('other_visualisations') }}">Other Visualisations</a></li>
+                <li><a href="{{ url_for('route_optimisation_model') }}">Route Optimisation Model</a></li>
+                <li><a href="{{ url_for('disruption_impact_model') }}">Disruption Impact Model</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main">
+        <article>
+            <h2 class="underline">Disruption Impact Model - Results</h2>
+            <section class="box">
+                <h3>Chosen Scenario</h3>
+                <p><b>Source of Disruption</b>: {{ bus_stop }}</p>
+                <p><b>Initial Delay</b>: {{ delay }} minutes</p>
+                <p><b>Decay Factor</b>: {{ decay_factor }}</p>
+                <p><b>Max Depth</b>: {{ max_depth }}</p>
+            </section>
+            <section class="box">
+                <h3>Estimated Propagation of Delays</h3>
+                {% for pair in estimated_delays %}
+                    <p><b>{{ pair[0] }}:</b> {{ pair[1] }} minutes</p>
+                {% endfor %}
+            </section>
+            <p><a href="{{ url_for('disruption_impact_model') }}">Back to Disruption Impact Model</a></p>
+        </article>
+    </main>
+</body>
+
+</html>

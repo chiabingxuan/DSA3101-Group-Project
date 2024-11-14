@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Scavengers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+    <header class="sticky">
+        <section class="header-title-line">
+            <h1 class="nowrap">Data Scavengers</h1>
+            <button id="menu-button" class="menu-button">
+                <span id="menu-icon" class="menu-icon"></span>
+            </button>
+        </section>
+        <nav id="nav-bar" class="hide">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('initial_data_exploration_visualisations') }}">Initial Data Exploration Visualisations</a></li>
+                <li><a href="{{ url_for('user_segmentation_visualisations') }}">User Segmentation Visualisations</a></li>
+                <li><a href="{{ url_for('tableau_visualisations') }}">Tableau Visualisations</a></li>
+                <li><a href="{{ url_for('folium_visualisations') }}">Folium Visualisations</a></li>
+                <li><a href="{{ url_for('kpi_dashboard') }}">KPI Dashboard</a></li>
+                <li><a href="{{ url_for('other_visualisations') }}">Other Visualisations</a></li>
+                <li class="current-page">Route Optimisation Model</li>
+                <li><a href="{{ url_for('disruption_impact_model') }}">Disruption Impact Model</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main">
+        <article>
+            <h2 class="underline">Route Optimisation Model</h2>
+            <section class="box">
+                <form id="registration-form">
+                    <fieldset class="response-section">
+                        <legend>Personal Particulars</legend>
+                        <p>
+                            <label for="username">Username:&nbsp;&nbsp;</label>
+                            <input type="text" name="username" id="username" class="response-box" autocomplete="off">
+                        </p>
+                        <p>
+                            <label for="password">Password:&nbsp;&nbsp;&nbsp;</label>
+                            <input type="password" name="password" id="password" class="response-box"
+                                autocomplete="off">
+                        </p>
+
+                        <button type="submit" class="centralise submit-button">Submit</button>
+
+                    </fieldset>
+                </form>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
