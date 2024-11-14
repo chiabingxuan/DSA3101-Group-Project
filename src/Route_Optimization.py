@@ -12,7 +12,7 @@ def main():
     warnings.filterwarnings("ignore")
 
     # Read in the dataset
-    df = pd.read_csv(r'C:\Users\user\OneDrive - National University of Singapore\Uni\2425 SEM 1\DSA3101\Project\DSA3101-Group-Project\data\train_trip_data_after_sdv.csv')
+    df = pd.read_csv('train_trip_data_after_sdv.csv')
 
     # Reformat the time, so that the hour can be extracted
     df['time'] = pd.to_datetime(df['time']).dt.strftime('%H:%M:%S')
