@@ -7,6 +7,7 @@ from sklearn.metrics import classification_report
 import os
 import shap
 import statsmodels.api as sm
+import itertools
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 ####################################################################################################
@@ -125,18 +126,26 @@ def main():
     print(vif_data)
     # Given that VIF for all factors are less than 2, multicollinearity is not an issue and Multiple Linear Regression can be conducted to determine weight of each factor when for Overall Satisfaction
 
-    # Conduct Multiple Linear Regression
+    # Conduct Multivariate Linear Regression
     # Define the Variables
     y = df['overall_satisfaction']
 
-    # Run the Linear Regression Model
-    model_MLR = LinearRegression()
-    results_MLR = model_MLR.fit(X, y)
+    # Add a constant (intercept) to the predictors
+    X_with_const = sm.add_constant(X)
 
-    # Print the Coefficients of the Linear Regression Model
-    print(f'Intercept: {model_MLR.intercept_}')
+    # Fit the OLS model
+    model_MLR = sm.OLS(y, X_with_const).fit()
+
+    # Print a detailed summary of the model
+    print(model_MLR.summary())
+
+    # Extract the coefficients and intercept for custom use if needed
+    intercept = model_MLR.params['const']
+    coefficients = model_MLR.params.drop('const')
+
+    print(f'Intercept: {intercept}')
     print('Coefficients:')
-    for feature, coef in zip(X.columns, model_MLR.coef_):
+    for feature, coef in coefficients.items():
         print(f'{feature}: {coef}')
 
     # Based on Multiple Regression Analysis, we see that the Beta Coefficients for the factprs affecting overall satisfaction is as follows (from largest to smallest): Comfort, Safety, Crowdedness Satisfaction, Waiting Time Satisfaction
@@ -144,43 +153,42 @@ def main():
     # Conduct Dominance Analysis to compare the importance of each factor when it comes to overall satisfaction. Measures relative importance of factors.
     # Function to calculate R-squared
     def calculate_r_squared(X, y):
-        model = sm.OLS(y, X).fit()
+        X_with_const = sm.add_constant(X)  # Adds intercept to the model
+        model = sm.OLS(y, X_with_const).fit()
         return model.rsquared
 
-    # Fit Full Model
+    # Full model R-squared
     full_r_squared = calculate_r_squared(X, y)
     print(f"Full Model R-squared: {full_r_squared:.4f}")
 
-    # Calculate R-squared for models excluding each predictor
-    r_squared_values = {}
-    for feature in X.columns:
-        reduced_X = X.drop(columns=[feature])
-        r_squared_values[feature] = calculate_r_squared(reduced_X, y)
+    # Dictionary to store cumulative R-squared contributions for each feature
+    cumulative_contributions = {feature: 0 for feature in X.columns}
 
-    # Display the R-squared values for each reduced model
-    print("\nR-squared Values for Reduced Models:")
-    for feature, r2 in r_squared_values.items():
-        print(f"Excluding {feature}: R-squared = {r2:.4f}")
+    # Iterate through all possible subsets of predictors to calculate partial contributions
+    for k in range(1, len(X.columns) + 1):  # Loop over subset sizes from 1 to the full number of predictors
+        for subset in itertools.combinations(X.columns, k):
+            subset = list(subset)
+        
+            # Calculate R-squared for the current subset
+            r_squared_subset = calculate_r_squared(X[subset], y)
+        
+            # For each predictor in this subset, calculate its marginal contribution
+            for feature in subset:
+                # Calculate R-squared for the subset excluding the current feature
+                reduced_subset = [f for f in subset if f != feature]
+                r_squared_reduced = calculate_r_squared(X[reduced_subset], y) if reduced_subset else 0
+            
+                # Marginal contribution of the feature in this subset
+                contribution = r_squared_subset - r_squared_reduced
+                cumulative_contributions[feature] += contribution
 
-    # Calculate the change in R-squared
-    changes = {}
-    changes = {feature: full_r_squared - r2 for feature, r2 in r_squared_values.items()}
-    print("\nChange in R-squared when excluding each feature:")
-    for predictor, r2 in r_squared_values.items():
-        change = full_r_squared - r2
-        print(f"Change when excluding {predictor}: {change:.4f}")
+    # Normalize contributions to get dominance scores (relative importance of each feature)
+    total_contribution = sum(cumulative_contributions.values())
+    dominance_scores = {feature: contribution / total_contribution for feature, contribution in cumulative_contributions.items()}
 
-    changes.pop('const', None)
-
-    # Derive the Dominance Scores for each feature
-    ## Calculate the total change in R-squared (sum of all changes)
-    total_change = sum(changes.values())
-
-    # Calculate the dominance score (normalized importance) for each feature
-    dominance_scores = {feature: (change / total_change) for feature, change in changes.items()}
-
-    # Create a DataFrame to display the results
-    dominance_df = pd.DataFrame(list(dominance_scores.items()), columns=['Feature', 'Dominance Score'])
+    # Convert dominance scores to DataFrame for display
+    dominance_df = pd.DataFrame(list(dominance_scores.items()), columns=['Feature', 'Dominance Score']).sort_values(by='Dominance Score', ascending=False)
+    print("\nDominance Scores:")
     print(dominance_df)
 
     # Based on the Dominance Analysis, the removal of each factor leads to small decrease in explained variance. Comparing them (from largest to smallest impact) is as follows: Comfort, Safety, Crowdedness Satisfaction, Waiting Time Satisfaction
