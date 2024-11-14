@@ -23,7 +23,7 @@ def demand_forecasting():
     test = pd.DataFrame(pd.read_csv(os.path.join(os.path.dirname(__file__), "../data/test_trip_data_after_sdv.csv"), keep_default_na=False))
 
     # Identify categorical and numerical columns
-    categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'weather', 'bus_num', 'start', 'end', 'has_exam']
+    categorical_cols = ['year', 'major', 'on_campus', 'main_reason_for_taking_isb', 'has_exam', 'start', 'end', 'bus_num', 'weather' ]
     numerical_cols = ['trips_per_day', 'duration_per_day', 'waiting_time', 'waiting_time_satisfaction', 
                       'crowdedness', 'crowdedness_satisfaction', 'comfort', 'safety', 'overall_satisfaction']
 
@@ -36,6 +36,27 @@ def demand_forecasting():
     y_train = train['num_people_at_bus_stop']
     X_test = test.drop(columns=['num_people_at_bus_stop'])
     y_test = test['num_people_at_bus_stop']
+
+    # Print the dtype of the 'time' column
+    print(f"The dtype of 'time' column is: {X_train['time'].dtype}")
+
+
+    # Extract columns and categorize them
+    categorical = []
+    numerical = []
+
+    for col in X_train.columns:
+        if X_train[col].dtype.kind == 'M':  # Exclude datetime columns
+            continue
+        elif X_train[col].dtype == 'object':  # If column is of type object, it's categorical
+            categorical.append(col)
+        elif pd.api.types.is_numeric_dtype(X_train[col]):  # If it's numerical
+            numerical.append(col)
+        elif X_train[col].dtype == 'bool':  # Boolean columns
+            categorical.append(col)
+
+    print("Categorical Columns:", categorical)
+    print("Numerical Columns:", numerical)
 
     # Change datetime object to only keep time
     X_train['time'] = pd.to_datetime(X_train['time']).dt.time
@@ -147,3 +168,4 @@ def demand_forecasting():
 def main():
     demand_forecasting()
 
+demand_forecasting()
