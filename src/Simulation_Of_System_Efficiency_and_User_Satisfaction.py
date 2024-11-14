@@ -371,9 +371,9 @@ def main():
         waiting_time = []
         for i in range(len(route)):
             if i == 0:
-                waiting_time.append(min(round(waiting_times[route_key][route[i]]), round(distances[i]/ BUS_SPEED))) # either the mean waiting time of the original route or the shortened waiting time due to the new route
+                waiting_time.append(min(round(waiting_times[route_key][route[i]]), round(distances[i]/ BUS_SPEED, 2))) # either the mean waiting time of the original route or the shortened waiting time due to the new route
             else:
-                waiting_time.append(min(round(waiting_times[route_key][route[i]]), round((distances[i] + distances[i-1])/ BUS_SPEED)))
+                waiting_time.append(min(round(waiting_times[route_key][route[i]]), round((distances[i] + distances[i-1])/ BUS_SPEED, 2)))
         return waiting_time
     
     # Train a linear regression model for satisfaction prediction
@@ -390,7 +390,7 @@ def main():
         satisfaction_list = []
         for i in range(len(crowdedness)):
             # Make sure to pass both crowdedness and waiting_time as a single row
-            satisfaction_list.append(round(satisfaction_model.predict([[crowdedness[i], waiting_time[i]]])[0]))
+            satisfaction_list.append(round(satisfaction_model.predict([[crowdedness[i], waiting_time[i]]])[0], 2))
     
         return satisfaction_list
     # Functions to get the crowdedness, waiting time and satisfaction level of the original route
