@@ -110,6 +110,7 @@ def main():
     ## sns.heatmap(corr_matrix, annot=True, cmap='coolwarm',
                 ## vmin=-1, vmax=1, fmt='.2f', square=True)
     ## plt.title('Correlation Heatmap for Selected Features')
+    ## plt.tight_layout()
     ## plt.show()
 
     # Based on our results, there seems to be moderate correlation between each factor and overall satisfaction. We will use other methods to determine the relationship between each factor and overall satisfaction.
