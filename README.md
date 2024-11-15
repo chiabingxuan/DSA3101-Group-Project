@@ -7,7 +7,7 @@
     - [2.2 Setup Instructions](#22-setup-instructions)
   - [3. Deployment](#3-deployment)
     - [3.1 Docker Instructions](#31-docker-instructions)
-    - [2.4 Dependency Management](#24-dependency-management)
+    - [3.4 Dependency Management](#34-dependency-management)
   - [4. Data Understanding](#4-data-understanding)
     - [4.1 Data Acquisition](#41-data-acquisition)
     - [4.2 Data Preparation](#42-data-preparation)
@@ -241,7 +241,7 @@ docker run --name data-scavengers-container -p 5000:5000 data-scavengers-app
 
 5. Visit http://localhost:5000 to open the application.
 
-### 2.4 Dependency Management
+### 3.4 Dependency Management
 
 Dependencies are managed in `requirements.txt`.
 
