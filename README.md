@@ -20,9 +20,8 @@
 
 **Project Objectives**
 
-- Predict the demand of bus users at a specific bus stop at specific hour intervals
-- Optimise the bus routes to reduce waiting times
-- Allocate the capacity of buses to meet the demand
+- To enhance system efficiency through the above models that minimises unmet demand.
+- To improve user satisfaction through reducing waiting times and providing a safer and more comfortable journey.
 
 ## 2. Technical Implementation
 
