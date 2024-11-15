@@ -6,6 +6,7 @@
 * Person B will decrypt the decoding key file with the same password used by Person A.
 * Person B can then use the decrypted key to decode the encoded CSV file back into its original format and store it locally.
 * The above repository is the end result of where each file would be located.
+* Once the CSV files are no longer needed, both Person A and B should use the data anonymizer to permanently anonymize the CSV files before deleting them.
 
 # Instructions:
 
