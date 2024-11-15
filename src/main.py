@@ -13,49 +13,49 @@ import capacity_allocation
 
 if __name__ == "__main__":
     # 1. Clean the data
-    print("-------------------------- Run survey_cleaning.py --------------------------")
+    print("-------------------------- Run survey_cleaning.py --------------------------\n")
     survey_cleaning.main()
 
     # 2. Conduct train-test split, before using SMOTE to conduct oversampling on training data
-    print("-------------------------- Run smote.py --------------------------")
+    print("-------------------------- Run smote.py --------------------------\n")
     smote.main()
 
     # 3. Use SDV to synthesise more training data
-    print("-------------------------- Run synthetic_data_generation_train.py --------------------------")
+    print("-------------------------- Run synthetic_data_generation_train.py --------------------------\n")
     synthetic_data_generation_train.main()
 
     # 4. Use SDV to synthesise more testing data
-    print("-------------------------- Run synthetic_data_generation_test.py --------------------------")
+    print("-------------------------- Run synthetic_data_generation_test.py --------------------------\n")
     synthetic_data_generation_test.main()
 
     # 5. Analysing user satisfaction
-    print("-------------------------- Run drivers_of_satisfaction.py --------------------------")
+    print("-------------------------- Run drivers_of_satisfaction.py --------------------------\n")
     drivers_of_satisfaction.main()
 
     # 6. User segmentation
-    print("-------------------------- Run User_Segmentation_Model.py --------------------------")
+    print("-------------------------- Run User_Segmentation_Model.py --------------------------\n")
     User_Segmentation_Model.main()
 
     # 7. Analyse travel patterns
-    print("-------------------------- Run analyse_travel_patterns.py --------------------------")
+    print("-------------------------- Run analyse_travel_patterns.py --------------------------\n")
     analyse_travel_patterns.main()
 
     # 8. Predicting impact of bus disruptions
-    print("-------------------------- Run predict_disruption_impact.py --------------------------")
+    print("-------------------------- Run predict_disruption_impact.py --------------------------\n")
     predict_disruption_impact.main()
 
     # 9. Demand forecasting
-    print("-------------------------- Run demand_forecasting.py --------------------------")
+    print("-------------------------- Run demand_forecasting.py --------------------------\n")
     demand_forecasting.main()
 
     # 10. Route optimisation
-    print("-------------------------- Run Route_Optimisation.py --------------------------")
+    print("-------------------------- Run Route_Optimisation.py --------------------------\n")
     Route_Optimisation.main()
 
     # 11. Simulating system efficiency and user satisfaction
-    print("-------------------------- Run Simulation_Of_System_Efficiency_and_User_Satisfaction.py --------------------------")
+    print("-------------------------- Run Simulation_Of_System_Efficiency_and_User_Satisfaction.py --------------------------\n")
     Simulation_Of_System_Efficiency_and_User_Satisfaction.main()
     
     # 12. Capacity allocation
-    print("-------------------------- Run capacity_allocation.py --------------------------")
+    print("-------------------------- Run capacity_allocation.py --------------------------\n")
     capacity_allocation.main(run_allocation = True)

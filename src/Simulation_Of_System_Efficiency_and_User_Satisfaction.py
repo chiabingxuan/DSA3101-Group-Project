@@ -1,12 +1,12 @@
-def main():
+import pandas as pd
+import numpy as np
+import warnings
+import simpy
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import MinMaxScaler
+import os
 
-    import pandas as pd
-    import numpy as np
-    import warnings
-    import simpy
-    from sklearn.linear_model import LinearRegression
-    from sklearn.preprocessing import MinMaxScaler
-    
+def main():    
     # Suppress warnings for a more user friendly experience
     warnings.filterwarnings("ignore")
     
@@ -15,7 +15,7 @@ def main():
     ###############################################################################################
     
     '''Preparing Data'''
-    train = pd.read_csv('train_trip_data_after_sdv.csv')
+    train = pd.read_csv(os.path.join(os.path.dirname( __file__), '../data/train_trip_data_after_sdv.csv'), keep_default_na=False)
     
     #Choosing the important columns and reformating the time and other variables into integers
     t = train[['bus_num', 'start', 'end','weather','has_exam', 'num_people_at_bus_stop', 'date', 'time', 'waiting_time','crowdedness', 'comfort', 'safety', 'overall_satisfaction']]
@@ -326,7 +326,12 @@ def main():
         if not route:
             print("No optimised route found for this combination.") # Due to lack of data, some scenarios are not included so when it is not in the dictionary keys, this will be printed.
             return []
-        return route
+    
+        # Reorder the route according to the original order
+        original_order = bus_stops.get(route_key[0], [])  # Get the route order for the given bus
+        # Filter the stops to match those in the provided route, maintaining order
+        filtered_route = [stop for stop in original_order if stop in route]
+        return filtered_route
     
     def get_route_distances(route_key, route): # To get the distances between 2 consecutive bus stops for the suggested route
         distances = []
@@ -437,4 +442,4 @@ def main():
         original_waiting_time = get_original_waiting_time(selected_condition)
         original_satisfaction = get_original_satisfaction(selected_condition)
         env.process(simulate_bus_route(env, selected_condition, selected_route, boarding_passengers, alighting_passengers, crowdedness, waiting_time, satisfaction, original_crowdedness, original_waiting_time, original_satisfaction))
-        env.run()  
+        env.run()
