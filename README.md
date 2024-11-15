@@ -67,24 +67,88 @@ DSA3101-Group-Project
 │   └── README.md                             # Documentation for ethics and privacy enhancements
 │
 ├── src/                                          # Source code for data analysis, cleaning, and modeling
+│   ├── __init__.py                               
 │   ├── analyse_travel_patterns.py                # Analysis of travel patterns from trip data
 │   ├── capacity_allocation.py                    # Allocates transport capacity based on demand
-│   ├── config.py                                 # Configuration settings
-│   ├── demand_forecast_visualisation.ipynb       # Creates timelapse of demand heatmap
+│   ├── demand_forecast_visualisation.py          # Creates timelapse of demand heatmap
 │   ├── demand_forecasting.py                     # Forecasts demand using trip data
-│   ├── Drivers_of_Satisfaction.ipynb             # Analysis of satisfaction drivers
+│   ├── drivers_of_satisfaction.ipynb             # Analysis of satisfaction drivers
 │   ├── filter_count.py                           # Script to count unique trips at 10 min interval
 │   ├── main.py                                   # Main script to execute all files
 │   ├── make_timelapses_for_travel_patterns.py    # Creates timelapses of travel patterns
 │   ├── origin_destination_matrix.py              # Computes origin-destination matrix
+│   ├── params.py                                 # Common parameters used
 │   ├── Route_Optimization.py                     # Optimizes travel routes based on trip data
-│   ├── Simulation_of_System_Efficiency_And_Us.py # Simulates system efficiency
+│   ├── Simulation_Of_System_Efficiency_and_User_Satisfaction.py # Simulates system efficiency
 │   ├── smote.py                                  # Applies SMOTE-NC to balance data
 │   ├── survey_cleaning.py                        # Cleans and preprocesses survey data
 │   ├── synthetic_data_generation_test.py         # Generates synthetic test data using SDV
 │   ├── synthetic_data_generation_train.py        # Generates synthetic train data using SDV after SMOTE-NC
 │   └── User_Segmentation_Model.py                # Segments users based on trip data
 │
+├── static/                                       # Static assets
+│   ├── css/                                      # CSS files for styling the project
+│   │   └── style.css                             # Main stylesheet for visual styling of HTML elements
+│   │ 
+│   ├── image/                                    # Image files for visualizations and charts
+│   │   ├── Boxplot_Crowdedness_and_Crowdedness_Satisfaction.png   # Boxplot of crowding levels and user satisfaction with crowding
+│   │   ├── Boxplot_Waiting_Time_and_Waiting_Time_Satisfaction.png # Boxplot visualizing the connection between waiting times and satisfaction with wait times
+│   │   ├── Boxplots_and_Histogram_of_selected_features.png        # Composite visualization of various selected features using boxplots and histograms
+│   │   ├── correlation_matrix_heatmap.png                         # Heatmap showing the correlation between different features in the dataset
+│   │   ├── Elbow_Method_for_Optimal_K.png                         # Visualization of the Elbow Method to determine the optimal number of clusters for K-means
+│   │   ├── initial_bus_num_bar_chart.png                          # Bar chart of the initial distribution of bus numbers in the data
+│   │   ├── initial_comfort_histogram.png                          # Histogram of comfort levels as reported by users
+│   │   ├── initial_crowdedness_histogram.png                      # Histogram of crowding levels in the dataset
+│   │   ├── initial_crowdedness_satisfaction_histogram.png         # Histogram showing satisfaction with crowdedness levels
+│   │   ├── initial_duration_per_day_box_plot.png                  # Box plot showing the distribution of trip durations per day
+│   │   ├── initial_end_bar_chart.png                              # Bar chart of distribution of trip ending locations
+│   │   ├── initial_hex_bar_chart.png                              # Hexagonal bin plot to visualize density and distribution across categories
+│   │   ├── initial_main_reason_for_taking_isb_bar_chart.png       # Bar chart showing users' main reasons for taking internal shuttle buses (ISB)
+│   │   ├── initial_major_bar_chart.png                            # Bar chart showing the distribution of student majors in the dataset
+│   │   ├── initial_num_people_at_bus_stop_box_plot.png            # Box plot showing the number of people at bus stops across different times
+│   │   ├── initial_on_campus_bar_chart.png                        # Bar chart showing distribution of on-campus locations
+│   │   ├── initial_overall_satisfaction_histogram.png             # Histogram displaying overall satisfaction scores from users
+│   │   ├── initial_safety_histogram.png                           # Histogram of reported safety levels at various bus stops
+│   │   ├── initial_start_bar_chart.png                            # Bar chart of distribution of trip starting locations
+│   │   ├── initial_trips_per_day_box_plot.png                     # Box plot showing the distribution of trips per day
+│   │   ├── initial_waiting_time_box_plot.png                      # Box plot showing the distribution of waiting times
+│   │   ├── initial_waiting_time_satisfaction_histogram.png        # Histogram of satisfaction levels related to waiting times
+│   │   ├── initial_weather_bar_chart.png                          # Bar chart of weather conditions recorded in the dataset
+│   │   ├── initial_year_bar_chart.png                             # Bar chart showing distribution of data points by year
+│   │   ├── Performance_importance_matrix.png                      # Matrix showing the importance of different features in model performance
+│   │   ├── route_optimisation_demo.gif                            # GIF demonstrating route optimization for bus routes
+│   │   ├── Silhouette_Method_for_Optimal_K.png                    # Visualization of the Silhouette Method for determining the optimal number of clusters
+│   │   └── SimPy.png                                              # Diagram or graphic related to the SimPy simulation environment, if applicable
+│   │ 
+│   └── js/                                       # JavaScript files for interactive elements
+│       ├── init.js                               # Initialization script for setting up interactive features
+│       └── main.js                               # Main JavaScript file for controlling dynamic elements on the webpage
+│   
+├── templates/ 
+│    ├── demand_heatmap.html                         # Heatmap of demand across different areas
+│    ├── disruption-impact-model-results.html        # Results page for disruption impact modeling
+│    ├── disruption-impact-model.html                # Interactive model for evaluating disruption impacts
+│    ├── drivers-of-satisfaction-visualisations.html # Visualizations for key drivers of satisfaction
+│    ├── folium-visualisations.html                  # Map-based interactive visualizations using Folium
+│    ├── index.html                                  # Main landing page or index file
+│    ├── initial-data-exploration-visualisations.html # Exploration visuals for preliminary data analysis
+│    ├── kpi-dashboard.html                          # Dashboard summarizing key performance indicators
+│    ├── nus_a1_trip_markers_timelapse.html          # A1 route trip markers timelapse visualization
+│    ├── nus_a2_trip_markers_timelapse.html          # A2 route trip markers timelapse visualization
+│    ├── nus_cluster_0_trip_markers_timelapse.html   # Cluster 0 trip markers timelapse visualization
+│    ├── nus_cluster_1_trip_markers_timelapse.html   # Cluster 1 trip markers timelapse visualization
+│    ├── nus_cluster_2_trip_markers_timelapse.html   # Cluster 2 trip markers timelapse visualization
+│    ├── nus_d1_trip_markers_timelapse.html          # D1 route trip markers timelapse visualization
+│    ├── nus_d2_trip_markers_timelapse.html          # D2 route trip markers timelapse visualization
+│    ├── nus_exam_trip_markers_timelapse.html        # Exam-period trip markers timelapse visualization
+│    ├── nus_no_exam_trip_markers_timelapse.html     # Non-exam period trip markers timelapse visualization
+│    ├── nus_trip_markers_timelapse.html             # General timelapse visualization for all routes
+│    ├── od_probability_matrices.html                # Origin-destination probability matrices visualization
+│    ├── other-visualisations.html                   # Miscellaneous visualizations
+│    ├── route-optimisation-algo-and-simulation.html # Route optimization and simulation visuals
+│    ├── tableau-visualisations.html                 # Tableau-based interactive visualizations
+│    └── user-segmentation-visualisations.html       # Visualizations for user segmentation analysis
+│ 
 ├── visualisations/                               # Visual output files generated by scripts
 │   ├── Dashboards/                               # Dashboard visualisations and interactive files
 │   │   ├── Graph_Of_Hourly_Distribution_Of_Bus_Trips/                                    # Visualisation of bus trip distributions
@@ -121,7 +185,12 @@ DSA3101-Group-Project
 │   │   ├── initial_waiting_time_satisfaction_histogram.png     # Histogram of waiting time satisfaction scores
 │   │   ├── initial_weather_bar_chart.png                       # Bar chart of distribution of weather
 │   │   └── initial_year_bar_chart.png                          # Bar chart of distribution of student year
-│   │
+│   ├── key_drivers_of_satisfaction_eda/
+│   │   ├── Boxplot_Crowdedness_and_Crowdedness_Satisfaction.png  # Boxplot comparing crowdedness levels and satisfaction
+│   │   ├── Boxplot_Waiting_Time_and_Waiting_Time_Satisfaction.png # Boxplot showing waiting time vs satisfaction
+│   │   ├── Boxplots_and_Histograms_for_Satisfaction_Metrics.png   # Combined boxplots and histograms for satisfaction metrics
+│   │   └── correlation_matrix_heatmap.png                        # Heatmap showing correlation between key factors
+│   │ 
 │   ├── timelapses/                                             # Timelapse visualizations
 │   │   ├── demand_heatmap.html                                 # Timelapse of demand heatmap
 │   │   ├── nus_a1_trip_markers_timelapse.html                  # Timelapse of trip markers for bus service A1
@@ -137,10 +206,13 @@ DSA3101-Group-Project
 │   │
 │   ├── Elbow_Method_for_Optimal_K.png                  # Visualization for elbow method to determine optimal K
 │   ├── od_probability_matrices.html                    # HTML file for OD probability matrices
+│   ├── performance_importance_matrix.png               # Visualization of performance importance matrix
 │   └── Silhouette_Method_for_Optimal_K.png             # Visualization for silhouette method to determine optimal K
 │
 ├── .gitignore                                # Specifies files and directories to ignore in git
-├── index.html                                # Entry point for any web-based interface
+├── app.py                                    # Application file for the web app
+├── config.py                                 # Configuration file for the web app
+├── Dockerfile                                # Instructions for containerizing the application using Docker
 ├── README.md                                 # Overview, setup, and usage instructions for the project
 └── requirements.txt                          # List of all libraries required to run the scripts
 ```
