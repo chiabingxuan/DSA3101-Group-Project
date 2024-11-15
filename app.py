@@ -3,7 +3,7 @@ from src import predict_disruption_impact
 
 
 app = Flask(__name__)
-app.config.from_object("config.DevConfig")
+app.config.from_object("config.ProdConfig")
 
 
 @app.route("/")
