@@ -29,6 +29,6 @@
 * **Note:** In real-world scenarios, passwords should not be shared openly like this. Consider using a secure method to transmit passwords.
 
 ## Anonymizer:
-* The anonymizer tool can be used by either Person A or Person B to anonymize the data for privacy protection once the data is no longer needed.
+* The anonymizer tool should be used by both Person A and B to anonymize the data for privacy protection once the data is no longer needed.
 * Before running the Python script, update the file paths in the script to match your system.
 * Running the script will permanently replace and anonymize sensitive data in the CSV file.
