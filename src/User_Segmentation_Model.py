@@ -201,7 +201,7 @@ def main():
     plt.plot(total_cluster_variance.keys(), total_cluster_variance.values()) 
     plt.scatter(total_cluster_variance.keys(), total_cluster_variance.values())
     # Show the plot.
-    plt.show()
+    # plt.show()
 
     # The "elbow point" is supposed to be the point on the plot where the total cluster variance starts to decrease at a much slower rate.
     # From the given plot, it seems that the optimal K = 3, BUT the "elbow point" is not so clear and sharp.

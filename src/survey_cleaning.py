@@ -241,8 +241,8 @@ def main():
     clean_other_feedback_data(other_feedback_data)
 
     # Conduct preliminary data exploration
-    visualise_data(trip_data, bar_chart_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], boxplot_vars=[4, 5, 13, 14], histogram_vars=[15, 16, 17, 18, 19, 20], save_folder="../visualisations/initial_data_exploration/")  # omit date and time column
-    visualise_data(other_feedback_data, bar_chart_vars=[0, 1, 2, 3, 7], boxplot_vars=[4, 5], histogram_vars=[], save_folder="../visualisations/initial_data_exploration/")    # omit date column
+    # visualise_data(trip_data, bar_chart_vars=[0, 1, 2, 3, 7, 8, 9, 10, 12], boxplot_vars=[4, 5, 13, 14], histogram_vars=[15, 16, 17, 18, 19, 20], save_folder="../visualisations/initial_data_exploration/")  # omit date and time column
+    # visualise_data(other_feedback_data, bar_chart_vars=[0, 1, 2, 3, 7], boxplot_vars=[4, 5], histogram_vars=[], save_folder="../visualisations/initial_data_exploration/")    # omit date column
 
     # Remove outliers
     remove_outliers(trip_data, year_of_study="year", trips_per_day="trips_per_day", num_people_at_bus_stop="num_people_at_bus_stop")
