@@ -5,9 +5,9 @@
   - [2. Technical Implementation](#2-technical-implementation)
     - [2.1 Repository Structure](#21-repository-structure)
     - [2.2 Setup Instructions](#22-setup-instructions)
+    - [2.3 Dependency Management](#23-dependency-management)
   - [3. Deployment](#3-deployment)
     - [3.1 Docker Instructions](#31-docker-instructions)
-    - [3.4 Dependency Management](#34-dependency-management)
   - [4. Data Understanding](#4-data-understanding)
     - [4.1 Data Acquisition](#41-data-acquisition)
     - [4.2 Data Preparation](#42-data-preparation)
@@ -210,6 +210,10 @@ python src/main.py
 deactivate
 ```
 
+### 2.3 Dependency Management
+
+Dependencies are managed in `requirements.txt`.
+
 ## 3. Deployment
 ### 3.1 Docker Instructions
 
@@ -240,10 +244,6 @@ docker run --name data-scavengers-container -p 5000:5000 data-scavengers-app
 ```
 
 5. Visit http://localhost:5000 to open the application.
-
-### 3.4 Dependency Management
-
-Dependencies are managed in `requirements.txt`.
 
 ## 4. Data Understanding
 
