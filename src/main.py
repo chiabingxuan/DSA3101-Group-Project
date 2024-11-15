@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     # 6. User segmentation
     print("-------------------------- Run User_Segmentation_Model.py --------------------------\n")
-    # User_Segmentation_Model_main()
+    User_Segmentation_Model_main()
 
     # 7. Analyse travel patterns
     print("-------------------------- Run analyse_travel_patterns.py --------------------------\n")
