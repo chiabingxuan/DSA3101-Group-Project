@@ -310,5 +310,5 @@ def main():
     # Call the function
     process_algorithm()
     return
-
-main()
+if __name__ == "__main__":
+    main()
