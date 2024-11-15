@@ -7,7 +7,8 @@
     - [2.2 Setup Instructions](#22-setup-instructions)
     - [2.3 Dependency Management](#23-dependency-management)
   - [3. Deployment](#3-deployment)
-    - [3.1 Docker Instructions](#31-docker-instructions)
+    - [3.1 Web Application](#31-web-application)
+    - [3.2 Docker Instructions](#32-docker-instructions)
   - [4. Data Understanding](#4-data-understanding)
     - [4.1 Data Acquisition](#41-data-acquisition)
     - [4.2 Data Preparation](#42-data-preparation)
@@ -215,7 +216,20 @@ deactivate
 Dependencies are managed in `requirements.txt`.
 
 ## 3. Deployment
-### 3.1 Docker Instructions
+### 3.1 Web Application
+
+We created a web application, which consists of the following:
+- All the visualisations that we have designed in our project
+- An Executive Dashboard to track the performance of the NUS bus system, based on our chosen set of Key Performance Indicators
+    - More information can be found in Section 13 (Appendices) of our Wiki
+- Demonstration videos for our Route Optimisation Algorithm (Section)
+    - More information can be found in Section 6.2 (Route Optimisation) of our Wiki
+- Images illustrating how we simulate the impact of proposed routes on system efficiency and user satisfaction
+    - More information can be found in Section 6.2 (Route Optimisation) of our Wiki
+- An interface for users to try out our Disruption Impact Model
+    - More information can be found in Section 5.4 (Predicting Impact of Bus Disruptions) of our Wiki
+  
+### 3.2 Docker Instructions
 
 To build and run the necessary Docker containers, follow the steps below:
 
