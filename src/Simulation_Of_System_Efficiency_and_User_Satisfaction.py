@@ -326,12 +326,7 @@ def main():
         if not route:
             print("No optimised route found for this combination.") # Due to lack of data, some scenarios are not included so when it is not in the dictionary keys, this will be printed.
             return []
-    
-        # Reorder the route according to the original order
-        original_order = bus_stops.get(route_key[0], [])  # Get the route order for the given bus
-        # Filter the stops to match those in the provided route, maintaining order
-        filtered_route = [stop for stop in original_order if stop in route]
-        return filtered_route
+        return route
     
     def get_route_distances(route_key, route): # To get the distances between 2 consecutive bus stops for the suggested route
         distances = []
