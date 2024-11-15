@@ -192,7 +192,7 @@ def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
             folium.PolyLine(locations=[this_bus_stop_coords, next_bus_stop_coords], color="cyan", weight=5, opacity=0.8).add_to(map)
 
     map.save(os.path.join(os.path.dirname(__file__), f"../visualisations/timelapses/{timelapse_type}.html"))
-    print(f"done for {timelapse_type}")
+    print(f"Saved timelapse for {timelapse_type}.html")
 
 
 def main():

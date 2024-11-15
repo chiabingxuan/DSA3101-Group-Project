@@ -6,6 +6,7 @@ import drivers_of_satisfaction
 import analyse_travel_patterns
 import predict_disruption_impact
 import demand_forecasting
+import demand_forecast_visualisation
 import User_Segmentation_Model
 import Route_Optimisation
 import Simulation_Of_System_Efficiency_and_User_Satisfaction
@@ -48,14 +49,18 @@ if __name__ == "__main__":
     print("-------------------------- Run demand_forecasting.py --------------------------\n")
     demand_forecasting.main()
 
-    # 10. Route optimisation
+    # 10. Demand forecasting visualisation
+    print("-------------------------- Run demand_forecast_visualisation.py --------------------------\n")
+    demand_forecast_visualisation.main()
+
+    # 11. Route optimisation
     print("-------------------------- Run Route_Optimisation.py --------------------------\n")
     Route_Optimisation.main()
 
-    # 11. Simulating system efficiency and user satisfaction
+    # 12. Simulating system efficiency and user satisfaction
     print("-------------------------- Run Simulation_Of_System_Efficiency_and_User_Satisfaction.py --------------------------\n")
     Simulation_Of_System_Efficiency_and_User_Satisfaction.main()
     
-    # 12. Capacity allocation
+    # 13. Capacity allocation
     print("-------------------------- Run capacity_allocation.py --------------------------\n")
     capacity_allocation.main()
