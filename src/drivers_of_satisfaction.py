@@ -26,20 +26,23 @@ def main():
     selected_columns = ['waiting_time_satisfaction',
                         'crowdedness_satisfaction', 'comfort', 'safety', 'overall_satisfaction']
 
-    # Investigate each feature to determine the range, skewness and identify any outliers
-    plt.figure(figsize=(12, 8))
+    # Investigate each feature to determine the range, skewness and identify any outliers (This can be found under Visualisations: Key Drivers of Satisfaction)
+    ## plt.figure(figsize=(15, 10))
 
     # Plot Boxplot for each feature
-    for i, selected_column in enumerate(selected_columns, 1):
-        plt.subplot(len(selected_columns), 2, 2*i-1)
-        sns.boxplot(x=df[selected_column])
-        plt.title(f'Box Plot of {selected_column}')
+    ## for i, selected_column in enumerate(selected_columns, 1):
+        ## plt.subplot(len(selected_columns), 2, 2*i-1)
+        ## sns.boxplot(x=df[selected_column])
+        ## plt.title(f'Box Plot of {selected_column}')
 
     # Plot Histogram for each feature
-    for i, selected_column in enumerate(selected_columns, 1):
-        plt.subplot(len(selected_columns), 2, 2 * i)
-        sns.histplot(df[selected_column], kde=True)
-        plt.title(f'Histogram of {selected_column}')
+    ## for i, selected_column in enumerate(selected_columns, 1):
+        ## plt.subplot(len(selected_columns), 2, 2 * i)
+        ## sns.histplot(df[selected_column], kde=True)
+        ## plt.title(f'Histogram of {selected_column}')
+    
+    ## plt.subplots_adjust(hspace=2.0, wspace=0.3)
+    ## plt.show()
 
     # Investigate the Performance of each factor by obtaining the Median score of each factor
     ## Calculate the median score for each column
@@ -50,12 +53,12 @@ def main():
     print(median_scores)
 
     # Investigate the Relationship between Crowdedness and Crowdedness Satisfaction
-    # Box Plot of Crowdedness against Crowdedness Satisfaction
-    sns.boxplot(x='crowdedness', y='crowdedness_satisfaction', data=df)
-    plt.title('Crowdedness vs. Crowdedness Satisfaction')
-    plt.xlabel('Crowdedness')
-    plt.ylabel('Crowdedness Satisfaction')
-    plt.show()
+    # Box Plot of Crowdedness against Crowdedness Satisfaction (This can be found under Visualisations: Key Drivers of Satisfaction)
+    ## sns.boxplot(x='crowdedness', y='crowdedness_satisfaction', data=df)
+    ## plt.title('Crowdedness vs. Crowdedness Satisfaction')
+    ## plt.xlabel('Crowdedness')
+    ## plt.ylabel('Crowdedness Satisfaction')
+    ## plt.show()
 
     # Conduct a Linear Regression of Crowdedness against Crowdedness Satisfaction
     # Define predictor (independent) variable X and response (dependent) variable y
@@ -72,12 +75,12 @@ def main():
     print(model_LR_C.summary())
 
     # Investigate the Relationship between Waiting Time and Waiting Time Satisfaction
-    # Box Plot of Waiting Time against Waiting Time Satisfaction
-    sns.boxplot(x='waiting_time', y='waiting_time_satisfaction', data=df)
-    plt.title('Waiting Time vs Waiting Time Satisfaction')
-    plt.xlabel('Waiting Time')
-    plt.ylabel('Waiting Time Satisfaction')
-    plt.show()
+    # Box Plot of Waiting Time against Waiting Time Satisfaction (This can be found under Visualisations: Key Drivers of Satisfaction)
+    ## sns.boxplot(x='waiting_time', y='waiting_time_satisfaction', data=df)
+    ## plt.title('Waiting Time vs Waiting Time Satisfaction')
+    ## plt.xlabel('Waiting Time')
+    ## plt.ylabel('Waiting Time Satisfaction')
+    ## plt.show()
 
     # Linear Regression of Waiting Time against Waiting Time Satisfaction
     # Define predictor (independent) variable X and response (dependent) variable y
@@ -102,12 +105,12 @@ def main():
 
     corr_matrix = selected_df.corr()
 
-    # Visualise the Correlation Matrix
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm',
-                vmin=-1, vmax=1, fmt='.2f', square=True)
-    plt.title('Correlation Heatmap for Selected Features')
-    plt.show()
+    # Visualise the Correlation Matrix (This can be found under Visualisations: Key Drivers of Satisfaction)
+    ## plt.figure(figsize=(8, 6))
+    ## sns.heatmap(corr_matrix, annot=True, cmap='coolwarm',
+                ## vmin=-1, vmax=1, fmt='.2f', square=True)
+    ## plt.title('Correlation Heatmap for Selected Features')
+    ## plt.show()
 
     # Based on our results, there seems to be moderate correlation between each factor and overall satisfaction. We will use other methods to determine the relationship between each factor and overall satisfaction.
     # Based on our results, there is moderate correlation between factors. This could imply low multicollinearity. We conduct Variance Inflation Factor (VIF) to determine if the correlations are high enough to be considered as multicollinearity.
