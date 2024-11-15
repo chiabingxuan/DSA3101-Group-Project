@@ -218,11 +218,11 @@ Dependencies are managed in `requirements.txt`.
 ## 3. Deployment
 ### 3.1 Web Application
 
-We created a web application, which consists of the following:
+We used Flask to create a web application, which consists of the following:
 - All the visualisations that we have designed in our project
 - An Executive Dashboard to track the performance of the NUS bus system, based on our chosen set of Key Performance Indicators
     - More information can be found in Section 13 (Appendices) of our Wiki
-- Demonstration videos for our Route Optimisation Algorithm (Section)
+- Demonstration videos for our Route Optimisation Algorithm
     - More information can be found in Section 6.2 (Route Optimisation) of our Wiki
 - Images illustrating how we simulate the impact of proposed routes on system efficiency and user satisfaction
     - More information can be found in Section 6.2 (Route Optimisation) of our Wiki

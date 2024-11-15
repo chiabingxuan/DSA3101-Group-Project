@@ -181,6 +181,7 @@ def main(start_node="COM3", initial_delay=30, decay_factor=config.DECAY_FACTOR, 
     delays = bfs_disruption_propagation(graph, start_node=start_node, initial_delay=initial_delay, decay_factor=decay_factor, max_depth=max_depth)
     delays = [(bus_stop, round(est_delay, 2)) for bus_stop, est_delay in delays.items()]
     delays.sort(key=lambda pair: pair[1], reverse=True)
+    print(delays)
 
     return delays
 
