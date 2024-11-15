@@ -157,7 +157,7 @@ def demand_forecasting():
     feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
 
     '''Evaluate Model Performance'''
-    y_pred = np.floor(model.predict(X_test)).astype(int)
+    y_pred = np.floor(model.predict(X_test_selected)).astype(int)
     mae = mean_absolute_error(y_test, y_pred)
     mse = mean_squared_error(y_test, y_pred)
     rmse = mse ** 0.5
