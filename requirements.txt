@@ -7,6 +7,7 @@ debugpy
 decorator
 exceptiongroup
 executing
+flask
 folium
 fonttools
 gym

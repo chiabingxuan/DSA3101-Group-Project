@@ -7,12 +7,13 @@ def main():
     import pandas as pd
     import warnings
     from sklearn.preprocessing import MinMaxScaler
+    import os
 
     # Suppress warnings for a more user friendly experience
     warnings.filterwarnings("ignore")
 
     # Read in the dataset
-    df = pd.read_csv('train_trip_data_after_sdv.csv')
+    df = pd.read_csv(os.path.join(os.path.dirname( __file__), '../data/train_trip_data_after_sdv.csv'), keep_default_na=False)
 
     # Reformat the time, so that the hour can be extracted
     df['time'] = pd.to_datetime(df['time']).dt.strftime('%H:%M:%S')
@@ -169,14 +170,14 @@ def main():
     unique_bus_numbers = sorted(set([key[0] for key in sorted_bus_route_priorities.keys()]))
 
     def run_algorithm():
-        # Print all available unique bus numbers
-        print("Available Bus Numbers:")
+        # Yield all available bus numbers
+        yield "Available Bus Numbers:"
         for bus_num in unique_bus_numbers:
-            print(bus_num)
+            yield str(bus_num)
 
         # Ask the user to pick a bus number
         selected_bus_num = input("Please pick a bus number from the list above: ")
-        print("-------------------------------------------------------------------------------------------------------------")
+        yield "-------------------------------------------------------------------------------------------------------------"
 
         # To have a condition to terminate the algorithm if an invalid user input is fed into the algorithm
         terminate_algorithm = 0
@@ -186,14 +187,14 @@ def main():
             # Extract unique days available for the selected bus
             unique_days = sorted(set([key[1] for key in sorted_bus_route_priorities.keys() if key[0] == selected_bus_num]))
 
-            # Print all available unique days for the selected bus
-            print(f"Available Days of the week for Bus {selected_bus_num}:")
+            # Yield available unique days for the selected bus
+            yield f"Available Days of the week for Bus {selected_bus_num}:"
             for day in unique_days:
-                print(day)
+                yield str(day)
 
-            # Ask the user to pick a day
+            # Ask the user to pick a bus number
             selected_day = int(input("Please pick a day from the list above (e.g., 1 for Monday): "))
-            print("-------------------------------------------------------------------------------------------------------------")
+            yield "-------------------------------------------------------------------------------------------------------------"
 
             # Check if the selected day is valid
             if selected_day in unique_days:
@@ -202,29 +203,30 @@ def main():
 
                 # Retrieve the day corresponding to the selected_day key
                 day_name = days_of_week.get(selected_day)
-                # Print all available unique hours for the selected bus and day
-                print(f"Available Hours for Bus {selected_bus_num} on {day_name}:")
+
+                # Yield all available unique hours for the selected bus and day
+                yield f"Available Hours for Bus {selected_bus_num} on {day_name}:"
                 for hour in unique_hours:
-                    print(hour)
+                    yield str(hour)
 
                 # Ask the user to pick an hour
                 selected_hour = int(input("Please pick an hour from the list above (e.g, 8 for 0800H - 0859H): "))
-                print("-------------------------------------------------------------------------------------------------------------")
+                yield "-------------------------------------------------------------------------------------------------------------"
 
                 # Check if the selected hour is valid
                 if selected_hour in unique_hours:
                     # Extract unique weather conditions available for the selected bus, day, and hour
                     unique_weathers = sorted(set([key[3] for key in sorted_bus_route_priorities.keys() if key[0] == selected_bus_num and key[1] == selected_day and key[2] == selected_hour]))
 
-                    # Print all available unique weather conditions for the selected bus, day, and hour
+                    # Yield all available unique weather conditions for the selected bus, day, and hour
                     time_range = time_ranges.get(selected_hour)
-                    print(f"Available Weather for Bus {selected_bus_num} on {day_name} between {time_range}:")
+                    yield f"Available Weather for Bus {selected_bus_num} on {day_name} between {time_range}:"
                     for weather in unique_weathers:
-                        print(weather)
+                        yield str(weather)
 
                     # Ask the user to pick a weather condition
                     selected_weather = int(input("Please pick a weather condition from the list above (0 for sunny, 1 for rainy): "))
-                    print("-------------------------------------------------------------------------------------------------------------")
+                    yield "-------------------------------------------------------------------------------------------------------------"
 
                     # Check if the selected weather is valid
                     if selected_weather in unique_weathers:
@@ -233,31 +235,31 @@ def main():
 
                         # Print all available unique exam statuses
                         weather_name = weather_conditions.get(selected_weather)
-                        print(f"Available Exam Status for Bus {selected_bus_num} on {day_name} between {time_range} with {weather_name} weather:")
+                        yield f"Available Exam Status for Bus {selected_bus_num} on {day_name} between {time_range} with {weather_name} weather:"
                         for exam in unique_exams:
-                            print(exam)
+                            yield str(exam)
 
                         # Ask the user to pick an exam status
                         selected_exam = int(input("Please pick an exam status from the list above (0 for no exam, 1 for exam): "))
-                        print("-------------------------------------------------------------------------------------------------------------")
+                        yield "-------------------------------------------------------------------------------------------------------------"
 
                         # Check if the selected exam status is valid
                         if selected_exam in unique_exams:
                             final_tuple = (selected_bus_num, selected_day, selected_hour, selected_weather, selected_exam)
                         else:
-                            print("Invalid exam status. Please select a valid exam status from the list.")
+                            yield "Invalid exam status. Please select a valid exam status from the list."
                             terminate_algorithm = 1
                     else:
-                        print("Invalid weather condition. Please select a valid weather condition from the list.")
+                        yield "Invalid weather condition. Please select a valid weather condition from the list."
                         terminate_algorithm = 1
                 else:
-                    print("Invalid hour. Please select a valid hour from the list.")
+                    yield "Invalid hour. Please select a valid hour from the list."
                     terminate_algorithm = 1
             else:
-                print("Invalid day. Please select a valid day from the list.")
+                yield "Invalid day. Please select a valid day from the list."
                 terminate_algorithm = 1
         else:
-            print("Invalid bus number. Please select a valid bus number from the list.")
+            yield "Invalid bus number. Please select a valid bus number from the list."
             terminate_algorithm = 1
 
         # After retrieving bus_route as before
@@ -270,7 +272,7 @@ def main():
             # Create a list to store prioritized stops followed by other stops
             prioritized_stops = []
             non_prioritized_stops = []
-
+            
             # Separate prioritized stops and non-prioritized stops
             for stop in bus_route:
                 if stop in all_routes:
@@ -282,21 +284,31 @@ def main():
             # Combine the lists
             final_routes = prioritized_stops + non_prioritized_stops
 
-            # Print the final arranged bus stops
+            # Yield the final arranged bus stops
             got_exam = exam_statuses.get(selected_exam)
-            print(f"User Selection: \nBus - {selected_bus_num} \nDay - {day_name} \nTime - {time_range} \nWeather - {weather_name} \nExam - {got_exam}")
-            print("-------------------------------------------------------------------------------------------------------------")
-            # Print prioritized bus stops
-            print(f"Required Priority for Certain Bus Stops:")
+            yield f"User Selection: \nBus - {selected_bus_num} \nDay - {day_name} \nTime - {time_range} \nWeather - {weather_name} \nExam - {got_exam}"
+            yield "-------------------------------------------------------------------------------------------------------------"
+            
+            # Yield prioritized bus stops
+            yield f"Required Priority for Certain Bus Stops:"
             for index, stop in enumerate(bus_route):
-                print(f"{index+1}: {stop}")
-            print("-------------------------------------------------------------------------------------------------------------")
-            print("Final Optimized Order of Bus Stops to visit:")
+                yield f"{index+1}: {stop}"
+            yield "-------------------------------------------------------------------------------------------------------------"
+            
+            # Yield final optimized order of bus stops
+            yield "Final Optimized Order of Bus Stops to visit:"
             for index, stop in enumerate(final_routes):
-                print(f"{index+1}: {stop}")
-            print("------------------------------------------------------END----------------------------------------------------")
+                yield f"{index+1}: {stop}"
+            yield "------------------------------------------------------END----------------------------------------------------"
         else:
-            run_algorithm()
-        return
-    run_algorithm()
+            yield "Algorithm terminated due to invalid input."
+        
+    def process_algorithm():
+            for output in run_algorithm():
+                print(output)
+
+    # Call the function
+    process_algorithm()
     return
+
+main()
