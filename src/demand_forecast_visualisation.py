@@ -1,9 +1,9 @@
 import folium
 from folium.plugins import HeatMapWithTime
-import demand_forecasting as df
+from . import demand_forecasting as df
 import numpy as np
 import os
-import params
+from . import params
 
 def main():
     # Assuming df.demand_forecasting() returns the provided 9x15 matrix (9 bus stops, 15 hours)

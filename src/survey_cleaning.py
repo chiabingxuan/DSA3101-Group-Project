@@ -3,7 +3,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import datetime
-import params
+from . import params
 
 
 def reshape(survey_data):

@@ -1,5 +1,5 @@
-import origin_destination_matrix
-import make_timelapses_for_travel_patterns
+from . import origin_destination_matrix
+from . import make_timelapses_for_travel_patterns
 
 
 def main():

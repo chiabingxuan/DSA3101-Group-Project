@@ -202,7 +202,7 @@ pip install -r requirements.txt
 9. Run the main program:
 
 ```
-python src/main.py
+python -m src.main
 ```
 
 10. To deactivate your virtual environment, run the following:

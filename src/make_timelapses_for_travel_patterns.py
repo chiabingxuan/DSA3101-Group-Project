@@ -3,10 +3,10 @@ from folium import plugins
 import os
 import pandas as pd
 import numpy as np
-from User_Segmentation_Model import segmentation_model
-import filter_count
+from .User_Segmentation_Model import segmentation_model
+from . import filter_count
 import datetime
-import params
+from . import params
 
 
 def format_time_and_add_iso_time(data, time):

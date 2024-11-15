@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.optimize import linprog
-import demand_forecasting as df
+from . import demand_forecasting as df
 
 ########################################################################################################
 ######## Model Objectives: Minimise unmet demand                                                ########  
