@@ -3,7 +3,7 @@ from src import predict_disruption_impact
 
 
 app = Flask(__name__)
-app.config.from_object("config.ProdConfig")
+app.config.from_object("config.DevConfig")
 
 
 @app.route("/")
@@ -64,4 +64,4 @@ def html_visualisations(filename):
     return render_template(f"{filename}.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
