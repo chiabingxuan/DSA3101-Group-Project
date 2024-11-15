@@ -4,7 +4,7 @@ import numpy as np
 from sdv.metadata import SingleTableMetadata
 from sdv.single_table import GaussianCopulaSynthesizer
 from sdv.evaluation.single_table import run_diagnostic, evaluate_quality, get_column_plot
-import config
+import params
 
 def combine_columns(data):
     # If "start", "end" and "bus_num" are in separate columns, synthesised data may have nonsensical data (eg. "start" and "end" being the same). So we need to combine these 3 columns into one single column, "trip"
@@ -32,7 +32,7 @@ def generate_synthetic_data(data, metadata):
     synthesiser.fit(data)
 
     # Generate synthetic data
-    synthetic_data = synthesiser.sample(num_rows=config.NUM_NEW_ROWS_SYNTHESISED_TRAIN) 
+    synthetic_data = synthesiser.sample(num_rows=params.NUM_NEW_ROWS_SYNTHESISED_TRAIN) 
     return synthetic_data
 
 

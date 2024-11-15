@@ -3,7 +3,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 import datetime
-import config
+import params
 
 
 def reshape(survey_data):
@@ -54,7 +54,7 @@ def format_dates(data, col_names):  # col_names: names of all columns with dates
 
 def correct_indiv_time(trip_time):
     time_only = trip_time.time()    # get only the timestamp from datetime
-    FIRST_BUS_TIME, LAST_BUS_TIME = config.FIRST_BUS_TIME, config.LAST_BUS_TIME
+    FIRST_BUS_TIME, LAST_BUS_TIME = params.FIRST_BUS_TIME, params.LAST_BUS_TIME
     if time_only < FIRST_BUS_TIME:
         trip_time += datetime.timedelta(hours=12)   # change invalid AMs to PMs
     elif time_only > LAST_BUS_TIME:
@@ -74,7 +74,7 @@ def format_and_correct_times(data, col_names):
 
 def correct_individual_major(major):
     # Step 1: Dictionary to get the mappings
-    MAPPINGS = config.MAJOR_MAPPING
+    MAPPINGS = params.MAJOR_MAPPING
 
     # Step 2: Convert major to lowercase
     lower_major = major.lower()
@@ -95,7 +95,7 @@ def clean_majors(data, col_name):   # col_name: name of columns with major
 def check_start_end_has_bus_num(start, end, bus_num):
     # Dictionary of bus services for each of our target bus stops
     # Since we are grouping bus stops in pairs, there is a potential issue here. For example, Kent Ridge MRT services A1 but Opp Kent Ridge MRT does not
-    BUS_NUMS_OF_BUS_STOPS = config.BUS_NUMS_OF_BUS_STOPS
+    BUS_NUMS_OF_BUS_STOPS = params.BUS_NUMS_OF_BUS_STOPS
     return (bus_num in BUS_NUMS_OF_BUS_STOPS[start]) and (bus_num in BUS_NUMS_OF_BUS_STOPS[end])  # check if bus_num is serviced in both starting and ending bus-stops
 
 
