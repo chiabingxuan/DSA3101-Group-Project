@@ -26,7 +26,7 @@
                 <li class="current-page">Folium Visualisations</li>
                 <li><a href="{{ url_for('kpi_dashboard') }}">KPI Dashboard</a></li>
                 <li><a href="{{ url_for('other_visualisations') }}">Other Visualisations</a></li>
-                <li><a href="{{ url_for('route_optimisation_model') }}">Route Optimisation Model</a></li>
+                <li><a href="{{ url_for('route_optimisation_algo_and_simulation') }}">Route Optimisation Algorithm and Simulation</a></li>
                 <li><a href="{{ url_for('disruption_impact_model') }}">Disruption Impact Model</a></li>
             </ul>
         </nav>
@@ -35,7 +35,7 @@
         <article>
             <h2 class="underline">Folium Visualisations</h2>
             <p>Please choose the timelapse that you wish to view:</p>
-            <ul id="list-of-links">
+            <ul id="bullet-point-list">
                 <li><a href="{{ url_for('html_visualisations', filename='nus_trip_markers_timelapse') }}">Overall Timelapse</a></li>
                 <li><a href="{{ url_for('html_visualisations', filename='nus_exam_trip_markers_timelapse') }}">Exam Day Timelapse</a></li>
                 <li><a href="{{ url_for('html_visualisations', filename='nus_no_exam_trip_markers_timelapse') }}">Non-Exam Day Timelapse</a></li>

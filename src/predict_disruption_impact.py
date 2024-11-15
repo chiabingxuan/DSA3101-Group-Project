@@ -164,7 +164,7 @@ def bfs_disruption_propagation(graph, start_node, initial_delay, decay_factor, m
     return delays
 
 
-def main(start_node="COM3", initial_delay=30, decay_factor=config.DECAY_FACTOR, max_depth=config.BFS_MAX_DEPTH):
+def main(start_node="COM3", initial_delay=30, decay_factor=config.DECAY_FACTOR, max_depth=config.BFS_MAX_DEPTH):   # the default arguments correspond to a sample scenario (delay of 30 minutes starting from COM3)
     # Read trip_data
     trip_data = pd.read_csv(os.path.join(os.path.dirname( __file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
 

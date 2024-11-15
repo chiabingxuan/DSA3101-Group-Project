@@ -3,6 +3,7 @@ from src import predict_disruption_impact
 
 
 app = Flask(__name__)
+app.config.from_object("config.DevConfig")
 
 
 @app.route("/")
@@ -40,12 +41,12 @@ def other_visualisations():
     return render_template("other-visualisations.html")
 
 
-@app.route("/route-optimisation-model")
-def route_optimisation_model():
-    return render_template("route-optimisation-model.html")
+@app.route("/route-optimisation-algo-and-simulation")
+def route_optimisation_algo_and_simulation():
+    return render_template("route-optimisation-algo-and-simulation.html")
 
 
-@app.route("/disruption-impact-model", methods=["GET", "POST"])
+@app.route("/disruption-impact-model")
 def disruption_impact_model():
     if request.method == "GET":
         return render_template("disruption-impact-model.html")

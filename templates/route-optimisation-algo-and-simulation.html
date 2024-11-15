@@ -26,32 +26,27 @@
                 <li><a href="{{ url_for('folium_visualisations') }}">Folium Visualisations</a></li>
                 <li><a href="{{ url_for('kpi_dashboard') }}">KPI Dashboard</a></li>
                 <li><a href="{{ url_for('other_visualisations') }}">Other Visualisations</a></li>
-                <li class="current-page">Route Optimisation Model</li>
+                <li class="current-page">Route Optimisation Algorithm and Simulation</li>
                 <li><a href="{{ url_for('disruption_impact_model') }}">Disruption Impact Model</a></li>
             </ul>
         </nav>
     </header>
     <main id="main">
         <article>
-            <h2 class="underline">Route Optimisation Model</h2>
+            <h2 class="underline">Route Optimisation Algorithm and Simulation</h2>
             <section class="box">
-                <form id="registration-form">
-                    <fieldset class="response-section">
-                        <legend>Personal Particulars</legend>
-                        <p>
-                            <label for="username">Username:&nbsp;&nbsp;</label>
-                            <input type="text" name="username" id="username" class="response-box" autocomplete="off">
-                        </p>
-                        <p>
-                            <label for="password">Password:&nbsp;&nbsp;&nbsp;</label>
-                            <input type="password" name="password" id="password" class="response-box"
-                                autocomplete="off">
-                        </p>
-
-                        <button type="submit" class="centralise submit-button">Submit</button>
-
-                    </fieldset>
-                </form>
+                <h3>Route Optimisation Algorithm</h3>
+                <p>The following is a demonstration video showing how our Route Optimisation Algorithm can be utilised. You can try it out too by running Route_Optimisation.py!</p>
+                <figure class="gallery">
+                    <img src="{{ url_for('static', filename='img/route_optimisation_demo.gif') }}"" alt="route_optimisation_demo" width="800">
+                </figure>
+            </section>
+            <section class="box">
+                <h3>Simulation of System Efficiency and User Satisfaction</h3>
+                <p>The following image demonstrates how we can simulate the outcome of implementing a certain route, with respect to system efficiency and user satisfaction. You can try it out too by running Simulation_Of_System_Efficiency_and_User_Satisfaction.py!</p>
+                <figure class="gallery">
+                    <img src="{{ url_for('static', filename='img/SimPy.png') }}"" alt="SimPy" width="800">
+                </figure>
             </section>
         </article>
     </main>

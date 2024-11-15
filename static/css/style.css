@@ -41,7 +41,7 @@
     --PADDING-TOP-BOTTOM: 0.5rem;
     --PADDING-LEFT-RIGHT: 0.5rem;
     --NAV-PADDING: var(--PADDING-TOP-BOTTOM) calc(var(--PADDING-LEFT-RIGHT) + var(--MARGIN-LEFT-RIGHT));
-    --LIST-OF-LINKS-PADDING: var(--PADDING-TOP-BOTTOM) calc(var(--MARGIN-LEFT-RIGHT) + var(--PADDING-LEFT-RIGHT));
+    --BULLET-POINT-LIST-PADDING: var(--PADDING-TOP-BOTTOM) calc(var(--MARGIN-LEFT-RIGHT) + var(--PADDING-LEFT-RIGHT));
 
     /* Margins */
     --MARGIN-TOP-BOTTOM: 0.5rem;
@@ -297,12 +297,12 @@ nav a {
     transition: transform var(--ANIMATION-TIME-SHORT);
 }
 
-#list-of-links {
-    padding: var(--LIST-OF-LINKS-PADDING);
+#bullet-point-list {
+    padding: var(--BULLET-POINT-LIST-PADDING);
     margin: 0;
 }
 
-#list-of-links li {
+#bullet-point-list li {
     list-style-position: inside;
 }
 

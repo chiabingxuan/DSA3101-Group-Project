@@ -38,6 +38,7 @@ pure_eval
 pygments
 pyparsing
 python-dateutil
+python-dotenv
 pytz
 pyzmq
 rich

@@ -1,13 +1,13 @@
+# Import the necessary libraries and packages
+import pandas as pd
+import warnings
+from sklearn.preprocessing import MinMaxScaler
+import os
+
 def main():
     """
     **1. Data Cleaning & Preprocessing**
     """
-
-    # Import the necessary libraries and packages
-    import pandas as pd
-    import warnings
-    from sklearn.preprocessing import MinMaxScaler
-    import os
 
     # Suppress warnings for a more user friendly experience
     warnings.filterwarnings("ignore")
