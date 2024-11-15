@@ -3,7 +3,6 @@ asttokens
 comm
 contourpy
 cycler
-datetime
 debugpy
 decorator
 exceptiongroup
@@ -16,7 +15,6 @@ gym
 imblearn
 ipykernel
 ipython
-itertools
 jedi
 joblib
 jupyter_client
@@ -27,7 +25,6 @@ kprototypes
 markdown-it-py
 matplotlib
 numpy
-os
 packaging
 pandas
 parso
