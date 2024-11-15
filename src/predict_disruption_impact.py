@@ -1,9 +1,33 @@
 import pandas as pd
 import os
-from . import params
 from prefixspan import PrefixSpan
 from collections import deque
 
+
+# Parameters for the prediction of impacts of bus disruptions
+DECAY_FACTOR = 0.8
+BFS_MAX_DEPTH = 3
+
+BUS_STOP_COORDINATES = {
+    "Kent Ridge MRT / Opp Kent Ridge MRT": (1.2949169774094218, 103.78450347558939),
+    "LT27 / S17": (1.2974629302644196, 103.78085273302771),
+    "UHC / Opp UHC": (1.2988678848068846, 103.7759206887556),
+    "UTown": (1.3035493102220883, 103.7745363670092),
+    "COM3": (1.2949516906131686, 103.77494690050855),
+    "BIZ2 / Opp HSSML": (1.2931431812053542, 103.7750819279268),
+    "LT13 / Ventus": (1.2952473123850663, 103.77060867365277),
+    "IT / CLB": (1.296984108396615, 103.77264737349888),
+    "PGP": (1.2914385089186413, 103.78047445708181)
+}
+
+BUS_STOP_NAMES = list(BUS_STOP_COORDINATES.keys())
+
+BUS_NUM_ROUTES = {
+    "A1": ["LT13 / Ventus", "BIZ2 / Opp HSSML", "PGP", "Kent Ridge MRT / Opp Kent Ridge MRT", "LT27 / S17", "UHC / Opp UHC", "IT / CLB", "LT13 / Ventus"],
+    "A2": ["IT / CLB", "UHC / Opp UHC", "LT27 / S17", "Kent Ridge MRT / Opp Kent Ridge MRT", "PGP", "BIZ2 / Opp HSSML", "LT13 / Ventus", "IT / CLB"],
+    "D1": ["COM3", "BIZ2 / Opp HSSML", "LT13 / Ventus", "IT / CLB", "UTown", "IT / CLB", "LT13 / Ventus", "BIZ2 / Opp HSSML", "COM3"],
+    "D2": ["COM3", "PGP", "Kent Ridge MRT / Opp Kent Ridge MRT", "LT27 / S17", "UHC / Opp UHC", "UTown", "UHC / Opp UHC", "LT27 / S17", "Kent Ridge MRT / Opp Kent Ridge MRT", "PGP", "COM3"]
+}
 
 def find_distance(start_index, end_index, length_of_list):
     # Finds distance travelled from start to end (distance measured in terms of number of bus stops visited along the way)
@@ -17,7 +41,7 @@ def find_distance(start_index, end_index, length_of_list):
 
 def find_bus_stops_visited(bus_num, start, end):
     # Remove last bus stop since it is the same as the first bus stop
-    route_for_bus_num = params.BUS_NUM_ROUTES[bus_num][:-1]
+    route_for_bus_num = BUS_NUM_ROUTES[bus_num][:-1]
 
     length_of_route = len(route_for_bus_num)
 
@@ -121,7 +145,7 @@ def make_weighted_graph_from_rules(rules):
         graph[antecedent].append((consequent, metric))
 
     # In case there are some bus stops that do not appear in any of the rules - add them to graph as well
-    for bus_stop in params.BUS_STOP_NAMES:
+    for bus_stop in BUS_STOP_NAMES:
         if bus_stop not in graph:
             graph[bus_stop] = list()
     return graph
@@ -164,7 +188,7 @@ def bfs_disruption_propagation(graph, start_node, initial_delay, decay_factor, m
     return delays
 
 
-def main(start_node="COM3", initial_delay=30, decay_factor=params.DECAY_FACTOR, max_depth=params.BFS_MAX_DEPTH):   # the default arguments correspond to a sample scenario (delay of 30 minutes starting from COM3)
+def main(start_node="COM3", initial_delay=30, decay_factor=DECAY_FACTOR, max_depth=BFS_MAX_DEPTH):   # the default arguments correspond to a sample scenario (delay of 30 minutes starting from COM3)
     # Read trip_data
     trip_data = pd.read_csv(os.path.join(os.path.dirname( __file__), "../data/train_trip_data_after_sdv.csv"), keep_default_na=False)
 
