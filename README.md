@@ -5,12 +5,13 @@
   - [2. Technical Implementation](#2-technical-implementation)
     - [2.1 Repository Structure](#21-repository-structure)
     - [2.2 Setup Instructions](#22-setup-instructions)
-    - [2.3 Docker Instructions](#23-docker-instructions)
+  - [3. Deployment](#3-deployment)
+    - [3.1 Docker Instructions](#31-docker-instructions)
     - [2.4 Dependency Management](#24-dependency-management)
-  - [3. Data Understanding](#3-data-understanding)
-    - [3.1 Data Acquisition](#31-data-acquisition)
-    - [3.2 Data Preparation](#32-data-preparation)
-    - [3.3 Data Dictionaries](#33-data-dictionaries)
+  - [4. Data Understanding](#4-data-understanding)
+    - [4.1 Data Acquisition](#41-data-acquisition)
+    - [4.2 Data Preparation](#42-data-preparation)
+    - [4.3 Data Dictionaries](#43-data-dictionaries)
 
 ## 1. Project Overview
 
@@ -209,7 +210,8 @@ python src/main.py
 deactivate
 ```
 
-### 2.3 Docker Instructions
+## 3. Deployment
+### 3.1 Docker Instructions
 
 To build and run the necessary Docker containers, follow the steps below:
 
@@ -243,13 +245,13 @@ docker run --name data-scavengers-container -p 5000:5000 data-scavengers-app
 
 Dependencies are managed in `requirements.txt`.
 
-## 3. Data Understanding
+## 4. Data Understanding
 
-### 3.1 Data Acquisition
+### 4.1 Data Acquisition
 
 We collected survey data to investigate the travel patterns and satisfaction levels of NUS students, with regards to the NUS bus system. In our survey, respondents were asked to share **two bus trips** that they embarked on for the day. The [survey link](https://docs.google.com/forms/d/1zh5M9Sccn3ifxcOOJd2UMj7cQSFKPWmvD-RG1PZA9QM/edit) was circulated online on various NUS platforms, including the official Telegram channel for the NUS College of Humanities and Sciences (CHS).
 
-### 3.2 Data Preparation
+### 4.2 Data Preparation
 
 From our survey, we are able to obtain tabular data in the form of a CSV file, `survey.csv`. Each row of the CSV file corresponds to a single survey response (two bus trips). Starting from `survey.csv`, we carry out a series of preparatory steps. Please refer to Section 3 - 4 of our Wiki for a detailed documentation of these processes.
 
@@ -259,7 +261,7 @@ From our survey, we are able to obtain tabular data in the form of a CSV file, `
 4. Carry out synthetic data generation using SDV, on `train_trip_data_after_smote.csv` and `test_trip_data_before_sdv.csv`. This is saved as `train_trip_data_after_sdv.csv` and `test_trip_data_after_sdv.csv` respectively
 5. Combine `train_trip_data_after_sdv.csv` and `test_trip_data_after_sdv.csv`, saving this dataset as `combined_trip_data.csv`
 
-### 3.3 Data Dictionaries
+### 4.3 Data Dictionaries
 
 The following are a list of data dictionaries for each of the CSV files stated in Section 3.2 (Data Preparation), in order of appearance. Note that `train_trip_data_after_sdv.csv`, `test_trip_data_after_sdv.csv` and `cleaned_other_feedback_data.csv` are the datasets that we use in our analysis.
 
