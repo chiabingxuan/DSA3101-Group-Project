@@ -176,6 +176,7 @@ def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars, save_fold
         plt.ylabel(var_name)
         plt.tight_layout()
         plt.savefig(os.path.join(os.path.dirname(__file__), save_folder, f"initial_{var_name}_bar_chart.png"))
+        plt.close()
 
     for var_index in boxplot_vars:
         var_name = data.columns[var_index]
@@ -186,6 +187,7 @@ def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars, save_fold
         plt.ylabel(var_name)
         plt.tight_layout()
         plt.savefig(os.path.join(os.path.dirname(__file__), save_folder, f"initial_{var_name}_box_plot.png"))
+        plt.close()
 
     for var_index in histogram_vars:
         var_name = data.columns[var_index]
@@ -196,6 +198,7 @@ def visualise_data(data, bar_chart_vars, boxplot_vars, histogram_vars, save_fold
         plt.ylabel("Frequency")
         plt.tight_layout()
         plt.savefig(os.path.join(os.path.dirname(__file__), save_folder, f"initial_{var_name}_histogram.png"))
+        plt.close()
 
 
 def remove_outliers(data, year_of_study, trips_per_day, num_people_at_bus_stop=None):
