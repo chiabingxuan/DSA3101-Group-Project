@@ -3,7 +3,7 @@ from folium import plugins
 import os
 import pandas as pd
 import numpy as np
-import User_Segmentation_Model
+from User_Segmentation_Model import segmentation_model
 import filter_count
 import datetime
 import config
@@ -143,7 +143,7 @@ def make_and_save_timelapse(trip_data_path, timelapse_type, scenario):
             trip_data = trip_data[trip_data["trips_per_day"] != 0]
 
             # Get column of assigned clusters, ordering of rows is still the same as train_trip_data_after_sdv.csv
-            cluster_column = User_Segmentation_Model.segmentation_model(trip_data)["cluster_labels_of_data_point"]
+            cluster_column = segmentation_model(trip_data)["cluster_labels_of_data_point"]
             trip_data["cluster"] = cluster_column
             cluster = scenario["cluster"]
             trip_data = trip_data[trip_data["cluster"] == cluster]

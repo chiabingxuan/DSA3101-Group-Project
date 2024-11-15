@@ -7,7 +7,7 @@ import analyse_travel_patterns
 import predict_disruption_impact
 import demand_forecasting
 import User_Segmentation_Model
-import Route_Optimization
+import Route_Optimisation
 import Simulation_Of_System_Efficiency_and_User_Satisfaction
 import capacity_allocation
 
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     demand_forecasting.main()
 
     # 10. Route optimisation
-    Route_Optimization.main()
+    Route_Optimisation.main()
 
     # 11. Simulating system efficiency and user satisfaction
     Simulation_Of_System_Efficiency_and_User_Satisfaction.main()

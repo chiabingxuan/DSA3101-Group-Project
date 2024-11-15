@@ -3,7 +3,7 @@ from src import predict_disruption_impact
 
 
 app = Flask(__name__)
-app.config.from_object("config.DevConfig")
+app.config.from_object("config.ProdConfig")
 
 
 @app.route("/")
@@ -14,6 +14,11 @@ def index():
 @app.route("/initial-data-exploration-visualisations")
 def initial_data_exploration_visualisations():
     return render_template("initial-data-exploration-visualisations.html")
+
+
+@app.route("/drivers-of-satisfaction-visualisations")
+def drivers_of_satisfaction_visualisations():
+    return render_template("drivers-of-satisfaction-visualisations.html")
 
 
 @app.route("/user-segmentation-visualisations")
@@ -46,7 +51,7 @@ def route_optimisation_algo_and_simulation():
     return render_template("route-optimisation-algo-and-simulation.html")
 
 
-@app.route("/disruption-impact-model")
+@app.route("/disruption-impact-model", methods=["GET", "POST"])
 def disruption_impact_model():
     if request.method == "GET":
         return render_template("disruption-impact-model.html")
@@ -58,10 +63,12 @@ def disruption_impact_model():
     estimated_delays = predict_disruption_impact.main(start_node=bus_stop, initial_delay=delay, decay_factor=decay_factor, max_depth=max_depth)
     return render_template("disruption-impact-model-results.html", bus_stop=bus_stop, delay=delay, decay_factor=decay_factor, max_depth=max_depth, estimated_delays=estimated_delays)
 
+
 # Routes for HTML visualisations timelapses
 @app.route("/html-visualisations/<filename>")
 def html_visualisations(filename):
     return render_template(f"{filename}.html")
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

@@ -5,8 +5,8 @@
   - [2. Technical Implementation](#2-technical-implementation)
     - [2.1 Repository Structure](#21-repository-structure)
     - [2.2 Setup Instructions](#22-setup-instructions)
-    - [2.3 Dependency Management](#23-dependency-management)
-    - [2.4 Code Style Guide Adherence](#24-code-style-guide-adherence)
+    - [2.3 Docker Instructions](#23-docker-instructions)
+    - [2.4 Dependency Management](#24-dependency-management)
   - [3. Data Understanding](#3-data-understanding)
     - [3.1 Data Acquisition](#31-data-acquisition)
     - [3.2 Data Preparation](#32-data-preparation)
@@ -200,7 +200,7 @@ pip install -r requirements.txt
 9. Run the main program:
 
 ```
-python main.py
+python src/main.py
 ```
 
 10. To deactivate your virtual environment, run the following:
@@ -209,13 +209,39 @@ python main.py
 deactivate
 ```
 
-### 2.3 Dependency Management
+### 2.3 Docker Instructions
+
+To build and run the necessary Docker containers, follow the steps below:
+
+1. If you do not have Docker installed, visit the [Docker website](https://www.docker.com/) for instructions on installation. Once installed, you can verify your version of Docker by running the following in your terminal:
+
+```
+docker --version
+```
+
+2. Set your working directory to the folder containing the cloned repository:
+   
+```
+cd DSA3101-Group-Project
+```
+
+3. To build a Docker image named `data-scavengers-app` for the web application, run the following:
+
+```
+docker build -t data-scavengers-app .
+```
+
+4. Run the image in a container named `data-scavengers-container` as follows:
+
+```
+docker run --name data-scavengers-container -p 5000:5000 data-scavengers-app
+```
+
+5. Visit http://localhost:5000 to open the application.
+
+### 2.4 Dependency Management
 
 Dependencies are managed in `requirements.txt`.
-
-### 2.4 Code Style Guide Adherence
-
-PEP-8 coding style has been adapted for this project.
 
 ## 3. Data Understanding
 

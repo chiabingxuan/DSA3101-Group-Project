@@ -21,9 +21,9 @@
             <ul>
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('initial_data_exploration_visualisations') }}">Initial Data Exploration Visualisations</a></li>
-                <li><a href="{{ url_for('drivers_of_satisfaction_visualisations') }}">Drivers of Satisfaction Visualisations</a></li>
+                <li class="current-page">Drivers of Satisfaction Visualisations</li>
                 <li><a href="{{ url_for('user_segmentation_visualisations') }}">User Segmentation Visualisations</a></li>
-                <li class="current-page">Tableau Visualisations</li>
+                <li><a href="{{ url_for('tableau_visualisations') }}">Tableau Visualisations</a></li>
                 <li><a href="{{ url_for('folium_visualisations') }}">Folium Visualisations</a></li>
                 <li><a href="{{ url_for('kpi_dashboard') }}">KPI Dashboard</a></li>
                 <li><a href="{{ url_for('other_visualisations') }}">Other Visualisations</a></li>
@@ -34,16 +34,24 @@
     </header>
     <main id="main">
         <article>
-            <h2 class="underline">Tableau Visualisations</h2>
-            <section align="center">
-                <iframe class="tableau-viz" src="https://public.tableau.com/views/WordCloudBubblewithFrequencyCharts/WordCloudwithFrequencyCharts?:showAppBanner=false&:showVizHome=no&:embed=true&:origin=viz_share_link"></iframe>
+            <h2 class="underline">Drivers of Satisfaction Visualisations</h2>
+            <section class="box">
+                <h3>Exploratory Data Analysis</h3>
+                <figure class="gallery">
+                    <img src="{{ url_for('static', filename='img/Boxplot_Crowdeness_and_Crowdedness_Satisfaction.png') }}" alt="Boxplot_Crowdeness_and_Crowdedness_Satisfaction" width="350">
+                    <img src="{{ url_for('static', filename='img/Boxplot_Waiting_Time_and_Waiting_Time_Satisfaction.png') }}" alt="Boxplot_Waiting_Time_and_Waiting_Time_Satisfaction" width="350">
+                    <img src="{{ url_for('static', filename='img/Boxplots_and_Histogram_of_selected_features.png') }}" alt="Boxplots_and_Histogram_of_selected_features" width="350">
+                    <img src="{{ url_for('static', filename='img/correlation_matrix_heatmap.png') }}" alt="correlation_matrix_heatmap" width="350">
+                </figure>
             </section>
-            <section align="center">
-                <iframe class="tableau-viz" src="https://public.tableau.com/views/EnhancedVisualization-GraphofHourlyDistributionofBusTrips/GraphofHourlyDistributionofBusTrips?:showAppBanner=false&:showVizHome=no&:embed=true&:origin=viz_share_link"></iframe>
+            <section class="box">
+                <h3>Performance Importance Matrix</h3>
+                <figure class="gallery">
+                    <img src="{{ url_for('static', filename='img/performance_importance_matrix.png') }}" alt="performance_importance_matrix" width="500">
+                </figure>
             </section>
-            <section align="center">
-                <iframe class="tableau-viz" src="https://public.tableau.com/views/EnhancedVisualization-OverallSatisfactionScoreagainstFactors/OverallSatisfactionScoreagainstFactors?:showAppBanner=false&:showVizHome=no&:embed=true&:origin=viz_share_link"></iframe>
-            </section>
+
+            
         </article>
     </main>
 </body>
