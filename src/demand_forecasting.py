@@ -161,12 +161,12 @@ def demand_forecasting():
     mae = mean_absolute_error(y_test, y_pred)
     mse = mean_squared_error(y_test, y_pred)
     rmse = mse ** 0.5
-    model_accuracy = model.score(X_test_selected, y_test)
+    r_squared = model.score(X_test_selected, y_test)
 
     # Create a DataFrame to display model performance
     model_performance_df = pd.DataFrame({
         'Metric': ['Root Mean Square Error', 'Mean Absolute Error', 'Model Accuracy'],
-        'Value': [rmse, mae, model_accuracy]
+        'Value': [rmse, mae, r_squared]
     })
 
     '''Creating Output for Demand Forecasting'''
