@@ -1,11 +1,6 @@
-# Install the necessary library
-!pip install faker
-
-# from faker import Faker
-from faker import Factory
+from faker import Faker
 import pandas as pd
 import random
-import csv
 
 # read in the CSV file
 df = pd.read_csv("/content/hypothetical_trip_data.csv")
