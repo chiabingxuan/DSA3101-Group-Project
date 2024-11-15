@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     # 6. User segmentation
     print("-------------------------- Run User_Segmentation_Model.py --------------------------\n")
-    User_Segmentation_Model.main()
+    # User_Segmentation_Model.main()
 
     # 7. Analyse travel patterns
     print("-------------------------- Run analyse_travel_patterns.py --------------------------\n")
@@ -58,4 +58,4 @@ if __name__ == "__main__":
     
     # 12. Capacity allocation
     print("-------------------------- Run capacity_allocation.py --------------------------\n")
-    capacity_allocation.main(run_allocation = True)
+    capacity_allocation.main()

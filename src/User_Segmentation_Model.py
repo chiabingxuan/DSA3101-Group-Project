@@ -273,6 +273,7 @@ def main():
 
     # Create the distance matrix using dm_prototypes() defined earlier, using the numpy array version of our training dataset.
     distance_matrix = dm_prototypes(df_array, categorical = [0, 1, 2, 3, 4, 5, 12, 13, 14])
+    
 
     # Create a dictionary called silhouette_scores to store values of K as keys, and corresponding average silhouette scores as values.
     silhouette_scores = dict()

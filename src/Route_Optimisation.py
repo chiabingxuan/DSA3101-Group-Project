@@ -37,7 +37,7 @@ def main():
     df2['weather'] = df2['weather'].map({'Sunny': 0, 'Rainy': 1})
 
     # Display the first few rows of dataframe
-    print(df2.head())
+    # print(df2.head())
 
     # Store all unique bus number
     unique_bus_numbers = df['bus_num'].unique().tolist()
@@ -51,8 +51,8 @@ def main():
         'E': ['Utown', 'IT / CLB', 'UTown']
     }
 
-    print(unique_bus_numbers)
-    print(bus_stops)
+    # print(unique_bus_numbers)
+    # print(bus_stops)
 
     # Check if user filled in starting bus stops that does not exist for that particular bus number, remove such rows as these scenarios are not valid
     for bus_num in unique_bus_numbers:
@@ -65,8 +65,8 @@ def main():
         df2 = df2[df2['end'].isin(stops) | (df2['bus_num'] != bus_num)]
 
     # Display the final processed dataframe
-    print("Final Dataframe:")
-    print(df2)
+    # print("Final Dataframe:")
+    # print(df2)
 
     """
     **2. Bus Stop Prioritization and Sorting Algorithm Based on Survey Data**
@@ -133,8 +133,8 @@ def main():
     sorted_bus_route_priorities = dict(sorted(bus_route_priorities.items(), key=lambda x: (x[0][0], x[0][1], x[0][2], x[0][3], x[0][4])))
 
     # Print the dictionary containing the possible scenarios based on our survey data
-    for key, value in sorted_bus_route_priorities.items():
-        print(f"Bus: {key[0]}, Day: {key[1]}, Hour: {key[2]}, Weather: {key[3]}, Has Exam: {key[4]} - Bus Stops Order: {value}")
+    # for key, value in sorted_bus_route_priorities.items():
+        # print(f"Bus: {key[0]}, Day: {key[1]}, Hour: {key[2]}, Weather: {key[3]}, Has Exam: {key[4]} - Bus Stops Order: {value}")
 
     """
     **3. User Customization Algorithm**
@@ -304,8 +304,8 @@ def main():
             yield "Algorithm terminated due to invalid input."
         
     def process_algorithm():
-            for output in run_algorithm():
-                print(output)
+        for output in run_algorithm():
+            print(output)
 
     # Call the function
     process_algorithm()

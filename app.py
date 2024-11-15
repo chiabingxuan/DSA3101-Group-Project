@@ -1,5 +1,11 @@
+import sys
+import os
 from flask import Flask, request, render_template
-from src import predict_disruption_impact
+from src.predict_disruption_impact import main
+
+
+# Add the project root directory to sys.path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
 app = Flask(__name__)
@@ -60,7 +66,7 @@ def disruption_impact_model():
     delay = int(request.form.get("delay"))
     decay_factor = float(request.form.get("decay-factor"))
     max_depth = int(request.form.get("max-depth"))
-    estimated_delays = predict_disruption_impact.main(start_node=bus_stop, initial_delay=delay, decay_factor=decay_factor, max_depth=max_depth)
+    estimated_delays = main(start_node=bus_stop, initial_delay=delay, decay_factor=decay_factor, max_depth=max_depth)
     return render_template("disruption-impact-model-results.html", bus_stop=bus_stop, delay=delay, decay_factor=decay_factor, max_depth=max_depth, estimated_delays=estimated_delays)
 
 

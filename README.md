@@ -174,7 +174,7 @@ git clone git@github.com:chiabingxuan/DSA3101-Group-Project.git
 git clone https://github.com/chiabingxuan/DSA3101-Group-Project.git
 ```
 
-4. In `config.py`, you can adjust the configuration parameters to your liking.
+4. In `src/params.py`, you can adjust the parameters of the project to your liking.
 5. Set your working directory to the folder containing the cloned repository:
 
 ```
