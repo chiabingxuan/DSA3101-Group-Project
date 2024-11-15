@@ -244,13 +244,13 @@ docker --version
 cd DSA3101-Group-Project
 ```
 
-3. To build a Docker image named `data-scavengers-app` for the web application, run the following:
+3. To build a Docker image named `data-scavengers-app` for the web application, run the following in Git Bash:
 
 ```
 docker build -t data-scavengers-app .
 ```
 
-4. Run the image in a container named `data-scavengers-container` as follows:
+4. In Git Bash, run the image in a container named `data-scavengers-container` as follows:
 
 ```
 docker run --name data-scavengers-container -p 5000:5000 data-scavengers-app
